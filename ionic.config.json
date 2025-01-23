@@ -1,0 +1,7 @@
+{
+  "name": "Motors Cube",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
