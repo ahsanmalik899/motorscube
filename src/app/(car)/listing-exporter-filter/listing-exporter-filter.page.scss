@@ -1,0 +1,37 @@
+.btn-dark{
+    margin-left: -16px;
+    margin-top: -25px;
+    height: 5px !important;
+    // width: 400px !important;
+    width: 115% !important;
+    border-radius: 0px !important;
+    // background: white !important;
+    background: rgba(0 0 0 / 12%) !important;
+    border: 2px !important;
+  }
+  .clr-white{
+    color: gray !important;
+    margin-top: 100px;
+  }
+  #reset{
+    background-color: rgb  (242 ,242 ,242);
+    // margin-left: 10px ;
+  background-color: transparent;
+    color: #c70000;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  #submit{
+    margin-left: 10px ;
+    // background-color: rgba(49, 49, 155, 0.61);
+    background-color: #1a529c;
+    color: white;
+    height: 50px;
+    // width: 300px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  

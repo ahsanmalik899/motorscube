@@ -1,0 +1,138 @@
+.btn-balance{
+  margin-left: 5px;
+  margin-right: 3px;
+  margin-top: 20px;
+  height: 180px !important;
+  // width: 400px !important;
+  width: 95% !important;
+  border-radius: 10px !important;
+  background: white !important;
+  // background: rgb(0 0 0 / 12%) !important;
+  border: 2px !important;
+}
+.clr-white{
+  color: gray !important;
+  margin-top: 100px;
+}
+
+.bottom-balance{
+  .btn_bottom-balance{
+    // display: flex;
+    margin-bottom: 20px;
+    height: 40px;
+    #signin-balance{
+      color: white;
+      // background-color: #ff8a00;
+      background-color: #c70000;
+      width: 200px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.btn-dark{
+  margin-left: -16px;
+  margin-top: -25px;
+  height: 3px !important;
+  // width: 400px !important;
+  width: 115% !important;
+  border-radius: 0px !important;
+  // background: white !important;
+  background: rgba(0 0 0 / 12%) !important;
+  border: 2px !important;
+}
+.clr-white{
+  color: gray !important;
+  margin-top: 100px;
+}
+
+
+.btn-bundle{
+  margin-left: 5px;
+  margin-right: 3px;
+  margin-top: 20px;
+  height: 200px !important;
+  // width: 400px !important;
+  width: 95% !important;
+  border-radius: 10px !important;
+  // background: white !important;
+  background: #87ceeb4a !important;
+  // background: rgb(0 0 0 / 12%) !important;
+  border: 2px !important;
+}
+.clr-white{
+  color: gray !important;
+  margin-top: 100px;
+}
+.btn-deposit{
+  // margin-left: 5px;
+  // margin-right: 3px;
+  margin-top: -60px;
+  height: 150px !important;
+  // width: 400px !important;
+  width: 80% !important;
+  border-radius: 20px !important;
+  // background: white !important;
+  // background: #87ceeb4a !important;
+  // background: rgb(0 0 0 / 12%) !important;
+  border: 2px !important;
+  box-shadow: 0 0 10px;
+}
+.clr-white{
+  color: gray !important;
+  margin-top: 100px;
+}
+
+.bottom-bundle{
+  .btn_bottom-bundle{
+    // display: flex;
+    margin-bottom: 20px;
+    height: 40px;
+    #signin-bundle{
+      color: white;
+      // background-color: #ff8a00;
+      background-color: #c70000;
+      width: 200px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: white; /* ya aapke pasandida background color */
+  padding: 10px 0; /* Padding to create space around the button */
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Optional: adds a slight shadow */
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.bottom-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-buy .btn_bottom-buy {
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.bottom-buy .btn_bottom-buy #signin-buy {
+  color: white;
+  background-color: #1a529c;
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+}

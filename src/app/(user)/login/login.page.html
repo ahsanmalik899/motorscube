@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">Login User</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="loginUser()">
+      <!-- Mobile Field -->
+      <div style="position: relative;">
+        <input type="tel" id="mobile" class="text-field" required placeholder=" " formControlName="mobile" (focus)="onInputFocus('mobile')" (blur)="onInputBlur('mobile')">
+        <label for="mobile" [class.active]="userForm.get('mobile')?.touched">Mobile</label>
+        <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched" class="error-message">
+          Please enter a valid mobile number.
+        </div>
+      </div>
+    
+      <!-- Password Field -->
+      <div style="position: relative;">
+        <input type="{{ showPassword ? 'text' : 'password' }}" class="text-field" required placeholder=" " id="password" formControlName="password" (focus)="onInputFocus('password')" (blur)="onInputBlur('password')">
+        <label for="password" [class.active]="userForm.get('password')?.touched">Password</label>
+        <ion-icon
+          slot="end"
+          [name]="passwordToggleIcon"
+          (click)="togglePassword()"
+          style="position: absolute; right: 10px; top: 45%; transform: translateY(-50%); z-index: 999; width: 20px; height: 20px;"
+        ></ion-icon>
+        <div *If="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="error-message">
+          Password must be at least 6 characters long.
+        </div>
+      </div>
+    
+      <!-- Forgot Password Link -->
+      <div class="forgot-password">
+        <a href="/forget-password">Forgot Password?</a>
+      </div>
+    
+      <!-- Submit Button -->
+      <div>
+        <button type="submit" [disabled]="userForm.invalid">Login</button>
+      </div>
+    
+      <!-- Register Link -->
+      <div class="register-link">
+        <span>Don't have an account?</span>
+        <a (click)="toggleRegisterSection()" style="color: #3880ff; cursor: pointer;">Sign Up</a>
+      </div>
+    </form>
+    
+
+<div *ngIf="showRegisterSection">
+  <p style="color: rgb(83, 82, 82); font-size: medium; margin: 15px">Register As :</p>
+  <div style="display: flex;">
+  <button style="margin: 10px; padding: 15px; width: 46%; height: auto; background-color: rgb(221, 20, 20); color: white; border-radius: 10px;" (click)="goToPrivate()">Private User</button> 
+  
+  <button style="margin: 10px; padding: 15px; width: 46%; height: auto; background-color: rgb(221, 20, 20); color: white; border-radius: 10px;" (click)="goToTrader()">Trader</button> 
+</div>
+</div>
+</div>
+<div *ngIf="userId && userType" style="text-align: center; margin-top: 20px;">
+  <h2>User ID: {{ userId }}</h2>
+  <h2>User Type: {{ userType }}</h2>
+</div>
+</ion-content>

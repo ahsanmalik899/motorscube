@@ -1,0 +1,102 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>acc-create-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>account-prof-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">Create Account (Traders)</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+    <!-- Name Field -->
+    <div>
+      <label for="name" [class.active]="userForm.get('name')?.value">Name</label>
+      <input type="text" id="name" class="text-field" formControlName="name" 
+             (focus)="onInputFocus('name')" (blur)="onInputBlur('name')">
+    </div>
+  
+    <!-- Country and Mobile Fields -->
+    <div class="wrapper">
+      <!-- Country Code -->
+      <div class="country-div">
+        <label for="country" [class.active]="userForm.get('country')?.value">Country Code</label>
+        <select id="country" class="text-field" formControlName="country" 
+                (focus)="onInputFocus('country')" (blur)="onInputBlur('country')">
+          <option *ngFor="let code of countryCode" [value]="code">{{ code }}</option>
+        </select>
+      </div>
+  
+      <!-- Mobile Field -->
+      <div class="mobile-div">
+        <label for="mobile" [class.active]="userForm.get('mobile')?.value">Mobile (3xxxxxxxxx)</label>
+        <input type="tel" id="mobile" class="text-field" maxlength="10" 
+               formControlName="mobile" (focus)="onInputFocus('mobile')" 
+               (blur)="onInputBlur('mobile')" aria-placeholder="3xxxxxxxxx">
+      </div>
+    </div>
+  
+    <!-- Email Field -->
+    <div>
+      <label for="email" [class.active]="userForm.get('email')?.value">Email</label>
+      <input type="email" id="email" class="text-field" formControlName="email" 
+             (focus)="onInputFocus('email')" (blur)="onInputBlur('email')" 
+             aria-placeholder="ABC@abc.com">
+    </div>
+ 
+    <!-- Address Field -->
+    <div>
+      <label for="address" [class.active]="userForm.get('address')?.value">Address</label>
+      <input type="text" id="address" class="text-field" formControlName="address" 
+             (focus)="onInputFocus('address')" (blur)="onInputBlur('address')">
+    </div>
+  
+    <!-- Website Field -->
+    <div>
+      <label for="web" [class.active]="userForm.get('web')?.value">Web</label>
+      <input type="text" id="web" class="text-field" formControlName="web" 
+             (focus)="onInputFocus('web')" (blur)="onInputBlur('web')">
+    </div>
+  
+    <!-- File Upload Field -->
+    <div *ngIf="showUploadField" style="position: relative;margin-top: 40px; width: 100px; height: 200px; overflow: hidden; margin-bottom: 30px 
+    ;">
+      <input type="file" id="upload_image" #fileInput (change)="onFileSelected($event)" 
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;">
+      <label for="upload_image" style="position: absolute; top: 30px; left: 0; width: 100%; height: 100%; margin-top: 30px;">
+        <img src="../../../assets/Profile/Account profile/upload-logo.png" alt="Upload Image" width="100px" height="100px" style="margin-top: 36px;">
+      </label>
+    </div>
+  
+    <!-- Uploaded Image Preview -->
+    <div *ngIf="showUploaded" class="image-container" style="position: relative; margin-top: 5px;margin-bottom: 100px;">
+      <img *ngIf="uploadedImage" [src]="uploadedImage" alt="Uploaded Image" style="width: 20%; height: auto;border: 2px solid black;">
+      <button class="hide-button" (click)="hideImage()" 
+              style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px;">
+        <img src="../../../assets/cross.webp">
+      </button>
+    </div>
+    
+    <!-- Submit Button -->
+    <div class="form-button-container">
+      <button type="submit">Create Account</button>
+
+    </div>
+  </form>
+  
+
+
+</ion-content>

@@ -1,20 +1,209 @@
-<ion-header [translucent]="true">
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>home-page</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div style="height: 50px; position: sticky; top: 0; z-index: 1; box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); background-color: white; margin-top: 0; border-radius: 0 0 0px 0px;">
+    <ion-card class="btn-white" style="height: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0;">
+     
+        <!-- Left image (menu-toolbar) -->
+        <div style="display: flex; align-items: center; margin-left: 10px;">
+          <img src="../../assets/menu-toolbar.png" style="width: 130px;">
+        </div>
+        <!-- Right image (side-menu) -->
+        <div style="display: flex; align-items: center; margin-right: 10px;">
+          <img src="../../../assets/side-menu.png" style="width: 30px;" (click)="navigateToMenu()">
+        </div>
+     
+    </ion-card>
   </div>
+  
+  
+
+  <p style="font-size: 20px; text-align: center;margin-top: 60px; color: darkblue;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Complete motors solutions under one roof</b></p>
+  <p style="font-size: 20px; text-align: center; color: #c70000; margin-top: 30px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Buy  Sell or Hire on clicks</b></p>
+
+
+  <!-- card 1 -Car-->
+  <div style="text-align: -webkit-center;">
+    <ion-col>
+      <ion-card class="btn-car">
+        <ion-card-header>
+          <p style="font-size: 16px; margin-top: 5px; text-align: center; padding-left: 5px; padding-right: 5px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Search your next dream car from our  1000's of cars stock.</p>
+      <ion-row>
+      <ion-col width="60%" >
+        <img src="../../../assets/extra/blue-car.png" style="width: 150px; margin-top: 35px;">
+      </ion-col>
+      <ion-col width="60%">
+        <div class="bottom">
+          <div class="btn_bottom" >
+            <ion-button id="signin"  routerLink="/car-home">Cars</ion-button>
+          </div>
+        </div>
+      </ion-col>
+      </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 2 -Bikes-->
+      <div style="text-align: -webkit-center; margin-top: -30px;">
+    <ion-col>
+      <ion-card class="btn-bike" >
+        <ion-card-header>
+          <p style="font-size: 16px; text-align: center; padding: 0px 5px 0px 5px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Love bikes?Then love it with us Buy or sell on clicks</p>
+      <ion-row>
+      <ion-col width="60%">
+        <div class="bottom-bike">
+          <div class="btn_bottom-bike">
+            <button id="signin-bike" type="submit" routerLink="/bike-home">Bikes</button>
+          </div>
+        </div>
+      </ion-col>
+
+      <ion-col width="60%" >
+        <img src="../../../assets/extra/bike.png" style="width: 150px; margin-top: 10px; margin-left: 10px;">
+      </ion-col>
+    </ion-row>
+          <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 3  -Commercial Vehicles-->
+      <div style="text-align: -webkit-center; margin-top: -30px;">
+    <ion-col>
+      <ion-card class="btn-truck">
+        <ion-card-header>
+          <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Move your business ahead <br> Buy Sell or Hire commercial vehicles</p>
+          <!-- <p style="font-size: 17px; color: #c70000; text-align: center;">Buy Sell or Hire commercial vehicles</p> -->
+
+          <img src="../../../assets/extra/truck.png" style="width: 200px; margin-top: 20px; margin-left: 10px;">
+
+            <div>
+            <div class="bottom-truck">
+              <div class="btn_bottom-truck">
+                <button id="signin-truck" type="submit" routerLink="/commercial-vehicles-home">Commercial Vehicles</button>
+              </div>
+            </div>
+            </div>
+
+            <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+
+      <!-- card 4 -Loader -->
+      <div style="text-align: -webkit-center; margin-top: -30px;">
+        <ion-col>
+          <ion-card class="btn-bike" >
+            <ion-card-header>
+              <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Premiere machinery buying & sellig platform</p>
+          <ion-row>
+          <ion-col width="60%">
+            <div class="bottom-bike">
+              <div class="btn_bottom-bike">
+                <button id="signin-bike" type="submit" routerLink="/machinery-home">Machinery</button>
+              </div>
+            </div>
+          </ion-col>
+
+          <ion-col width="60%" >
+            <img src="../../../assets/extra/loader.png" style="width: 150px;">
+          </ion-col>
+        </ion-row>
+              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+          </ion-card-header>
+          </ion-card>
+          </ion-col>
+          </div>
+
+            <!-- card 1 -Industrial plants-->
+  <div style="text-align: -webkit-center; margin-top: -30px;">
+    <ion-col>
+      <ion-card class="btn-plant">
+        <ion-card-header>
+          <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Industries that grows with Motorscube.com</p>
+      <ion-row>
+      <ion-col width="60%" >
+        <img src="../../../assets/extra/engine.png" style="width: 150px; margin-top: 45px; margin-left: 10px;">
+      </ion-col>
+      <ion-col width="60%">
+        <div class="bottom-plant">
+          <div class="btn_bottom-plant">
+            <button id="signin-plant" type="submit" routerLink="/industrial-plant-home">Industrial Plants</button>
+          </div>
+        </div>
+      </ion-col>
+      </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <div style="text-align: -webkit-center;">
+        <ion-col>
+          <ion-card class="btn-dark">
+            <ion-card-header>
+              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+            </ion-card-header>
+            </ion-card>
+            </ion-col>
+            </div>
+
+            <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: #c70000;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Buy & sell accessories on Pakistan's first complete motors platform</b></p>
+
+            <ion-col width="60%" style="text-align: -webkit-center;">
+              <div class="bottom-blue">
+                <div class="btn_bottom-blue">
+                  <!-- <button id="signin-blue" (click)="goToPartForm()"> -->
+                    <p style="margin-top: 10px; font-size: 15px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Buy - Sell </p> <br>
+                    <p style="margin-top: -20px; font-size: 19px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Parts  & Accessories</b></p>
+                  <!-- </button> -->
+                </div>
+              </div>
+            </ion-col>
+
+            <!-- <div style="height: 60px; text-align: -webkit-center; position: sticky; bottom: 0px; z-index: 1; box-shadow: 1px 1px 5px 5px grey; background-color: white;"> -->
+              <div style="height: 50px; text-align: center; position: sticky; bottom: 0; z-index: 1; box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); background-color: white; margin-top: 40px; border-radius: 20px 20px 0 0;">
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; padding: 10px 20px;">
+              
+                  <!-- Home Icon -->
+                  <div style="flex: 1; text-align: center; transition: all 0.3s ease;">
+                    <img src="../../../assets/Landing page/footer-icon/home.png" 
+                         style="height: 24px; width: 24px; transition: all 0.3s ease; cursor: pointer;" 
+                         alt="Home" (click)="selectIcon('home')"
+                         [ngStyle]="{ 'color': selectedIcon === 'home' ? 'blue' : '', 'transform': selectedIcon === 'home' ? 'scale(1.5)' : 'scale(1)' }">
+                  </div>
+              
+                  <!-- Message Icon -->
+                  <div style="flex: 1; text-align: center; transition: all 0.3s ease;">
+                    <img src="../../../assets/Landing page/footer-icon/message.png" 
+                         style="height: 24px; width: 24px; transition: all 0.3s ease; cursor: pointer;" 
+                         alt="Message" (click)="selectIcon('message')"
+                         [ngStyle]="{ 'color': selectedIcon === 'message' ? 'blue' : '', 'transform': selectedIcon === 'message' ? 'scale(1.5)' : 'scale(1)' }">
+                  </div>
+              
+                  <!-- Profile Icon -->
+                  <div style="flex: 1; text-align: center; transition: all 0.3s ease;">
+                    <img src="../../../assets/Landing page/footer-icon/profile.png" 
+                         style="height: 24px; width: 24px; transition: all 0.3s ease; cursor: pointer;" 
+                         alt="Profile" (click)="selectIcon('profile')"
+                         [ngStyle]="{ 'color': selectedIcon === 'profile' ? 'blue' : '', 'transform': selectedIcon === 'profile' ? 'scale(1.5)' : 'scale(1)' }">
+                  </div>
+              
+                </div>
+              </div>
+              
+            <!-- </div> -->
+
 </ion-content>

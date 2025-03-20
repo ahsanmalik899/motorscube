@@ -1,0 +1,71 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>acc-create-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>account-prof-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">Create Account (Private)</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <div>
+      <label for="name" [class.active]="userForm.get('name')?.value">Name</label>
+      <input type="text" id="name" class="text-field" formControlName="name" (focus)="onInputFocus('name')" (blur)="onInputBlur('name')">
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="error-message">
+        Name is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="country" [class.active]="userForm.get('country')?.value">Country Code</label>
+      <select id="country" class="text-field" formControlName="country" (focus)="onInputFocus('country')" (blur)="onInputBlur('country')">
+        <option *ngFor="let code of countryCode" [value]="code">{{ code }}</option>
+      </select>
+      <div *ngIf="userForm.get('country')?.invalid && userForm.get('country')?.touched" class="error-message">
+        Country code is required.
+      </div>
+    </div>
+  
+    <div class="mobile-div">
+      <label for="mobile" [class.active]="userForm.get('mobile')?.value">Mobile (3xxxxxxxxx)</label>
+      <input type="tel" id="mobile" class="text-field" maxlength="10" 
+             [value]="userForm.get('mobile')?.value" readonly aria-placeholder="3xxxxxxxxx" 
+             formControlName="mobile" (focus)="onInputFocus('mobile')" (blur)="onInputBlur('mobile')" />
+    </div>
+  
+    <div>
+      <label for="email" [class.active]="userForm.get('email')?.value">Email</label>
+      <input type="email" id="email" class="text-field" aria-placeholder="ABC@abc.com" formControlName="email" (focus)="onInputFocus('email')" (blur)="onInputBlur('email')">
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+        Please enter a valid email.
+      </div>
+    </div>
+  
+    <div style="position: relative; cursor: pointer;" (click)="goTooResetPass()">
+      <input type="text" class="text-field" id="password" readonly value="Click Me For Reset Password" style="pointer-events: none; background-color: #f9f9f9;">
+    </div>
+  
+    <div class="form-button-container">
+      <button type="submit" style="max-width: 49%;" [disabled]="userForm.invalid">Update Account</button>
+      <button type="button" style="max-width: 49%; margin-left: 2%; background-color: rgb(247, 17, 17);" (click)="confirmationDelete()">Delete Account</button>
+    </div>
+  </form>
+  
+  
+  
+
+</ion-content>

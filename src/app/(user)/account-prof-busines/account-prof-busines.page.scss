@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+  }
+
+
+  .country-div {
+    flex: 0 0 30%; /* 30% width, do not grow or shrink */
+    margin-right: 20px; /* Optional: Adjust spacing between divs */
+  }
+
+  .mobile-div {
+    flex: 0 0 65%; /* 70% width, do not grow or shrink */
+  }

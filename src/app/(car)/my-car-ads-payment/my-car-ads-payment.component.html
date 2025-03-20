@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Send Payment Detail
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <hr style="border: 2px solid aquamarine;">
+  <div style="text-align: center;">
+    <h3 style="color: skyblue;">Ad upgraded to Hotspot or Supreme</h3>
+    <p>You have paid <b>PKR xxxxx</b> through <b>Easy paisa</b></p>
+  </div>
+  
+  <!-- Input field -->
+  <ion-item>
+    <ion-label position="floating">Provide transaction reference</ion-label>
+    <ion-input type="text" #inputRef></ion-input>
+  </ion-item>
+
+  <!-- Submit button -->
+  <ion-button expand="block" (click)="onSubmit(String(inputRef.value))">Submit</ion-button>
+</ion-content>

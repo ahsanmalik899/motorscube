@@ -1,0 +1,1014 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>for-sale</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">Car ads you posted</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+<!--  -->
+
+
+
+<!-- card 1 normal -->
+<ion-col *ngFor="let saleItem of filteredCarSaleData; ; let i = index">
+  
+  <ng-container  *ngIf="saleItem.car_ad_normal_feature === 'General'" >
+    
+  <ion-card class="btn-card">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="saleItem.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+
+     
+  </div>
+    
+  </div>
+
+    <div style="width: 100%; align-items: center; margin-top:0px;">
+      <p class="main-heading truncate" >{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.car_location}}</p> <br>
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_year }}
+        </p>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_engine_size }}
+        </p>
+      </div>
+      
+     
+      
+   
+   <!-- First div for Fuel Type and Transmission -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_fuel_type }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_transmission }}
+  </p>
+</div>
+
+<!-- Second div for Mileage and Location -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_mileage }} Km
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.car_reg_city }}
+  </p>
+</div>
+
+    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
+      <ion-col>
+        <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
+          <ion-card-header>
+            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.car_price }}</b></p>
+            </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ion-col>
+</div>
+  </div>  
+  <hr style="height: 4px; background-color: aquamarine;">
+    <ion-row style="width: 100%;">
+    <div style="width: 100%; text-align: center;">
+    <div class="sub-heading" style=" margin-top: 0px; border-radius: 13px; align-items: left;">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <p style="display: flex; text-align: left; width: 50%; margin-left: 13px;">
+          <span style="min-width: 70px;">Ad status</span>  
+          <span style="color:skyblue;">{{ saleItem.post_status }}</span>
+        </p> 
+      
+        <p style="display: flex; text-align: left; width: 50%; margin-left: -7px;">
+          <span style="min-width: 70px;">Expire on</span>  
+          <span style="color:skyblue;">23-02-2024</span>
+        </p>
+      </div>
+      <p style="display: flex; text-align: left; margin-left: 13px; margin-top: -10px;"><span style="min-width: 70px;">Ad for</span>  <span style="color:skyblue">Sale  </span></p>
+    
+    </div>
+  
+        <!-- Container for the payment button, upgrade button, and images all in one line -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        
+    
+    
+            <!-- Check the payment status and control button visibility -->
+            <div *ngIf="saleItem.post_status==='Active' " >
+              <!-- Call the function to check payment status and control button visibility -->
+              <div class="payment_btn" *ngIf="checksalePaymentStatus(saleItem.car_ad_sale_id)">
+                <ion-button (click)="openDialogueBox(saleItem.car_ad_sale_id)">Send Payment</ion-button>
+              </div>
+            
+            
+           
+              <div  *ngIf="checksaleUpgradeStatus(saleItem.car_ad_sale_id)" >
+
+                <button id="upgrade_btn_{{i}}" class="upgrade_btn" (click)="showPopup('popupDiv_' + i)">Upgrade</button>
+                
+              </div>
+            </div>
+           
+        
+          <!-- Container for edit and delete images (placed on the right side) -->
+          <div style="display: flex; align-items: center; margin-left: auto;">
+            <!-- Edit Image -->
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.car_ad_sale_id)">
+            
+            <!-- Delete Image -->
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="confirmDelete(saleItem.car_ad_sale_id, 'Sale')">
+          </div>
+        
+        </div>
+     
+    
+    
+    
+    
+  
+ 
+  </div>
+  
+</ion-row>
+  </ion-col>
+ 
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+<div id="popupDiv_{{i}}"class="popup-div" style="z-index: 999;">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+     <span class="close-btn" (click)="closePopup('popupDiv_' + i)">&times;</span>
+
+
+    <!-- Popup Header -->
+    <h2>Upgrade Your Plan</h2>
+    <!-- Popup Description -->
+    <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+    <!-- Additional Content -->
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Access to all premium features
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Priority customer supports
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Unlimited usage
+      </ion-item>
+    </ion-list>
+    <!-- Popup Buttons -->
+    <div class="popup-buttons">
+      <ion-button (click)="buttonOneAction(saleItem.car_ad_sale_id , 'Sale')">Hotspot</ion-button>
+      <ion-button (click)="buttonTwoAction(saleItem.car_ad_sale_id , 'Sale')">Supreme</ion-button>
+    </div>
+  </div>
+
+  </div>
+  </ng-container>
+  </ion-col>
+<ion-col *ngFor="let saleItem of filteredCarHireData; let j = index">
+  
+  <ng-container  *ngIf="saleItem.car_ad_normal_feature === 'General'">
+    
+  <ion-card class="btn-card">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="saleItem.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+
+     
+  </div>
+    
+  </div>
+
+    <div style="width: 100%; align-items: center; margin-top:0px;">
+      <p class="main-heading truncate" >{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.car_location}}</p> <br>
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_year }}
+        </p>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_engine_size }}
+        </p>
+      </div>
+      
+     
+      
+   
+   <!-- First div for Fuel Type and Transmission -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_fuel_type }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_transmission }}
+  </p>
+</div>
+
+<!-- Second div for Mileage and Location -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_mileage }} Km
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.car_reg_city }}
+  </p>
+</div>
+
+    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
+      <ion-col>
+        <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
+          <ion-card-header>
+            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.car_charges }}</b></p>
+            </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ion-col>
+</div>
+  </div>  
+  <hr style="height: 4px; background-color: aquamarine;">
+    <ion-row style="width: 100%;">
+    <div style="width: 100%; text-align: center;">
+    <div class="sub-heading" style=" margin-top: 0px; border-radius: 13px; align-items: left;">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <p style="display: flex; text-align: left; width: 50%; margin-left: 13px;">
+          <span style="min-width: 70px;">Ad status</span>  
+          <span style="color:skyblue;">{{ saleItem.post_status }}</span>
+        </p> 
+      
+        <p style="display: flex; text-align: left; width: 50%; margin-left: -7px;">
+          <span style="min-width: 70px;">Expire on</span>  
+          <span style="color:skyblue;">23-02-2024</span>
+        </p>
+      </div>
+      <p style="display: flex; text-align: left; margin-left: 13px; margin-top: -10px;"><span style="min-width: 70px;">Ad for</span>  <span style="color:skyblue">Hire  </span></p>
+    
+    </div>
+ 
+        <!-- Container for the payment button, upgrade button, and images all in one line -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div *ngIf="saleItem.post_status==='Active' " >
+          <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.car_ad_hire_id)">
+            <ion-button (click)="openDialogueBox(saleItem.car_ad_hire_id)">Send Payment</ion-button>
+          </div>
+          <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.car_ad_hire_id)" >
+            <button id="upgrade_btn" (click)="showPopup('popupDiv1_' + j)">Upgrade</button>
+          </div>
+        </div>
+        
+       
+        
+          <!-- Container for edit and delete images (placed on the right side) -->
+          <div style="display: flex; align-items: center; margin-left: auto;">
+            <!-- Edit Image -->
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.car_ad_hire_id)">
+            
+            <!-- Delete Image -->
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="confirmDelete(saleItem.car_ad_hire_id, 'Hire')">
+          </div>
+        
+        </div>
+    
+    
+    
+    
+    
+  
+  <!-- Popup div -->
+ 
+  </div>
+  
+</ion-row>
+  </ion-col>
+<!-- Popup div -->
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+    <!-- Popup div -->
+    <div id="popupDiv1_{{j}}"class="popup-div" style="z-index: 999;">
+      <div class="popup-content">
+        <!-- Close button inside the popup -->
+        <span class="close-btn" (click)="closePopup('popupDiv1_' + j)">&times;</span>
+    
+    
+        <!-- Popup Header -->
+        <h2>Upgrade Your Plan</h2>
+        <!-- Popup Description -->
+        <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+        <!-- Additional Content -->
+        <ion-list>
+          <ion-item>
+            <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+            Access to all premium features
+          </ion-item>
+          <ion-item>
+            <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+            Priority customer supports
+          </ion-item>
+          <ion-item>
+            <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+            Unlimited usage
+          </ion-item>
+        </ion-list>
+        <!-- Popup Buttons -->
+        <div class="popup-buttons">
+          <ion-button (click)="buttonOneAction(saleItem.car_ad_hire_id , 'Hire')">Hotspot</ion-button>
+          <ion-button (click)="buttonTwoAction(saleItem.car_ad_hire_id , 'Hire')">Supreme</ion-button>
+        </div>
+      </div>
+    
+      </div>
+  </ng-container>
+  </ion-col>
+
+
+
+<!-- card 3 Hotspot -->
+<ion-col *ngFor="let saleItem of filteredCarSaleData; let j = index">
+  
+  <ng-container  *ngIf="saleItem.car_ad_normal_feature === 'Hotspot'">
+    
+  <ion-card class="btn-card">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="saleItem.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+
+     
+  </div>
+    <ion-card class="hotspot">
+            <ion-card-header>
+              <div style="width: 100px; margin-bottom: 20px border-radius 13px;">
+  
+                  <p style="margin-left: -5px; margin-top:-10px; color: white;">Hotspot</p>
+              </div>
+        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+  </div>
+
+    <div style="width: 100%; align-items: center; margin-top:215px;">
+      <p class="main-heading truncate" >{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.car_location}}</p> <br>
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_year }}
+        </p>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_engine_size }}
+        </p>
+      </div>
+      
+     
+      
+   
+   <!-- First div for Fuel Type and Transmission -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_fuel_type }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_transmission }}
+  </p>
+</div>
+
+<!-- Second div for Mileage and Location -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_mileage }} Km
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.car_reg_city }}
+  </p>
+</div>
+
+    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
+      <ion-col>
+        <ion-card class="card-hotspot" >
+          <ion-card-header>
+            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.car_price }}</b></p>
+            </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ion-col>
+</div>
+  </div>  
+  <hr style="height: 4px; background-color: aquamarine;">
+    <ion-row style="width: 100%;">
+    <div style="width: 100%; text-align: center;">
+    <div class="sub-heading" style=" margin-top: 0px; border-radius: 13px; align-items: left;">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <p style="display: flex; text-align: left; width: 50%; margin-left: 13px;">
+          <span style="min-width: 70px;">Ad status</span>  
+          <span style="color:skyblue;">{{ saleItem.post_status }}</span>
+        </p> 
+      
+        <p style="display: flex; text-align: left; width: 50%; margin-left: -7px;">
+          <span style="min-width: 70px;">Expire on</span>  
+          <span style="color:skyblue;">23-02-2024</span>
+        </p>
+      </div>
+      <p style="display: flex; text-align: left; margin-left: 13px; margin-top: -10px;"><span style="min-width: 70px;">Ad for</span>  <span style="color:skyblue">Sale  </span></p>
+    
+    </div>
+   
+        <!-- Container for the payment button, upgrade button, and images all in one line -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+     
+    
+            <!-- Check the payment status and control button visibility -->
+            <div *ngIf="saleItem.post_status==='Active' " >
+              <!-- Call the function to check payment status and control button visibility -->
+              <div class="payment_btn" *ngIf="checksalePaymentStatus( saleItem.car_ad_sale_id)">
+                <ion-button (click)="openDialogueBox(saleItem.car_ad_sale_id)">Send Payment</ion-button>
+              </div>
+         
+            
+         
+          <div class="upgrad_btn" *ngIf="checksaleUpgradeStatus(saleItem.car_ad_sale_id)">
+              <button id="upgrade_btn_{{j}}" class="upgrade_btn" (click)="showPopup('popupDiv2_' + j)">Upgrade</button>
+            </div>
+          </div>
+
+         
+      
+        
+         
+        
+          <!-- Container for edit and delete images (placed on the right side) -->
+          <div style="display: flex; align-items: center; margin-left: auto;">
+            <!-- Edit Image -->
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.car_ad_sale_id)">
+            
+            <!-- Delete Image -->
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.car_ad_sale_id , 'Sale')">
+          </div>
+        
+        </div>
+    
+    
+    
+    
+    
+  
+ 
+  
+  </div>
+  
+</ion-row>
+  </ion-col>
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+<div id="popupDiv2_{{j}}"class="popup-div" style="z-index: 999;">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+    <span class="close-btn" (click)="closePopup('popupDiv2_' + j)">&times;</span>
+
+
+    <!-- Popup Header -->
+    <h2>Upgrade Your Plan</h2>
+    <!-- Popup Description -->
+    <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+    <!-- Additional Content -->
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Access to all premium features
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Priority customer supports
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Unlimited usage
+      </ion-item>
+    </ion-list>
+    <!-- Popup Buttons -->
+    <div class="popup-buttons">
+      <ion-button (click)="buttonTwoAction(saleItem.car_ad_sale_id , 'Sale')">Supreme</ion-button>
+    </div>
+  </div>
+
+  </div>
+  </ng-container>
+  </ion-col>
+<ion-col *ngFor="let saleItem of filteredCarHireData; let j = index">
+  
+  <ng-container  *ngIf="saleItem.car_ad_normal_feature === 'Hotspot'">
+    
+  <ion-card class="btn-card">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="saleItem.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+
+     
+  </div>
+    <ion-card class="hotspot">
+            <ion-card-header>
+              <div style="width: 100px; margin-bottom: 20px border-radius 13px;">
+  
+                  <p style="margin-left: -5px; margin-top:-10px; color: white;">Hotspot</p>
+              </div>
+        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+  </div>
+
+    <div style="width: 100%; align-items: center; margin-top:215px;">
+      <p class="main-heading truncate" >{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.car_location}}</p> <br>
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_year }}
+        </p>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_engine_size }}
+        </p>
+      </div>
+      
+     
+      
+   
+   <!-- First div for Fuel Type and Transmission -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_fuel_type }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_transmission }}
+  </p>
+</div>
+
+<!-- Second div for Mileage and Location -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_mileage }} Km
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.car_reg_city }}
+  </p>
+</div>
+
+    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
+      <ion-col>
+        <ion-card class="card-hotspot" >
+          <ion-card-header>
+            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.car_charges }}</b></p>
+            </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ion-col>
+</div>
+  </div>  
+  <hr style="height: 4px; background-color: aquamarine;">
+    <ion-row style="width: 100%;">
+    <div style="width: 100%; text-align: center;">
+    <div class="sub-heading" style=" margin-top: 0px; border-radius: 13px; align-items: left;">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <p style="display: flex; text-align: left; width: 50%; margin-left: 13px;">
+          <span style="min-width: 70px;">Ad status</span>  
+          <span style="color:skyblue;">{{ saleItem.post_status }}</span>
+        </p> 
+      
+        <p style="display: flex; text-align: left; width: 50%; margin-left: -7px;">
+          <span style="min-width: 70px;">Expire on</span>  
+          <span style="color:skyblue;">23-02-2024</span>
+        </p>
+      </div>
+      <p style="display: flex; text-align: left; margin-left: 13px; margin-top: -10px;"><span style="min-width: 70px;">Ad for</span>  <span style="color:skyblue">Hire  </span></p>
+    
+    </div>
+   
+        <!-- Container for the payment button, upgrade button, and images all in one line -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div *ngIf="saleItem.post_status==='Active' " >
+          <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.car_ad_hire_id)">
+            <ion-button (click)="openDialogueBox(saleItem.car_ad_hire_id)">Send Payment</ion-button>
+          </div>
+          <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.car_ad_hire_id)">
+            <button id="upgrade_btn" (click)="showPopup('popupDiv3_' + j)">Upgrade</button>
+          </div>
+        </div>
+          <!-- Container for edit and delete images (placed on the right side) -->
+          <div style="display: flex; align-items: center; margin-left: auto;">
+            <!-- Edit Image -->
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.car_ad_hire_id)">
+            
+            <!-- Delete Image -->
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.car_ad_hire_id , 'Hire')">
+          </div>
+        
+        </div>
+   
+    
+    
+    
+    
+  
+ 
+  </div>
+  
+</ion-row>
+  </ion-col>
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+<div id="popupDiv3_{{j}}"class="popup-div" style="z-index: 999;">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+    <span class="close-btn" (click)="closePopup('popupDiv3_' + j)">&times;</span>
+
+
+    <!-- Popup Header -->
+    <h2>Upgrade Your Plan</h2>
+    <!-- Popup Description -->
+    <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+    <!-- Additional Content -->
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Access to all premium features
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Priority customer supports
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Unlimited usage
+      </ion-item>
+    </ion-list>
+    <!-- Popup Buttons -->
+    <div class="popup-buttons">
+      <ion-button (click)="buttonTwoAction(saleItem.car_ad_hire_id , 'Hire')">Supreme</ion-button>
+    </div>
+  </div>
+
+  </div>
+  </ng-container>
+  </ion-col>
+
+
+<!-- card 2 supreme -->
+<ion-col *ngFor="let saleItem of filteredCarSaleData; let j = index">
+  
+  <ng-container  *ngIf="saleItem.car_ad_normal_feature === 'Supreme'">
+    
+  <ion-card class="btn-supreme">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="saleItem.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+
+     
+  </div>
+  <ion-card class="supreme">
+    <ion-card-header>
+      <div style="width: 100px; margin-bottom: 20px border-radius 13px;">
+
+          <p style="margin-left: -5px; margin-top:-10px; color: white;">Supreme</p>
+      </div>
+   <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+    </ion-card-header>
+   </ion-card>
+   
+   <div style="width: 100%; margin-top: 222px; text-align: center; display: flex; justify-content: center; gap: 5px;">
+  <!-- Image 2 -->
+  <img [src]="saleItem.image_url2" 
+       style="flex: 1;  height: 100px; width: 100%; border: 1px solid lightgray; border-radius: 0 0 0 10px; padding: 0px; object-fit: cover;"/>
+  
+  <!-- Image 3 -->
+  <img [src]="saleItem.image_url3" 
+       style="flex: 1;  width: 100%; height: 100px; border: 1px solid lightgray; border-radius: 0 0 10px 0; padding: 0px; object-fit: cover;"/>
+</div>
+  </div>
+ 
+
+    <div style="width: 100%; align-items: center; margin-top:-25px;">
+      <p class="main-heading truncate" >{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.car_location}}</p> <br>
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_year }}
+        </p>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_engine_size }}
+        </p>
+      </div>
+      
+     
+      
+   
+   <!-- First div for Fuel Type and Transmission -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_fuel_type }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_transmission }}
+  </p>
+</div>
+
+<!-- Second div for Mileage and Location -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_mileage }} Km
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.car_reg_city }}
+  </p>
+</div>
+
+    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
+      <ion-col>
+        <ion-card class="card-supreme" >
+          <ion-card-header>
+            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.car_price }}</b></p>
+            </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ion-col>
+</div>
+  </div>  
+  <hr style="height: 4px; background-color: aquamarine;">
+    <ion-row style="width: 100%;">
+    <div style="width: 100%; text-align: center;">
+    <div class="sub-heading" style=" margin-top: 0px; border-radius: 13px; align-items: left;">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <p style="display: flex; text-align: left; width: 50%; margin-left: 13px;">
+          <span style="min-width: 70px;">Ad status</span>  
+          <span style="color:skyblue;">{{ saleItem.post_status }}</span>
+        </p> 
+      
+        <p style="display: flex; text-align: left; width: 50%; margin-left: -7px;">
+          <span style="min-width: 70px;">Expire on</span>  
+          <span style="color:skyblue;">23-02-2024</span>
+        </p>
+      </div>
+      <p style="display: flex; text-align: left; margin-left: 13px; margin-top: -10px;"><span style="min-width: 70px;">Ad for</span>  <span style="color:skyblue">Sale  </span></p>
+    
+    </div>
+    
+        <!-- Container for the payment button, upgrade button, and images all in one line -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        
+          
+        
+          
+        
+          <!-- Container for edit and delete images (placed on the right side) -->
+          <div style="display: flex; align-items: center; margin-left: auto;">
+            <!-- Edit Image -->
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.car_ad_sale_id)">
+            
+            <!-- Delete Image -->
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.car_ad_sale_id , 'Sale')">
+          </div>
+        
+        </div>
+   
+    
+    
+  </div>
+  
+</ion-row>
+  </ion-col>
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+
+  </ng-container>
+  </ion-col>
+<ion-col *ngFor="let saleItem of filteredCarHireData; let j = index">
+  
+  <ng-container  *ngIf="saleItem.car_ad_normal_feature === 'Supreme'">
+    
+  <ion-card class="btn-supreme">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="saleItem.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+
+     
+  </div>
+  <ion-card class="supreme">
+    <ion-card-header>
+      <div style="width: 100px; margin-bottom: 20px border-radius 13px;">
+
+          <p style="margin-left: -5px; margin-top:-10px; color: white;">Supreme</p>
+      </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+<div style="width: 100%; margin-top: 222px;  display: flex; gap: 5px;">
+  <!-- Image 2 -->
+  <img [src]="saleItem.image_url2" 
+       style="flex: 1;  height: 100px; width: 100%; border: 1px solid lightgray; border-radius: 0 0 0 10px; padding: 0px; object-fit: cover;"/>
+  
+  <!-- Image 3 -->
+  <img [src]="saleItem.image_url3" 
+       style="flex: 1;  width: 100%; height: 100px; border: 1px solid lightgray; border-radius: 0 0 10px 0; padding: 0px; object-fit: cover;"/>
+</div>
+  </div>
+ 
+
+    <div style="width: 100%; align-items: center; margin-top:-25px;">
+      <p class="main-heading truncate" >{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.car_location}}</p> <br>
+      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_year }}
+        </p>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_engine_size }}
+        </p>
+      </div>
+      
+     
+      
+   
+   <!-- First div for Fuel Type and Transmission -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_fuel_type }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_transmission }}
+  </p>
+</div>
+
+<!-- Second div for Mileage and Location -->
+<div style="display: flex; justify-content: space-between; margin-top: -20px;">
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.car_mileage }} Km
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.car_reg_city }}
+  </p>
+</div>
+
+    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
+      <ion-col>
+        <ion-card class="card-supreme" >
+          <ion-card-header>
+            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.car_charges }}</b></p>
+            </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ion-col>
+</div>
+  </div>  
+  <hr style="height: 4px; background-color: aquamarine;">
+    <ion-row style="width: 100%;">
+    <div style="width: 100%; text-align: center;">
+    <div class="sub-heading" style=" margin-top: 0px; border-radius: 13px; align-items: left;">
+      <div style="display: flex; width: 100%; justify-content: space-between;">
+        <p style="display: flex; text-align: left; width: 50%; margin-left: 13px;">
+          <span style="min-width: 70px;">Ad status</span>  
+          <span style="color:skyblue;">{{ saleItem.post_status }}</span>
+        </p> 
+      
+        <p style="display: flex; text-align: left; width: 50%; margin-left: -7px;">
+          <span style="min-width: 70px;">Expire on</span>  
+          <span style="color:skyblue;">23-02-2024</span>
+        </p>
+      </div>
+      <p style="display: flex; text-align: left; margin-left: 13px; margin-top: -10px;"><span style="min-width: 70px;">Ad for</span>  <span style="color:skyblue">Hire  </span></p>
+    
+    </div>
+ 
+        <!-- Container for the payment button, upgrade button, and images all in one line -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        
+          <!-- Container for edit and delete images (placed on the right side) -->
+          <div style="display: flex; align-items: center; margin-left: auto;">
+            <!-- Edit Image -->
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.car_ad_hire_id)">
+            
+            <!-- Delete Image -->
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.car_ad_hire_id , 'Hire')">
+          </div>
+        
+        </div>
+
+    
+    
+    
+    
+  
+  <!-- Popup div -->
+  <div id="popupDiv_{{j}}"class="popup-div" style="z-index: 999;">
+    <div class="popup-content">
+      <!-- Close button inside the popup -->
+       <span class="close-btn" (click)="closePopup('popupDiv_' + j)">&times;</span>
+
+
+      <!-- Popup Header -->
+      <h2>Upgrade Your Plan</h2>
+      <!-- Popup Description -->
+      <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+      <!-- Additional Content -->
+      <ion-list>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          Access to all premium features
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          Priority customer supports
+        </ion-item>
+        <ion-item>
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          Unlimited usage
+        </ion-item>
+      </ion-list>
+      <!-- Popup Buttons -->
+      <div class="popup-buttons">
+        <ion-button (click)="buttonOneAction(saleItem.car_ad_sale_id , 'Sale')">Hotspot</ion-button>
+        <ion-button (click)="buttonTwoAction(saleItem.car_ad_sale_id , 'Sale')">Supreme</ion-button>
+      </div>
+    </div>
+  
+    </div>
+  </div>
+  
+</ion-row>
+  </ion-col>
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+  </ng-container>
+  </ion-col>
+
+<!-- Dialogue Box HTML -->
+<ion-modal [showBackdrop]="true" [animated]="true">
+  <ion-content>
+    <h2>Dialogue Box Title</h2>
+    <p>This is the content of the dialogue box.</p>
+    <ion-button (click)="closeDialog()">Close</ion-button>
+  </ion-content>
+</ion-modal>
+
+</ion-content>

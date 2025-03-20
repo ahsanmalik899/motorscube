@@ -1,0 +1,209 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>ads-upgrade-hotspot</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black; font-size: 17px;">Ads Upgrade to Hotspot</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container-fluid">
+    <div class="row">
+      <h2>By Upgrading to Hotspot your ad will have benefits</h2>
+    </div>
+
+    <div class="container">
+    <div class="car">
+      <div class="car1">
+        <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist" style="width: 100%; height: 100%; border-radius: 15px;">
+      </div>
+      <div class="car2">
+        <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist" style="width: 80%; width: 85%; border-radius: 15px;">
+        <p style="color: gray;">Normal ad image</p>
+      </div>
+      <!-- <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist"> -->
+    </div>
+    <p style="color: #1a529c; margin-top: 65px; font-weight: bold;">Bigger image projection in listing pages means more attractions to viewers than normal ads</p>
+    </div>
+
+    <div class="container" style="margin-top: 10px;">
+    <div class="car">
+      <div class="car1">
+        <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist" style="width: 100%; height: 100%; border-radius: 15px;">
+
+        <div style="margin-top: -60%;">
+          <ion-card class="hotspot">
+            <ion-card-header>
+              <div style="width: 100px; margin-top: -9px; border-radius: 13px;">
+                  <p style="margin-left: -5px; text-align: left; color: white;">Hotspot</p>
+              </div>
+        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+        </div>
+      </div>
+
+      <div class="car2">
+        <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist" style="width: 80%; height: 85%; border-radius: 15px;">
+        <p style="color: gray; margin-bottom: 20px;">Normal ad image</p>
+      </div>
+    </div>
+    <p style="color: #1a529c; margin-top: 20px; font-weight: bold;">Hotspot tag on ad which will give viewer more attraction and confidence in your ad</p>
+    </div>
+
+    <div class="container" style="margin-top: 10px;">
+    <div class="cars">
+
+      <ion-row style="width: 100%;">
+        <ion-col style="width: 100%;">
+
+          <div class="car1" style="text-align: left; padding: 5px 0px 0px 0px; margin-bottom: 105px;">
+        <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist" style="border-radius: 15px;">
+
+        <!-- <div>
+        <div style="margin-top: -100px; display: table-caption;">
+          <ion-card class="hotspot">
+            <ion-card-header>
+              <div style="width: 100px; margin-top: -9px; border-radius: 13px;">
+                  <p style="margin-left: -5px; text-align: left; color: white;">Hotspot</p>
+              </div>
+        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+        </div>
+      </div> -->
+    </div>
+
+      <div class="car2" style="display: flex; margin-top: -100px; align-items: center; flex-direction: column;">
+        <img src="../../../assets/Car-section/home-page/extra/2.jpg" alt="no exist" style="width: 90%; border-radius: 15px; margin-top: 0%; margin-left: 0px;">
+        <div style="text-align: center; width: 100%; margin-top: 5px;">
+        <p style="color: gray;">Normal ad image</p>
+        </div>
+      </div>
+    </ion-col>
+
+    <ion-col style="width: 100%; display: flex; align-items: center;">
+      <p style="color: #1a529c; margin-top: 10px; font-weight: bold;">Higher search rankings in listing pages means more chances that your ad will be visible on starting pages in user's search</p>
+    </ion-col>
+  </ion-row>
+</div>
+    </div>
+    </div>
+<!--  -->
+<div style="margin-bottom: 70px;">
+  <div class="bottom-buy">
+    <div class="btn_bottom-buy" style="text-align: center;">
+      <button id="signin-buy" type="button" (click)="toggleDiv()">Upgrade my ad</button>
+    </div>
+  </div>
+  </div>
+
+  <div id="hiddenDiv" class="hidden-div">
+          <!-- card 3  -Commercial Vehicles-->
+          <div style="text-align: -webkit-center; margin-top: -30px;">
+            <ion-col>
+              <ion-card class="btn-bundle">
+                <ion-card-header *ngFor="let saleItem of filteredCarSaleData">
+                  <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center;">{{ saleItem.car_make }} {{ saleItem.car_model }} {{ saleItem.car_version }}</p>
+  <div style="margin-top: 40px;" *ngFor="let Item of adsAmount"><p style="font-size: 17px; color: #1a529c; text-align: center;"><b>Paying PKR ({{ Item.price }})</b></p></div>
+  <p style="font-size: 14px; color: red; margin-top: 10px; padding-left: 15px; text-align: center;">Please send us this your ad ID after sending payment from your ads posted section</p>
+
+                    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+              </ion-card-header>
+              </ion-card>
+              </ion-col>
+              </div>
+
+
+              <ion-radio-group [(ngModel)]="selectedValue">
+  
+                <ion-row style="margin-top: 40px">
+                  <ion-col size="2" class="column">
+                    <!-- Radio button 1: By Cheque -->
+                    <ion-radio value="Cheque"></ion-radio>
+                  </ion-col>
+              
+                  <ion-col size="8">
+                    <div style="text-align: -webkit-right; margin-top: -40px; margin-left: -30px; margin-right: -65px;">
+                      <ion-card class="btn-deposit">
+                        <ion-card-header>
+                          <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: black;">By cheque</p>
+                          <p style="font-size: 13px; padding: 0px; text-align: center; color: black;">
+                            Please make a cross cheque in favor of "Motorscube (Pvt.) Limited". Mention your Bundle ID on the back of the cheque and send to us.
+                          </p>
+                        </ion-card-header>
+                      </ion-card>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              
+                <ion-row style="margin-top: 55px;">
+                  <ion-col size="2" class="column">
+                    <!-- Radio button 2: Online deposit -->
+                    <ion-radio value="Online"></ion-radio>
+                  </ion-col>
+              
+                  <ion-col size="8">
+                    <div style="text-align: -webkit-right; margin-top: -40px; margin-left: -30px; margin-right: -65px;">
+                      <ion-card class="btn-deposit">
+                        <ion-card-header style="margin-top: -10px;">
+                          <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: black;">Online deposit</p>
+                          <p style="font-size: 12px; margin-top: -10px; text-align: center; color: black;">
+                            Account # 102830075 <br> Title: Motorscube (Pvt.) Limited <br> Bank: Mezan Bank <br> Branch Code: 0318 <br> IBAN # PK85MEZN0003180102830075
+                          </p>
+                        </ion-card-header>
+                      </ion-card>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              
+                <ion-row style="margin-top: 60px">
+                  <ion-col size="2" class="column">
+                    <!-- Radio button 3: Using Bundle -->
+                    <ion-radio value="Bundle"></ion-radio>
+                  </ion-col>
+              
+                  <ion-col size="8">
+                    <div style="text-align: -webkit-right; margin-top: -40px; margin-left: -30px; margin-right: -65px;">
+                      <ion-card class="btn-deposit">
+                        <ion-card-header>
+                          <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: black;">Using Bundle</p>
+                          <div *ngFor="let wallet of userWallet">
+                            <div *ngIf="wallet.remaining_amount > 0; else addBundleButton">
+                              <p style="font-size: 13px; padding: 10px 0px 0px 0px; text-align: center; color: black;">
+                                Remaining amount <br><b> PKR ({{ wallet.remaining_amount }})</b>
+                              </p>
+                            </div>
+                          </div>
+                          <div *ngIf="shouldShowAddBundleButton()" style="text-align: center;">
+                            <ion-button (click)="addBundle()">Add Bundle</ion-button>
+                          </div>
+                        </ion-card-header>
+                      </ion-card>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              
+              </ion-radio-group>
+              
+<!--  -->
+
+<!--  -->
+  <div style="margin-bottom:70px;">
+    <div class="bottom-buy">
+      <div class="btn_bottom-buy" style="text-align: center;">
+        <button id="signin-buy" type="submit" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</ion-content>
