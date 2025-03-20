@@ -1,142 +1,55 @@
-
-
 <ion-content>
-  <!-- Yahan apka sara content hoga -->
-  
-  <div class="content-wrapper">
-    
-  
-   
-    <ion-card style="display: flex; justify-content: space-between; align-items: center;">
-      <!-- Close Icon aligned to the right -->
-      
-    
-      <!-- Centered Image -->
-      <div style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
-        <img src="../../../assets/menu-toolbar.png" style="height: 70px; display: block; margin-left: -40px;">
-      </div>
-      <ion-icon name="close-circle" style="margin-right: 8px;margin-top: -50px;height:20px; width: 20px;" (click)="back()"></ion-icon>
-    </ion-card>
-    
-
-
-    <!-- card 1 -Car-->
-     
-    <div style="text-align: -webkit-center; "  >
-      <ion-card class="btn-white" >
-        <ion-card-header>  
-          <p style="font-size: 20px; margin-top: 10px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: black; "><b>Welcome to Motorscube</b></span> </p>    
-          <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px;" (click)="loginButton()">Login/ Register</button>  
-          
-          <ion-item-divider></ion-item-divider>
-          <p style="font-size: 13px; margin-top: 10px; text-align: center; padding-right: 10px; width: 100%;"> Complete Motoring solutions. Buy Sell or Rent across Pakistan. </p> 
-         
-
-            <div style="text-align: -webkit-center;"  >
-              <ion-card class="btn-car" style="border-radius: 18px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  margin-top:20px">
-                <ion-card-header>
-                  <ion-row>
-                    <ion-col width="60%">
-                      <p style="font-size: 13px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: black; font-weight: bold;"><b>Cars</b></span> </p>
-                    </ion-col>
-                    <ion-col width="60%" >
-                      <img src="../../../assets/Menu-items/car.png" style="width: 60px; margin-top: -20px; margin-bottom: -30px; margin-left: 20px;">
-                    </ion-col>
-              </ion-row>
-            <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-              </ion-card-header>
-              </ion-card>
-              </div>
-
-
-              <div style="text-align: -webkit-center;"  >
-                <ion-card class="btn-car"  style="border-radius: 18px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  margin-top:20px">
-                  <ion-card-header>
-                    <ion-row>
-                      <ion-col width="60%">
-                        <p style="font-size: 13px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: black; font-weight: bold;"><b>Motorsbike</b></span> </p>
-                      </ion-col>
-                      <ion-col width="60%" >
-                        <img src="../../../assets/Menu-items/bike.png" style="width: 60px; margin-top: -20px; margin-bottom: -30px; margin-left: 20px;">
-                      </ion-col>
-                </ion-row>
-              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-                </ion-card-header>
-                </ion-card>
-                </div>
-
-
-
-                <div style="text-align: -webkit-center;"  >
-                  <ion-card class="btn-car"  style="border-radius: 18px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  margin-top:20px">
-                    <ion-card-header>
-                      <ion-row>
-                        <ion-col width="60%">
-                          <p style="font-size: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: black; font-weight: bold;"><b>Commercial Vehichles</b></span> </p>
-                        </ion-col>
-                        <ion-col width="60%" >
-                          <img src="../../../assets/Menu-items/commercial.png" style="width: 60px; margin-top: -20px; margin-bottom: -30px; margin-left: 20px;">
-                        </ion-col>
-                  </ion-row>
-                <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-                  </ion-card-header>
-                  </ion-card>
-                  </div>
-
-
-                  <div style="text-align: -webkit-center;"  >
-                    <ion-card class="btn-car"  style="border-radius: 18px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  margin-top:20px">
-                      <ion-card-header>
-                        <ion-row>
-                          <ion-col width="60%">
-                            <p style="font-size: 13px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: black; font-weight: bold;"><b>Machinery</b></span> </p>
-                          </ion-col>
-                          <ion-col width="60%" >
-                            <img src="../../../assets/Menu-items/machinery.png" style="width: 60px; margin-top: -20px; margin-bottom: -30px; margin-left: 20px;">
-                          </ion-col>
-                    </ion-row>
-                  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-                    </ion-card-header>
-                    </ion-card>
-                    </div>
-
-                    <div style="text-align: -webkit-center;"  >
-                      <ion-card class="btn-car"  style="border-radius: 18px;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  margin-top:20px">
-                        <ion-card-header>
-                          <ion-row>
-                            <ion-col width="60%">
-                              <p style="font-size: 13px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: black; font-weight: bold;"><b>Industrial Plants</b></span> </p>
-                            </ion-col>
-                            <ion-col width="60%" >
-                              <img src="../../../assets/Menu-items/plants.png" style="width: 60px; margin-top: -20px; margin-bottom: -30px; margin-left: 20px;">
-                            </ion-col>
-                      </ion-row>
-                    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-                      </ion-card-header>
-                      </ion-card>
-                      </div>
-
-                      
-          <ion-item-divider></ion-item-divider>
-
-          <div style="display: flex;"> 
-            <img src="../../../assets/Menu-items/contact us.png" style="width: 40px; margin-top: 20px; margin-left: 20px;">
-            <p style="font-size: 16px; margin-top: 25px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143); font-weight: bold;"><b>Contact Us</b></span> </p>
-                                 
-          </div>
-
-          <ion-item-divider></ion-item-divider>
-
-          <div style="display: flex;"> 
-            <img src="../../../assets/Menu-items/terms.png" style="width: 40px; margin-top: 20px; margin-left: 20px;">
-            <p style="font-size: 16px; margin-top: 25px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143); font-weight: bold;"><b>Term & the Condition</b></span> </p>
-                                 
-          </div>
-
-
-        </ion-card-header>
-      </ion-card>
+  <div class="sidebar-container" style="background: linear-gradient(135deg, #f0f8ff, #e3f2fd); padding: 20px; border-radius: 10px;">
+    <div class="header-content" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+      <img src="../../../assets/menu-toolbar.png" class="header-logo" style="height: 40px; margin-bottom: 10px;">
+      <ion-icon name="close-circle" class="close-icon" (click)="back()" style="position: absolute; top: 10px; right: 10px; font-size: 18px;"></ion-icon>
     </div>
 
+    <div class="welcome-section" style="text-align: center;">
+      <h1 class="welcome-title" style="font-size: 20px; margin-top: 5px;">Welcome to Motorscube</h1>
+      <p class="welcome-subtitle" style="font-size: 14px; color: #666;">Complete Motoring solutions. Buy, Sell or Rent across Pakistan.</p>
+      <button class="login-button" (click)="loginButton()" style="margin-top: 10px; background-color: #f01818; color: white; border-radius: 20px; padding: 10px 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.3s;">Login/ Register</button>
+    </div>
+
+    <div class="menu-items">
+      <ion-item class="menu-item" style="background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #e3f2fd 100%); border-radius: 10px; margin-bottom: 10px;">
+        <img src="../../../assets/Menu-items/car.png" slot="start" class="menu-icon" style="width: 20px;">
+        <ion-label>Cars</ion-label>
+      </ion-item>
+
+      <ion-item class="menu-item" style="background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4fc3f7 100%); border-radius: 10px; margin-bottom: 10px;">
+        <img src="../../../assets/Menu-items/bike.png" slot="start" class="menu-icon" style="width: 20px;">
+        <ion-label>Motorsbike</ion-label>
+      </ion-item>
+
+      <ion-item class="menu-item" style="background: linear-gradient(135deg, #9c27b0 0%, #9c27b0 70%, #e91e63 85%, #ff80ab 100%); border-radius: 10px; margin-bottom: 10px;">
+        <img src="../../../assets/Menu-items/commercial.png" slot="start" class="menu-icon" style="width: 20px;">
+        <ion-label>Commercial Vehicles</ion-label>
+      </ion-item>
+
+      <ion-item class="menu-item" style="background: linear-gradient(135deg, #ffd700 0%, #ffa500 50%, #ff8c00 75%, #ff6b00 100%); border-radius: 10px; margin-bottom: 10px;">
+        <img src="../../../assets/Menu-items/machinery.png" slot="start" class="menu-icon" style="width: 20px;">
+        <ion-label>Machinery</ion-label>
+      </ion-item>
+
+      <ion-item class="menu-item" style="background: linear-gradient(135deg, #e3f2fd 0%, #b2dfdb 50%, #80cbc4 75%, #4db6ac 100%); border-radius: 10px; margin-bottom: 10px;">
+        <img src="../../../assets/Menu-items/plants.png" slot="start" class="menu-icon" style="width: 20px;">
+        <ion-label>Industrial Plants</ion-label>
+      </ion-item>
+    </div>
+
+    <div class="contact-section" style="text-align: center;">
+      <ion-item>
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-label>Contact Us</ion-label>
+      </ion-item>
+    </div>
+
+    <div class="terms-section" style="text-align: center;">
+      <ion-item>
+        <ion-icon name="document" slot="start"></ion-icon>
+        <ion-label>Terms & Conditions</ion-label>
+      </ion-item>
+    </div>
   </div>
 </ion-content>

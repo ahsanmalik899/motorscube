@@ -3,7 +3,115 @@ ion-content {
   }
   
   .content-wrapper {
-    padding: 5px;
-    /* Other styling */
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffeb3b; /* Bright yellow */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .menu-logo img {
+    height: 70px;
+  }
+  
+  .close-icon {
+    font-size: 24px;
+    color: #d32f2f; /* Red */
+    cursor: pointer;
+  }
+  
+  .welcome-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  .welcome-text {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .login-button {
+    background-color: #f01818; /* Red */
+    color: white;
+    border-radius: 10px;
+    padding: 15px 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-button:hover {
+    background-color: #c71515; /* Darker red */
+  }
+  
+  .description-text {
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  .menu-items {
+    margin-top: 20px;
+  }
+  
+  .menu-item {
+    background-color: #f0f8ff; /* Light blue */
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    animation: bounceIn 1s ease-in-out;
+  }
+  
+  .item-title {
+    font-size: 13px;
+    color: #000;
+  }
+  
+  .item-image {
+    width: 60px;
+    margin-top: -20px;
+  }
+  
+  .contact-section, .terms-section {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .contact-icon, .terms-icon {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  .contact-text, .terms-text {
+    font-size: 16px;
+    color: #8f8f8f;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+  }
+  
+  @keyframes bounceIn {
+    from { transform: scale(0.95); }
+    to { transform: scale(1); }
   }
   

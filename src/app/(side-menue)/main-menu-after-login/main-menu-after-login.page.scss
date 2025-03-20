@@ -1,9 +1,171 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scale {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 ion-content {
     --background: #fff;
   }
-  
+  .welcome-text {
+    font-size: 24px; // Increase font size for visibility
+    font-weight: bold; // Make it bold
+    background: linear-gradient(135deg, #ff4081, #2196F3); // Gradient color from red to blue
+    -webkit-background-clip: text; // Clip background to text
+    -webkit-text-fill-color: transparent; // Make text transparent
+    animation: fadeInScale 1s ease-in-out; // Animation for fade-in and scale
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
   .content-wrapper {
-    padding: 5px;
-    /* Other styling */
+    padding: 10px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in;
+    width: 100%;
+  }
+  
+  .header-content {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+    width: 100%;
+  }
+  
+  .header-logo {
+    height: 15px;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .header-logo:hover {
+    animation: rotate 1s ease-in-out;
+  }
+  
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: #d32f2f;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .close-icon:hover {
+    animation: scale 0.3s ease-in-out;
+  }
+  
+  .btn-white {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .btn-car {
+    background-color: #e8f5e9;
+    border-radius: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+    width: 100%;
+  }
+  
+  .btn-car:hover {
+    animation: scale 0.3s ease-in-out;
+  }
+  
+  .main-heading {
+    font-size: 20px;
+    color: #333;
+    margin-top: 12px;
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  .main-heading:hover {
+    animation: scale 0.3s ease-in-out;
+    color: #4caf50;
+  }
+  
+  p {
+    animation: fadeIn 0.5s ease-in;
+    transition: color 0.3s ease;
+  }
+  
+  p:hover {
+    color: #4caf50;
+    animation: scale 0.3s ease-in-out;
+  }
+  
+  ion-item-divider {
+    margin-top: -22px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    margin: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #388e3c;
+    animation: scale 0.3s ease-in-out;
+  }
+  
+  .btn-car img {
+    width: 30px;
+    margin-top: -20px;
+    margin-bottom: -30px;
+    margin-left: 20px;
+  }
+  
+  .account-profile-card {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    &:hover {
+        transform: scale(1.05);
+    }
   }
   
