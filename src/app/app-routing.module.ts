@@ -391,6 +391,11 @@ const routes: Routes = [
     path: 'bike-post-sale',
     loadChildren: () => import('./(bike)/bike-post-sale/bike-post-sale.module').then( m => m.BikePostSalePageModule)
   },
+  {
+    path: 'bike-you-posted',
+    loadChildren: () => import('./(bike)/bike-you-posted/bike-you-posted.module').then( m => m.BikeYouPostedPageModule)
+  },
+
 ];
 
 @NgModule({

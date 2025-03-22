@@ -46,6 +46,9 @@ this.router.navigate(['/home'])
   navigateToNewCar(){
     this.router.navigate(['/my-car-ads']);
   }
+  navigatemybikeads(){
+    this.router.navigate(['/bike-you-posted']);
+  }
   navigateToBusiness(){
     
     this.router.navigate(['/your-business']);

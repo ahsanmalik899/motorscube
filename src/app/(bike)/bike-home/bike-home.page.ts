@@ -84,8 +84,13 @@ async preloadCarData() {
 bikeSaleListing() {
 this.router.navigate(['/bike-sale-listing'])
 }
-navigateToCarDetail(arg0: any) {
-throw new Error('Method not implemented.');
+ 
+navigateTobikeDetail(carId: string): void {
+  this.router.navigate(['/bike-single-view'], {
+    queryParams: {
+      saleid: carId,
+    }
+  });
 }
 carSalePosting() {
 throw new Error('Method not implemented.');

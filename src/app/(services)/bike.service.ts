@@ -47,4 +47,8 @@ export class BikeService {
     // Make a POST request to the API endpoint to fetch city names
     return this.http.get<string[]>(this.apiUrl + 'get_bike_make_name.php');
   }
+  bikeSalePost(userData: any): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_bike_sale_post.php', userData);
+  }
 }

@@ -70,7 +70,7 @@
                              [navigation]="true" style="height: 350px; overflow: hidden; margin-top: -12px;">
             <ng-container *ngFor="let bike of bikeSaleData">
               <swiper-slide *ngIf="bike.bike_ad_normal_feature === 'Supreme'" 
-                            (click)="navigateToCarDetail(bike.bike_ad_sale_id)">
+                            (click)="navigateTobikeDetail(bike.bike_ad_sale_id)">
                 <div style="text-align: center;">
                   <!-- Image Section -->
                   <div style="height: 250px; width: 100%; overflow: hidden; position: relative; margin: 0 auto;">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, PopoverController } from '@ionic/angular';
+import { BikeService } from 'src/app/(services)/bike.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -96,6 +97,7 @@ originalContent = '';
     public route: Router,
     private popoverController: PopoverController,
     private userService: UserService,
+    private bikesevice:BikeService,
     private alertController: AlertController,
     private loadingController: LoadingController,
   ) {
@@ -677,7 +679,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
   
       try {
         // Call the API and wait for response
-        const response = await this.userService.carSalePost(formData).toPromise();
+        const response = await this.bikesevice.bikeSalePost(formData).toPromise();
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();
       } catch (error) {
