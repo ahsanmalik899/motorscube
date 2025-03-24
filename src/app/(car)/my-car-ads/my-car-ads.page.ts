@@ -1,3 +1,4 @@
+import { BikeService } from 'src/app/(services)/bike.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../(services)/user.service';
@@ -37,6 +38,7 @@ throw new Error('Method not implemented.');
 
     constructor(private router: Router, 
       private userService: UserService, 
+      private BikeService:BikeService,
       private modalController: ModalController,
       private popoverController: PopoverController, 
       private alertController: AlertController,
@@ -313,7 +315,7 @@ async buttonOneAction(id: string, saletype: string) {
 
   async fetchCarSale() {
   
-    this.userService.getCarSale().subscribe({
+    this.BikeService.getBikeSale().subscribe({
       next: (data) => {
         this.carSaleData = data;
         this.filteredCarSaleData = this.carSaleData.filter(item => item.user_id === this.userID);

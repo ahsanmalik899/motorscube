@@ -51,4 +51,5 @@ export class BikeService {
     // Assuming you have an API endpoint to save user data
     return this.http.post<any>(this.apiUrl + 'save_bike_sale_post.php', userData);
   }
+  
 }

@@ -333,4 +333,12 @@ getSingleCarhire(saleID: string): Observable<any> {
 getsingleUserSale(formData: FormData): Observable<any[]> {
   return this.http.post<any[]>('/api/userSale', formData);
 }
+
+bikeDeleteAds(formData: FormData): Observable<any> {
+  return this.http.post(`${this.apiUrl}/bike/delete-ads`, formData);
+}
+
+submitBikePayment(formData: FormData): Observable<any> {
+  return this.http.post(`${this.apiUrl}/bike/submit-payment`, formData);
+}
 }

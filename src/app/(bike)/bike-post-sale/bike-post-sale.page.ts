@@ -22,7 +22,7 @@ export class BikePostSalePage implements OnInit {
   selectedFuel: string = '';
   selectedDrive: string = '';
   selectedDoors: any = '';
-  selectedTransmission: string = '';
+  ignition: string = '';
   selectedCategory: string = '';
   selectedColor: string = '';
   selectedFeatures: string[] = [];
@@ -350,9 +350,9 @@ originalContent = '';
 
 selectTransmission(transmissionType: string) {
   // Set the selectedTransmission variable to the clicked transmission type
-  this.selectedTransmission = transmissionType;
+  this.ignition = transmissionType;
   // Log the selected transmission type to console
-  console.log('Selected transmission:', transmissionType);
+  console.log('ignition:', transmissionType);
 }
 
 selectDrive(driveType: string) {
@@ -524,8 +524,8 @@ checkRequiredFields() {
   if (!this.selectedDrive) {
     missingFields.push('Drive Type');
   }
-  if (!this.selectedTransmission) {
-    missingFields.push('Transmission');
+  if (!this.ignition) {
+    missingFields.push('ignition');
   }
   if (!this.selectedCategory) {
     missingFields.push('Category');
@@ -650,7 +650,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       fuel: this.selectedFuel,
       drive: this.selectedDrive,
       doors: this.selectedDoors,
-      transmission: this.selectedTransmission,
+      ignition: this.ignition,
       category: this.selectedCategory,
       color: this.selectedColor,
       features: this.selectedFeatures,
