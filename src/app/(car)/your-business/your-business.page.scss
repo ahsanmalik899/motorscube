@@ -344,3 +344,21 @@
     margin-top: 20px;
   }
   
+  .full-screen-loader {
+    --background: rgba(0, 0, 0, 0.5);
+    --spinner-color: #ffffff;
+    
+    .loading-content {
+      background: transparent;
+    }
+    
+    .loading-spinner {
+      background: transparent;
+    }
+    
+    ion-spinner {
+      --color: #ffffff;
+      background: transparent;
+    }
+  }
+  

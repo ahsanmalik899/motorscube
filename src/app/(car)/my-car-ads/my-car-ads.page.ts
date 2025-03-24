@@ -36,6 +36,8 @@ throw new Error('Method not implemented.');
 
     //alertController: any;
 
+    isLoading = true; // Add loading state
+
     constructor(private router: Router, 
       private userService: UserService, 
       private BikeService:BikeService,
@@ -298,11 +300,13 @@ async buttonOneAction(id: string, saletype: string) {
 
 
   // Function to show a loader
-  async showLoader(message: string) {
+  async showLoader() {
     const loader = await this.loadingController.create({
-      message: message,
-      spinner: 'circles',  // You can change the spinner type if you'd like
-      backdropDismiss: false, // Prevent the loader from being dismissed by tapping outside
+      spinner: 'circular',
+      cssClass: 'full-screen-loader',
+      backdropDismiss: false,
+      showBackdrop: true,
+      translucent: true
     });
     await loader.present();
     return loader;
@@ -314,52 +318,52 @@ async buttonOneAction(id: string, saletype: string) {
   }
 
   async fetchCarSale() {
-  
+    const loader = await this.showLoader();
     this.BikeService.getBikeSale().subscribe({
       next: (data) => {
         this.carSaleData = data;
         this.filteredCarSaleData = this.carSaleData.filter(item => item.user_id === this.userID);
         console.log('Filtered car sale data:', this.filteredCarSaleData);
         this.cdr.detectChanges();
-        
+        this.hideLoader(loader);
       },
       error: (error) => {
         console.error('Error fetching car sale data:', error);
-        
+        this.hideLoader(loader);
       }
     });
   }
 
   async fetchUpgradePost() {
-
+    const loader = await this.showLoader();
     this.userService.getupgradepost().subscribe({
       next: (data) => {
         this.carpostData = data;
         this.filteredCarPostData = this.carpostData.filter(item => item.user_id === this.userID);
         this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Hire');
         this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Sale');
-
+        this.hideLoader(loader);
       },
       error: (error) => {
         console.error('Error fetching upgrade post data:', error);
-
+        this.hideLoader(loader);
       }
     });
   }
 
   async fetchcarHire() {
-  
+    const loader = await this.showLoader();
     this.userService.getCarHire().subscribe({
       next: (data) => {
         this.carHireData = data;
         this.filteredCarHireData = this.carHireData.filter(item => item.user_id === this.userID);
         console.log('Filtered car hire data:', this.filteredCarHireData);
         this.cdr.detectChanges();
- 
+        this.hideLoader(loader);
       },
       error: (error) => {
         console.error('Error fetching car hire data:', error);
-    
+        this.hideLoader(loader);
       }
     });
   }
@@ -367,7 +371,7 @@ async buttonOneAction(id: string, saletype: string) {
   // Other methods like deleteItem, editSale, editHire, etc., should also handle loading states similarly.
   
   async deleteItem() {
-    const loader = await this.showLoader('Deleting item...');
+    const loader = await this.showLoader();
     const formData = new FormData();
     formData.append('deleteid', this.deleteid);
     formData.append('deletetype', this.deletetype);
@@ -378,11 +382,11 @@ async buttonOneAction(id: string, saletype: string) {
         this.fetchCarSale();
         this.fetchcarHire();
         this.cdr.detectChanges();
-        this.hideLoader(loader); // Hide the loader once the item is deleted
+        this.hideLoader(loader);
       },
       (error) => {
         console.error('Error deleting data:', error);
-        this.hideLoader(loader); // Hide the loader if there's an error
+        this.hideLoader(loader);
       }
     );
   }

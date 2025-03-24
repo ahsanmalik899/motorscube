@@ -1,171 +1,364 @@
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+// Modern color palette
+$primary-color: #4A90E2;
+$secondary-color: #FF6B6B;
+$accent-color: #50E3C2;
+$background-color: #F5F7FA;
+$card-background: #ffffff;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$shadow-color: rgba(0, 0, 0, 0.08);
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes slideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes scale {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-ion-content {
-    --background: #fff;
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-  .welcome-text {
-    font-size: 24px; // Increase font size for visibility
-    font-weight: bold; // Make it bold
-    background: linear-gradient(135deg, #ff4081, #2196F3); // Gradient color from red to blue
-    -webkit-background-clip: text; // Clip background to text
-    -webkit-text-fill-color: transparent; // Make text transparent
-    animation: fadeInScale 1s ease-in-out; // Animation for fade-in and scale
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-@keyframes fadeInScale {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+// Main container
+ion-content {
+  --background: $background-color;
 }
+
+.content-wrapper {
+  padding: 20px;
+  min-height: 100vh;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+// Header section
+.header-content {
+  background: linear-gradient(135deg, $primary-color, #5C9CE6);
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 30px rgba(74, 144, 226, 0.2);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+    z-index: 1;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+  
+  ion-icon {
+    font-size: 24px;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+    
+    ion-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.header-logo {
+  height: 48px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Welcome text
+.welcome-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: scaleIn 0.6s ease-out;
+}
+
+// Category cards
+.category-card {
+  background: white;
+  border-radius: 16px;
+  margin: 16px 0;
+  box-shadow: 0 4px 20px $shadow-color;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+}
+
+.category-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background: rgba(74, 144, 226, 0.05);
+  }
+}
+
+.category-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  color: $primary-color;
+  transition: transform 0.3s ease;
+}
+
+.category-title {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+  margin-left: 16px;
+}
+
+// Dropdown content
+.dropdown-content {
+  background: rgba(74, 144, 226, 0.03);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.dropdown-section {
+  margin-bottom: 24px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-secondary;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// Menu items
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.05);
+  
+  &:hover {
+    background: rgba(74, 144, 226, 0.05);
+    transform: translateX(4px);
+    
+    .menu-icon {
+      color: $primary-color;
+      transform: scale(1.1);
+    }
+    
+    .menu-text {
+      color: $primary-color;
+    }
+  }
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  color: $text-secondary;
+  transition: all 0.3s ease;
+}
+
+.menu-text {
+  font-size: 15px;
+  color: $text-primary;
+  font-weight: 500;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+// Additional options
+.additional-options {
+  margin-top: 32px;
+  padding: 0 16px;
+}
+
+.option-button {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  color: $text-primary;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px $shadow-color;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  &.logout {
+    background: linear-gradient(135deg, #FF4444, #FF6B6B);
+    color: white;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+    
+    &:hover {
+      background: linear-gradient(135deg, #FF3333, #FF5555);
+      box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+    }
+  }
+}
+
+// Logout button styles
+.logout-section {
+  margin-top: 32px;
+  padding: 0 16px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FF4444, #FF6B6B);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+  
+  ion-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #FF3333, #FF5555);
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+    
+    ion-icon {
+      transform: translateX(4px);
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 68, 68, 0.3);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
   .content-wrapper {
-    padding: 10px;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-    animation: fadeIn 1s ease-in;
-    width: 100%;
+    padding: 16px;
   }
   
   .header-content {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    animation: slideIn 0.5s ease-out;
-    width: 100%;
+    padding: 20px;
   }
   
-  .header-logo {
-    height: 15px;
-    margin-bottom: 5px;
-    transition: transform 0.3s ease;
+  .welcome-text {
+    font-size: 24px;
   }
   
-  .header-logo:hover {
-    animation: rotate 1s ease-in-out;
+  .category-header {
+    padding: 16px;
   }
   
-  .close-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 14px;
-    color: #d32f2f;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  .dropdown-content {
+    padding: 16px;
   }
   
-  .close-icon:hover {
-    animation: scale 0.3s ease-in-out;
+  .menu-item {
+    padding: 12px 14px;
   }
-  
-  .btn-white {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  .btn-car {
-    background-color: #e8f5e9;
-    border-radius: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    transition: transform 0.3s ease;
-    width: 100%;
-  }
-  
-  .btn-car:hover {
-    animation: scale 0.3s ease-in-out;
-  }
-  
-  .main-heading {
-    font-size: 20px;
-    color: #333;
-    margin-top: 12px;
-    text-align: center;
-    animation: slideIn 0.5s ease-out;
-  }
-  
-  .main-heading:hover {
-    animation: scale 0.3s ease-in-out;
-    color: #4caf50;
-  }
-  
-  p {
-    animation: fadeIn 0.5s ease-in;
-    transition: color 0.3s ease;
-  }
-  
-  p:hover {
-    color: #4caf50;
-    animation: scale 0.3s ease-in-out;
-  }
-  
-  ion-item-divider {
-    margin-top: -22px;
-  }
-  
-  button {
-    background-color: #4caf50;
-    color: white;
-    border-radius: 10px;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%;
-    margin: 3px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #388e3c;
-    animation: scale 0.3s ease-in-out;
-  }
-  
-  .btn-car img {
-    width: 30px;
-    margin-top: -20px;
-    margin-bottom: -30px;
-    margin-left: 20px;
-  }
-  
-  .account-profile-card {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-    &:hover {
-        transform: scale(1.05);
-    }
-  }
+}
   

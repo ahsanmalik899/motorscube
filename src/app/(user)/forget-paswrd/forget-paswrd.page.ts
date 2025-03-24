@@ -13,8 +13,8 @@ import { AlertController } from '@ionic/angular';  // Make sure this import is c
 })
 export class ForgetPaswrdPage implements OnInit {
   userForm: FormGroup; // Declare the form group for user input
-  countryCode: any;    // To hold country codes from the API
-
+  countryCode: string[] = ['+91', '+1', '+44', '+61', '+86', '+81', '+49', '+33', '+39', '+34'];
+  isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -132,7 +132,6 @@ export class ForgetPaswrdPage implements OnInit {
     const alertMessage = `${alertType}: ${message}`;
     alert(alertMessage);  // Use JavaScript alert to show message
   }
-
 
   
   // Success Alert Method

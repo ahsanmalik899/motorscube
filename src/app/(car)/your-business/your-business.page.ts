@@ -20,6 +20,7 @@ export class YourBusinessPage implements OnInit {
   insuranceupgrade: any[] = [];
   showroomupgrade: any[] = [];
   dealerupgrade: any[] = [];
+  isLoading = true;
 
 onclick() {
 throw new Error('Method not implemented.');
@@ -99,180 +100,181 @@ constructor(public route: Router, private popoverController: PopoverController, 
     this.showroomupgrade = [];
     this.dealerupgrade = [];
   }
-  fetchdealershipData() {
-    // Fetch car sale data from the backend
+
+  async showLoader() {
+    const loader = await this.loadingController.create({
+      spinner: 'circular',
+      cssClass: 'full-screen-loader',
+      backdropDismiss: false,
+      showBackdrop: true,
+      translucent: true
+    });
+    await loader.present();
+    return loader;
+  }
+
+  async hideLoader(loader: any) {
+    await loader.dismiss();
+  }
+
+  async fetchdealershipData() {
+    const loader = await this.showLoader();
     this.userService.getdealershipData().subscribe({
       next: (data) => {
-        this.dealershipData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.dealershipData);
-        //this.filterCarData();
+        this.dealershipData = data;
         this.filterdealershipData = this.dealershipData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter data : ', this.filterdealershipData);
         if (this.filterdealershipData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.dealer= false;
+          this.show = false;
+          this.dealer = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
         console.error('Error fetching dealership data:', error);
+        this.hideLoader(loader);
       }
     });
   }
 
-  fetchshowroomData() {
-    // Fetch car sale data from the backend
+  async fetchshowroomData() {
+    const loader = await this.showLoader();
     this.userService.getshowroomData().subscribe({
       next: (data) => {
-        this.showroomData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.showroomData);
-        //this.filterCarData();
+        this.showroomData = data;
         this.filterShowroomData = this.showroomData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter data : ', this.filterShowroomData);
         if (this.filterShowroomData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.showroom= false;
+          this.show = false;
+          this.showroom = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching showroom data:', error);
+        this.hideLoader(loader);
       }
     });
   }
 
-  fetchinsuranceData() {
-    // Fetch car sale data from the backend
+  async fetchinsuranceData() {
+    const loader = await this.showLoader();
     this.userService.getinsuranceData().subscribe({
       next: (data) => {
-        this.insuranceData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.insuranceData);
-        //this.filterCarData();
+        this.insuranceData = data;
         this.filterInsuranceData = this.insuranceData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter insurance data : ', this.filterInsuranceData);
         if (this.filterInsuranceData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.insurance= false;
+          this.show = false;
+          this.insurance = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching insurance data:', error);
+        this.hideLoader(loader);
       }
     });
   }
 
-  fetchleasingData() {
-    // Fetch car sale data from the backend
+  async fetchleasingData() {
+    const loader = await this.showLoader();
     this.userService.getleasingData().subscribe({
       next: (data) => {
-        this.leasingData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.leasingData);
-        //this.filterCarData();
+        this.leasingData = data;
         this.filterLeasingData = this.leasingData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter insurance data : ', this.filterLeasingData);
         if (this.filterLeasingData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.leasing= false;
+          this.show = false;
+          this.leasing = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching leasing data:', error);
+        this.hideLoader(loader);
       }
     });
   }
  
   
   
-  fetchimporterData() {
-    // Fetch car sale data from the backend
+  async fetchimporterData() {
+    const loader = await this.showLoader();
     this.userService.getimporterData().subscribe({
       next: (data) => {
-        this.importerData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.importerData);
-        //this.filterCarData();
+        this.importerData = data;
         this.filterImporterData = this.importerData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter insurance data : ', this.filterImporterData);
         if (this.filterImporterData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.importer= false;
+          this.show = false;
+          this.importer = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching importer data:', error);
+        this.hideLoader(loader);
       }
     });
   }
 
-  fetchexporterData() {
-    // Fetch car sale data from the backend
+  async fetchexporterData() {
+    const loader = await this.showLoader();
     this.userService.getexporterData().subscribe({
       next: (data) => {
-        this.exporterData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.exporterData);
-        //this.filterCarData();
+        this.exporterData = data;
         this.filterExporterData = this.exporterData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter insurance data : ', this.filterExporterData);
         if (this.filterExporterData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.exporter= false;
+          this.show = false;
+          this.exporter = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching exporter data:', error);
+        this.hideLoader(loader);
       }
     });
   }
 
-  fetchworkshopData() {
-    // Fetch car sale data from the backend
+  async fetchworkshopData() {
+    const loader = await this.showLoader();
     this.userService.getworkshopData().subscribe({
       next: (data) => {
-        this.workshopData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.workshopData);
-        //this.filterCarData();
+        this.workshopData = data;
         this.filterWorkshopData = this.workshopData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter insurance data : ', this.filterWorkshopData);
         if (this.filterWorkshopData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.workshop= false;
+          this.show = false;
+          this.workshop = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching workshop data:', error);
+        this.hideLoader(loader);
       }
     });
   }
 
-  fetchschoolData() {
-    // Fetch car sale data from the backend
+  async fetchschoolData() {
+    const loader = await this.showLoader();
     this.userService.getschoolData().subscribe({
       next: (data) => {
-        this.schoolData = data; // Store fetched data in carData property
-        //this.filterData = data;
-        console.log(this.schoolData);
-        //this.filterCarData();
+        this.schoolData = data;
         this.filterSchoolData = this.schoolData.filter((item: { user_id: string; }) => item.user_id === this.userID);
-        console.log('filter insurance data : ', this.filterSchoolData);
         if (this.filterSchoolData.length > 0) {
           this.offer = true;
-          this.show= false;
-          this.school= false;
+          this.show = false;
+          this.school = false;
         }
+        this.hideLoader(loader);
       },
       error: (error) => {
-        console.error('Error fetching dealership data:', error);
+        console.error('Error fetching school data:', error);
+        this.hideLoader(loader);
       }
     });
   }

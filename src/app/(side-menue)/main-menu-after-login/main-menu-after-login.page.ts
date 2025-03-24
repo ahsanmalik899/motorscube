@@ -15,6 +15,9 @@ this.router.navigate(['/home'])
 
   carDropdownVisible = false;
   BikeDropdownVisible = false;
+  commercialDropdownVisible = false;
+  machineryDropdownVisible = false;
+  plantsDropdownVisible = false;
   dropdownVisible = false;
   userID: string | null;
   userType: string | null;
@@ -136,6 +139,143 @@ this.router.navigate(['/home'])
     else{
       this.router.navigate(['/account-prof-pvt']);
     }
+  }
+
+  toggleCommercialDropdown() {
+    this.commercialDropdownVisible = !this.commercialDropdownVisible;
+  }
+
+  toggleMachineryDropdown() {
+    this.machineryDropdownVisible = !this.machineryDropdownVisible;
+  }
+
+  togglePlantsDropdown() {
+    this.plantsDropdownVisible = !this.plantsDropdownVisible;
+  }
+
+  navigateToCommercialSale() {
+    this.router.navigate(['/commercial-sale']);
+  }
+
+  navigateToCommercialHire() {
+    this.router.navigate(['/commercial-hire']);
+  }
+
+  navigateToCommercialShowroom() {
+    this.router.navigate(['/commercial-showroom']);
+  }
+
+  navigateToCommercialDealer() {
+    this.router.navigate(['/commercial-dealer']);
+  }
+
+  navigateToCommercialWorkshop() {
+    this.router.navigate(['/commercial-workshop']);
+  }
+
+  navigateToCommercialImporter() {
+    this.router.navigate(['/commercial-importer']);
+  }
+
+  navigateToCommercialExporter() {
+    this.router.navigate(['/commercial-exporter']);
+  }
+
+  navigateToCommercialInsurance() {
+    this.router.navigate(['/commercial-insurance']);
+  }
+
+  navigateToCommercialLeasing() {
+    this.router.navigate(['/commercial-leasing']);
+  }
+
+  navigateToMachinerySale() {
+    this.router.navigate(['/machinery-sale']);
+  }
+
+  navigateToMachineryHire() {
+    this.router.navigate(['/machinery-hire']);
+  }
+
+  navigateToMachineryShowroom() {
+    this.router.navigate(['/machinery-showroom']);
+  }
+
+  navigateToMachineryDealer() {
+    this.router.navigate(['/machinery-dealer']);
+  }
+
+  navigateToMachineryWorkshop() {
+    this.router.navigate(['/machinery-workshop']);
+  }
+
+  navigateToMachineryImporter() {
+    this.router.navigate(['/machinery-importer']);
+  }
+
+  navigateToMachineryExporter() {
+    this.router.navigate(['/machinery-exporter']);
+  }
+
+  navigateToMachineryInsurance() {
+    this.router.navigate(['/machinery-insurance']);
+  }
+
+  navigateToMachineryLeasing() {
+    this.router.navigate(['/machinery-leasing']);
+  }
+
+  navigateToPlantsSale() {
+    this.router.navigate(['/plants-sale']);
+  }
+
+  navigateToPlantsHire() {
+    this.router.navigate(['/plants-hire']);
+  }
+
+  navigateToPlantsShowroom() {
+    this.router.navigate(['/plants-showroom']);
+  }
+
+  navigateToPlantsDealer() {
+    this.router.navigate(['/plants-dealer']);
+  }
+
+  navigateToPlantsWorkshop() {
+    this.router.navigate(['/plants-workshop']);
+  }
+
+  navigateToPlantsImporter() {
+    this.router.navigate(['/plants-importer']);
+  }
+
+  navigateToPlantsExporter() {
+    this.router.navigate(['/plants-exporter']);
+  }
+
+  navigateToPlantsInsurance() {
+    this.router.navigate(['/plants-insurance']);
+  }
+
+  navigateToPlantsLeasing() {
+    this.router.navigate(['/plants-leasing']);
+  }
+
+  logout() {
+    // Clear session storage
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('userType');
+    
+    // Clear local storage
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userType');
+    
+    // Reset the component variables
+    this.userID = null;
+    this.userType = null;
+    
+    // Navigate to login page
+    this.router.navigate(['/login']);
   }
 
 }

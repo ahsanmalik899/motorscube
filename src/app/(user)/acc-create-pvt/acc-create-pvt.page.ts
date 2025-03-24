@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../(services)/user.service';
 import { AlertController, NavController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-acc-create-pvt',
   templateUrl: './acc-create-pvt.page.html',
   styleUrls: ['./acc-create-pvt.page.scss'],
-  standalone: false
+  standalone: false,
 })
 export class AccCreatePvtPage implements OnInit {
 onInputFocus(arg0: string) {
@@ -31,7 +33,8 @@ throw new Error('Method not implemented.');
     private userService: UserService, 
     private alertController: AlertController,
     private NavController: NavController,
-    private loadingController: LoadingController // Inject LoadingController
+    private loadingController: LoadingController, // Inject LoadingController
+    private router: Router // Inject Router
   ) {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],

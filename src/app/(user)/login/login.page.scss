@@ -1,33 +1,535 @@
-// .container {
-//   display: flex;
-//   justify-content: center; /* Horizontally center content */
-//   align-items: center; /* Vertically center content */
-//   height: 100vh; /* Set container height to full viewport height */
-// }
+// Variables
+$primary-color: #1a237e; // Dark blue
+$secondary-color: #2196f3; // Bright blue
+$accent-color: #f44336; // Red
+$background-color: #f8f9fa;
+$text-primary: #000000; // Black
+$text-secondary: #424242; // Dark gray
+$error-color: #f44336; // Red
+$success-color: #4caf50;
+$border-color: #e0e0e0;
+$gradient-start: #1a237e; // Dark blue
+$gradient-end: #2196f3; // Bright blue
+$gradient-accent: #f44336; // Red
+$link-color: #f44336; // Red
+$button-color: #2196f3; // Bright blue
 
-// form {
-//   width: 100%; /* Ensure the form takes up the full width of the container */
-//   max-width: 400px; /* Optionally, limit the maximum width of the form */
-// }
+// Animations
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
 
-// /* Style the input fields */
-// form input {
-//   width: 100%; /* Make the input fields take up the full width of their container */
-//   margin-bottom: 10px; /* Add some bottom margin between input fields */
-// }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 
-.forgot-password {
-    text-align: right; /* Pushes "Forgot Password?" link to the right */
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+// Main Styles
+ion-content {
+  --background: linear-gradient(135deg, $gradient-start, $gradient-end);
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+// Header Styles
+ion-toolbar {
+  --background: white;
+  --border-color: transparent;
+  --min-height: 48px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .welcome-text {
+    color: $text-primary;
+    font-weight: 600;
+    font-size: 18px;
   }
-  
-  
-  .register-link {
-    text-align: center; /* Aligns "Don't have an account?" link to the center */
+}
+
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+// Logo Section
+.logo-section {
+  text-align: center;
+  padding: 20px 16px;
+  background: transparent;
+  margin-bottom: 12px;
+  margin-top: 12px;
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
   }
-  .full-screen-loader {
-    .loading-backdrop {
-      backdrop-filter: blur(5px); /* Blurs the background */
-      background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
+
+  .brand-text {
+    background: linear-gradient(45deg, $accent-color, $secondary-color);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-shadow: none;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+// Form Container
+.form-container {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px 20px 0 0;
+  padding: 24px 16px;
+  margin-top: -16px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.5s ease-out;
+}
+
+// Input Groups
+.input-group {
+  position: relative;
+  margin-bottom: 16px;
+
+  .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    font-size: 18px;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+
+  .text-field {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 2px solid $border-color;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    &:focus {
+      outline: none;
+      border-color: $secondary-color;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+
+      & + .input-icon {
+        color: $secondary-color;
+      }
     }
   }
+
+  .password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    padding: 0 4px;
+
+    &.active {
+      top: 0;
+      font-size: 12px;
+      color: $secondary-color;
+      background: white;
+    }
+  }
+}
+
+// Error Messages
+.error-message {
+  color: $error-color;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 16px;
+  font-weight: 500;
+  animation: pulse 0.5s ease-out;
+}
+
+// Forgot Password Link
+.forgot-password {
+  text-align: right;
+  margin-top: 8px;
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: $accent-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+  }
+}
+
+// Submit Button
+.submit-btn {
+  width: 100%;
+  background: $button-color;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+    background: darken($button-color, 10%);
+
+    &:before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Register Link
+.register-link {
+  text-align: center;
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+  }
+
+  span {
+    color: $text-primary;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: $accent-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+  }
+}
+
+// Register Section
+.register-section {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease-out;
+  transform-origin: top;
+
+  p {
+    color: $text-primary;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 8px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, $gradient-start, $gradient-end);
+      border-radius: 2px;
+    }
+  }
+
+  .register-buttons {
+    display: flex;
+    gap: 12px;
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: $button-color;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+
+      ion-icon {
+        font-size: 18px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+        background: darken($button-color, 10%);
+
+        &:before {
+          left: 100%;
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// User Info Display
+.user-info {
+  text-align: center;
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease-out;
+
+  h2 {
+    color: $text-primary;
+    font-size: 16px;
+    margin: 8px 0;
+    font-weight: 500;
+  }
+}
+
+// Loading Overlay
+.full-screen-loader {
+  .loading-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+
+    ion-spinner {
+      --color: white;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Mobile Optimizations
+@media (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+
+  .logo-section {
+    padding: 16px 12px;
+    margin-top: 12px;
+
+    .logo {
+      width: 70px;
+      height: 70px;
+    }
+
+    .brand-text {
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .form-container {
+    padding: 20px 12px;
+    margin-top: -16px;
+  }
+
+  .input-group {
+    .text-field {
+      padding: 10px 10px 10px 36px;
+      font-size: 14px;
+    }
+
+    .input-icon {
+      font-size: 16px;
+      left: 12px;
+    }
+
+    .password-toggle {
+      font-size: 16px;
+      right: 12px;
+    }
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .register-section {
+    padding: 16px;
+    margin-top: 16px;
+
+    p {
+      font-size: 15px;
+    }
+
+    .register-buttons {
+      gap: 8px;
+
+      button {
+        padding: 10px;
+        font-size: 12px;
+
+        ion-icon {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+  
   

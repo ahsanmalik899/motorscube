@@ -1,15 +1,323 @@
-.success-alert {
-    .alert-wrapper {
-      background-color: #2ecc71; /* Background color */
+// Variables
+$primary-color: #1a237e; // Dark blue
+$secondary-color: #2196f3; // Bright blue
+$accent-color: #f44336; // Red
+$background-color: #f8f9fa;
+$text-primary: #000000; // Black
+$text-secondary: #424242; // Dark gray
+$error-color: #f44336; // Red
+$success-color: #4caf50;
+$border-color: #e0e0e0;
+$gradient-start: #1a237e; // Dark blue
+$gradient-end: #2196f3; // Bright blue
+$gradient-accent: #f44336; // Red
+
+// Animations
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Main Styles
+ion-content {
+  --background: linear-gradient(135deg, $gradient-start, $gradient-end);
+  --padding-start: 0;
+  --padding-end: 0;
+  position: relative;
+  z-index: 1;
+}
+
+// Header Styles
+ion-toolbar {
+  --background: white;
+  --border-color: transparent;
+  --min-height: 56px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+
+  ion-buttons {
+    margin-left: 8px;
+  }
+
+  ion-label {
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+
+// Container
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+// Logo Section
+.logo-section {
+  text-align: center;
+  padding: 24px 16px;
+  background: transparent;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  animation: fadeIn 0.5s ease-out;
+  position: relative;
+  z-index: 1;
+
+  .logo {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 16px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+
+  .brand-text {
+    background: linear-gradient(45deg, $accent-color, $secondary-color);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: none;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+
+// Form Container
+.form-container {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 24px 24px 0 0;
+  padding: 32px 24px;
+  margin-top: -24px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.5s ease-out;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+// Input Groups
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 32px;
+  z-index: 3;
+
+  .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    font-size: 20px;
+    z-index: 2;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: block;
+  }
+
+  .text-field {
+    width: 100%;
+    padding: 16px 16px 16px 48px;
+    border: 2px solid $border-color;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: right 16px center;
+    padding-right: 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+
+    &:focus {
+      outline: none;
+      border-color: $secondary-color;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+
+      & + .input-icon {
+        color: $secondary-color;
+      }
     }
-  
-    .alert-message {
-      color: #fff; /* Text color */
-    }
-  
-    .alert-button {
-      color: #fff; /* Button text color */
-      --background: #27ae60; /* Button background color */
+
+    &.error {
+      border-color: $error-color;
+      & + .input-icon {
+        color: $error-color;
+      }
     }
   }
+}
+
+// Form Button Container
+.form-button-container {
+  margin-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+// Submit Button
+.submit-btn {
+  width: 100%;
+  background: $secondary-color;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+    background: darken($secondary-color, 10%);
+
+    &:before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// Success Alert Styles
+.success-alert {
+  .alert-wrapper {
+    background-color: $success-color;
+  }
+
+  .alert-message {
+    color: white;
+  }
+
+  .alert-button {
+    color: white;
+    --background: darken($success-color, 10%);
+  }
+}
+
+// Mobile Optimizations
+@media (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+
+  .logo-section {
+    padding: 20px 16px;
+    margin-top: 12px;
+
+    .logo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .brand-text {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .form-container {
+    padding: 24px 16px;
+    margin-top: -20px;
+  }
+
+  .input-group {
+    margin-bottom: 32px;
+
+    .input-icon {
+      font-size: 18px;
+      left: 14px;
+    }
+
+    .text-field {
+      padding: 14px 14px 14px 44px;
+      font-size: 15px;
+      height: 52px;
+    }
+  }
+
+  .submit-btn {
+    padding: 14px;
+    font-size: 15px;
+    margin-top: 20px;
+  }
+}
   

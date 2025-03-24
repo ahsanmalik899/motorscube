@@ -11,3 +11,381 @@
   .mobile-div {
     flex: 0 0 65%; /* 70% width, do not grow or shrink */
   }
+
+// Variables
+$primary-color: #1a237e;
+$secondary-color: #2196f3;
+$accent-color: #ff4081;
+$background-color: #f5f5f5;
+$text-primary: #333333;
+$text-secondary: #666666;
+$border-color: #e0e0e0;
+$error-color: #f44336;
+$success-color: #4caf50;
+
+// Animations
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Main Styles
+ion-content {
+  --background: $background-color;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --padding-top: 24px;
+  --padding-bottom: 24px;
+}
+
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+  --border-style: none;
+  --min-height: 56px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+
+  ion-buttons {
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    ion-icon {
+      font-size: 24px;
+      color: $text-primary;
+    }
+  }
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px;
+  animation: slideIn 0.5s ease-out;
+}
+
+// Logo Section
+.logo-section {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: float 3s ease-in-out infinite;
+
+  img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 24px;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    font-size: 16px;
+    color: $text-secondary;
+    margin: 8px 0 0;
+    line-height: 1.5;
+  }
+}
+
+// Form Container
+.form-container {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+  position: relative;
+  z-index: 1;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+// Input Groups
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 32px;
+  z-index: 3;
+
+  .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    font-size: 20px;
+    z-index: 2;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: block;
+  }
+
+  .text-field {
+    width: 100%;
+    padding: 16px 16px 16px 48px;
+    border: 2px solid $border-color;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: right 16px center;
+    padding-right: 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+
+    &:focus {
+      outline: none;
+      border-color: $secondary-color;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+
+      & + .input-icon {
+        color: $secondary-color;
+      }
+    }
+
+    &.error {
+      border-color: $error-color;
+      & + .input-icon {
+        color: $error-color;
+      }
+    }
+  }
+}
+
+// Error Message
+.error-message {
+  color: $error-color;
+  font-size: 14px;
+  margin-top: 8px;
+  padding-left: 16px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Form Button Container
+.form-button-container {
+  margin-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+// Submit Button
+.submit-btn {
+  width: 100%;
+  background: $secondary-color;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+// Back to Login Link
+.back-to-login {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: $text-secondary;
+  position: relative;
+  z-index: 2;
+
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+// Loading Overlay
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+
+  ion-spinner {
+    width: 48px;
+    height: 48px;
+    --color: $secondary-color;
+  }
+}
+
+// Mobile Optimizations
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .logo-section {
+    margin-bottom: 32px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+
+  .form-container {
+    padding: 24px;
+  }
+
+  .input-group {
+    margin-bottom: 24px;
+
+    .text-field {
+      height: 52px;
+      font-size: 15px;
+    }
+  }
+
+  .submit-btn {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+// Success/Error Snackbar Styles
+::ng-deep .success-snackbar {
+  background: $success-color;
+  color: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  margin-bottom: 24px;
+  animation: slideIn 0.3s ease-out;
+}
+
+::ng-deep .error-snackbar {
+  background: $error-color;
+  color: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+  margin-bottom: 24px;
+  animation: slideIn 0.3s ease-out;
+}
