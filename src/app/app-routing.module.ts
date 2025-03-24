@@ -395,7 +395,74 @@ const routes: Routes = [
     path: 'bike-you-posted',
     loadChildren: () => import('./(bike)/bike-you-posted/bike-you-posted.module').then( m => m.BikeYouPostedPageModule)
   },
-
+  {
+    path: 'bike-busenesses',
+    loadChildren: () => import('./(bike)/bike-busenesses/bike-busenesses.module').then( m => m.BikeBusenessesPageModule)
+  },
+  {
+    path: 'bike-post-insurance-business',
+    loadChildren: () => import('./(bike)/bike-post-insurance-busness/bike-post-insurance-busness.module').then( m => m.BikePostInsuranceBusnessPageModule)
+  },
+  {
+    path: 'bike-post-dealership-business',
+    loadChildren: () => import('./(bike)/bike-post-dealership-business/bike-post-dealership-business.module').then( m => m.BikePostDealershipBusinessPageModule)
+  },
+  {
+    path: 'bike-post-showroom-business',
+    loadChildren: () => import('./(bike)/bike-post-showroom-busnesses/bike-post-showroom-busnesses.module').then( m => m.BikePostShowroomBusnessesPageModule)
+  },
+  {
+    path: 'bike-post-leasing-business',
+    loadChildren: () => import('./(bike)/bike-post-leasing-busness/bike-post-leasing-busness.module').then( m => m.BikePostLeasingBusnessPageModule)
+  },
+  {
+    path: 'bike-post-importer-business',
+    loadChildren: () => import('./(bike)/bike-post-importer-buseness/bike-post-importer-buseness.module').then( m => m.BikePostImporterBusenessPageModule)
+  },
+  {
+    path: 'bike-post-exporter-business',
+    loadChildren: () => import('./(bike)/bike-post-exporter-busness/bike-post-exporter-busness.module').then( m => m.BikePostExporterBusnessPageModule)
+  },
+  {
+    path: 'bike-post-workshop-business',
+    loadChildren: () => import('./(bike)/bike-post-workshop-busness/bike-post-workshop-busness.module').then( m => m.BikePostWorkshopBusnessPageModule)
+  },
+  {
+    path: 'bike-post-showroom-busnesses',
+    loadChildren: () => import('./(bike)/bike-post-showroom-busnesses/bike-post-showroom-busnesses.module').then( m => m.BikePostShowroomBusnessesPageModule)
+  },
+  {
+    path: 'bike-post-dealership-business',
+    loadChildren: () => import('./(bike)/bike-post-dealership-business/bike-post-dealership-business.module').then( m => m.BikePostDealershipBusinessPageModule)
+  },
+  {
+    path: 'update-bike-insurance-post',
+    loadChildren: () => import('./(bike)/update-bike-insurance-post/update-bike-insurance-post.module').then( m => m.UpdateBikeInsurancePostPageModule)
+  },
+  {
+    path: 'update-bike-dealership-page',
+    loadChildren: () => import('./(bike)/update-bike-dealership-page/update-bike-dealership-page.module').then( m => m.UpdateBikeDealershipPagePageModule)
+  },
+  {
+    path: 'update-bike-showroom-page',
+    loadChildren: () => import('./(bike)/update-bike-showroom-page/update-bike-showroom-page.module').then( m => m.UpdateBikeShowroomPagePageModule)
+  },
+  {
+    path: 'update-bike-leasing-page',
+    loadChildren: () => import('./(bike)/update-bike-leasing-page/update-bike-leasing-page.module').then( m => m.UpdateBikeLeasingPagePageModule)
+  },
+  {
+    path: 'update-bike-importer-page',
+    loadChildren: () => import('./(bike)/update-bike-importer-page/update-bike-importer-page.module').then( m => m.UpdateBikeImporterPagePageModule)
+  },
+  {
+    path: 'update-bike-exporter-page',
+    loadChildren: () => import('./(bike)/update-bike-exporter-page/update-bike-exporter-page.module').then( m => m.UpdateBikeExporterPagePageModule)
+  },
+  {
+    path: 'update-bike-workshop-page',
+    loadChildren: () => import('./(bike)/update-bike-workshop-page/update-bike-workshop-page.module').then( m => m.UpdateBikeWorkshopPagePageModule)
+  }
 
 
 ];

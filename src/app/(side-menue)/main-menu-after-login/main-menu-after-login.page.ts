@@ -56,6 +56,10 @@ this.router.navigate(['/home'])
     
     this.router.navigate(['/your-business']);
   }
+  navigateToBikeBusiness(){
+    
+    this.router.navigate(['/bike-busenesses']);
+  }
   navigateToForSale(){
     this.router.navigate(['/for-sale']);
   }

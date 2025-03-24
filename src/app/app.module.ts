@@ -51,9 +51,21 @@ import { LoginPage } from './(user)/login/login.page';
 import { BikeHomePage } from './(bike)/bike-home/bike-home.page';
 import { BikePostSalePage } from './(bike)/bike-post-sale/bike-post-sale.page';
 import { CommerciaVehiclesHomePage } from './(commercial-vehicles)/commercials-vehicles-home/commercia-vehicles-home.page';
+import { BikePostInsuranceBusnessPage } from './(bike)/bike-post-insurance-busness/bike-post-insurance-busness.page';
+import { BikePostDealershipBusinessPage } from './(bike)/bike-post-dealership-business/bike-post-dealership-business.page';
+import { BikePostShowroomBusnessesPage } from './(bike)/bike-post-showroom-busnesses/bike-post-showroom-busnesses.page';
+import { BikePostLeasingBusnessPage } from './(bike)/bike-post-leasing-busness/bike-post-leasing-busness.page';
+import { BikePostImporterBusenessPage } from './(bike)/bike-post-importer-buseness/bike-post-importer-buseness.page';
+import { BikePostExporterBusnessPage } from './(bike)/bike-post-exporter-busness/bike-post-exporter-busness.page';
+import { BikePostWorkshopBusnessPage } from './(bike)/bike-post-workshop-busness/bike-post-workshop-busness.page';
+import { UpdateBikeInsurancePostPage } from './(bike)/update-bike-insurance-post/update-bike-insurance-post.page';
+import { UpdateBikeDealershipPagePage } from './(bike)/update-bike-dealership-page/update-bike-dealership-page.page';
+import { UpdateBikeShowroomPagePage } from './(bike)/update-bike-showroom-page/update-bike-showroom-page.page';
+import { UpdateBikeLeasingPagePage } from './(bike)/update-bike-leasing-page/update-bike-leasing-page.page';
+import { UpdateBikeImporterPagePage } from './(bike)/update-bike-importer-page/update-bike-importer-page.page';
+import { UpdateBikeWorkshopPagePage } from './(bike)/update-bike-workshop-page/update-bike-workshop-page.page';
 @NgModule({
   declarations: [
- // Declare your component
     AppComponent,
     MyCarAdsPage,
     MyCarAdsPaymentComponent, 
@@ -65,30 +77,43 @@ import { CommerciaVehiclesHomePage } from './(commercial-vehicles)/commercials-v
     PostExporterBusinesPage,
     PostWorkshopBusinesPage,
     PostDrivingSchoolPage,
-     AccountProfPvtPage,
-     ResetPasswordPage,
-     AccCreatePvtPage,
-     AccCreateBusinesPage,
-     AccountProfBusinesPage,
-     ForgetPaswrdPage,
-     HireFiltersPage,
-     UpdateDealerBusinesPage,
-     UpdateExporterBusinesPage,
-     UpdateImporterBusinesPage,
-     UpdateInsuranceBusinesPage,
-     UpdateLeasingBusinesPage,
-     UpdateSchoolBusinesPage,
-     UpdateShowroomBusinesPage,
-     UpdateWorkshopBusinesPage,
-     CarAdHireUpdatePage,
-     CarAdSaleUpdatePage,
+    AccountProfPvtPage,
+    ResetPasswordPage,
+    AccCreatePvtPage,
+    AccCreateBusinesPage,
+    AccountProfBusinesPage,
+    ForgetPaswrdPage,
+    HireFiltersPage,
+    UpdateDealerBusinesPage,
+    UpdateExporterBusinesPage,
+    UpdateImporterBusinesPage,
+    UpdateInsuranceBusinesPage,
+    UpdateLeasingBusinesPage,
+    UpdateSchoolBusinesPage,
+    UpdateShowroomBusinesPage,
+    UpdateWorkshopBusinesPage,
+    CarAdHireUpdatePage,
+    CarAdSaleUpdatePage,
     AdsUpgradeHotspotPage,
     AdsUpgradeSupremePage,
-   CarAdHireUpdatePage,
-   BikePostSalePage,
-   BikeHomePage,
-   CommerciaVehiclesHomePage,
-    
+    CarAdHireUpdatePage,
+    BikePostSalePage,
+    BikeHomePage,
+    CommerciaVehiclesHomePage,
+    // Bike Business Pages
+    BikePostInsuranceBusnessPage,
+    BikePostDealershipBusinessPage,
+    BikePostShowroomBusnessesPage,
+    BikePostLeasingBusnessPage,
+    BikePostImporterBusenessPage,
+    BikePostExporterBusnessPage,
+    BikePostWorkshopBusnessPage,
+    UpdateBikeInsurancePostPage,
+    UpdateBikeLeasingPagePage,
+    UpdateBikeImporterPagePage,
+    UpdateBikeWorkshopPagePage,
+    UpdateBikeDealershipPagePage,
+    UpdateBikeShowroomPagePage
   ],
  
   bootstrap: [AppComponent],

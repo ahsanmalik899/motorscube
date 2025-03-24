@@ -237,7 +237,7 @@ postDealerBusiness(formData: FormData): Observable<any> {
   // Assuming you have an API endpoint to save user data
   return this.http.post<any>(this.apiUrl + 'save_post_dealer_business.php', formData);
 }
-updateDealerBusiness(formData: FormData): Observable<any> {
+updateDealerBusiness(adsId: string, formData: FormData): Observable<any> {
   // Assuming you have an API endpoint to save user data
   return this.http.post<any>(this.apiUrl + 'update_post_dealer_business.php', formData);
 }
