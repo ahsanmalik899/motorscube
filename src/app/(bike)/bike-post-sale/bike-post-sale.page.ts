@@ -18,7 +18,7 @@ export class BikePostSalePage implements OnInit {
   selectedregisterCity: string = '';
   price: number = 0;
   mileage: number = 0;
-  engineSize: number = 0;
+  engineType: String = '';
   selectedFuel: string = '';
   selectedDrive: string = '';
   selectedDoors: any = '';
@@ -101,8 +101,8 @@ originalContent = '';
     private alertController: AlertController,
     private loadingController: LoadingController,
   ) {
-    this.userID = sessionStorage.getItem('userId') || '';  // Use an empty string if null
-    this.userType = sessionStorage.getItem('userType') || ''; // Use an empty string if null
+    this.userID = localStorage.getItem('userId') || '';  // Use an empty string if null
+    this.userType = localStorage.getItem('userType') || ''; // Use an empty string if null
     console.log('user ID : ', this.userID);
   }
   
@@ -339,6 +339,12 @@ originalContent = '';
     // Log the selected fuel type to console
     console.log('Selected fuel:', fuelType);
   }
+  selectengentype(enginetype: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.engineType = enginetype;
+    // Log the selected fuel type to console
+    console.log('Selected engine type:',enginetype);
+  }
   selectedcondition(conitionType: string) {
     // Set the selectedFuel variable to the clicked fuel type
     this.selectedcon = conitionType;
@@ -515,8 +521,8 @@ checkRequiredFields() {
   if (this.mileage <= 0) {
     missingFields.push('Mileage');
   }
-  if (this.engineSize <= 0) {
-    missingFields.push('Engine Size');
+  if (this.engineType === '') {
+    missingFields.push('Engine Type');
   }
   if (!this.selectedFuel) {
     missingFields.push('Fuel Type');
@@ -643,7 +649,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       register: this.selectedregisterCity,
       price: this.price,
       mileage: this.mileage,
-      engineSize: this.engineSize,
+      engineSize: this.engineType,
       fuel: this.selectedFuel,
       doors: this.selectedDoors,
       ignition: this.ignition,
@@ -655,6 +661,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       change: this.selectedcon,
       loginUser: this.userID,
       loginUserType: this.userType,
+      engineType: this.engineType,
     };
   
     // FormData logic (same as before)

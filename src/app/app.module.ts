@@ -1,3 +1,4 @@
+import { UpdateBikeSalePostPage } from './(bike)/update-bike-sale-post/update-bike-sale-post.page';
 import { MainMenuAfterLoginPageRoutingModule } from './(side-menue)/main-menu-after-login/main-menu-after-login-routing.module';
 import { UpdateShowroomBusinesPage } from './(car)/update-showroom-busines/update-showroom-busines.page';
 import { NgModule } from '@angular/core';
@@ -114,7 +115,8 @@ import { UpdateBikeWorkshopPagePage } from './(bike)/update-bike-workshop-page/u
     UpdateBikeWorkshopPagePage,
     UpdateBikeDealershipPagePage,
     UpdateBikeShowroomPagePage,
- 
+    UpdateBikeSalePostPage,
+
   ],
  
   bootstrap: [AppComponent],
