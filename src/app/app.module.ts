@@ -113,7 +113,8 @@ import { UpdateBikeWorkshopPagePage } from './(bike)/update-bike-workshop-page/u
     UpdateBikeImporterPagePage,
     UpdateBikeWorkshopPagePage,
     UpdateBikeDealershipPagePage,
-    UpdateBikeShowroomPagePage
+    UpdateBikeShowroomPagePage,
+ 
   ],
  
   bootstrap: [AppComponent],

@@ -25,8 +25,8 @@
         <div class="menu-item" (click)="goToWallet()">
           <img src="../../../assets/Menu-items/After login/wallet.png" class="menu-icon" alt="Wallet">
           <span class="menu-text">Your Wallets</span>
-        </div>
-      </div>
+          </div>
+          </div>
 
       <!-- Vehicle Categories -->
       <div class="category-card">
@@ -38,100 +38,100 @@
             <span class="category-title">Cars</span>
             <img src="../../../assets/Menu-items/car.png" class="category-icon" alt="Cars">
           </div>
-        </div>
+              </div>
 
         <!-- Cars Dropdown -->
         <div class="dropdown-content" *ngIf="carDropdownVisible">
           <div style="display: flex; margin-top: 10px;" (click)="navigateToCar()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-ads.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Car You Posted</span> </p>               
-          </div>
+                  <img src="../../../assets/Menu-items/After login/Car menu/car-ads.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Car You Posted</span> </p>               
+                </div>
         
           <div style="display: flex; cursor: pointer; margin-top: 10px;" (click)="toggleDropdown()">
-            <img src="../../../assets/Menu-items/After login/Car menu/manage-car.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
-              <span style="color: rgb(143, 143, 143);">Manage Your Car</span>
-            </p>
-            <ion-icon [name]="dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline'" style="margin-right: 20px; width: 20px; margin-top: 16px;"></ion-icon>
-          </div>
-        
-          <div *ngIf="dropdownVisible" style="margin-left: 20px;">
-            <!-- Dropdown content -->
-            <div style="display: flex;" (click)="navigateToCar()">
-              <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
-                <span style="color: rgb(143, 143, 143);">Your Car</span>
-              </p>
-            </div>
-            <div style="display: flex;" (click)="navigateToNewCar()">
-              <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
-                <span style="color: rgb(143, 143, 143);">Add New Car To Manage</span>
-              </p>
-            </div>
-          </div>
+                  <img src="../../../assets/Menu-items/After login/Car menu/manage-car.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
+                    <span style="color: rgb(143, 143, 143);">Manage Your Car</span>
+                  </p>
+                  <ion-icon [name]="dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline'" style="margin-right: 20px; width: 20px; margin-top: 16px;"></ion-icon>
+                </div>
+              
+                <div *ngIf="dropdownVisible" style="margin-left: 20px;">
+                  <!-- Dropdown content -->
+                  <div style="display: flex;" (click)="navigateToCar()">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
+                      <span style="color: rgb(143, 143, 143);">Your Car</span>
+                    </p>
+                  </div>
+                  <div style="display: flex;" (click)="navigateToNewCar()">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
+                      <span style="color: rgb(143, 143, 143);">Add New Car To Manage</span>
+                    </p>
+                  </div>
+                </div>
           
           <div *ngIf="userType === 'Trader'" style="display: flex; margin-top: 10px;" (click)="navigateToBusiness()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free</span> </p>               
-          </div>
-          <hr style="height: 4px; background-color: aquamarine;">
-          <p style="font-size: 20px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Search Car</b></span> </p>               
-       
+                </div>
+                <hr style="height: 4px; background-color: aquamarine;">
+                <p style="font-size: 20px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Search Car</b></span> </p>               
+                
           <div style="display: flex;" (click)="navigateToForSale()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-sale.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Sale</span> </p>               
-          </div>
+                  <img src="../../../assets/Menu-items/After login/Car menu/car-sale.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Sale</span> </p>               
+                </div>
     
           <div style="display: flex;" (click)="navigateToForHire()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-hire.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Hire</span> </p>               
-          </div>
+                  <img src="../../../assets/Menu-items/After login/Car menu/car-hire.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Hire</span> </p>               
+                </div>
  
           <div style="display: flex;"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Parts & Accessories</span> </p>               
-          </div>
+                </div>
 
-          <hr style="height: 4px; background-color: aquamarine;">
-          <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Post Car</b></span> </p>               
-          <div style="display: flex;">
-            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToPostSale()">For Sale</button>  
-            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToPostHire()">For Hire</button>  
-          </div><hr style="height: 4px; background-color: aquamarine;">
-          <p class="main-heading" style="justify-content: center; display: flex;">Search For Businesses</p>
+                <hr style="height: 4px; background-color: aquamarine;">
+                <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Post Car</b></span> </p>               
+                <div style="display: flex;">
+                  <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToPostSale()">For Sale</button>  
+                  <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToPostHire()">For Hire</button>  
+                </div><hr style="height: 4px; background-color: aquamarine;">
+                <p class="main-heading" style="justify-content: center; display: flex;">Search For Businesses</p>
           <div style="display: flex;" (click)="navigateToShowroom()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-showroom.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/car-showroom.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Showroom</span> </p>               
-          </div>
+                </div>
           <div style="display: flex;" (click)="navigateToDealer()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-dealer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/car-dealer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Dealer</span> </p>               
-          </div>
+                </div>
           <div style="display: flex;" (click)="navigateToWorkshop()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/workshop.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/workshop.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Workshop</span> </p>               
-          </div>
+                </div>
           <div style="display: flex;" (click)="navigateToSchool()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/driving-school.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/driving-school.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Driving School</span> </p>               
-          </div>
+                </div>
  
           <div style="display: flex;" (click)="navigateToImporter()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/importer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/importer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Importer</span> </p>               
-          </div>
+                </div>
           <div style="display: flex;" (click)="navigateToExporter()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/exporter.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Exporter</span> </p>               
-          </div>
+                  <img src="../../../assets/Menu-items/After login/Car menu/exporter.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Exporter</span> </p>               
+                </div>
           <div style="display: flex;" (click)="navigateToInsurance()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/insurance.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <img src="../../../assets/Menu-items/After login/Car menu/insurance.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Insurance</span> </p>               
-          </div>
+                </div>
           <div style="display: flex;" (click)="navigateToLeasing()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/leasing.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Leasing</span> </p>               
-          </div>
-        </div>
+                  <img src="../../../assets/Menu-items/After login/Car menu/leasing.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                  <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Leasing</span> </p>               
+                </div>
+              </div>
 
         <!-- Bikes Section -->
         <div class="btn-car" (click)="toggleBikeDropdown()">
@@ -139,100 +139,100 @@
             <span class="category-title">Motorbikes</span>
             <img src="../../../assets/Menu-items/bike.png" class="category-icon" alt="Bikes">
           </div>
-        </div>
+                </div>
 
         <!-- Bikes Dropdown -->
         <div class="dropdown-content" *ngIf="BikeDropdownVisible">
           <div style="display: flex;margin-top: 10px; " (click)="navigatemybikeads()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-ads.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Bike You Posted</span> </p>               
-          </div>
+                    <img src="../../../assets/Menu-items/After login/Car menu/car-ads.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Bike You Posted</span> </p>               
+                  </div>
         
-          <div style="display: flex; cursor: pointer;margin-top: 10px;" (click)="toggleDropdown()">
-            <img src="../../../assets/Menu-items/After login/Car menu/manage-car.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
-              <span style="color: rgb(143, 143, 143);">Manage Your Bike</span>
-            </p>
-            <ion-icon [name]="dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline'" style="margin-right: 20px; width: 20px; margin-top: 16px;"></ion-icon>
-          </div>
-        
-          <div *ngIf="dropdownVisible" style="margin-left: 20px;">
-            <!-- Dropdown content -->
-            <div style="display: flex;" (click)="navigateToCar()">
-              <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
-                <span style="color: rgb(143, 143, 143);">Your BIke</span>
-              </p>
-            </div>
-            <div style="display: flex;" (click)="navigateToNewCar()">
-              <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
-                <span style="color: rgb(143, 143, 143);">Add New Bike To Manage</span>
-              </p>
-            </div>
-          </div>
+                  <div style="display: flex; cursor: pointer;margin-top: 10px;" (click)="toggleDropdown()">
+                    <img src="../../../assets/Menu-items/After login/Car menu/manage-car.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
+                      <span style="color: rgb(143, 143, 143);">Manage Your Bike</span>
+                    </p>
+                    <ion-icon [name]="dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline'" style="margin-right: 20px; width: 20px; margin-top: 16px;"></ion-icon>
+                  </div>
+                
+                  <div *ngIf="dropdownVisible" style="margin-left: 20px;">
+                    <!-- Dropdown content -->
+                    <div style="display: flex;" (click)="navigateToCar()">
+                      <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
+                        <span style="color: rgb(143, 143, 143);">Your BIke</span>
+                      </p>
+                    </div>
+                    <div style="display: flex;" (click)="navigateToNewCar()">
+                      <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
+                        <span style="color: rgb(143, 143, 143);">Add New Bike To Manage</span>
+                      </p>
+                    </div>
+                  </div>
         
           <div *ngIf="userType === 'Trader'"  style="display: flex; margin-top: 10px;" (click)="navigateToBikeBusiness()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free                  </span> </p>               
-          </div>
-
-          <hr style="height: 4px; background-color: aquamarine;">
-          <p style="font-size: 20px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Search Bike</b></span> </p>               
-          
-          <div style="display: flex ; " (click)="navigateToForBikeSale()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-sale.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center;  width: 100%;"> <span style="color: rgb(143, 143, 143);">For Sale</span> </p>               
-          </div>
+                    <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free                  </span> </p>               
+                  </div>
+  
+                  <hr style="height: 4px; background-color: aquamarine;">
+                  <p style="font-size: 20px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Search Bike</b></span> </p>               
+                  
+                  <div style="display: flex ; " (click)="navigateToForBikeSale()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/car-sale.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center;  width: 100%;"> <span style="color: rgb(143, 143, 143);">For Sale</span> </p>               
+                  </div>
            
-          <div style="display: flex; "> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Parts & Accessories                  </span> </p>               
-          </div>
+                  <div style="display: flex; "> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Parts & Accessories                  </span> </p>               
+                  </div>
         
-          <hr style="height: 4px; background-color: aquamarine;">
-          <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Post Bike</b></span> </p>               
-          <div style="display: flex; justify-content: center;">
-            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToPostBikeSale()">For Sale</button>  
-          </div><hr style="height: 4px; background-color: aquamarine;">
-          <p class="main-heading" style="justify-content: center; display: flex;">Search For Businesses</p>
-          <div style="display: flex; " (click)="navigateToBikeShowroom()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-showroom.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Showroom</span> </p>               
-          </div>
+                  <hr style="height: 4px; background-color: aquamarine;">
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Post Bike</b></span> </p>               
+                  <div style="display: flex; justify-content: center;">
+                    <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToPostBikeSale()">For Sale</button>  
+                          </div><hr style="height: 4px; background-color: aquamarine;">
+                  <p class="main-heading" style="justify-content: center; display: flex;">Search For Businesses</p>
+                  <div style="display: flex; " (click)="navigateToBikeShowroom()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/car-showroom.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Showroom</span> </p>               
+                  </div>
          
-          <div style="display: flex; " (click)="navigateToBikeDealer()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/car-dealer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Dealer</span> </p>               
-          </div>
+                  <div style="display: flex; " (click)="navigateToBikeDealer()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/car-dealer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Dealer</span> </p>               
+                  </div>
           
-          <div style="display: flex; " (click)="navigateToBikeWorkshop()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/workshop.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Workshop</span> </p>               
-          </div>
+                  <div style="display: flex; " (click)="navigateToBikeWorkshop()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/workshop.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Workshop</span> </p>               
+                  </div>
          
-          <div style="display: flex; " (click)="navigateToSchool()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/driving-school.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Driving School</span> </p>               
-          </div>
+                  <div style="display: flex; " (click)="navigateToSchool()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/driving-school.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Driving School</span> </p>               
+                  </div>
        
-          <div style="display: flex; "(click)="navigateToBikeImporter()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/importer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Importer</span> </p>               
-          </div>
+                  <div style="display: flex; "(click)="navigateToBikeImporter()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/importer.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Importer</span> </p>               
+                  </div>
         
-          <div style="display: flex; " (click)="navigateToBikeExporter()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/exporter.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Exporter</span> </p>               
-          </div>
+                  <div style="display: flex; " (click)="navigateToBikeExporter()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/exporter.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Exporter</span> </p>               
+                  </div>
 
-          <div style="display: flex; " (click)="navigateToBikeInsurance()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/insurance.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Insurance</span> </p>               
-          </div>
+                  <div style="display: flex; " (click)="navigateToBikeInsurance()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/insurance.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px;  text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Insurance</span> </p>               
+                  </div>
           
-          <div style="display: flex; " (click)="navigateToBikeLeasing()"> 
-            <img src="../../../assets/Menu-items/After login/Car menu/leasing.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
-            <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Leasing</span> </p>               
-          </div>
+                  <div style="display: flex; " (click)="navigateToBikeLeasing()"> 
+                    <img src="../../../assets/Menu-items/After login/Car menu/leasing.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
+                    <p style="font-size: 14px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Search Leasing</span> </p>               
+                  </div>
         </div>
 
         <!-- Commercial Vehicles Section -->
@@ -269,8 +269,8 @@
                 <span style="color: rgb(143, 143, 143);">Add New Commercial Vehicle To Manage</span>
               </p>
             </div>
-          </div>
-          
+                </div>
+
           <div *ngIf="userType === 'Trader'" style="display: flex; margin-top: 10px;" (click)="navigateToBusiness()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free</span> </p>               
@@ -287,8 +287,8 @@
           <div style="display: flex;" (click)="navigateToCommercialHire()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/car-hire.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Hire</span> </p>               
-          </div>
-          
+                  </div>
+
           <div style="display: flex;"> 
             <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">Parts & Accessories</span> </p>               
@@ -353,8 +353,8 @@
               <span style="color: rgb(143, 143, 143);">Manage Your Machinery</span>
             </p>
             <ion-icon [name]="dropdownVisible ? 'chevron-up-outline' : 'chevron-down-outline'" style="margin-right: 20px; width: 20px; margin-top: 16px;"></ion-icon>
-          </div>
-        
+                    </div>
+
           <div *ngIf="dropdownVisible" style="margin-left: 20px;">
             <div style="display: flex;" (click)="navigateToMachinerySale()">
               <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;">
@@ -366,8 +366,8 @@
                 <span style="color: rgb(143, 143, 143);">Add New Machinery To Manage</span>
               </p>
             </div>
-          </div>
-          
+                      </div>
+
           <div *ngIf="userType === 'Trader'" style="display: flex; margin-top: 10px;" (click)="navigateToBusiness()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free</span> </p>               
@@ -385,7 +385,7 @@
             <img src="../../../assets/Menu-items/After login/Car menu/car-hire.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Hire</span> </p>               
           </div>
-          
+
           <div style="display: flex;"> 
             <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">Parts & Accessories</span> </p>               
@@ -464,7 +464,7 @@
               </p>
             </div>
           </div>
-          
+
           <div *ngIf="userType === 'Trader'" style="display: flex; margin-top: 10px;" (click)="navigateToBusiness()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free</span> </p>               
@@ -477,12 +477,12 @@
             <img src="../../../assets/Menu-items/After login/Car menu/car-sale.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Sale</span> </p>               
           </div>
-          
+
           <div style="display: flex;" (click)="navigateToPlantsHire()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/car-hire.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">For Hire</span> </p>               
           </div>
-          
+
           <div style="display: flex;"> 
             <img src="../../../assets/Menu-items/After login/Car menu/car-parts.png" style="width: 40px; margin-top: 10px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; width: 100%;"> <span style="color: rgb(143, 143, 143);">Parts & Accessories</span> </p>               

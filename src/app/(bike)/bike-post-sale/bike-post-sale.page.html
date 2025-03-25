@@ -101,39 +101,13 @@
       </ng-template>
     </ion-popover>
   </div>
-  <div [hidden]="!showversion2">
-    <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-
-    <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-    <p style="margin-left: 20px; margin-top: 20px;">Version</p>
-    <div [hidden]="!showversion" id="click-trigger_version" trigger="click-trigger_version" triggerAction="click">
-      <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
-    </div></ion-row>
-    <div *ngIf="versiondivVisible">
-    <ion-badge style="margin-left: 45px; height: 35px; width: 150px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -10px; color: black;">{{ selectedVersion }}</p>
-      <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="versionDiv()"></ion-icon></div></ion-badge>
-    </div>
-      <ion-popover trigger="click-trigger_version" triggerAction="click">
-        <ng-template>
-          
-          <ion-content class="ion-padding">
-            <p style="font-size: 16px; text-align: center;">Select Version</p>
-            <ion-searchbar type="text" debounce="500" (ionChange)="filterVersions($event)"></ion-searchbar>
-            <ion-list>
-              
-              <ion-item *ngFor="let version of filteredVersions" (click)="selectVersion(version)">
-                {{ version }}
-              </ion-item>
-            </ion-list>
-          </ion-content>
-        </ng-template>
-      </ion-popover>
-  </div>
+ 
   <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
   <ion-row><img src="../../../assets/extra-icon/year.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
   <p style="margin-left: 20px; margin-top: 20px;">Make year</p>
-  <div [hidden]="!showyear" id="click-trigger_year"   trigger="click-trigger_year" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
+  <div [hidden]="!showyear" id="click-trigger_year" trigger="click-trigger_year" triggerAction="click">
+    <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
   </div></ion-row>
 
   <div *ngIf="yeardivVisible">
@@ -237,37 +211,37 @@
             <p style="margin-left: 20px; margin-top: 20px;">Bike type</p></ion-row>
             <swiper-container [slidesPerView]="3" [spaceBetween]="10" [loop]="true" style="margin-top: 20px; height: 50px;">
               <swiper-slide (click)="selectCategory('Sports')" [style.backgroundColor]="selectedCategory === 'Sports' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/sports-bike.png" style="height: 30px; width: 30px; margin-top: -20px;" />
+                <ion-icon name="speedometer-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Sports</ion-label>
               </swiper-slide>
             
               <swiper-slide (click)="selectCategory('Cruiser')" [style.backgroundColor]="selectedCategory === 'Cruiser' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/cruiser.png" style="height: 40px; width: 40px; margin-top: -20px;" />
+                <ion-icon name="bicycle-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Cruiser</ion-label>
               </swiper-slide>
             
               <swiper-slide (click)="selectCategory('Standard')" [style.backgroundColor]="selectedCategory === 'Standard' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/standard-bike.png" style="height: 40px; width: 40px; margin-top: -20px;" />
+                <ion-icon name="bicycle" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Standard</ion-label>
               </swiper-slide>
             
               <swiper-slide (click)="selectCategory('Touring')" [style.backgroundColor]="selectedCategory === 'Touring' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/touring-bike.png" style="height: 40px; width: 40px; margin-top: -20px;" />
+                <ion-icon name="map-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Touring</ion-label>
               </swiper-slide>
             
               <swiper-slide (click)="selectCategory('Adventure')" [style.backgroundColor]="selectedCategory === 'Adventure' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/adventure-bike.png" style="height: 40px; width: 40px; margin-top: -20px;" />
+                <ion-icon name="compass-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Adventure</ion-label>
               </swiper-slide>
             
               <swiper-slide (click)="selectCategory('Scooter')" [style.backgroundColor]="selectedCategory === 'Scooter' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/scooter.png" style="height: 40px; width: 40px; margin-top: -20px;" />
+                <ion-icon name="bicycle-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Scooter</ion-label>
               </swiper-slide>
             
               <swiper-slide (click)="selectCategory('Moped')" [style.backgroundColor]="selectedCategory === 'Moped' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-                <img src="../../../assets/extra-icon/moped.png" style="height: 40px; width: 40px; margin-top: -20px;" />
+                <ion-icon name="bicycle-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
                 <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Moped</ion-label>
               </swiper-slide>
             </swiper-container>
@@ -285,19 +259,8 @@
               
             </div>
             
-            <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
             
-            <ion-row><img src="../../../assets/extra-icon/power.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-            <p style="margin-left: 20px; margin-top: 20px;">Power Transmission</p></ion-row>
-            
-            <div style="width: 100%; margin-left: 25px; text-align: center;">
-              <ion-row style="display: flex; justify-content: center;">
-                <ion-button [color]="selectedDrive === 'Front' ? 'danger' : 'light'" class="fuel" style="width: 100px;" (click)="selectDrive('Front')">Front</ion-button>
-                <ion-button [color]="selectedDrive === 'Rear' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 15px;" (click)="selectDrive('Rear')">Rear</ion-button>
-                <ion-button [color]="selectedDrive === '4x4' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 15px;" (click)="selectDrive('4x4')">4x4</ion-button>
-              </ion-row>
-              
-            </div>
+           
             
             <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 

@@ -462,7 +462,9 @@ const routes: Routes = [
   {
     path: 'update-bike-workshop-page',
     loadChildren: () => import('./(bike)/update-bike-workshop-page/update-bike-workshop-page.module').then( m => m.UpdateBikeWorkshopPagePageModule)
-  }
+  },
+
+
 
 
 ];

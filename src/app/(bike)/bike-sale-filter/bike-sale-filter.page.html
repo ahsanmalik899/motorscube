@@ -90,80 +90,78 @@
   </ng-template>
 </ion-popover>
 
-<!-- Make section trigger -->
-<div [hidden]="!showmodel">
-  <ion-row>
-    <!-- Make section trigger -->
-    <img
-      src="../../../assets/extra-icon/make.png"
-      style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;"
-      fill="clear"
-    />
-    <p style="margin-left: 20px; margin-top: 20px;">Model & Version</p>
+<!-- Model section trigger -->
+<ion-row>
+  <img src="../../../assets/extra-icon/model.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;" />
+  <p style="margin-left: 20px; margin-top: 20px;">Model</p>
 
-    <!-- Add button for triggering the popover -->
-    <div
-      [hidden]="showmodel2"
-      id="click-trigger-model-version"
-      trigger="click-trigger-model-version"
-      triggerAction="click"
-    >
-      <img
-        src="../../../assets/extra-icon/add.png"
-        style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;"
-        fill="clear"
-      />
-    </div>
-  </ion-row>
+  <!-- Add button for trigger -->
+  <div [hidden]="showmodel" id="click-trigger_model" trigger="click-trigger_model" triggerAction="click">
+    <img src="../../../assets/extra-icon/add.png" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;" />
+  </div>
+</ion-row>
 
-  <!-- Popover for Model and Version selection -->
-  <ion-popover
-    trigger="click-trigger-model-version"
-    triggerAction="click"
-    cssClass="full-screen-popover"
-  >
-    <ng-template>
-      <ion-content class="full-screen-content">
-        <p style="font-size: 16px; text-align: center;">Select Model & Version</p>
-
-        <!-- Search bar for filtering combined model-version -->
-        <ion-searchbar
-          type="text"
-          debounce="500"
-          (ionInput)="filterModels($event)"
-          [value]="searchTerm"
-          placeholder="Search Model & Version"
-          clearInput="true"
-          style="width: 100%;"
-        ></ion-searchbar>
-
-        <!-- Display combined model-version in the list -->
-        <ion-list>
-          <ion-item
-            *ngFor="let combined of filteredCombinedModelVersions"
-            (click)="selectModel(combined)"
-          >
-            {{ combined }}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ng-template>
-  </ion-popover>
-</div>
-
-<!-- Display selected model-version in the selected div -->
-
-
-
-<div *ngIf="selectedModelVersion" style="margin-left: 10px; margin-top: 20px;">
-  <ion-badge
-    style="background-color: lightgray; padding: 15px 30px;  color: black; display: inline-block; position: relative;"
-  >
-    {{ selectedModelVersion }}
-    <div style="position: absolute; top: 0; right: 0; font-size: 22px; color: #0000ff96; cursor: pointer;">
-      <ion-icon name="close-circle" (click)="clearSelectedModelVersion()"></ion-icon>
+<!-- Display selected Model in the div -->
+<div *ngIf="modeldivVisible">
+  <ion-badge style="margin-left: 45px; height: 35px; width: 250px; background-color: lightgray;">
+    <p style="font-size: small; margin-top: 9px; margin-left: -10px; color: black;">{{ selectedModel }}</p>
+    <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;">
+      <ion-icon name="close-circle" (click)="modelDiv()"></ion-icon>
     </div>
   </ion-badge>
+</div>
+
+<!-- Popover for Model selection -->
+<ion-popover trigger="click-trigger_model" triggerAction="click" cssClass="full-screen-popover">
+  <ng-template>
+    <ion-content class="full-screen-content">
+      <p style="font-size: 16px; text-align: center;">Select Model</p>
+
+      <!-- Search bar for filtering models -->
+      <ion-searchbar 
+        type="text" 
+        debounce="500" 
+        (ionInput)="filterModels($event)" 
+        placeholder="Search Models"
+        clearInput="true"
+        style="width: 100%;">
+      </ion-searchbar>
+
+      <!-- Display models in the list -->
+      <ion-list>
+        <ion-item *ngFor="let model of filteredModels" (click)="selectModel(model)">
+          {{ model }}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
+<!-- Engine Type section -->
+<ion-row>
+  <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+  <p style="margin-left: 20px; margin-top: 20px;">Engine Type</p>
+</ion-row>
+<div style="width: 100%; margin-left: 25px; text-align: center;">
+  <ion-row style="display: flex; justify-content: center;">
+    <ion-button [color]="selectedEngineType === '4 Stroke' ? 'danger' : 'light'" class="engine-type" (click)="selectedEngineType = '4 Stroke'">4 Stroke</ion-button>
+    <ion-button [color]="selectedEngineType === '2 Stroke' ? 'danger' : 'light'" class="engine-type" style="margin-left: 15px;" (click)="selectedEngineType = '2 Stroke'">2 Stroke</ion-button>
+  </ion-row>
+</div>
+
+<!-- Features section -->
+<ion-row>
+  <img src="../../../assets/extra-icon/features.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+  <p style="margin-left: 20px; margin-top: 20px;">Features</p>
+</ion-row>
+<div style="width: 100%; margin-left: 25px; text-align: center;">
+  <ion-row style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <ion-button [color]="selectedFeatures.includes('Anti Theft Lock') ? 'danger' : 'light'" class="feature" (click)="toggleFeature('Anti Theft Lock')">Anti Theft Lock</ion-button>
+    <ion-button [color]="selectedFeatures.includes('Disc Brake') ? 'danger' : 'light'" class="feature" style="margin-left: 15px;" (click)="toggleFeature('Disc Brake')">Disc Brake</ion-button>
+    <ion-button [color]="selectedFeatures.includes('LED Light') ? 'danger' : 'light'" class="feature" style="margin-left: 15px;" (click)="toggleFeature('LED Light')">LED Light</ion-button>
+  </ion-row>
 </div>
 
             <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>

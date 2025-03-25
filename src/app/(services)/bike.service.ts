@@ -2,11 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Storage } from '@ionic/storage-angular';
+
+export interface Make {
+  id: string;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class BikeService {
-  private apiUrl = 'http://localhost/bike/';
+  private apiUrl = 'http://localhost/bike/bike/';
   constructor(private http: HttpClient, private storage: Storage) { }
   getBikeSale(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl + 'get_bike_sale_data.php');
@@ -45,11 +51,17 @@ export class BikeService {
   }
   getMakes(): Observable<string[]> {
     // Make a POST request to the API endpoint to fetch city names
-    return this.http.get<string[]>(this.apiUrl + 'get_bike_make_name.php');
+    return this.http.get<string[]>(this.apiUrl + 'get_make_name.php');
+  }
+  getModels(makeData: FormData): Observable<string[]> {
+    // Make a POST request to the API endpoint to fetch models based on the selected make
+    return this.http.post<string[]>(this.apiUrl + 'get_model_name.php', makeData);
   }
   bikeSalePost(userData: any): Observable<any> {
     // Assuming you have an API endpoint to save user data
     return this.http.post<any>(this.apiUrl + 'save_bike_sale_post.php', userData);
   }
-  
+  bikeDeleteAds(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl+ 'delete-ads.php', formData);
+  }
 }

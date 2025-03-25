@@ -153,7 +153,7 @@ originalContent = '';
 
 // select make car
   fetchMakes() {
-    this.userService.getMakes().subscribe({
+    this.bikesevice.getMakes().subscribe({
       next: (data: string[]) => {
         this.makes = data;
         //console.log('Fetched makes:', data);
@@ -200,7 +200,7 @@ originalContent = '';
     formData.append('make', this.selectedMake);
 
     console.log(makeData);
-    this.userService.getModels(formData).subscribe({
+    this.bikesevice.getModels(formData).subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched models:', data);
@@ -521,9 +521,6 @@ checkRequiredFields() {
   if (!this.selectedFuel) {
     missingFields.push('Fuel Type');
   }
-  if (!this.selectedDrive) {
-    missingFields.push('Drive Type');
-  }
   if (!this.ignition) {
     missingFields.push('ignition');
   }
@@ -648,7 +645,6 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       mileage: this.mileage,
       engineSize: this.engineSize,
       fuel: this.selectedFuel,
-      drive: this.selectedDrive,
       doors: this.selectedDoors,
       ignition: this.ignition,
       category: this.selectedCategory,

@@ -212,7 +212,7 @@ export class BikeYouPostedPage implements OnInit {
   }
 
   async editSale(id: any) {
-    this.router.navigate(['/bike-ad-sale-update'], {
+    this.router.navigate(['/update-bike-sale-post'], {
       queryParams: {
         adsId: id,
       }
@@ -275,7 +275,7 @@ export class BikeYouPostedPage implements OnInit {
     formData.append('deleteid', this.deleteid);
     formData.append('deletetype', this.deletetype);
 
-    this.userService.bikeDeleteAds(formData).subscribe(
+    this.bikeService.bikeDeleteAds(formData).subscribe(
       (response) => {
         console.log('Data deleted successfully:', response);
         this.fetchBikeSale();

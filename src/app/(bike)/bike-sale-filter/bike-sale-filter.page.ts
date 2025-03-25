@@ -125,6 +125,10 @@ export class BikeSaleFilterPage implements OnInit {
    selectedEngineHighSize: string;
    filteredHighEngineSizes: string[];
    selectedValuesString = '';
+   selectedEngineType: string = '';
+   selectedIgnition: string = '';
+   selectedNormalFeature: string = '';
+
    constructor(public route: Router, private popoverController: PopoverController, private userService: UserService, private bikeservice:BikeService) {
      this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
    this.selectedMake = localStorage.getItem('bikeselectedmake') || '';
@@ -141,6 +145,10 @@ export class BikeSaleFilterPage implements OnInit {
    this.selectedSellerType = localStorage.getItem('bikeselectedSellerType') || '';
    this.selectedEngineHighSize = localStorage.getItem('bikehighengine') || '';
    this.selectedEngineLowSize = localStorage.getItem('bikelowengine') || '';
+   this.selectedEngineType = localStorage.getItem('bikeselectedEngineType') || '';
+   this.selectedIgnition = localStorage.getItem('bikeselectedIgnition') || '';
+   this.selectedNormalFeature = localStorage.getItem('bikeselectedNormalFeature') || '';
+   this.selectedFeatures = this.getStoredArray('bikeselectedFeatures');
    this.makedivVisible = !!this.selectedMake;
    this.showversion2 = !!this.selectedModel;
    this.modeldivVisible = !!this.selectedModel;
@@ -366,12 +374,9 @@ export class BikeSaleFilterPage implements OnInit {
      window.history.back();
    }  
    resetAll() {
-     // Clear specific items from localStorage
-     localStorage.removeItem('bikeselectedcon');
-     localStorage.removeItem('bikeselectedcity');
+     // Clear bike-specific items from localStorage
      localStorage.removeItem('bikeselectedmake');
      localStorage.removeItem('bikeselectedmodel');
-     localStorage.removeItem('bikeselectedversion');
      localStorage.removeItem('bikelowprice');
      localStorage.removeItem('bikehighprice');
      localStorage.removeItem('bikelowyear');
@@ -383,39 +388,36 @@ export class BikeSaleFilterPage implements OnInit {
      localStorage.removeItem('bikeselectedSellerType');
      localStorage.removeItem('bikehighengine');
      localStorage.removeItem('bikelowengine');
-     localStorage.removeItem('bikeselectedmodelversion');
+     localStorage.removeItem('bikeselectedEngineType');
+     localStorage.removeItem('bikeselectedIgnition');
+     localStorage.removeItem('bikeselectedNormalFeature');
+     localStorage.removeItem('bikeselectedFeatures');
+
      // Reset selected filters
-     this.selectedcon = [];
-     this.selectedCity = [];
-     this.selectedmakearray = [];
-     this.selectedmodelarray = [];
-     this.selectedversionarray = [];
-     this.mergecararray = [];
+     this.selectedMake = '';
+     this.selectedModel = '';
      this.selectedLowPrice = '';
      this.selectedHighPrice = '';
      this.selectedLowYear = '';
      this.selectedHighYear = '';
-     this.selectedModelVersion='';
      this.selectedLowMilage = '';
      this.selectedHighMilage = '';
      this.selectedCategory = '';
-     this.selectedFuel = [];
-     this.selectedTransmission = [];
      this.selectedColor = '';
-     this.selectedDoors = [];
+     this.selectedSellerType = '';
      this.selectedEngineLowSize = '';
      this.selectedEngineHighSize = '';
-     this.selectedSellerType = '';
+     this.selectedEngineType = '';
+     this.selectedIgnition = '';
+     this.selectedNormalFeature = '';
+     this.selectedFeatures = [];
+
+     // Reset visibility flags
      this.showmodel2 = false;
      this.showmodel = false;
      this.makedivVisible = false;
-     this.showversion2 = false;
      this.modeldivVisible = false;
-     this.versiondivVisible = false;
      this.divVisible = false;
-     this.selectedMake='';
-      this.selectedModel='';
-     
    }
    
    getcitylist() {
@@ -430,7 +432,7 @@ export class BikeSaleFilterPage implements OnInit {
          localStorage.setItem('bikeselectedCity', JSON.stringify(this.selectedCity));
          localStorage.setItem('bikeselectedcon', JSON.stringify(this.selectedcon));
          localStorage.setItem('bikeselectedmake', this.selectedMake);
-         localStorage.setItem('bikeselectedmodelversion', this.selectedModelVersion);
+         localStorage.setItem('bikeselectedmodel', this.selectedModel);
          localStorage.setItem('bikelowprice', this.selectedLowPrice);
          localStorage.setItem('bikehighprice', this.selectedHighPrice);
          localStorage.setItem('bikelowyear', this.selectedLowYear);
@@ -445,6 +447,10 @@ export class BikeSaleFilterPage implements OnInit {
          localStorage.setItem('bikeselectedFuel', JSON.stringify(this.selectedFuel));
          localStorage.setItem('bikeselectedTransmission', JSON.stringify(this.selectedTransmission));
          localStorage.setItem('bikeselectedDoors', JSON.stringify(this.selectedDoors));
+         localStorage.setItem('bikeselectedEngineType', this.selectedEngineType);
+         localStorage.setItem('bikeselectedIgnition', this.selectedIgnition);
+         localStorage.setItem('bikeselectedNormalFeature', this.selectedNormalFeature);
+         localStorage.setItem('bikeselectedFeatures', JSON.stringify(this.selectedFeatures));
        
                    // example high engine size
          
@@ -453,7 +459,7 @@ export class BikeSaleFilterPage implements OnInit {
              queryParams: {
                  selectedcon: this.selectedcon.join(','),
                  selectedmake: this.selectedMake,
-                 selectedmodelversion:this.selectedModelVersion,
+                 selectedmodel: this.selectedModel,
                  selectedcity: this.selectedCity.join(','),
                  highprice: this.selectedHighPrice,
                  lowprice: this.selectedLowPrice,
@@ -468,7 +474,11 @@ export class BikeSaleFilterPage implements OnInit {
                  selectedDoor: this.selectedDoors.join(','),
                  selectedSellerType: this.selectedSellerType,
                  highengine: this.selectedEngineHighSize,
-                 lowengine: this.selectedEngineLowSize
+                 lowengine: this.selectedEngineLowSize,
+                 selectedEngineType: this.selectedEngineType,
+                 selectedIgnition: this.selectedIgnition,
+                 selectedNormalFeature: this.selectedNormalFeature,
+                 selectedFeatures: this.selectedFeatures.join(',')
              }
          });
      }
@@ -614,9 +624,10 @@ fetchModels(make: string) {
 }
 
 // Method to clear the selected model
-clearSelectedModel() {
+modelDiv() {
   this.selectedModel = '';
-  this.showmodel2 = false;
+  this.modeldivVisible = false;
+  this.showmodel = false;
 }
 
 // Filter models based on search input
@@ -635,5 +646,15 @@ filterModels(event: any) {
  clearSelectedModelVersion() {
    this.selectedModelVersion = '';
    this.showmodel2=false;
+ }
+
+ // Method to toggle feature selection
+ toggleFeature(feature: string) {
+   const index = this.selectedFeatures.indexOf(feature);
+   if (index === -1) {
+     this.selectedFeatures.push(feature);
+   } else {
+     this.selectedFeatures.splice(index, 1);
+   }
  }
  }
