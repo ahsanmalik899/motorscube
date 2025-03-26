@@ -11,9 +11,7 @@ import { UserService } from '../../(services)/user.service';
 })
 export class CarAdSaleUpdatePage implements OnInit {
  
-back() {
-history.back();
-}
+
   
 options = {
   centeredSlides: true,
@@ -139,7 +137,10 @@ originalContent = '';
       // Initialize visibility states for each image
 
   }
-
+  back() {
+    this.route.navigate(['/my-car-ads']);
+  }
+  
   fetchCarSale() {
     // Fetch car sale data from the backend
     this.userService.getCarSale().subscribe({

@@ -40,7 +40,6 @@ throw new Error('Method not implemented.');
 
     constructor(private router: Router, 
       private userService: UserService, 
-      private BikeService:BikeService,
       private modalController: ModalController,
       private popoverController: PopoverController, 
       private alertController: AlertController,
@@ -181,7 +180,7 @@ trackByPostId(index: number, postItem: any): string {
 }
  
   back(){
-    window.history.back();
+    this.router.navigate(['/main-menu-after-login']);
   }
   truncateText(text: string, limit: number): string {
     if (!text) {
@@ -319,7 +318,7 @@ async buttonOneAction(id: string, saletype: string) {
 
   async fetchCarSale() {
     const loader = await this.showLoader();
-    this.BikeService.getBikeSale().subscribe({
+    this.userService.getCarSale().subscribe({
       next: (data) => {
         this.carSaleData = data;
         this.filteredCarSaleData = this.carSaleData.filter(item => item.user_id === this.userID);

@@ -64,4 +64,8 @@ export class BikeService {
   bikeDeleteAds(formData: FormData): Observable<any> {
     return this.http.post(this.apiUrl+ 'delete-ads.php', formData);
   }
+  bikeSaleUpdate(userData: any): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_bike_sale_update.php', userData);
+  }
 }

@@ -54,7 +54,7 @@ export class BikeSaleListingPage implements OnInit {
    selectedlowyear: string = '';
    selectedhighyear: string = '';
    selectedlowmilage: string = '';
-   selectedModelVersion:string= '';
+   selectedModel:string= '';
    selectedhighmilage: string = '';
    selectedFuel: string[] = [];
    selectedCategory: string = '';
@@ -62,9 +62,8 @@ export class BikeSaleListingPage implements OnInit {
    selectedcolor: string = '';
    selecteddoor: string[] = [];
    selectedSellerType: string = '';
-   selectedlowengine: string = '';
-   selectedhighengine: string = '';
-   selectedEngineLowSize: any;
+   selectedengineType: string = '';
+   
  
  
    constructor(
@@ -95,7 +94,7 @@ export class BikeSaleListingPage implements OnInit {
        this.selectedhighyear = params['highyear'] || '';
        this.selectedlowmilage = params['lowmilage'] || '';
        this.selectedhighmilage = params['highmilage'] || '';
-       this.selectedModelVersion= params['selectedmodelversion'] || '';
+       this.selectedModel= params['selectedmodel'] || '';
        
        // Ensure selectedFuel is a string before splitting
        this.selectedFuel = params['selectedFuel'] && typeof params['selectedFuel'] === 'string' ? params['selectedFuel'].split(',') : [];
@@ -108,9 +107,8 @@ export class BikeSaleListingPage implements OnInit {
        this.selecteddoor = params['selectedDoor'] && typeof params['selectedDoor'] === 'string' ? params['selectedDoor'].split(',') : [];
        
        this.selectedSellerType = params['selectedSellerType'] || '';
-       this.selectedhighengine = params['highengine'] || '';
-       this.selectedlowengine = params['lowengine'] || '';
-       
+       this.selectedengineType = params['selectedengineType'] || '';
+      
        // After processing all params, fetch the car sale data
        this.fetchCarSale();
      });
@@ -119,6 +117,7 @@ export class BikeSaleListingPage implements OnInit {
    }
  
    ngOnInit() {
+   
        // Read query parameters
        this.route.queryParams.subscribe(params => {
            if (params) {
@@ -137,8 +136,8 @@ export class BikeSaleListingPage implements OnInit {
                this.selectedcolor = params['bikeselectedColor'] || '';
                this.selecteddoor = params['bikeselectedDoor'] ? params['bikeselectedDoor'].split(',') : [];
                this.selectedSellerType = params['bikeselectedSellerType'] || '';
-               this.selectedEngineLowSize = params['bikehighengine'] || '';
-               this.selectedEngineLowSize = params['bikelowengine'] || '';
+              this.selectedengineType=params['selectedengineType'] || '';
+           
            }
        });
    
@@ -177,8 +176,9 @@ export class BikeSaleListingPage implements OnInit {
      doorNumbers: new Set(this.selecteddoor),
      cities: new Set(this.selectedcity),
      makes: new Set(this.selectedmake),
+     engineTypes: new Set(this.selectedengineType),
    };
- 
+   
    this.filteredbikeData = this.bikeData.filter((bike: bike) => {
      return (
        bike.post_status === 'Active' &&
@@ -187,10 +187,10 @@ export class BikeSaleListingPage implements OnInit {
        this.isFieldMatch(bike.bike_ad_ignition, filterConditions.transmissions) &&
        this.isFieldMatch(bike.bike_ad_make, filterConditions.makes) &&
        this.isFieldMatch(bike.bike_ad_location, filterConditions.cities) &&
+       this.isEngentypematch(bike) &&
        this.isPriceInRange(bike) &&
        this.isYearInRange(bike) &&
        this.isMileageInRange(bike) &&
-       this.isEngineSizeInRange(bike) &&
        this.isCategoryMatch(bike) &&
        this.isColorMatch(bike) &&
        this.isSellerTypeMatch(bike) &&
@@ -226,12 +226,7 @@ export class BikeSaleListingPage implements OnInit {
    );
  }
  
- isEngineSizeInRange(bike: bike): boolean {
-   return (
-     (!this.selectedlowengine || parseInt(bike.bike_ad_engine_type, 10) >= parseInt(this.selectedlowengine, 10)) &&
-     (!this.selectedhighengine || parseInt(bike.bike_ad_engine_type, 10) <= parseInt(this.selectedhighengine, 10))
-   );
- }
+
  
  isCategoryMatch(bike: bike): boolean {
    return !this.selectedCategory || bike.bike_ad_bodytype === this.selectedCategory;
@@ -240,13 +235,15 @@ export class BikeSaleListingPage implements OnInit {
  isColorMatch(bike: bike): boolean {
    return !this.selectedcolor || bike.bike_ad_colour === this.selectedcolor;
  }
- 
+ isEngentypematch(bike: bike): boolean {
+  return !this.selectedengineType || bike.bike_ad_engine_type === this.selectedengineType;
+}
  isSellerTypeMatch(bike: bike): boolean {
    return !this.selectedSellerType || bike.bike_ad_privateortrade === this.selectedSellerType;
  }
  
  isModelVersionMatch(bike: bike): boolean {
-   return !this.selectedModelVersion || `${bike.bike_ad_model} ${bike.bike_version}` === this.selectedModelVersion;
+   return !this.selectedModel || bike.bike_ad_model === this.selectedModel;
  }
  
  
@@ -277,6 +274,7 @@ export class BikeSaleListingPage implements OnInit {
      localStorage.removeItem('bikeselectedCharges');
      localStorage.removeItem('bikeselectedCity');
      localStorage.removeItem('bikeselectedmodelversion');
+     localStorage.removeItem('engentype');
    }
    
  

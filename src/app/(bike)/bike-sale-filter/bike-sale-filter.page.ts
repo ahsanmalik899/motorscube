@@ -78,7 +78,7 @@ selectedFiles: FileList | null = null;
 selectedFileArray: FileList | null = null;
 
    filesArray: File[] = [];
-  engineSize: string | undefined;
+  engineType: string | undefined;
   price!: string;
   mileage: string | undefined;
   selectedLowPrice: string = '';  // Low price selected by user
@@ -124,13 +124,10 @@ selectedLowMilage: string;
 selectedHighMilage: string;
 lowMilages: string[] = ['1 ','100 ', '1000 ', '10000 ', '100000 ', '1000000 ', '10000000 ']; 
 filteredHighMilages: string[] = []; 
-engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
-  selectedEngineLowSize: string;
-  selectedEngineHighSize: string;
-  filteredHighEngineSizes: string[];
+selectedengineType: string ;
   selectedValuesString = '';
   constructor(public route: Router,private bikeservice: BikeService, private popoverController: PopoverController, private userService: UserService) {
-    this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
+
   this.selectedMake = localStorage.getItem('selectedmake') || '';
   this.selectedModel = localStorage.getItem('selectedmodel') || '';
   this.selectedVersion = localStorage.getItem('selectedversion') || '';
@@ -143,8 +140,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   this.selectedCategory = localStorage.getItem('selectedCategory') || '';
   this.selectedColor = localStorage.getItem('selectedColor') || '';
   this.selectedSellerType = localStorage.getItem('selectedSellerType') || '';
-  this.selectedEngineHighSize = localStorage.getItem('highengine') || '';
-  this.selectedEngineLowSize = localStorage.getItem('lowengine') || '';
+  this.selectedengineType = localStorage.getItem('engentype') || '';
   this.makedivVisible = !!this.selectedMake;
   this.showversion2 = !!this.selectedModel;
   this.modeldivVisible = !!this.selectedModel;
@@ -154,8 +150,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   this.selectedLowYear = localStorage.getItem('selectedLowYear') || '';
   this.selectedHighYear = localStorage.getItem('selectedHighYear') || '';
   this.selectedModel= localStorage.getItem('selectedmodel') || '';
-  this.selectedMake=localStorage.getItem('selectedmake') || '';
-  
+  this.selectedMake=localStorage.getItem('selectedmake') || ''
   }
   ngOnInit() {
     this.fetchCities();
@@ -167,7 +162,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
     this.fetchMakes();
     this.loadSelectedModelsversion();
     this.loadSelectedMakes();
-    this.fetchModelsAndVersions(this.selectedMake);
+    this.fetchModelsAndVersions();
     this.selectedMake = this.getStoredValue('selectedmake');
     this.selectedModel = this.getStoredValue('selectedmodel');
     this.selectedVersion = this.getStoredValue('selectedversion');
@@ -180,8 +175,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
     this.selectedCategory = this.getStoredValue('selectedCategory');
     this.selectedColor = this.getStoredValue('selectedColor');
     this.selectedSellerType = this.getStoredValue('selectedSellerType');
-    this.selectedEngineHighSize = this.getStoredValue('highengine');
-    this.selectedEngineLowSize = this.getStoredValue('lowengine');
+    this.selectedengineType = this.getStoredValue('engentype');
     this.selectedModelVersion= this.getStoredValue('selectedmodelversion');
     // Set visibility flags based on selected values
     this.updateVisibilityFlags();
@@ -226,20 +220,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   }
 }
 
-      updateHighEngineSizes() {
-    if (this.selectedEngineLowSize === '10000') {
-      this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
-    } else {
-      const start = parseInt(this.selectedEngineLowSize, 10);
-      this.filteredHighEngineSizes = [];
-      for (let i = start; i <= 100000; i += 1000) { // Assuming the maximum value is 100000
-        this.filteredHighEngineSizes.push(i.toString());
-      }
-    }
-    if (parseInt(this.selectedEngineHighSize, 10) <= parseInt(this.selectedEngineLowSize, 10)) {
-      this.selectedEngineHighSize = "";
-    }
-    }
+    
   selectedcondition(conitionType: string) {
     const index = this.selectedcon.indexOf(conitionType);
     if (index === -1) {
@@ -387,6 +368,7 @@ updateHighMilageOptions() {
     localStorage.removeItem('selectedSellerType');
     localStorage.removeItem('highengine');
     localStorage.removeItem('lowengine');
+    localStorage.removeItem('engentype');
     localStorage.removeItem('selectedmodelversion');
     // Reset selected filters
     this.selectedcon = [];
@@ -407,8 +389,7 @@ updateHighMilageOptions() {
     this.selectedTransmission = [];
     this.selectedColor = '';
     this.selectedDoors = [];
-    this.selectedEngineLowSize = '';
-    this.selectedEngineHighSize = '';
+  this.selectedengineType = '';
     this.selectedSellerType = '';
     this.showmodel2 = false;
     this.showmodel = false;
@@ -419,7 +400,8 @@ updateHighMilageOptions() {
     this.divVisible = false;
     this.selectedMake='';
      this.selectedModel='';
-    
+     this.showmake = false;
+    this.selectedengineType='';
   }
   
   getcitylist() {
@@ -434,7 +416,7 @@ updateHighMilageOptions() {
         localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
         localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
         localStorage.setItem('selectedmake', this.selectedMake);
-        localStorage.setItem('selectedmodelversion', this.selectedModelVersion);
+        localStorage.setItem('selectedmodel', this.selectedModel);
         localStorage.setItem('lowprice', this.selectedLowPrice);
         localStorage.setItem('highprice', this.selectedHighPrice);
         localStorage.setItem('lowyear', this.selectedLowYear);
@@ -444,8 +426,8 @@ updateHighMilageOptions() {
         localStorage.setItem('selectedCategory', this.selectedCategory);
         localStorage.setItem('selectedColor', this.selectedColor);
         localStorage.setItem('selectedSellerType', this.selectedSellerType);
-        localStorage.setItem('highengine', this.selectedEngineHighSize);
-        localStorage.setItem('lowengine', this.selectedEngineLowSize);
+        localStorage.setItem('engentype', this.selectedengineType);
+        
         localStorage.setItem('selectedFuel', JSON.stringify(this.selectedFuel));
         localStorage.setItem('selectedTransmission', JSON.stringify(this.selectedTransmission));
         localStorage.setItem('selectedDoors', JSON.stringify(this.selectedDoors));
@@ -457,7 +439,7 @@ updateHighMilageOptions() {
             queryParams: {
                 selectedcon: this.selectedcon.join(','),
                 selectedmake: this.selectedMake,
-                selectedmodelversion:this.selectedModelVersion,
+                selectedmodel:this.selectedModel,
                 selectedcity: this.selectedCity.join(','),
                 highprice: this.selectedHighPrice,
                 lowprice: this.selectedLowPrice,
@@ -471,8 +453,7 @@ updateHighMilageOptions() {
                 selectedColor: this.selectedColor,
                 selectedDoor: this.selectedDoors.join(','),
                 selectedSellerType: this.selectedSellerType,
-                highengine: this.selectedEngineHighSize,
-                lowengine: this.selectedEngineLowSize
+                selectedengineType: this.selectedengineType
             }
         });
     }
@@ -495,7 +476,12 @@ updateHighMilageOptions() {
   }
 
 
-
+  selectengentype(enginetype: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedengineType = enginetype;
+    // Log the selected fuel type to console
+    console.log('Selected engine type:',this.selectedengineType);
+  }
   // Update the high year options when low year is changed
 updateHighYearOptions() {
   const startYear = parseInt(this.selectedLowYear, 10);
@@ -541,7 +527,7 @@ this.selectedMake=make;
     this.showmake = true;  // Show selected makes
     this.makedivVisible = true;  // Show div with selected makes
   }
-  this.fetchModelsAndVersions(this.selectedMake);
+  this.fetchModelsAndVersions();
   this.showmodel=true;
   this.searchTerm = '';  // Clear the search term after selection
   // Save selected makes to localStorage
@@ -557,10 +543,11 @@ makeDiv(item: string) {
     this.makedivVisible = this.mergecararray.length > 0;
     this.selectedMake='';
     localStorage.removeItem('selectedmake');
+    localStorage.removeItem('selectedmodel');
     this.showmodel=false;
     this.selectedModelVersion = '';
-    this.showmodel2=false;
-
+    this.modeldivVisible=false;
+    this.selectedModel='';
   }
     // Save to localStorage after removal
 }
@@ -599,43 +586,28 @@ selectModelVersion(combinedModelVersion: string) {
   this.showmodel2 = true;  // Hide the make/model selectio
   this.popoverController.dismiss();
 }
-fetchModelsAndVersions(make: string) {
-  // Create FormData for the selected make
-  const makeData = new FormData();
-  makeData.append('make', make);
+fetchModelsAndVersions() {
+  const makeData = {
+  make: this.selectedMake,
+  };
+  const formData = new FormData();
+  formData.append('make', this.selectedMake);
 
-  this.userService.getModels(makeData).subscribe({
-    next: (modelsData: string[]) => {
-      this.models = modelsData;
-      this.combinedModelVersions = [];  // Clear previous combinations
-      this.filteredCombinedModelVersions = [];  // Reset filtered versions
-
-      // Fetch versions for each model and combine with model
-      modelsData.forEach(model => {
-        const versionData = new FormData();
-        versionData.append('make', make);
-        versionData.append('model', model);
-
-        this.userService.getVersions(versionData).subscribe({
-          next: (versionsData: string[]) => {
-            versionsData.forEach(version => {
-              // Combine model and version to create model-version combinations
-              this.combinedModelVersions.push(`${model} ${version}`);
-            });
-
-            // Update filtered list of combined model-version combinations
-            this.filteredCombinedModelVersions = [...this.combinedModelVersions];
-          },
-          error: (error: any) => {
-            console.error('Error fetching versions for model:', error);
-          }
-        });
-      });
+  console.log(makeData);
+  this.bikeservice.getModels(formData).subscribe({
+    next: (data: string[]) => {
+        // Handle successful response here
+        console.log('Fetched models:', data);
+        this.models = data;
+      //console.log('Fetched makes:', data);
+      // Initialize filteredMakes with all makes
+      this.filteredModels = [...this.models];
     },
     error: (error: any) => {
-      console.error('Error fetching models for make:', error);
+        // Handle error response here
+        console.error('Error fetching models:', error);
     }
-  });
+});
 }
 
 loadSelectedModelsversion() {
@@ -656,16 +628,63 @@ loadSelectedModelsversion() {
 filterCombinedModelVersions(event: any) {
   const searchTerm = event.target.value.trim().toLowerCase();  // Get the search term
   if (!searchTerm) {
-    this.filteredCombinedModelVersions = this.combinedModelVersions;  // If no search term, show all combined versions
+    this.filteredModels = [...this.models];  // If no search term, show all models
   } else {
-    this.filteredCombinedModelVersions = this.combinedModelVersions.filter(combined => 
-      combined.toLowerCase().includes(searchTerm)  // Filter combined versions based on search term
+    this.filteredModels = this.models.filter(model => 
+      model.toLowerCase().includes(searchTerm)  // Filter models based on search term
     );
   }
 }
+
 // Method to clear the selected model-version combination
 clearSelectedModelVersion() {
   this.selectedModelVersion = '';
   this.showmodel2=false;
 }
+  // select make car
+  fetchModels() {
+    const makeData = {
+    make: this.selectedMake,
+    };
+    const formData = new FormData();
+    formData.append('make', this.selectedMake);
+
+    console.log(makeData);
+    this.bikeservice.getModels(formData).subscribe({
+      next: (data: string[]) => {
+          // Handle successful response here
+          console.log('Fetched models:', data);
+          this.models = data;
+        //console.log('Fetched makes:', data);
+        // Initialize filteredMakes with all makes
+        this.filteredModels = [...this.models];
+      },
+      error: (error: any) => {
+          // Handle error response here
+          console.error('Error fetching models:', error);
+      }
+  });
+  }
+
+  // Filter makes based on search term
+  filterModels(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredModels = this.models.filter(model => model.toLowerCase().includes(searchTerm));
+  }
+
+  async selectModel(model: string) {
+    this.selectedModel = model;
+    this.modeldivVisible = true;
+    this.showversion2 = true;
+    this.showmodel2 = true;
+    await this.popoverController.dismiss(model);
+  // Call filterCities with an empty search term
+  this.filterModels({ target: { value: '' } });
+  }
+
+  modelDiv() {
+    this.modeldivVisible = false;
+    this.showmodel = true;
+    this.showversion2 = false;
+  }
 }
