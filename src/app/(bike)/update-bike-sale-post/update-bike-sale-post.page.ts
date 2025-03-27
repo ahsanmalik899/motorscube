@@ -138,7 +138,7 @@ export class UpdateBikeSalePostPage implements OnInit {
   
     }
     back() {
-      this.route.navigate(['/my-car-ads']);
+      this.route.navigate(['/bike-you-posted']);
     }
     
     fetchCarSale() {
@@ -178,19 +178,24 @@ export class UpdateBikeSalePostPage implements OnInit {
             this.registerdivVisible = true;
             this.showregister = false;
             this.price=this.filteredCarSaleData[0].bike_ad_price;
-             this.mileage = this.filteredCarSaleData[0].bike_ad_mileage;
+            this.mileage = this.filteredCarSaleData[0].bike_ad_mileage;
             this.selectedFuel = this.filteredCarSaleData[0].bike_ad_fuel_type;
-            //this.selectedColor = this.filteredCarSaleData[0].car_body_colour;
-            //console.log('body color : ' , this.filteredCarSaleData[0].car_body_colour);
-            this.selectColor(this.filteredCarSaleData[0].bike_ad_colour);
+            this.selectedColor= this.filteredCarSaleData[0].bike_ad_colour;
             this.engineType = this.filteredCarSaleData[0].bike_ad_engine_type;
             this.selectedCategory = this.filteredCarSaleData[0].bike_ad_bodytype;
-            this.ignition = this.filteredCarSaleData[0].bike_ad_transmission;
+            this.ignition = this.filteredCarSaleData[0].bike_ad_ignition;
             this.selectedDrive = this.filteredCarSaleData[0].bike_ad_transmission;
             this.carAdNormalFeature = this.filteredCarSaleData[0].bike_ad_normal_feature;
             this.selectedDoors = this.filteredCarSaleData[0].bike_ad_no_of_doors;
+
+            // Set the description in the textarea
+            const descriptionTextarea = document.getElementById('description') as HTMLTextAreaElement;
+            if (descriptionTextarea) {
+              descriptionTextarea.value = this.filteredCarSaleData[0].bike_ad_description || '';
+            }
+
             //this.selectedFeatures = this.filteredCarSaleData[0].car_features;
-            const carFeaturesString = this.filteredCarSaleData[0].bike_ad_features;
+            const carFeaturesString = this.filteredCarSaleData[0].bike_features;
             if (carFeaturesString) {
                 try {
                     // Parse the JSON string into an array and store it in selectedFeatures
@@ -203,7 +208,7 @@ export class UpdateBikeSalePostPage implements OnInit {
                 console.log('No car features found.');
             }
             Object.keys(this.filteredCarSaleData[0]).forEach(key => {
-              if (key.startsWith('car_image')  && this.filteredCarSaleData[0][key] !== 'NULL') {
+              if (key.startsWith('bike_image')  && this.filteredCarSaleData[0][key] !== 'NULL') {
                 this.oldfilesArray.push(this.filteredCarSaleData[0][key]);
               }
             });
@@ -286,7 +291,7 @@ export class UpdateBikeSalePostPage implements OnInit {
   
   // select make car
     fetchMakes() {
-      this.userService.getMakes().subscribe({
+      this.bikeservice.getMakes().subscribe({
         next: (data) => {
           this.makes = data;
           //console.log('Fetched makes:', data);
@@ -333,7 +338,7 @@ export class UpdateBikeSalePostPage implements OnInit {
       formData.append('make', this.selectedMake);
   
       console.log(makeData);
-      this.userService.getModels(formData).subscribe({
+      this.bikeservice.getModels(formData).subscribe({
         next: (data) => {
             // Handle successful response here
             console.log('Fetched models:', data);
@@ -719,7 +724,7 @@ export class UpdateBikeSalePostPage implements OnInit {
   
     try {
       // Make the API request and wait for the response
-      const response = await this.userService.carSaleUpdate(formData).toPromise();
+      const response = await this.bikeservice.bikeSaleUpdate(formData).toPromise();
       console.log('Data saved successfully:', response);
       this.presentSuccessAlert(); // Display success message
     } catch (error) {
@@ -787,7 +792,7 @@ export class UpdateBikeSalePostPage implements OnInit {
             text: 'OK',
             handler: () => {
               // Navigate back to the previous page
-              this.route.navigateByUrl('/my-car-ads', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-you-posted', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               
