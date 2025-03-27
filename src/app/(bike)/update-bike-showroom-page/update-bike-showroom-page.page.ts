@@ -5,6 +5,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { BikeService } from 'src/app/(services)/bike.service';
 @Component({
   selector: 'app-update-bike-showroom-page',
   templateUrl: './update-bike-showroom-page.page.html',
@@ -12,7 +13,6 @@ import { Router } from '@angular/router';
   standalone:false,
 })
 export class UpdateBikeShowroomPagePage implements OnInit {
-
   back() {
     history.back()}
      ShowroomFeatured='';
@@ -36,7 +36,7 @@ export class UpdateBikeShowroomPagePage implements OnInit {
        visibleImages: boolean[] = [];
   
   
-      constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
+      constructor(private bikeservice:BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
         private router: ActivatedRoute,  private loadingController: LoadingController,public route: Router,) {
         this.userForm = this.formBuilder.group({
           bcity: [''], // Assuming 'bcity' is the form control for city selection
@@ -80,11 +80,11 @@ export class UpdateBikeShowroomPagePage implements OnInit {
   
       fetchCarSale() {
         // Fetch car sale data from the backend
-        this.userService.getshowroomData().subscribe({
+        this.bikeservice.getshowroomData().subscribe({
           next: (data) => {
             console.log('Fetched car data:', data);
             this.carSaleData = data; // Store fetched data in carData property
-            this.filteredCarSaleData = this.carSaleData.filter((item: { car_showroom_ad_sale_id: string; }) => item.car_showroom_ad_sale_id === this.adsId);
+            this.filteredCarSaleData = this.carSaleData.filter((item: { bike_showroom_ad_sale_id: string; }) => item.bike_showroom_ad_sale_id === this.adsId);
   
             const imageUrls = this.getImageUrls(this.filteredCarSaleData[0]);
             this.visibleImages = new Array(imageUrls.length).fill(true);
@@ -425,7 +425,7 @@ export class UpdateBikeShowroomPagePage implements OnInit {
         });
     
         // Submit the form and handle the loader dismissal
-        this.userService.updateShowroomBusiness(formData).subscribe(
+        this.bikeservice.updateShowroomBusiness(formData).subscribe(
           async (response) => {
             console.log('Data saved successfully:', response);
             await loading.dismiss(); // Dismiss the loader on success
@@ -507,7 +507,7 @@ export class UpdateBikeShowroomPagePage implements OnInit {
             text: 'OK',
             handler: () => {
               // Navigate back to the previous page
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }

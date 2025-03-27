@@ -5,6 +5,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BikeService } from 'src/app/(services)/bike.service';
 @Component({
   selector: 'app-update-bike-insurance-post',
   templateUrl: './update-bike-insurance-post.page.html',
@@ -12,7 +13,6 @@ import { Router } from '@angular/router';
   standalone:false,
 })
 export class UpdateBikeInsurancePostPage implements OnInit {
-
   back() {
     history.back()
   }
@@ -32,7 +32,7 @@ export class UpdateBikeInsurancePostPage implements OnInit {
        selectedImageSrc = ''; // Property to hold the URL of the selected image
        visibleImages: boolean[] = [];
   
-      constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
+      constructor(private bikeservice:BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
         private router: ActivatedRoute,  private loadingController: LoadingController,public route: Router,
       ) {
         this.userForm = this.formBuilder.group({
@@ -69,12 +69,12 @@ export class UpdateBikeInsurancePostPage implements OnInit {
   
       fetchCarSale() {
         // Fetch car sale data from the backend
-        this.userService.getinsuranceData().subscribe({
+        this.bikeservice.getinsuranceData().subscribe({
           next: (data) => {
             console.log('Fetched car data:', data);
             this.carSaleData = data; // Store fetched data in carData property
             console.log('id:',this.adsId);
-            this.filteredCarSaleData = this.carSaleData.filter((item: { car_insurance_ad_sale_id: string; }) => item.car_insurance_ad_sale_id === this.adsId);
+            this.filteredCarSaleData = this.carSaleData.filter((item: { bike_insurance_ad_sale_id: string; }) => item.bike_insurance_ad_sale_id === this.adsId);
           
             const imageUrls = this.getImageUrls(this.filteredCarSaleData[0]);
             this.visibleImages = new Array(imageUrls.length).fill(true);
@@ -383,7 +383,7 @@ export class UpdateBikeInsurancePostPage implements OnInit {
     // Submit FormData to the backend with loader handling
     async submitFormData(formData: FormData, loading: any): Promise<void> {
       try {
-        const response = await this.userService.updateInsuranceBusiness(formData).toPromise();
+        const response = await this.bikeservice.updateInsuranceBusiness(formData).toPromise();
         console.log('Data saved successfully:', response);
         loading.dismiss();  // Hide the loader once the data is saved
         this.presentSuccessAlert();  // Show success alert
@@ -416,7 +416,7 @@ export class UpdateBikeInsurancePostPage implements OnInit {
             text: 'OK',
             handler: () => {
               // Navigate back to the previous page
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }

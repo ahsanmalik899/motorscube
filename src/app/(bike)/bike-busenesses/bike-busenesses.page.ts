@@ -11,8 +11,7 @@ import { BikeService } from 'src/app/(services)/bike.service';
   standalone:false,
 })
 export class BikeBusenessesPage implements OnInit {
-
- schoolupgrade: any[] = [];
+  schoolupgrade: any[] = [];
   
   workshopupgrade: any[] = [];
   exporterupgrade: any[] = [];
@@ -63,13 +62,16 @@ isPopupVisibleDiv = false;
 carpostData: any[] = [];
 filteredCarPostData: any[] = [];
 
-constructor(public route: Router, private popoverController: PopoverController, private userService: UserService,
+constructor(public route: Router,private bikeservice:BikeService, private popoverController: PopoverController, private userService: UserService,
   private router: ActivatedRoute, private renderer: Renderer2, private el: ElementRef, private loadingController: LoadingController, private alertController: AlertController,
    private modalController: ModalController,  private ngZone: NgZone,
-   private cdr: ChangeDetectorRef,
-  private bikeservice:BikeService) {
+   private cdr: ChangeDetectorRef) {
     this.userID = sessionStorage.getItem('userId') || ''; 
     this.userType = sessionStorage.getItem('userType') || '';
+    if(this.userID=='' || this.userType==''){
+      this.userID=localStorage.getItem('userId')?? '';
+      this.userType= localStorage.removeItem('userType')??'';
+      }
    }
 // onclick(){
 //   this.offer = true;
@@ -85,6 +87,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
     this.fetchimporterData();
     this.fetchleasingData();
     this.fetchworkshopData();
+   
     this.fetchUpgradePost();
   }
   initializePostData() {
@@ -119,7 +122,6 @@ constructor(public route: Router, private popoverController: PopoverController, 
     this.bikeservice.getdealershipData().subscribe({
       next: (data) => {
         this.dealershipData = data;
-        console.log('dealership data : ', this.dealershipData);
         this.filterdealershipData = this.dealershipData.filter((item: { user_id: string; }) => item.user_id === this.userID);
         if (this.filterdealershipData.length > 0) {
           this.offer = true;
@@ -257,7 +259,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
     });
   }
 
- 
+  
 
   async confirmDelete(id: string, saletype: string) {
     console.log('id : ', id , 'and type : ', saletype);
@@ -304,8 +306,8 @@ constructor(public route: Router, private popoverController: PopoverController, 
       const formData = new FormData();
       formData.append('deleteid', this.deleteID);
       formData.append('deletetype', this.deleteType);
-    
-      this.userService.carDeletePostBusines(formData).subscribe(
+    console.log("data",formData)
+      this.bikeservice.carDeletePostBusines(formData).subscribe(
         (response) => {
           console.log('Data delete successfully:', response);
        
@@ -315,20 +317,20 @@ constructor(public route: Router, private popoverController: PopoverController, 
               this.fetchdealershipData();
               this.cdr.detectChanges();
               loading.dismiss()
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
           break;case 'showroom':
           this.cdr.detectChanges();
           loading.dismiss()
-          this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+          this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
             this.route.navigate([this.router.url]);
           });
            break;
             case 'insurance':
               this.fetchinsuranceData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -336,7 +338,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'leasing':
               this.fetchleasingData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -344,7 +346,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'importer':
               this.fetchimporterData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -352,7 +354,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'exporter':
               this.fetchexporterData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -360,14 +362,15 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'workshop':
               this.fetchworkshopData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
             break;
             case 'school':
+            
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -403,7 +406,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   navigateToPostDealer() {
-    this.route.navigate(['/bike-post-dealership-business']);
+    this.route.navigate(['/bike-post-dealership-business']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
   }
   navigateToPostShowroom() {
     this.route.navigate(['/bike-post-showroom-business']);
@@ -424,25 +427,25 @@ constructor(public route: Router, private popoverController: PopoverController, 
     this.route.navigate(['/bike-post-workshop-business']);
   }
   navigateToPostSchool() {
-    this.route.navigate(['/bike-post-school-business']);
+    this.route.navigate(['/bike-post-driving-schools']);
   }
 
   editDealer(id: any){
-    this.route.navigate(['/bike-update-dealership-business'], {
+    this.route.navigate(['/update-bike-dealership-page'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editShowroom(id: any){
-    this.route.navigate(['/bike-update-showroom-business'], {
+    this.route.navigate(['/update-bike-showroom-page'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editInsurance(id: any){
-    this.route.navigate(['/bike-update-insurance-business'], {
+    this.route.navigate(['/update-bike-insurance-post'], {
       queryParams: {
         adsId: id,
       }
@@ -450,35 +453,35 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   editLeasing(id: any){
-    this.route.navigate(['/bike-update-leasing-business'], {
+    this.route.navigate(['/update-bike-leasing-page'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editImporter(id: any){
-    this.route.navigate(['/bike-update-importer-business'], {
+    this.route.navigate(['/update-bike-importer-page'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editExporter(id: any){
-    this.route.navigate(['/bike-update-exporter-business'], {
+    this.route.navigate(['/update-bike-exporter-page'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editWorkshop(id: any){
-    this.route.navigate(['/bike-update-workshop-business'], {
+    this.route.navigate(['/update-bike-workshop-page'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editSchool(id: any){
-    this.route.navigate(['/bike-update-school-business'], {
+    this.route.navigate(['/update-school-busines'], {
       queryParams: {
         adsId: id,
       }
@@ -614,6 +617,5 @@ checkPaymentButton(postType: string, id: string): boolean {
 
 
  
-
 
 
