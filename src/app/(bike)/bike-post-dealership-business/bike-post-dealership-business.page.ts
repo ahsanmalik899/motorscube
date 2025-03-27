@@ -4,6 +4,7 @@ import { UserService } from '../../(services)/user.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { BikeService } from 'src/app/(services)/bike.service';
 @Component({
   selector: 'app-bike-post-dealership-business',
   templateUrl: './bike-post-dealership-business.page.html',
@@ -25,7 +26,7 @@ export class BikePostDealershipBusinessPage implements OnInit {
    
      filesArray: File[] = [];
   
-    constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
+    constructor(private bikeService: BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
        private loadingController: LoadingController, private route: Router, private router: ActivatedRoute,
     ) {
       this.userForm = this.formBuilder.group({
@@ -241,7 +242,7 @@ export class BikePostDealershipBusinessPage implements OnInit {
       await loading.present();
   
       // Make the API request to post the dealer business data
-      this.userService.postDealerBusiness(formData).subscribe(
+      this.bikeService.postDealerBusiness(formData).subscribe(
         (response) => {
           console.log('Data saved successfully:', response);
           this.presentSuccessAlert();
@@ -312,7 +313,7 @@ export class BikePostDealershipBusinessPage implements OnInit {
       {
         text: 'OK',
         handler: () => {
-          this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+          this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
             this.route.navigate([this.router.url]);
           });
           

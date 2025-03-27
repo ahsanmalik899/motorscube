@@ -4,6 +4,7 @@ import { UserService } from '../../(services)/user.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { BikeService } from 'src/app/(services)/bike.service';
 @Component({
   selector: 'app-bike-post-showroom-busnesses',
   templateUrl: './bike-post-showroom-busnesses.page.html',
@@ -28,7 +29,7 @@ export class BikePostShowroomBusnessesPage implements OnInit {
     
        filesArray: File[] = [];
     
-      constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController, private router: ActivatedRoute,
+      constructor(private bikeService: BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController, private router: ActivatedRoute,
             private loadingController: LoadingController,private route: Router,
       ) {
         this.userForm = this.formBuilder.group({
@@ -157,7 +158,7 @@ export class BikePostShowroomBusnessesPage implements OnInit {
     
     fetchMakes() {
       // Fetch city names from the backend
-      this.userService.getMakes().subscribe({
+      this.bikeService.getMakes().subscribe({
         next: (data) => {
           this.makes = data;
         //console.log('Fetched cities:', this.cities);
@@ -346,7 +347,7 @@ export class BikePostShowroomBusnessesPage implements OnInit {
         await loading.present();
     
         // Now you can use FormData for your API call
-        this.userService.postShowroomBusiness(formData).subscribe(
+        this.bikeService.postShowroomBusiness(formData).subscribe(
           (response) => {
             console.log('Data saved successfully:', response);
             this.presentSuccessAlert();  // Show success alert
@@ -415,7 +416,7 @@ export class BikePostShowroomBusnessesPage implements OnInit {
           {
             text: 'OK',
             handler: () => {
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }

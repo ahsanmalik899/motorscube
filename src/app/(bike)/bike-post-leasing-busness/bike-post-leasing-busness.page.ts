@@ -6,6 +6,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { BikeService } from 'src/app/(services)/bike.service';
 @Component({
   selector: 'app-bike-post-leasing-busness',
   templateUrl: './bike-post-leasing-busness.page.html',
@@ -27,7 +28,7 @@ export class BikePostLeasingBusnessPage implements OnInit {
     
        filesArray: File[] = [];
     
-      constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController, private router: ActivatedRoute,
+      constructor(private bikeService: BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController, private router: ActivatedRoute,
              private loadingController: LoadingController,private route: Router,private cdr: ChangeDetectorRef
       ) {
         this.userForm = this.formBuilder.group({
@@ -299,7 +300,7 @@ export class BikePostLeasingBusnessPage implements OnInit {
         await loading.present();
     
         // Send FormData to backend using your userService
-        this.userService.postLeasingBusiness(formData).subscribe(
+        this.bikeService.postLeasingBusiness(formData).subscribe(
           (response) => {
             console.log('Data saved successfully:', response);
             this.presentSuccessAlert(); // Show success alert after saving
@@ -369,9 +370,7 @@ export class BikePostLeasingBusnessPage implements OnInit {
         buttons: [
           {
             text: 'OK',
-            handler: () => {
-              history.back()
-            }
+          
           }
         ]
       });
@@ -389,7 +388,7 @@ export class BikePostLeasingBusnessPage implements OnInit {
           {
             text: 'OK',
             handler: () => {
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }

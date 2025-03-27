@@ -68,4 +68,35 @@ export class BikeService {
     // Assuming you have an API endpoint to save user data
     return this.http.post<any>(this.apiUrl + 'save_bike_sale_update.php', userData);
   }
+  postDealerBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_dealer_business.php', formData);
+  }
+  postExporterBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_exporter_business.php', formData);
+  }
+  postImporterBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_importer_business.php', formData);
+  }
+  postInsuranceBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_insurance_business.php', formData);
+  }
+  postLeasingBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_leasing_business.php', formData);
+  } 
+  postShowroomBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_showroom_business.php', formData);
+  } 
+  postWorkshopBusiness(formData: FormData): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_post_workshop_business.php', formData);
+  } 
+
+  
+  
 }

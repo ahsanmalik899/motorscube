@@ -5,6 +5,7 @@ import { UserService } from '../../(services)/user.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { BikeService } from 'src/app/(services)/bike.service';
 @Component({
   selector: 'app-bike-post-insurance-busness',
   templateUrl: './bike-post-insurance-busness.page.html',
@@ -27,7 +28,7 @@ export class BikePostInsuranceBusnessPage implements OnInit {
     
        filesArray: File[] = [];
     
-      constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController, private router: ActivatedRoute,
+      constructor(private bikeService: BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController, private router: ActivatedRoute,
              private loadingController: LoadingController,private route: Router,
       ) {
         this.userForm = this.formBuilder.group({
@@ -288,7 +289,7 @@ export class BikePostInsuranceBusnessPage implements OnInit {
         await loading.present();
     
         // Send FormData to backend using your userService
-        this.userService.postInsuranceBusiness(formData).subscribe(
+        this.bikeService.postInsuranceBusiness(formData).subscribe(
           (response) => {
             console.log('Data saved successfully:', response);
             this.presentSuccessAlert(); // Show success alert after saving
@@ -359,7 +360,7 @@ export class BikePostInsuranceBusnessPage implements OnInit {
           {
             text: 'OK',
             handler: () => {
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }
