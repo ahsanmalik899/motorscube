@@ -3,8 +3,8 @@
   <ion-icon name="close" (click)="back()" ></ion-icon></div>
   <hr style="background-color: black;">
   <ion-row style="margin-top: 25px;">
-    <img src="../../../assets/extra-icon/car-condition.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
-    <p style="margin-left: 20px;">Car condition</p>
+    <img src="../../../assets/Bikesection/bikeadd/bike-condition.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+    <p style="margin-left: 20px;">Bike condition</p>
   </ion-row>
   
   <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
@@ -20,8 +20,8 @@
   <ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
   
   <ion-row>
-    <img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-    <p style="margin-left: 20px; margin-top: 20px;">Car location</p>
+    <img src="../../../assets/Bikesection/bikeadd/bike-location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+    <p style="margin-left: 20px; margin-top: 20px;">Bike location</p>
     <div id="click-trigger_city" [hidden]="!showcar" trigger="click-trigger_city" triggerAction="click">
       <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
     </div>
@@ -44,7 +44,7 @@
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 <ion-row>
   <!-- Make section trigger -->
-  <img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;" />
+  <img src="../../../assets/Bikesection/bikeadd/bike-make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;" />
   <p style="margin-left: 20px; margin-top: 20px;">Make</p>
 
   <!-- Add button for trigger -->
@@ -95,7 +95,7 @@
   <ion-row>
     <!-- Make section trigger -->
     <img
-      src="../../../assets/extra-icon/make.png"
+      src="../../../assets/Bikesection/bikeadd/bike-make.png"
       style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;"
       fill="clear"
     />
@@ -142,7 +142,7 @@
     </div>
 
             <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-  <ion-row><img src="../../../assets/extra-icon/price.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+  <ion-row><img src="../../../assets/Bikesection/bikeadd/price.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
   <p style="margin-left: 20px; margin-top: 20px;">Price</p></ion-row>
       <div>          <ion-row>            <ion-col size="6">
             <ion-item style="border: 2px solid black;
@@ -210,7 +210,7 @@
   </ion-col>
 </ion-row>  
    <hr style="background-color: black;">
-   <ion-row><img src="../../../assets/extra-icon/drive.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+   <ion-row><img src="../../../assets/Bikesection/bikeadd/petrol-pump.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
     <p style="margin-left: 20px; margin-top: 20px;">Fuel type</p></ion-row>
     <div style="width: 100%; margin-left: 30px; text-align: center;">
       <ion-col>          <ion-row style="display: flex; justify-content: center;">
@@ -221,7 +221,7 @@
     </ion-col>
     </div>      <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
    
-    <ion-row><img src="../../../assets/extra-icon/drive.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+    <ion-row><img src="../../../assets/Bikesection/bikeadd/enginetype.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
       <p style="margin-left: 20px; margin-top: 20px;">Engine type</p></ion-row>
       
       <div style="width: 100%; margin-left: 30px; text-align: center;">
@@ -235,12 +235,44 @@
       </div>
   
     <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
-        <ion-row><img src="../../../assets/extra-icon/car.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+        <ion-row><img src="../../../assets/Bikesection/bikeadd/body-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
   <p style="margin-left: 20px; margin-top: 20px;">Body type</p></ion-row>    <swiper-container [slidesPerView]="3" [spaceBetween]="10" [loop]="true" style="margin-top: 20px; height: 50px;">
-    <swiper-slide (click)="selectCategory('Convertible')" [style.backgroundColor]="selectedCategory === 'Convertible' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/convertible.png" style="height: 30px; width: 30px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Convertible</ion-label>
-    </swiper-slide>    
+    <swiper-container [slidesPerView]="3" [spaceBetween]="10" [loop]="true" style="margin-top: 20px; height: 50px;">
+      <swiper-slide (click)="selectCategory('Sports')" [style.backgroundColor]="selectedCategory === 'Sports' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="speedometer-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Sports</ion-label>
+      </swiper-slide>
+    
+      <swiper-slide (click)="selectCategory('Cruiser')" [style.backgroundColor]="selectedCategory === 'Cruiser' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="bicycle-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Cruiser</ion-label>
+      </swiper-slide>
+    
+      <swiper-slide (click)="selectCategory('Standard')" [style.backgroundColor]="selectedCategory === 'Standard' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="bicycle" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Standard</ion-label>
+      </swiper-slide>
+    
+      <swiper-slide (click)="selectCategory('Touring')" [style.backgroundColor]="selectedCategory === 'Touring' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="map-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Touring</ion-label>
+      </swiper-slide>
+    
+      <swiper-slide (click)="selectCategory('Adventure')" [style.backgroundColor]="selectedCategory === 'Adventure' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="compass-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Adventure</ion-label>
+      </swiper-slide>
+    
+      <swiper-slide (click)="selectCategory('Scooter')" [style.backgroundColor]="selectedCategory === 'Scooter' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="bicycle-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Scooter</ion-label>
+      </swiper-slide>
+    
+      <swiper-slide (click)="selectCategory('Moped')" [style.backgroundColor]="selectedCategory === 'Moped' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
+        <ion-icon name="bicycle-outline" style="font-size: 30px; margin-top: -20px;"></ion-icon>
+        <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Moped</ion-label>
+      </swiper-slide>
+    </swiper-container>   
     <swiper-slide (click)="selectCategory('Coupe')" [style.backgroundColor]="selectedCategory === 'Coupe' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
       <img src="../../../assets/extra-icon/coupe.png" style="height: 40px; width: 40px; margin-top: -20px;" />
       <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Coupe</ion-label>
@@ -283,7 +315,7 @@
       </ion-row>        
     </div>      
     <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-    <ion-row><img src="../../../assets/extra-icon/body-color.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+    <ion-row><img src="../../../assets/Bikesection/bikeadd/bike-color.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
       <p style="margin-left: 20px; margin-top: 20px;">Body color</p></ion-row>
       <swiper-container [slidesPerView]="5" [spaceBetween]="5" [loop]="true" style="margin-top: 15px; height: 60px;">
         <swiper-slide (click)="selectColor('Red')">
