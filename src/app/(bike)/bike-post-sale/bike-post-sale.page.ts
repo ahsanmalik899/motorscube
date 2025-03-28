@@ -389,18 +389,16 @@ selectColor(color: string) {
 }
 
 fetchFeatures() {
-  this.userService.getFeatures().subscribe({
-    next: (data: string[]) => {
-      this.features = data;
-      //console.log('Fetched makes:', data);
-      // Initialize filteredMakes with all makes
-      this.filteredFeatures = [...this.features];
-    },
-    error: (error: any) => {
-      console.error('Error fetching makes:', error);
-    }
-  });
+  // Manually define the features
+  this.features = ['Anti Theft Lock', 'Disc Brake', 'LED Light', 'Wind Shield'];
+  
+  // Initialize filteredFeatures with all features
+  this.filteredFeatures = [...this.features];
+
+  // Optionally log the features to ensure they're set
+  console.log('Fetched Features:', this.features);
 }
+
 // Filter makes based on search term
 filterFeatures(event: any) {
   const searchTerm = event.target.value.toLowerCase();
