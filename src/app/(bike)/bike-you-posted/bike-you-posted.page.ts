@@ -132,7 +132,7 @@ export class BikeYouPostedPage implements OnInit {
   }
 
   back() {
-    window.history.back();
+    this.router.navigate(['/main-menu-after-login'])
   }
 
   truncateText(text: string, limit: number): string {
