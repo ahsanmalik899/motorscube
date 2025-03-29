@@ -250,31 +250,24 @@ export class BikeSaleListingPage implements OnInit {
  
    back() {
      this.router.navigate(['bike-home']);
-     localStorage.removeItem('bikeselectedcon');
-     localStorage.removeItem('bikeselectedcity');
-     localStorage.removeItem('bikeselectedmake');
-     localStorage.removeItem('bikeselectedmodel');
-     localStorage.removeItem('bikeselectedversion');
-     localStorage.removeItem('bikelowprice');
-     localStorage.removeItem('bikehighprice');
-     localStorage.removeItem('bikelowyear');
-     localStorage.removeItem('bikehighyear');
-     localStorage.removeItem('bikelowmilage');
-     localStorage.removeItem('bikehighmilage');
-     localStorage.removeItem('bikeselectedCategory');
-     localStorage.removeItem('bikeselectedColor');
-     localStorage.removeItem('bikeselectedSellerType');
-     localStorage.removeItem('bikehighengine');
-     localStorage.removeItem('bikelowengine');
-     localStorage.removeItem('bikeselectedCategory');
-     localStorage.removeItem('bikeselectedFuel');
-     localStorage.removeItem('bikeselectedTransmission');
-     localStorage.removeItem('bikeselectedDoors');
-     localStorage.removeItem('bikeselectedDrive');
-     localStorage.removeItem('bikeselectedCharges');
-     localStorage.removeItem('bikeselectedCity');
-     localStorage.removeItem('bikeselectedmodelversion');
+     localStorage.removeItem('selectedcon');
+     localStorage.removeItem('selectedcity');
+     localStorage.removeItem('selectedmake');
+     localStorage.removeItem('selectedmodel');
+     localStorage.removeItem('selectedversion');
+     localStorage.removeItem('lowprice');
+     localStorage.removeItem('highprice');
+     localStorage.removeItem('lowyear');
+     localStorage.removeItem('highyear');
+     localStorage.removeItem('lowmilage');
+     localStorage.removeItem('highmilage');
+     localStorage.removeItem('selectedCategory');
+     localStorage.removeItem('selectedColor');
+     localStorage.removeItem('selectedSellerType');
+     localStorage.removeItem('highengine');
+     localStorage.removeItem('lowengine');
      localStorage.removeItem('engentype');
+     localStorage.removeItem('selectedmodelversion');
    }
    
  
