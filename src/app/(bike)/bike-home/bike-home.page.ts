@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { BikeService } from 'src/app/(services)/bike.service';
-import { forkJoin, tap } from 'rxjs';
+import { elementAt, forkJoin, tap } from 'rxjs';
 import { AuthService } from 'src/app/(services)/auth.service';
 interface bike {
   bike_ad_sale_id: string;
@@ -93,7 +93,12 @@ navigateTobikeDetail(carId: string): void {
   });
 }
 carSalePosting() {
-throw new Error('Method not implemented.');
+  if(this.selectID){
+  this.router.navigate(['/bike-post-sale'])
+  }
+  else{
+    this.router.navigate(['/login'])
+  }
 }
 carHirePosting() {
 throw new Error('Method not implemented.');

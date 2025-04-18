@@ -64,6 +64,7 @@
 
         <!-- Conditional Display for Car Sale Data -->
         <div *ngIf="CommercialSaleData && CommercialSaleData.length > 0; else noData">
+    
           <swiper-container [slidesPerView]="1" [spaceBetween]="10" [loop]="true" 
                              [autoplay]="{ delay: 1000 }" [pagination]="{ clickable: true }" 
                              [navigation]="true" style="height: 350px; overflow: hidden; margin-top: -12px;">
@@ -150,7 +151,7 @@
                              [navigation]="true" style="height: 350px; overflow: hidden; margin-top: -12px;">
             <ng-container *ngFor="let commercial of   CommercialHireData">
               <swiper-slide *ngIf="commercial.vehicle_feature_type === 'Supreme'" 
-                            (click)=" navigateToCarHireDetail(commercial.commercial_ad_hire_id)">
+                            (click)=" navigateToCarHireDetail(commercial.commercial_vehicle_ad_hire_id)">
                 <div style="text-align: center;">
                   <!-- Image Section -->
                   <div style="height: 250px; width: 100%; overflow: hidden; position: relative; margin: 0 auto;">

@@ -9,7 +9,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black;">{{ filteredCarData.length }}  Car for Sale</ion-label>
+    <ion-label style="color: black;">{{ filteredCarData.length }}  Vehicles for Sale</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -39,66 +39,65 @@
 
 <!--card sort by -->
 <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1;">
-          <ion-col>
-            <ion-card class="btn-filter" id="click-trigger" style="margin-left: 0px; max-width: 100px;"  trigger="click-trigger" triggerAction="click">
-              <ion-card-header>
-                <div style="width: 80px; margin-top: -9px; border-radius: 13px;">
-                  <ion-row><img src="../../../assets/Car-section/Listing/sort-by.png" style="height: 20px; width: 20px;" fill="clear;"/>
-                    <strong style="margin-left: 6px;">Sort by</strong></ion-row>
-                </div>
-  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+  <ion-col>
+    <ion-card class="btn-filter" id="click-trigger" style="margin-left: 0px; max-width: 100px;"  trigger="click-trigger" triggerAction="click">
+      <ion-card-header>
+        <div style="width: 80px; margin-top: -9px; border-radius: 13px;">
+          <ion-row><img src="../../../assets/Car-section/Listing/sort-by.png" style="height: 20px; width: 20px;" fill="clear;"/>
+            <strong style="margin-left: 6px;">Sort by</strong></ion-row>
+        </div>
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
 </ion-card>
 </ion-col>
 </div>
 </ion-row>
 <!--  -->
-            <!-- ion-popover -->
+    <!-- ion-popover -->
 <!-- <ion-button id="click-trigger">Ion-Popover</ion-button> -->
 <ion-popover trigger="click-trigger" triggerAction="click">
-  <ng-template>
-    <ion-content class="ion-padding">
-      <p style="font-size: 15px; text-align: left;">Sort by</p>
-      <div style="text-align: right; margin-top: -30px; margin-bottom: 15px;">
-        <ion-icon name="close" (click)="dismissPopover()"></ion-icon>
-      </div>
-      <div style="text-align: -webkit-center;">
-        <ion-col>
-          <ion-card class="btn-dark">
-            <ion-card-header>
-              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-            </ion-card-header>
-            </ion-card>
-            </ion-col>
-            </div>
+<ng-template>
+<ion-content class="ion-padding">
+<p style="font-size: 15px; text-align: left;">Sort by</p>
+<div style="text-align: right; margin-top: -30px; margin-bottom: 15px;">
+<ion-icon name="close" (click)="dismissPopover()"></ion-icon>
+</div>
+<div style="text-align: -webkit-center;">
+<ion-col>
+  <ion-card class="btn-dark">
+    <ion-card-header>
+      <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+    </ion-card-header>
+    </ion-card>
+    </ion-col>
+    </div>
 
-  <div style="text-align: center">
+<div style="text-align: center">
 <table width="100%">
-  <ion-radio-group (ionChange)="sortCars($event.detail.value)">
-    <ion-item>
-      <ion-label>Price - Low to High</ion-label>
-      <ion-radio value="lowToHigh"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Price - High to Low</ion-label>
-      <ion-radio value="highToLow"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Show oldest to newest ads</ion-label>
-      <ion-radio value="oldestToNewest"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Show latest to oldest ads</ion-label>
-      <ion-radio value="latestToOldest"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
-  
+<ion-radio-group (ionChange)="sortCars($event.detail.value)">
+<ion-item>
+<ion-label>Price - Low to High</ion-label>
+<ion-radio value="lowToHigh"></ion-radio>
+</ion-item>
+<ion-item>
+<ion-label>Price - High to Low</ion-label>
+<ion-radio value="highToLow"></ion-radio>
+</ion-item>
+<ion-item>
+<ion-label>Show oldest to newest ads</ion-label>
+<ion-radio value="oldestToNewest"></ion-radio>
+</ion-item>
+<ion-item>
+<ion-label>Show latest to oldest ads</ion-label>
+<ion-radio value="latestToOldest"></ion-radio>
+</ion-item>
+</ion-radio-group>
+
 </table>
 </div>
 </ion-content>
-  </ng-template>
+</ng-template>
 </ion-popover>
-
 
 <!--  -->
 <ion-row>
@@ -133,7 +132,7 @@
           <!-- <div> -->
           <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
     <div style="width: 100%; text-align: center;">
-    <img [src]="car.vehicle_img1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
 
     
         <ion-card class="supreme">
@@ -149,11 +148,11 @@
   </div>
   <div style="width: 100%; margin-top: 222px; text-align: center; display: flex; justify-content: center; gap: 5px;">
     <!-- Image 2 -->
-    <img [src]="car.vehicle_img2" 
+    <img [src]="car.image_url2" 
          style="flex: 1;  height: 110px; width: 48%; border: 1px solid lightgray; border-radius: 0 0 0 10px; padding: 0px; object-fit: cover;"/>
     
     <!-- Image 3 -->
-    <img [src]="car.vehicle_img3" 
+    <img [src]="car.image_url3" 
          style="flex: 1;  width: 48%; height: 110px; border: 1px solid lightgray; border-radius: 0 0 10px 0; padding: 0px; object-fit: cover;"/>
   </div>
   
@@ -185,7 +184,7 @@
     <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_power_transmission }}
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
   </p>
 </div>
 
@@ -238,7 +237,7 @@
             <!-- <div> -->
             <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
       <div style="width: 100%; text-align: center;">
-      <img [src]="car.vehicle_img1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+      <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
   
       
           <ion-card class="hotspot">
@@ -336,7 +335,7 @@
           <!-- <div> -->
           <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
     <div style="width: 100%; text-align: center;">
-    <img [src]="car.vehicle_img1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
 
      
   </div>
@@ -345,10 +344,10 @@
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
       <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car. vehicle_city}}</p> <br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car. vehicle_reg_city }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
           <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
@@ -364,7 +363,7 @@
     <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car. vehicle_transmission }}
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
   </p>
 </div>
 
@@ -374,7 +373,7 @@
     <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_price }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
   </p>
 </div>
 

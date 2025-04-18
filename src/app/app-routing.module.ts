@@ -467,6 +467,56 @@ const routes: Routes = [
     path: 'update-bike-sale-post',
     loadChildren: () => import('./(bike)/update-bike-sale-post/update-bike-sale-post.module').then( m => m.UpdateBikeSalePostPageModule)
   },
+  {
+    path: 'vehicle-sale-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-sale-filter/vehicle-sale-filter.module').then( m => m.VehicleSaleFilterPageModule)
+  },
+  {
+    path: 'vehical-hire-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehical-hire-filter/vehical-hire-filter.module').then( m => m.VehicalHireFilterPageModule)
+  },
+  {
+    path: 'vehicle-insurance-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-insurance-listing/vehicle-insurance-listing.module').then( m => m.VehicleInsuranceListingPageModule)
+  },
+  {
+    path: 'vehicle-leasing-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-leasing-listing/vehicle-leasing-listing.module').then( m => m.VehicleLeasingListingPageModule)
+  },
+  {
+    path: 'vehicle-dealers-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-dealers-listing/vehicle-dealers-listing.module').then( m => m.VehicleDealersListingPageModule)
+  },
+  {
+    path: 'vehicle-showrooms-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-showrooms-listing/vehicle-showrooms-listing.module').then( m => m.VehicleShowroomsListingPageModule)
+  },
+  {
+    path: 'vehicle-importers-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-importers-listing/vehicle-importers-listing.module').then( m => m.VehicleImportersListingPageModule)
+  },
+  {
+    path: 'vehicle-exporters-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-exporters-listing/vehicle-exporters-listing.module').then( m => m.VehicleExportersListingPageModule)
+  },
+  {
+    path: 'vehicle-driving-shchool-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-driving-shchool-listing/vehicle-driving-shchool-listing.module').then( m => m.VehicleDrivingShchoolListingPageModule)
+  },
+  {
+    path: 'vehicle-workshop-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-workshop-listing/vehicle-workshop-listing.module').then( m => m.VehicleWorkshopListingPageModule)
+  },
+  {
+    path: 'vehicle-sale-single-view',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-sale-single-view/vehicle-sale-single-view.module').then( m => m.VehicleSaleSingleViewPageModule)
+  },
+  {
+    path: 'vehicle-hire-single-view',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-hire-single-view/vehicle-hire-single-view.module').then( m => m.VehicleHireSingleViewPageModule)
+  },
+
+
 
 
 
