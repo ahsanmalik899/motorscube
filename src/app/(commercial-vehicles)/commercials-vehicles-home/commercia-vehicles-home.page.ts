@@ -104,28 +104,28 @@ navigateToCarHireDetail(carId: string) {
   });
 }
 carInsurance() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-insurance-listing']);
 }
 carLeasing() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-leasing-listing']);
 }
 carDealer() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-dealers-listing']);
 }
 carShowroom() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-showrooms-listing']);
 }
 carImporter() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-importers-listing']);
 }
 carExporter() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-exporters-listing']);
 }
 carSchool() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-driving-school-listing']);
 }
 carWorkshop() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-workshop-listing']);
 }
 selectedIcon: any;
 selectIcon(arg0: string) {

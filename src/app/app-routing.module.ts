@@ -515,6 +515,44 @@ const routes: Routes = [
     path: 'vehicle-hire-single-view',
     loadChildren: () => import('./(commercial-vehicles)/vehicle-hire-single-view/vehicle-hire-single-view.module').then( m => m.VehicleHireSingleViewPageModule)
   },
+  {
+    path: 'vehicle-driving-school-listing',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-driving-shchool-listing/vehicle-driving-shchool-listing.module').then( m => m.VehicleDrivingShchoolListingPageModule)
+  },
+  {
+    path: 'vehicle-dealer-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-dealer-filter/vehicle-dealer-filter.module').then( m => m.VehicleDealerFilterPageModule)
+  },
+  {
+    path: 'vehicle-driving-school-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-driving-school-filter/vehicle-driving-school-filter.module').then( m => m.VehicleDrivingSchoolFilterPageModule)
+  },
+  {
+    path: 'vehicle-exporter-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-exporter-filter/vehicle-exporter-filter.module').then( m => m.VehicleExporterFilterPageModule)
+  },
+  {
+    path: 'vehicle-importers-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-importers-filter/vehicle-importers-filter.module').then( m => m.VehicleImportersFilterPageModule)
+  },
+  {
+    path: 'vehicle-insurance-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-insurance-filter/vehicle-insurance-filter.module').then( m => m.VehicleInsuranceFilterPageModule)
+  },
+  {
+    path: 'vehicle-leasing-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-leasing-filter/vehicle-leasing-filter.module').then( m => m.VehicleLeasingFilterPageModule)
+  },
+  {
+    path: 'vehicle-showroom-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-showroom-filter/vehicle-showroom-filter.module').then( m => m.VehicleShowroomFilterPageModule)
+  },
+  {
+    path: 'vehicle-workshoop-filter',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-workshoop-filter/vehicle-workshoop-filter.module').then( m => m.VehicleWorkshoopFilterPageModule)
+  },
+
+
 
 
 

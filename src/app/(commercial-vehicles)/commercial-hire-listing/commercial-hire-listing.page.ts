@@ -227,7 +227,7 @@ export class CommercialHireListingPage implements OnInit {
   }
 
   navigateToCarHireDetail(carId: string): void {
-    this.router.navigate(['/hire-single-view'], {
+    this.router.navigate(['/vehicle-hire-single-view'], {
       queryParams: {
         saleid: carId,
       }

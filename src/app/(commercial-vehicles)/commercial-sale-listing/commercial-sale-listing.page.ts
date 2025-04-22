@@ -276,7 +276,7 @@ isModelVersionMatch(car: Car): boolean {
   
   
   navigateToCarDetail(carId: string): void {
-    this.router.navigate(['/sale-single-view'], {
+    this.router.navigate(['/vehicle-sale-single-view'], {
       queryParams: {
         saleid: carId,
       }

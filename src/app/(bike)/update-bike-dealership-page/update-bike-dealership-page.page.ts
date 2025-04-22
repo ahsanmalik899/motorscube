@@ -70,7 +70,9 @@ export class UpdateBikeDealershipPagePage implements OnInit {
         // Fetch car sale data from the backend
         this.bikeservice.getdealershipData().subscribe({
           next: (data) => {
-            console.log('Fetched car data:', data);
+          
+            console.log('Fetched car data:', this.adsId);
+           
             this.carSaleData = data; // Store fetched data in carData property
             this.filteredCarSaleData = this.carSaleData.filter((item: { bike_dealership_ad_sale_id: string; }) => item.bike_dealership_ad_sale_id === this.adsId);
   
@@ -390,7 +392,7 @@ export class UpdateBikeDealershipPagePage implements OnInit {
             text: 'OK',
             handler: () => {
               // Navigate back to the previous page
-              this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }
