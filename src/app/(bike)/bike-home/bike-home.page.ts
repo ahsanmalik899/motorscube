@@ -11,7 +11,7 @@ interface bike {
   bike_ad_model: any;
   bike_version: any;
   bike_ad_price: any;
-    image_url2: any;  // Replace with actual field names returned by your API
+    image_url1: any;  // Replace with actual field names returned by your API
   };
 @Component({
   selector: 'app-bike-home',
@@ -50,36 +50,17 @@ navigateToMainMenu(): void {
   }
 }
 async preloadCarData() {
-  const cachedBikeSaleData = localStorage.getItem('bikerSaleData');
-
-  if (cachedBikeSaleData ) {
-    // Use cached data for faster access
-    this.bikeSaleData = JSON.parse(cachedBikeSaleData);
-
-  } else {
-    // Make API requests if no cached data exists
-    forkJoin([
-      this.bikeService.getBikeSale(),
-    ])
-      .pipe(
-        // When the response comes in, store it in localStorage
-        tap(([bikeSaleData]) => {
-          
-
-          // Store data in localStorage for faster access next time
-          localStorage.setItem('bikeSaleData', JSON.stringify(bikeSaleData));
-          
-          // Update component state
-          this.bikeSaleData = bikeSaleData;  
-        })
-      )
-      .subscribe({
-        error: (error) => {
-          console.error('Error fetching car data:', error);
-        }
-      });
-  }
+  this.bikeService.getBikeSale()
+    .subscribe({
+      next: (bikeSaleData) => {
+        this.bikeSaleData = bikeSaleData;
+      },
+      error: (error) => {
+        console.error('Error fetching car data:', error);
+      }
+    });
 }
+
 
 bikeSaleListing() {
 this.router.navigate(['/bike-sale-listing'])

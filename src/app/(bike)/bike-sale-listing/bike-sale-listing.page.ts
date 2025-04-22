@@ -31,6 +31,14 @@ interface bike {
   bike_ad_normal_feature: string;
   post_created_date: string;
   post_updated_date: string;
+  image_url1:String;
+  image_url2:String;
+  image_url3:String;
+  image_url4:String;
+  image_url5:String;
+  image_url6:String;
+  image_url7:String;
+  image_url8:String;
 }
 
 @Component({
@@ -147,25 +155,18 @@ export class BikeSaleListingPage implements OnInit {
    }
  // Fetch car sale data and store it in localStorage for future use
  fetchCarSale() {
-   const cachedData = localStorage.getItem('bikeData');
-   
-   if (cachedData) {
-     this.bikeData = JSON.parse(cachedData); // Use cached data
-     this.filterCarData(); // Filter based on the current criteria
-   } else {
-     // If no cached data, fetch from the backend
-     this.bikeserrvice.getBikeSale().subscribe({
-       next: (data: bike[]) => {
-         this.bikeData = data;
-         localStorage.setItem('bikeData', JSON.stringify(data)); // Cache the fetched data
-         this.filterCarData(); // Filter the data
-       },
-       error: (error: any) => {
-         
-       },
-     });
-   }
- }
+  this.bikeserrvice.getBikeSale().subscribe({
+    next: (data: bike[]) => {
+      this.bikeData = data;
+      this.filterCarData(); // Apply filtering logic
+      console.log(this.bikeData)
+    },
+    error: (error: any) => {
+      console.error('Error fetching bike data:', error);
+    },
+  });
+}
+
  
  // Optimized filter function
  filterCarData() {

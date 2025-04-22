@@ -96,10 +96,11 @@ carHireListing() {
 }
 carHireData: any;
 navigateToCarHireDetail(carId: string) {
-  this.router.navigate(['/vehicle-sale-single-view'], {
+  this.router.navigate(['/vehicle-hire-single-view'], {
     queryParams: {
       saleid: carId,
     }
+    
   });
 }
 carInsurance() {

@@ -19,7 +19,7 @@ export class CommercialService {
     return this.http.get<any>(url);  // Return the Observable of the response
   }
   getSinglevehiclehire(saleID: string): Observable<any> {
-    const url = `${this.apiUrl}get_single_vechile_hire.php/?saleID=${saleID}`;  // Correct the API endpoint and append saleID query
+    const url = `${this.apiUrl}get_single_vehicle_hire.php/?saleID=${saleID}`;  // Correct the API endpoint and append saleID query
     return this.http.get<any>(url);  // Return the Observable of the response
   }
 }

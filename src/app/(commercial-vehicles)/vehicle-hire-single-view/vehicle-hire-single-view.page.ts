@@ -159,14 +159,16 @@ isModalOpen = false;
       }
 
       // Process car features (optional)
-      this.carFeaturesArray = data.car_features
-        .replace('[', '') // Remove opening bracket
-        .replace(']', '') // Remove closing bracket
-        .split(',') // Split the string into an array using commas
-        .map((feature: string) => feature.trim().replace(/"/g, '')); // Clean each feature
-
+      // if(this.carFeaturesArray){
+      // this.carFeaturesArray = data.car_features
+      //   .replace('[', '') // Remove opening bracket
+      //   .replace(']', '') // Remove closing bracket
+      //   .split(',') // Split the string into an array using commas
+      //   .map((feature: string) => feature.trim().replace(/"/g, '')); // Clean each feature
+      // }
       // Store the user ID for the sale
       this.saleUser = data.user_id;
+      
     });
     this.fetchUserSale();
     // Set the selected image to the first valid image URL (if available)
@@ -178,9 +180,9 @@ isModalOpen = false;
     // Fetch car sale data from the backend
     const formData = new FormData();
     formData.append('userid', this.saleUser); // Assuming this.saleUser contains the user ID
-
+    console.log(this.selectedImage)
     this.userService.getUserSale(formData).subscribe({
-        next: (data: any[]) => {
+        next: (data:string[]) => {
           console.log('Type of data:', typeof data);
           if (Array.isArray(data)) {
             this.filterUserData = data;

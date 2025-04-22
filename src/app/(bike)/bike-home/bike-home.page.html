@@ -52,7 +52,7 @@
       <ion-card-header>
         <!-- Section Title -->
         <p style="font-size: 14px; font-weight: bold; margin: 10px 0px 0px 10px; color: black; text-align: left;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
-          Recent bikes for sale
+          Recent cars for sale
         </p>
 
         <!-- View All Button -->
@@ -68,34 +68,34 @@
           <swiper-container [slidesPerView]="1" [spaceBetween]="10" [loop]="true" 
                              [autoplay]="{ delay: 1000 }" [pagination]="{ clickable: true }" 
                              [navigation]="true" style="height: 350px; overflow: hidden; margin-top: -12px;">
-            <ng-container *ngFor="let bike of bikeSaleData">
-              <swiper-slide *ngIf="bike.bike_ad_normal_feature === 'Supreme'" 
-                            (click)="navigateTobikeDetail(bike.bike_ad_sale_id)">
+            <ng-container *ngFor="let car of bikeSaleData">
+              <swiper-slide *ngIf="car.bike_ad_normal_feature === 'Supreme'" 
+                            (click)="navigateTobikeDetail(car.bike_ad_sale_id)">
                 <div style="text-align: center;">
                   <!-- Image Section -->
                   <div style="height: 250px; width: 100%; overflow: hidden; position: relative; margin: 0 auto;">
-                    <img *ngIf="bike.image_url2" [src]="bike.image_url2
-                    " class="car-image" 
-                         style="width: 100%; height: 100%; object-fit: cover;" alt="Car image for {{ bike.bike_ad_make }} {{ bike.bike_ad_model }}"/>
+                    <img *ngIf="car.image_url1" [src]="car.image_url1" class="car-image" 
+                         style="width: 100%; height: 100%; object-fit: cover;" alt="Car image for {{ car.bike_ad_make }} {{ car.bike_ad_model }}"/>
                   </div>
                   
                   <!-- Car Details (Make, Model, Version) -->
                   <p style="font-size: 14px; margin-top: 12px; text-align: center; color: gray;">
-                    {{ bike.bike_ad_make }} {{ bike.bike_ad_model }} {{ bike.bike_version }}
+                    {{ car.bike_ad_make }} {{ car.bike_ad_model }} {{ car.bike_version }}
                   </p>
                   
                   <!-- Price Section -->
                   <p style="font-size: 18px; margin-top: 12px; font-weight: bold; text-align: center; color: #1a529c;">
-                   PKR {{ bike.bike_ad_price }}
+                   PKR {{ car.bike_ad_price }}
                   </p>
                 </div>
               </swiper-slide>
             </ng-container>
           </swiper-container>
         </div>
+
         <!-- No Data Fallback Template -->
         <ng-template #noData>
-          <p style="text-align: center; color: gray; font-size: 14px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">No bike sale data available</p>
+          <p style="text-align: center; color: gray; font-size: 14px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">No car sale data available</p>
         </ng-template>
       </ion-card-header>
     </ion-card>
@@ -245,27 +245,32 @@
   </ion-row>
 </div>
 
-<div class="text-center" >
-  <ion-row style="margin-right: 10px;">
-    <ion-col size="6" style="text-align: -webkit-center;">
-        <ion-card  (click)="carSchool()"  class="btn-city" >
-          <ion-card-header class="text-center-vertical"style="display:flex; align-items:center;">
-            <img src="../../assets/Menu-items//After login//Bike menu/driving-school.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; " fill="clear;"/>
-            <p style="font-size: 13px; margin-left: 8px; margin-top: -2px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Driving school</b></p>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
+<div class="text-center">
+  <ion-row style="margin-right: 10px; justify-content: center;">
 
-      <ion-col size="6" style="text-align: -webkit-center;">
-        <ion-card  (click)="carWorkshop()"  class="btn-city" >
-          <ion-card-header class="text-center-vertical"style="display:flex; align-items:center;">
-            <img src="../../assets//Menu-items/After login/Bike menu/workshops.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; " fill="clear;"/>
-            <p style="font-size: 13px; margin-left: 10px; margin-top: -2px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Workshops</b></p>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
+    <ion-col size="6" style="display: flex; justify-content: center;">
+      <ion-card (click)="carWorkshop()" class="btn-city" style="width: 100%; display: flex; justify-content: center;">
+        <ion-card-header 
+          class="text-center-vertical"
+          style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px;">
+
+          <img 
+            src="../../assets/Menu-items/After login/Bike menu/workshops.png" 
+            style="height: 60px; width: 60px; margin-bottom: 10px;" 
+            fill="clear" />
+
+          <p style="font-size: 13px; margin: 0; text-align: center; font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+            <b>Workshops</b>
+          </p>
+
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
   </ion-row>
 </div>
+
+
 
 
 <!--  -->
