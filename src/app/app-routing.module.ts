@@ -567,6 +567,15 @@ const routes: Routes = [
     path: 'update-vehicle-hire',
     loadChildren: () => import('./(commercial-vehicles)/update-vehicle-hire/update-vehicle-hire.module').then( m => m.UpdateVehicleHirePageModule)
   },
+  {
+    path: 'post-vehicle-sale-ad',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-sale-ad/post-vehicle-sale-ad.module').then( m => m.PostVehicleSaleAdPageModule)
+  },
+  {
+    path: 'post-vehicle-hire',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-hire/post-vehicle-hire.module').then( m => m.PostVehicleHirePageModule)
+  },
+
 
 
 

@@ -197,6 +197,12 @@ this.router.navigate(['/home'])
   navigateToCommercialLeasing() {
     this.router.navigate(['/vehicle-leasing-listing']);
   }
+  navigateTovehiclepostsale() {
+    this.router.navigate(['/post-vehicle-sale-ad']);
+  }
+  navigateTovehicleposthire() {
+    this.router.navigate(['/post-vehicle-hire']);
+  }
 
   navigateToMachinerySale() {
     this.router.navigate(['/machinery-sale']);

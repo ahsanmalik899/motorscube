@@ -383,23 +383,19 @@ hideImage(index: number) {
   fetchVersions() {
     const formData = new FormData();
     formData.append('model', this.selectedModel);
-
-
+  
     this.userService.getVersions(formData).subscribe({
       next: (data) => {
-          // Handle successful response here
-          console.log('Fetched versions:', data);
-          this.versions = data;
-        //console.log('Fetched makes:', data);
-        // Initialize filteredMakes with all makes
-        this.filteredVersions = [...this.versions];
+        console.log('Fetched versions:', data);
+        this.versions = data;
+        this.filteredVersions = [...this.versions]; // <- assumes data is iterable
       },
       error: (error) => {
-          // Handle error response here
-          console.error('Error fetching Versions:', error);
+        console.error('Error fetching Versions:', error);
       }
-  });
+    });
   }
+  
 
   // Filter makes based on search term
   filterVersions(event: any) {

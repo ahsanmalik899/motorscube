@@ -67,6 +67,8 @@ import { UpdateBikeImporterPagePage } from './(bike)/update-bike-importer-page/u
 import { UpdateBikeWorkshopPagePage } from './(bike)/update-bike-workshop-page/update-bike-workshop-page.page';
 import { VehicleSaleFilterPage } from './(commercial-vehicles)/vehicle-sale-filter/vehicle-sale-filter.page';
 import { VehicalHireFilterPage } from './(commercial-vehicles)/vehical-hire-filter/vehical-hire-filter.page';
+import { PostVehicleHirePage } from './(commercial-vehicles)/post-vehicle-hire/post-vehicle-hire.page';
+import { PostVehicleSaleAdPage } from './(commercial-vehicles)/post-vehicle-sale-ad/post-vehicle-sale-ad.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,6 +122,8 @@ import { VehicalHireFilterPage } from './(commercial-vehicles)/vehical-hire-filt
     UpdateBikeSalePostPage,
     VehicleSaleFilterPage,
     VehicalHireFilterPage,
+    PostVehicleHirePage,
+    PostVehicleSaleAdPage,
   ],
  
   bootstrap: [AppComponent],
