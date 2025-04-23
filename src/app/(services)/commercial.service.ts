@@ -55,4 +55,12 @@ export class CommercialService {
     // Make a POST request to the API endpoint to fetch city names
     return this.http.get<string[]>(this.apiUrl + 'get_vehicle_showroom.php');
   }
+   getMakes(): Observable<string[]> {
+      // Make a POST request to the API endpoint to fetch city names
+      return this.http.get<string[]>(this.apiUrl + 'get_vehicle_make_name.php');
+    }
+    commercialDeleteAds(userData: any): Observable<any> {
+      // Assuming you have an API endpoint to save user data
+      return this.http.post<any>(this.apiUrl + 'delete_vehicle_ads.php', userData);
+    }
 }

@@ -1,4 +1,4 @@
-import { CommercialService } from './../../(services)/commercial.service';
+import { CommercialService } from '../../(services)/commercial.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
@@ -121,7 +121,12 @@ export class CommercialSaleListingPage implements OnInit {
       this.route.queryParams.subscribe(params => {
           if (params) {
               this.selectedcon = params['selectedcon'] ? params['selectedcon'].split(',') : [];
-              this.selectedmake = params['selectedmake'] ? params['selectedmake'].split(',') : [];
+              this.selectedmake = params['selectedmake']
+              ? params['selectedmake']
+                  .split(',')
+                  .map((make: string) => make.replace(/\s+/g, ' ').trim())
+              : [];
+            
               this.selectedcity = params['selectedcity'] ? params['selectedcity'].split(',') : [];
               this.selectedhighprice = params['highprice'] || '';
               this.selectedlowprice = params['lowprice'] || '';

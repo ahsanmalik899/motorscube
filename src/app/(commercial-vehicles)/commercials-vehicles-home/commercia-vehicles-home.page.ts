@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, tap } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { AuthService } from 'src/app/(services)/auth.service';
 interface Commercial {
   
 commercial_vehicle_ad_sale_id: string;
@@ -31,10 +32,15 @@ export class CommerciaVehiclesHomePage implements OnInit {
   CommercialSaleData: Commercial[] = [];
   CommercialHireData: Commercial[] = [];
   isLoading: boolean | undefined;
-  constructor( private router: Router,private commercialService:CommercialService) { 
+  selectID: string | null | undefined;
+  constructor( private router: Router,private commercialService:CommercialService, private authService:AuthService) { 
     
   }
   ngOnInit() {
+    this.authService.userID$.subscribe(userID => {
+      this.selectID = userID; // Update the userID in the component
+    });
+    this.selectID = localStorage.getItem('userId');
 
     this.preloadCommercialData()
   }
@@ -70,8 +76,15 @@ async preloadCommercialData(): Promise<void> {
 }
 
 
-navigateToMainMenu() {
-  console.log('Fetched data:', this.CommercialHireData);
+navigateToMainMenu(): void {
+  if (this.selectID) {
+    this.router.navigate(['/main-menu-after-login']);
+    // Redirect to main-menu if userID is not available
+  
+  }
+  else{
+    this.router.navigate(['/main-menu']);
+  }
 }
 commercialSaleListing() {
 this.router.navigate(['/commercial-sale-listing'])

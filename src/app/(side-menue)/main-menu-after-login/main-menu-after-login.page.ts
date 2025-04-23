@@ -156,41 +156,46 @@ this.router.navigate(['/home'])
   togglePlantsDropdown() {
     this.plantsDropdownVisible = !this.plantsDropdownVisible;
   }
-
+  navigatemyvehicleads(){
+    this.router.navigate(['/my-vehicles']);
+  }
+  navigatevehicleabuseness(){
+    this.router.navigate(['/commercial-vehicle-buseness']);
+  }
   navigateToCommercialSale() {
-    this.router.navigate(['/commercial-sale']);
+    this.router.navigate(['/commercial-sale-listing']);
   }
 
   navigateToCommercialHire() {
-    this.router.navigate(['/commercial-hire']);
+    this.router.navigate(['/commercial-hire-listing']);
   }
 
   navigateToCommercialShowroom() {
-    this.router.navigate(['/commercial-showroom']);
+    this.router.navigate(['/vehicle-showrooms-listing']);
   }
 
   navigateToCommercialDealer() {
-    this.router.navigate(['/commercial-dealer']);
+    this.router.navigate(['/vehicle-dealers-listing']);
   }
 
   navigateToCommercialWorkshop() {
-    this.router.navigate(['/commercial-workshop']);
+    this.router.navigate(['/vehicle-workshop-listing']);
   }
 
   navigateToCommercialImporter() {
-    this.router.navigate(['/commercial-importer']);
+    this.router.navigate(['/vehicle-importers-listing']);
   }
 
   navigateToCommercialExporter() {
-    this.router.navigate(['/commercial-exporter']);
+    this.router.navigate(['/vehicle-exporters-listing']);
   }
 
   navigateToCommercialInsurance() {
-    this.router.navigate(['/commercial-insurance']);
+    this.router.navigate(['/vehicle-insurance-listing']);
   }
 
   navigateToCommercialLeasing() {
-    this.router.navigate(['/commercial-leasing']);
+    this.router.navigate(['/vehicle-leasing-listing']);
   }
 
   navigateToMachinerySale() {

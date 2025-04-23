@@ -32,7 +32,7 @@ interface Car {
     post_status: string;
     vehicle_charges:string;
     vehicle_about_charges:string;
-    vehicle_about_driver:string
+    vehicle_about_drive:string
   }
 @Component({
   selector: 'app-commercial-hire-listing',
@@ -121,9 +121,9 @@ export class CommercialHireListingPage implements OnInit {
 
     this.filteredCarData = this.carHireData.filter((car: Car) => {
       const carCondition = car.vehicle_condition?.toLowerCase();
-      const carTransmission = car.vehicle_transmission?.toLowerCase();
+      const carTransmission = car.vehicle_power_transmission?.toLowerCase();
       const carDoorNumber = car.vehicle_doors?.trim().toLowerCase();
-      const carDriverAvailability = car.vehicle_about_driver?.trim().toLowerCase();
+      const carDriverAvailability = car.vehicle_about_drive?.trim().toLowerCase();
 
       if (car.post_status !== 'Active') return false;
       if (fuelTypes.size > 0 && !fuelTypes.has(car.vehicle_fuel_type)) return false;

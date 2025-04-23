@@ -91,65 +91,7 @@
 </ion-popover>
 
 <!-- Make section trigger -->
-<div [hidden]="!showmodel">
-  <ion-row>
-    <!-- Make section trigger -->
-    <img
-      src="../../../assets/extra-icon/make.png"
-      style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;"
-      fill="clear"
-    />
-    <p style="margin-left: 20px; margin-top: 20px;">Model & Version</p>
 
-    <!-- Add button for triggering the popover -->
-    <div
-      [hidden]="showmodel2"
-      id="click-trigger-model-version"
-      trigger="click-trigger-model-version"
-      triggerAction="click"
-    >
-      <img
-        src="../../../assets/extra-icon/add.png"
-        style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;"
-        fill="clear"
-      />
-    </div>
-  </ion-row>
-
-  <!-- Popover for Model and Version selection -->
-  <ion-popover
-    trigger="click-trigger-model-version"
-    triggerAction="click"
-    cssClass="full-screen-popover"
-  >
-    <ng-template>
-      <ion-content class="full-screen-content">
-        <p style="font-size: 16px; text-align: center;">Select Model & Version</p>
-
-        <!-- Search bar for filtering combined model-version -->
-        <ion-searchbar
-          type="text"
-          debounce="500"
-          (ionInput)="filterCombinedModelVersions($event)"
-          [value]="searchTerm"
-          placeholder="Search Model & Version"
-          clearInput="true"
-          style="width: 100%;"
-        ></ion-searchbar>
-
-        <!-- Display combined model-version in the list -->
-        <ion-list>
-          <ion-item
-            *ngFor="let combined of filteredCombinedModelVersions"
-            (click)="selectModelVersion(combined)"
-          >
-            {{ combined }}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ng-template>
-  </ion-popover>
-</div>
 
 <!-- Display selected model-version in the selected div -->
 
@@ -396,7 +338,7 @@
   <div style="width: 100%; margin-left: 25px; text-align: center;">
     <ion-row style="display: flex; justify-content: center;">
       <ion-button [color]="selectedSellerType === 'Private' ? 'danger' : 'light'" class="seller" style="width: 100px;" (click)="selectSellerType('Private')">Private</ion-button>
-      <ion-button [color]="selectedSellerType === 'Dealer' ? 'danger' : 'light'" class="seller" style="width: 100px; margin-left: 15px;" (click)="selectSellerType('Dealer')">Dealer</ion-button>
+      <ion-button [color]="selectedSellerType === 'Trader' ? 'danger' : 'light'" class="seller" style="width: 100px; margin-left: 15px;" (click)="selectSellerType('Trader')">Trader</ion-button>
     </ion-row>
   </div>  
    <hr style="background-color: black;">

@@ -551,6 +551,24 @@ const routes: Routes = [
     path: 'vehicle-workshoop-filter',
     loadChildren: () => import('./(commercial-vehicles)/vehicle-workshoop-filter/vehicle-workshoop-filter.module').then( m => m.VehicleWorkshoopFilterPageModule)
   },
+  {
+    path: 'my-vehicles',
+    loadChildren: () => import('./(commercial-vehicles)/my-vehicles/my-vehicles.module').then( m => m.MyVehiclesPageModule)
+  },
+  {
+    path: 'commercial-vehicle-buseness',
+    loadChildren: () => import('./(commercial-vehicles)/commercial-vehicle-buseness/commercial-vehicle-buseness.module').then( m => m.CommercialVehicleBusenessPageModule)
+  },
+  {
+    path: 'update-vehicle-sale',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-sale/update-vehicle-sale.module').then( m => m.UpdateVehicleSalePageModule)
+  },
+  {
+    path: 'update-vehicle-hire',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-hire/update-vehicle-hire.module').then( m => m.UpdateVehicleHirePageModule)
+  },
+
+
 
 
 
