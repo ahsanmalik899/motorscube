@@ -224,7 +224,7 @@
   
     <ng-container *ngIf="car.vehicle_feature_type === 'Hotspot' " >
       
-    <ion-card class="btn-card" (click)="navigateToCarHireDetail(car.vehicle_ad_hire_id)">
+    <ion-card class="btn-card" (click)="navigateToCarHireDetail(car.commercial_vehicle_ad_hire_id)">
       <ion-card-header>
   
         <ion-col  style="width: 100%; display:inline-block;">
@@ -322,7 +322,7 @@
   
   <ng-container *ngIf="car.vehicle_feature_type === 'General' " >
  
-  <ion-card class="btn-card"   (click)="navigateToCarHireDetail(car.car_ad_hire_id)">
+  <ion-card class="btn-card"   (click)="navigateToCarHireDetail(car.commercial_vehicle_ad_hire_id)">
     <ion-card-header>
 
       <ion-col  style="width: 100%; display:inline-block;">
@@ -339,7 +339,7 @@
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
 
-      <p class="main-heading truncate" >{{ car.vehical_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
+      <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
       <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">

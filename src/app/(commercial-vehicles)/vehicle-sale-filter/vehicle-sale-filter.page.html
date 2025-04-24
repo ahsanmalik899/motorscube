@@ -216,44 +216,7 @@
           <option *ngFor="let size of filteredHighEngineSizes" [value]="size">{{ size }}</option>
         </select>
       </ion-item>      </ion-col>    </ion-row>  <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
-        <ion-row><img src="../../../assets/extra-icon/car.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-  <p style="margin-left: 20px; margin-top: 20px;">Body type</p></ion-row>    <swiper-container [slidesPerView]="3" [spaceBetween]="10" [loop]="true" style="margin-top: 20px; height: 50px;">
-    <swiper-slide (click)="selectCategory('Convertible')" [style.backgroundColor]="selectedCategory === 'Convertible' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/convertible.png" style="height: 30px; width: 30px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Convertible</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('Coupe')" [style.backgroundColor]="selectedCategory === 'Coupe' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/coupe.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Coupe</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('Estate')" [style.backgroundColor]="selectedCategory === 'Estate' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/estate.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Estate</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('Saloon')" [style.backgroundColor]="selectedCategory === 'Saloon' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/saloon.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Saloon</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('MPV')" [style.backgroundColor]="selectedCategory === 'MPV' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/mpv.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">MPV</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('SUV')" [style.backgroundColor]="selectedCategory === 'SUV' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/suv.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">SUV</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('Hatchback')" [style.backgroundColor]="selectedCategory === 'Hatchback' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/hatchback.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Hatchback</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('Jeep')" [style.backgroundColor]="selectedCategory === 'Jeep' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/jeep.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Jeep</ion-label>
-    </swiper-slide>    
-    <swiper-slide (click)="selectCategory('Pick-up')" [style.backgroundColor]="selectedCategory === 'Pick-up' ? '#ffc6c6' : 'transparent'" style="max-width: 120px;">
-      <img src="../../../assets/extra-icon/pick-up.png" style="height: 40px; width: 40px; margin-top: -20px;" />
-      <ion-label style="color: black; font-size: 12px; margin-top: -5px; margin-left: 0px;">Pick-up</ion-label>
-    </swiper-slide>    </swiper-container>
+        
   <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
     <ion-row><img src="../../../assets/extra-icon/transmission.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
     <p style="margin-left: 20px; margin-top: 20px;">transmission</p></ion-row>

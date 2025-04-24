@@ -438,6 +438,7 @@ models: string[] = [];
         this.selectedEngineHighSize = '';
         this.selectedSellerType = '';
         this.showmodel2 = false;
+   this.showmake=false;
         this.makedivVisible = false;
         this.showversion2 = false;
         this.modeldivVisible = false;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicSlides, PopoverController } from '@ionic/angular';
+import { CommercialService } from 'src/app/(services)/commercial.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -126,7 +127,7 @@ export class VehicalHireFilterPage implements OnInit {
         selectedversionarray: string[] = [];
         selectedValues: string[] = [];
         filteredMakesModels: string[] = [];
-        constructor(public route: Router, private popoverController: PopoverController, private userService: UserService) {
+        constructor(public route: Router,private commerrcialservice:CommercialService, private popoverController: PopoverController, private userService: UserService) {
           this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
         this.selectedMake = localStorage.getItem('selectedmake') || '';
         this.selectedModelVersion= this.getStoredValue('selectedmodelversion');
@@ -266,7 +267,7 @@ export class VehicalHireFilterPage implements OnInit {
             this.filterCities({ target: { value: '' } });
           }  }
         fetchMakes() {
-          this.userService.getMakes().subscribe({
+          this.commerrcialservice.getMakes().subscribe({
             next: (data: string[]) => {
               this.makes = data;
               this.filteredMakes = [...this.makes];
@@ -438,6 +439,7 @@ export class VehicalHireFilterPage implements OnInit {
           this.selectedEngineHighSize = '';
           this.selectedSellerType = '';
           this.showmodel2 = false;
+          this.showmake=false
           this.makedivVisible = false;
           this.showversion2 = false;
           this.modeldivVisible = false;
