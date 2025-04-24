@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root'
 })
 export class CommercialService {
+
   private apiUrl = 'http://localhost/Commercial/';
   constructor(private http: HttpClient, private storage: Storage) { }
   getCommercialSale(): Observable<any[]> {
@@ -63,4 +64,19 @@ export class CommercialService {
       // Assuming you have an API endpoint to save user data
       return this.http.post<any>(this.apiUrl + 'delete_vehicle_ads.php', userData);
     }
+    getModels() : Observable<string[]> {
+      return this.http.get<string[]>(this.apiUrl + 'get_vehicle_type_name.php');
+    }
+    getVersions(versionData: FormData): Observable<string[]> {
+      // Make a POST request to the API endpoint to fetch models based on the selected make
+      return this.http.post<string[]>(this.apiUrl + 'get_vehicle_subtype_name.php', versionData);
+    }
+    carSalePost(userData: any): Observable<any> {
+      // Assuming you have an API endpoint to save user data
+      return this.http.post<any>(this.apiUrl + 'save_vehicle_sale_post.php', userData);
+    }
+    carHirePost(formData: FormData): Observable<any> {
+      // Assuming you have an API endpoint to save user data
+      return this.http.post<any>(this.apiUrl + 'save_vehicle_hire_post.php', formData);
+  }
 }

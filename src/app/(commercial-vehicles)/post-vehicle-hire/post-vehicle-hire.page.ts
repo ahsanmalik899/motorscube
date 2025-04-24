@@ -209,7 +209,7 @@ export class PostVehicleHirePage implements OnInit {
     formData.append('make', this.selectedMake);
 
     console.log(makeData);
-    this.userService.getModels(formData).subscribe({
+    this.commercialservice.getModels().subscribe({
       next: (data) => {
         // Handle successful response here
         console.log('Fetched models:', data);
@@ -255,7 +255,7 @@ export class PostVehicleHirePage implements OnInit {
     const formData = new FormData();
     formData.append('model', this.selectedModel);
 
-    this.userService.getVersions(formData).subscribe({
+    this.commercialservice.getVersions(formData).subscribe({
       next: (data) => {
         // Handle successful response here
         console.log('Fetched versions:', data);
@@ -548,6 +548,7 @@ export class PostVehicleHirePage implements OnInit {
 
     // Form data to be sent
     const userData = {
+      regCity:this.selectedregisterCity,
       city: this.selectedCity,
       make: this.selectedMake,
       model: this.selectedModel,
@@ -558,11 +559,8 @@ export class PostVehicleHirePage implements OnInit {
       engineSize: this.engineSize,
       fuel: this.selectedFuel,
       drive: this.selectedDrive,
-      doors: this.selectedDoors,
       transmission: this.selectedTransmission,
-      category: this.selectedCategory,
-      color: this.selectedColor,
-      features: this.selectedFeatures,
+        color: this.selectedColor,
       discription: description,
       change: this.selectedcon,
       selectDriver: this.selectdriver,
@@ -626,7 +624,7 @@ export class PostVehicleHirePage implements OnInit {
 
       try {
         // Call the API and wait for response
-        const response = await this.userService
+        const response = await this.commercialservice
           .carHirePost(formData)
           .toPromise();
         console.log('Data saved successfully:', response);
@@ -649,8 +647,9 @@ export class PostVehicleHirePage implements OnInit {
   // Function to get a human-readable field name for the alert
   getFieldLabel(field: string): string {
     const fieldLabels: { [key: string]: string } = {
+      regCity:'Regested City',
       city: 'City',
-      make: 'Make',
+        make: 'Make',
       model: 'Model',
       version: 'Version',
       year: 'Year',

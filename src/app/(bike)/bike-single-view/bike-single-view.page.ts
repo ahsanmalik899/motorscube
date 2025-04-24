@@ -135,8 +135,8 @@ export class BikeSingleViewPage implements OnInit {
       if (data.image_url8 && !data.image_url8.endsWith('NULL')) {
         this.imageUrls.push(data.image_url8);
       }
-      if (data.car_features && typeof data.car_features === 'string') {
-        this.carFeaturesArray = data.car_features
+      if (data.bike_features && typeof data.bike_features === 'string') {
+        this.carFeaturesArray = data.bike_features
           .replace('[', '')
           .replace(']', '')
           .split(',')

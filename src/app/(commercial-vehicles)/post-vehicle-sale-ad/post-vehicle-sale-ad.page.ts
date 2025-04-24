@@ -192,14 +192,8 @@ originalContent = '';
 
   // select make car
   fetchModels() {
-    const makeData = {
-    make: this.selectedMake,
-    };
-    const formData = new FormData();
-    formData.append('make', this.selectedMake);
-
-    console.log(makeData);
-    this.userService.getModels(formData).subscribe({
+   
+    this.commercialservice.getModels().subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched models:', data);
@@ -242,11 +236,12 @@ originalContent = '';
 
   // select make car
   fetchVersions() {
+    console.log('model',this.selectedModel)
     const formData = new FormData();
     formData.append('model', this.selectedModel);
 
 
-    this.userService.getVersions(formData).subscribe({
+    this.commercialservice.getVersions(formData).subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched versions:', data);
@@ -526,9 +521,7 @@ checkRequiredFields() {
   if (!this.selectedTransmission) {
     missingFields.push('Transmission');
   }
-  if (!this.selectedCategory) {
-    missingFields.push('Category');
-  }
+ 
   if (!this.selectedColor) {
     missingFields.push('Color');
   }
@@ -678,7 +671,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
   
       try {
         // Call the API and wait for response
-        const response = await this.userService.carSalePost(formData).toPromise();
+        const response = await this.commercialservice.carSalePost(formData).toPromise();
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();
       } catch (error) {
