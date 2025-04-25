@@ -1,13 +1,885 @@
-<ion-header [translucent]="true">
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>commercial-vehicle-buseness</ion-title>
+    <ion-title>your-business</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="font-size: 16px; color: black;">Your busines profile</ion-label>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">commercial-vehicle-buseness</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+        <div style="text-align: -webkit-center; margin-top: -30px;" *ngIf="show" (click)="onclick()">
+          <ion-col>
+            <ion-card class="btn-profile" >
+              <ion-card-header>
+                <p style="font-size: 17px; text-align: center; color: darkblue;">Expand your business on Pakistan's complete automotive platform and even for FREE</p>
+
+                <p style="font-size: 15px; position: revert; text-align: center; padding: 0px 5px 0px 5px;">Motorscube.com is working hard along with you to expand your business across Pakistan. Simply choose your business category like Dealer, showroom, importer etc and post your details. 1000's of daily visitors will see your business and ask for your services.</p>
+
+                <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+            </ion-card-header>
+            </ion-card>
+            </ion-col>
+            </div>
+
+            <div style="text-align: -webkit-center; margin-top: -30px;" *ngIf="offer">
+              <!--Dealership Busenes Card-->
+          <ion-col  *ngFor="let car of filterdealershipData">
+            <ion-card class="btn-list"  >
+              <ion-card-header >
+                  <div>
+        <ion-col >
+          <ion-card class="hotspot">
+            <ion-card-header>
+              <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                  <p style="margin-left: -60px; color: white;">{{ car.dealership_featured_type }}</p>
+              </div>
+        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+          <div style="margin-top: -30px; " >
+                  
+              <ion-row >
+                <div style="width: 100%; text-align: center; margin-left: 0px;">
+                  <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                  <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                    <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                  </ion-avatar>  
+                </div>
+              </ion-row>
+            
+            </div>
+              
+
+            <div style="width: 100%; align-items: center;margin-top: 0px;">
+              <p class="main-heading truncate" >{{ car.dealership_name }}</p><br>
+              <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.dealership_city}}</p> 
+                <p class="sub-heading" style="color: gray; ">
+                  <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.dealership_phone }}
+                </p>
+            
+              
+             
+              
+           
+           <!-- First div for Fuel Type and Transmission -->
+          <p class="sub-heading" style="color: gray; flex: 1; ">
+            <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.dealership_web }}
+          </p>
+          <p class="sub-heading" style="color: gray; flex: 1; ">
+            <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.dealership_address }}
+          </p>
+        
+        </div>
+          </ion-col>
+        </div>
+
+<p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car Dealer profile</b></p>
+
+
+<div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+  <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <!-- Left side: Upgrade profile / Send payment -->
+    <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+      <div *ngIf="car.post_status === 'Active'" >
+      <button *ngIf="!checkPaymentButton('dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.car_dealership_ad_sale_id, 'dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
+      <button *ngIf="checkPaymentButton('dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.car_dealership_ad_sale_id)">Send Payment</button>
+    </div>
+    </div>
+   
+    <!-- Right side: Edit and Delete buttons -->
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editDealer(car.car_dealership_ad_sale_id)">
+      <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_dealership_ad_sale_id, 'dealer')">
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Inline CSS for responsiveness -->
+<div style="display: block;">
+  <script>
+    // Automatically adjusts layout when window width changes
+    window.addEventListener('resize', function() {
+      let width = window.innerWidth;
+      if (width <= 768) {
+        // For smaller screens, adjust button and image sizes
+        document.querySelectorAll('p').forEach(function(el) {
+          el.style.fontSize = '14px';
+          el.style.marginLeft = '0';
+        });
+        document.querySelectorAll('button').forEach(function(el) {
+          el.style.fontSize = '14px';
+          el.style.width = '100%';
+        });
+        document.querySelectorAll('img').forEach(function(el) {
+          el.style.width = '25px';
+        });
+      } else {
+        // Reset to larger screen styles
+        document.querySelectorAll('p').forEach(function(el) {
+          el.style.fontSize = '15px';
+          el.style.marginLeft = '-190px';
+        });
+        document.querySelectorAll('button').forEach(function(el) {
+          el.style.fontSize = '16px';
+        });
+        document.querySelectorAll('img').forEach(function(el) {
+          el.style.width = '30px';
+        });
+      }
+    });
+  </script>
+</div>
+
+                <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+            </ion-card-header>
+            </ion-card>
+            </ion-col>
+
+            <!--Showroom Card-->
+            <ion-col  *ngFor="let car of filterShowroomData">
+              <ion-card class="btn-list"  >
+                <ion-card-header >
+  <div>
+          <ion-col >
+            <ion-card class="hotspot">
+              <ion-card-header>
+                <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                    <p style="margin-left: -60px; color: white;">{{ car.showroom_featured_type }}</p>
+                </div>
+          <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+          </ion-card-header>
+          </ion-card>
+            <div style="margin-top: -30px">
+
+            <ion-row >
+              <div style="width: 100%; text-align: center; margin-left: 0px;">
+                <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                  <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                </ion-avatar>  
+              </div>
+            </ion-row>
+                     </div>
+  
+                     <div style="width: 100%; align-items: center;margin-top: 0px;">
+                      <p class="main-heading truncate" >{{car.showroom_name}}</p><br>
+                      <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.showroom_city}}</p>
+                        <p class="sub-heading" style="color: gray;  ">
+                          <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.showroom_phone }}
+                        </p>
+                      
+                     
+                      
+                   
+                   <!-- First div for Fuel Type and Transmission -->
+                  <p class="sub-heading" style="color: gray; flex: 1; ">
+                    <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.showroom_web }}
+                  </p>
+                  <p class="sub-heading" style="color: gray; flex: 1; ">
+                    <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.showroom_address }}
+                  </p>
+                
+                <!-- Second div for Mileage and Location -->
+                  </div>
+            </ion-col>
+          </div>
+  
+  <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car showroom profile</b></p>
+  
+  <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+    <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <!-- Left side: Upgrade profile / Send payment -->
+      <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+        <div *ngIf="car.post_status === 'Active'">
+        <button *ngIf="!checkPaymentButton('showroom',car.car_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.car_showroom_ad_sale_id, 'showroom' , car.showroom_featured_type)">Upgrade profile</button>
+        <button *ngIf="checkPaymentButton('showroom',car.car_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_showroom_ad_sale_id)">Send payment</button>
+      </div>
+      </div>
+  
+      <!-- Right side: Edit and Delete buttons -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editShowroom(car.car_showroom_ad_sale_id)">
+        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_showroom_ad_sale_id, 'showroom')">
+      </div>
+    </div>
+  </div>
+                  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+              </ion-card-header>
+              </ion-card>
+              </ion-col>
+
+
+              <!--Insurance Card-->
+              <ion-col  *ngFor="let car of filterInsuranceData">
+                <ion-card class="btn-list" >
+                  <ion-card-header >
+              <div>
+              <ion-col >
+                <ion-card class="hotspot">
+                  <ion-card-header>
+                    <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                        <p style="margin-left: -60px; color: white;">{{ car.insurance_featured_type }}</p>
+                    </div>
+              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+              </ion-card-header>
+              </ion-card>
+              <div style="margin-top: -30px">
+               
+              <ion-row>
+                <div style="width: 100%; text-align: center; margin-left: 0px;">
+                  <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                  <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                    <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                  </ion-avatar> 
+                </div>
+              </ion-row> </div>
+              
+              <div style="width: 100%; align-items: center; margin-top: 0px;">
+                <p class="main-heading truncate truncate" >{{ car.insurance_name }}</p><br>
+                <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.insurance_city}}</p> 
+                  <p class="sub-heading" style="color: gray; ">
+                    <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.insurance_phone }}
+                  </p>   
+             <!-- First div for Fuel Type and Transmission -->
+          
+            <p class="sub-heading" style="color: gray; flex: 1; ">
+              <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.insurance_web }}
+            </p>
+            <p class="sub-heading" style="color: gray; flex: 1; ">
+              <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.insurance_address }}
+            </p>
+          
+          
+          <!-- Second div for Mileage and Location -->
+            </div>  
+              </ion-col>
+              </div>
+              
+              <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car insurance profile</b></p>          
+           
+              <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+                <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                  <!-- Left side: Upgrade profile / Send payment -->
+                  <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+                    <div *ngIf="car.post_status === 'Active'" >
+                    <button id="signin-upgrade" *ngIf="!checkPaymentButton('insurance',car.car_insurance_ad_sale_id)"  (click)="openPopup(car.car_insurance_ad_sale_id, 'insurance' , car.insurance_featured_type)">Upgrade profile</button>
+              <button *ngIf="checkPaymentButton('insurance',car.car_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_insurance_ad_sale_id)">Send payment</button>
+            </div>
+                  </div>
+              
+                  <!-- Right side: Edit and Delete buttons -->
+                  <div style="display: flex; align-items: center; gap: 20px;">
+                    <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editInsurance(car.car_insurance_ad_sale_id)">
+                    <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_insurance_ad_sale_id, 'insurance')">
+                  </div>
+                </div>
+              </div>
+            </ion-card-header>
+          </ion-card>
+          </ion-col>
+               
+
+
+               <!--Leasing Card-->
+                <ion-col  *ngFor="let car of filterLeasingData">
+                  <ion-card class="btn-list"  >
+                    <ion-card-header >
+                <div>
+                <ion-col >
+                  <ion-card class="hotspot">
+                    <ion-card-header>
+                      <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                          <p style="margin-left: -60px; color: white;">{{ car.leasing_featured_type }}</p>
+                      </div>
+                <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                </ion-card-header>
+                </ion-card>
+                <div style="margin-top: -30px">
+                  
+                <ion-row >
+                  <div style="width: 100%; text-align: center; margin-left: 0px;">
+                    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                    <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                      <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                    </ion-avatar>  
+                  </div>
+                </ion-row> </div>
+                
+                <div style="width: 100%; align-items: center; margin-top:0px;">
+                  <p class="main-heading truncate truncate" >{{ car.leasing_name }}</p><br>
+                  <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.leasing_city}}</p> 
+                    <p class="sub-heading" style="color: gray;  ">
+                      <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.leasing_phone }}
+                    </p>
+                      <p class="sub-heading" style="color: gray; flex: 1; ">
+                <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.leasing_web }}
+              </p>
+              <p class="sub-heading" style="color: gray; flex: 1; ">
+                <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.leasing_address }}
+              </p>
+            
+            <!-- Second div for Mileage and Location -->
+              </div>  
+                </ion-col>
+                </div>
+                
+                <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car leasing profile</b></p>
+
+                <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+                  <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <!-- Left side: Upgrade profile / Send payment -->
+                    <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+                      <div *ngIf="car.post_status === 'Active'" >
+                      <button *ngIf="!checkPaymentButton('leasing',car.car_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.car_leasing_ad_sale_id, 'leasing' , car.leasing_featured_type)">Upgrade profile</button>
+                      <button *ngIf="checkPaymentButton('leasing',car.car_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_leasing_ad_sale_id)">Send Payment</button>
+                    </div>
+                    </div>
+                
+                    <!-- Right side: Edit and Delete buttons -->
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                      <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editLeasing(car.car_leasing_ad_sale_id)">
+                      <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_leasing_ad_sale_id, 'leasing')">
+                    </div>
+                  </div>
+                </div>
+                
+                      <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                  </ion-card-header>
+                  </ion-card>
+                  </ion-col>
+
+
+                  <!--Importer Card-->
+                  <ion-col  *ngFor="let car of filterImporterData">
+                    <ion-card class="btn-list" >
+                      <ion-card-header >
+                  <div>
+                  <ion-col >
+                    <ion-card class="hotspot">
+                      <ion-card-header>
+                        <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                            <p style="margin-left: -60px; color: white;">{{ car.importer_featured_type }}</p>
+                        </div>
+                  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                  </ion-card-header>
+                  </ion-card>
+                  <div style="margin-top: -30px">
+                   
+                  <ion-row >
+                    <div style="width: 100%; text-align: center; margin-left: 0px;">
+                      <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                      <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                        <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                      </ion-avatar> 
+                    </div>
+                  </ion-row> </div>
+                  <div style="width: 100%; align-items: center; margin-top:0px;">
+                    <p class="main-heading truncate" >{{ car.importer_name}}</p><br>
+                    <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.importer_city}}</p> 
+                      <p class="sub-heading" style="color: gray;  ">
+                        <ion-icon name="call" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_phone }}
+                      </p>       
+                <p class="sub-heading" style="color: gray; flex: 1; ">
+                  <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_web }}
+                </p>
+                <p class="sub-heading" style="color: gray; flex: 1; ">
+                  <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_address }}
+                </p>
+              
+              
+              
+              </div>
+                  </ion-col>
+                  </div>
+                  
+                  <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car importer profile</b></p>
+                  
+                  
+
+                  <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+                    <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                      <!-- Left side: Upgrade profile / Send payment -->
+                      <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+                        <div *ngIf="car.post_status === 'Active'" >
+                        <button id="signin-upgrade" *ngIf="!checkPaymentButton('importer',car.car_importer_ad_sale_id)"  (click)="openPopup(car.car_importer_ad_sale_id, 'importer' , car.importer_featured_type)">Upgrade profile</button>
+                  <button *ngIf="checkPaymentButton('importer',car.car_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.importer_ad_sale_id)">Send Payment</button>
+                </div>
+                      </div>
+                  
+                      <!-- Right side: Edit and Delete buttons -->
+                      <div style="display: flex; align-items: center; gap: 20px;">
+                        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editImporter(car.car_importer_ad_sale_id)">
+                        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_importer_ad_sale_id, 'importer')">
+                      </div>
+                    </div>
+                  </div>
+                        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                    </ion-card-header>
+                    </ion-card>
+                    </ion-col>
+
+
+                    <!--Exporter Data-->
+                    <ion-col  *ngFor="let car of filterExporterData">
+                      <ion-card class="btn-list">
+                        <ion-card-header >
+                    <div>
+                    <ion-col >
+                      <ion-card class="hotspot">
+                        <ion-card-header>
+                          <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                              <p style="margin-left: -60px; color: white;">{{ car.exporter_featured_type }}</p>
+                          </div>
+                    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                    </ion-card-header>
+                    </ion-card>
+                    <div style="margin-top: -30px">
+                     
+                    <ion-row >
+                      <div style="width: 100%; text-align: center; margin-left: 0px;">
+                        <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                        <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                          <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                        </ion-avatar>  
+                      </div>
+                    </ion-row> </div>
+                    
+                    <div style="width: 100%; align-items: center;margin-top: 0px;">
+                      <p class="main-heading truncate truncate" >{{ car.exporter_name }}</p><br>
+                      <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.exporter_city}}</p> 
+                        <p class="sub-heading" style="color: gray; ">
+                          <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.exporter_phone }}
+                        </p>      
+                  <p class="sub-heading" style="color: gray; flex: 1; ">
+                    <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.exporter_web }}
+                  </p>
+                  <p class="sub-heading" style="color: gray; flex: 1; ">
+                    <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.exporter_address }}
+                  </p>
+                <!-- Second div for Mileage and Location -->
+                  </div> 
+                    </ion-col>
+                    </div>
+                    
+                    <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car exporter profile</b></p>
+                    <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+                      <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <!-- Left side: Upgrade profile / Send payment -->
+                        <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+                          <div *ngIf="car.post_status === 'Active'" >
+                          <button id="signin-upgrade" *ngIf="!checkPaymentButton('exporter',car.car_exporter_ad_sale_id)" (click)="openPopup(car.car_exporter_ad_sale_id ,'exporter' , car.exporter_featured_type)">Upgrade profile</button>
+                    <button *ngIf="checkPaymentButton('exporter',car.car_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_exporter_ad_sale_id)">Send Payment</button>
+                  </div>
+                        </div>
+                    
+                        <!-- Right side: Edit and Delete buttons -->
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                          <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editExporter(car.car_exporter_ad_sale_id)">
+                          <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.car_exporter_ad_sale_id, 'exporter')">
+                        </div>
+                      </div>
+                    </div>
+                          <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                      </ion-card-header>
+                      </ion-card>
+                      </ion-col>
+
+
+                      <!--Workshop Card-->
+                      <ion-col  *ngFor="let car of filterWorkshopData">
+                        <ion-card class="btn-list"  >
+                          <ion-card-header >
+                      <div>
+                      <ion-col >
+                        <ion-card class="hotspot">
+                          <ion-card-header>
+                            <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                                <p style="margin-left: -60px; color: white;">{{ car.workshop_featured_type }}</p>
+                            </div>
+                      <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                      </ion-card-header>
+                      </ion-card>
+                      <div style="margin-top: -30px">
+                        
+                      <ion-row >
+                        <div style="width: 100%; text-align: center; margin-left: 0px;">
+                          <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                          <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                            <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                          </ion-avatar> 
+                        </div>
+                      </ion-row></div>
+                      <div style="width: 100%; align-items: center; margin-top:0px;">
+                        <p class="main-heading truncate" >{{ car.workshop_name}}</p><br>
+                        <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.workshop_city}}</p> 
+                          <p class="sub-heading" style="color: gray;  ">
+                            <ion-icon name="call" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.workshop_phone }}
+                          </p>
+                       <p class="sub-heading" style="color: gray; flex: 1; ">
+                      <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.workshop_web }}
+                    </p>
+                    <p class="sub-heading" style="color: gray; flex: 1; ">
+                      <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.workshop_address }}
+                    </p>
+                    </div>
+                      </ion-col>
+                      </div>
+                      
+                      <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car workshop profile</b></p>
+                      
+                    
+                      <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+                        <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                          <!-- Left side: Upgrade profile / Send payment -->
+                          <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+                            <div *ngIf="car.post_status === 'Active'" >
+                            <button id="signin-upgrade" *ngIf="!checkPaymentButton('workshop',car.car_workshop_ad_sale_id)" (click)="openPopup(car.car_workshop_ad_sale_id, 'workshop' , car.workshop_featured_type)">Upgrade profile</button>
+                      <button *ngIf="checkPaymentButton('workshop',car.car_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_workshop_ad_sale_id)">Send Payment</button>
+                    </div>
+                          </div>
+                      
+                          <!-- Right side: Edit and Delete buttons -->
+                          <div style="display: flex; align-items: center; gap: 20px;">
+                            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editWorkshop(car.car_workshop_ad_sale_id)">
+                            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.car_workshop_ad_sale_id, 'workshop')">
+                          </div>
+                        </div>
+                      </div>
+                            <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                        </ion-card-header>
+                        </ion-card>
+                        </ion-col>
+
+                        <!--School Card-->
+                        <ion-col  *ngFor="let car of filterSchoolData">
+                          <ion-card class="btn-list"  >
+                            <ion-card-header >
+                        <div>
+                        <ion-col >
+                          <ion-card class="hotspot">
+                            <ion-card-header>
+                              <div style="width: 100px; margin-top: -20px; border-radius: 13px;">
+                                  <p style="margin-left: -60px; color: white;">{{ car.school_featured_type }}</p>
+                              </div>
+                        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                        </ion-card-header>
+                        </ion-card>
+                        <div style="margin-top: -30px">
+                         
+                        <ion-row >
+                          <div style="width: 100%; text-align: center; margin-left: 0px;">
+                            <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+                            <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+                              <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+                            </ion-avatar>  
+                          </div>
+                        </ion-row> </div>
+                        
+                        <div style="width: 100%; align-items: center;margin-top: 0px;">
+                          <p class="main-heading truncate truncate" >{{ car.school_name }}</p><br>
+                          <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.school_city}}</p> 
+                            <p class="sub-heading" style="color: gray;  ">
+                              <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.school_phone }}
+                            </p>  
+                      <p class="sub-heading" style="color: gray; flex: 1; ">
+                        <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.school_web }}
+                      </p>
+                      <p class="sub-heading" style="color: gray; flex: 1; ">
+                        <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.school_address }}
+                      </p>
+                    
+                    <!-- Second div for Mileage and Location -->
+                      </div>  
+                        </ion-col>
+                        </div>
+                        
+                        <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car school profile</b></p>                      
+                       
+                        <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
+                          <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <!-- Left side: Upgrade profile / Send payment -->
+                            <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
+                              <div *ngIf="car.post_status === 'Active'" >
+                              <button id="signin-upgrade"  *ngIf="!checkPaymentButton('school',car.car_school_ad_sale_id)"  (click)="openPopup(car.car_school_ad_sale_id, 'school' , car.school_featured_type)">Upgrade profile</button>
+                        <button *ngIf="checkPaymentButton('school',car.car_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_school_ad_sale_id)">Send Payment</button>
+                      </div>
+                            </div>
+                        
+                            <!-- Right side: Edit and Delete buttons -->
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                              <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editSchool(car.car_school_ad_sale_id)">
+                              <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.car_school_ad_sale_id, 'school')">
+                            </div>
+                          </div>
+                        </div>
+                              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                          </ion-card-header>
+                          </ion-card>
+                          </ion-col>
+              
+            </div>
+<!--  -->
+<p style="font-size: 19px; margin-top: 40px; text-align: center; padding-right: 10px; width: 100%;">Post your <span style="color: darkblue;"><b>Ads on these</b></span> business profile</p>
+            
+  <!-- card 1 -Car-->
+  <div style="text-align: -webkit-center;"  *ngIf="dealer">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostDealer()">
+        <ion-card-header>
+          <ion-row>
+            <ion-col width="60%" >
+              <img src="../../../assets/Menu-items/After login/All other section menu/dealer.png" style="width: 90px; margin-top: 10px; margin-left: -30px;">
+            </ion-col>
+            <ion-col width="60%">
+              <p style="font-size: 15px; margin-top: 40px; text-align: center; padding-right: 10px; width: 100%;">Post your <span style="color: darkblue;"><b>Dealer</b></span> business profile</p>
+            </ion-col>
+      </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 2 -Bikes-->
+      <div style="text-align: -webkit-center; margin-top: -30px;" *ngIf="showroom">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostShowroom()">
+        <ion-card-header>
+      <ion-row>
+      <ion-col width="60%" >
+        <p style="font-size: 15px; text-align: center; padding: 30px 10px 0px 10px;">Post your <span style="color: darkblue;"><b>Show-room</b></span> business profile</p>
+      </ion-col>
+
+      <ion-col width="60%">
+        <img src="../../../assets/Menu-items/After login/Car menu/car-showroom.png" style="width: 90px; margin-top: 10px; margin-left: 0px;">
+      </ion-col>
+    </ion-row>
+          <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 3  -Commercial Vehicles-->
+      <div style="text-align: -webkit-center; margin-top: -30px;" *ngIf="insurance">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostInsurance()">
+        <ion-card-header>
+<ion-row>
+          <ion-col width="60%">
+          <img src="../../assets/Menu-items/After login/Car menu/insurance.png" style="width: 90px; margin-top: 10px; margin-left: -30px;">
+        </ion-col>
+
+        <ion-col width="60%">
+          <p style="font-size: 15px; text-align: center; padding: 30px 0px 0px 0px; width: 100%;">Post your <span style="color: darkblue;"><b>Insurance</b></span> business profile</p>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <div style="width: 100%; text-align: -webkit-right; margin-left: -50px;">
+        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; margin-top: -40px;"></div>
+        <div style="width: 100%; text-align: -webkit-right; margin-left: 0px;">
+        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; margin-top: -80px;">
+      </div>
+    </ion-row> -->
+
+            <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 3/2  -Commercial Vehicles-->
+     
+
+
+      <!-- card 4 -Loader -->
+      <div style="text-align: -webkit-center; margin-top: -30px;"  *ngIf="leasing">
+        <ion-col>
+          <ion-card class="btn-car" (click)="navigateToPostLeasing()">
+            <ion-card-header>
+              <ion-row>
+          <ion-col width="60%" >
+            <p style="font-size: 15px; text-align: center; padding: 30px 0px 0px 0px;">Post your <span style="color: darkblue;"><b>Leasing</b></span> business profile</p>
+          </ion-col>
+          <ion-col width="60%">
+            <img src="../../../assets/Menu-items/After login/Car menu/leasing.png" style="width: 90px; margin-top: 10px; margin-left: 00px;">
+          </ion-col>
+        </ion-row>
+              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+          </ion-card-header>
+          </ion-card>
+          </ion-col>
+          </div>
+
+            <!-- card 5 -Industrial plants-->
+  <div style="text-align: -webkit-center; margin-top: -30px;"  *ngIf="importer">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostImporter()">
+        <ion-card-header>
+          <!-- <p style="font-size: 16px; text-align: center; padding: 0px 5px 0px 5px;">Post your <span style="color: darkblue;"><b>Leasing</b></span> business profile</p> -->
+          <ion-row>
+      <ion-col width="60%" >
+        <img src="../../../assets/Menu-items/After login/Car menu/importer.png" style="width: 90px; margin-top: 10px; margin-left: -30px;">
+      </ion-col>
+      <ion-col width="60%">
+        <p style="font-size: 15px; text-align: center; padding: 30px 0px 0px 0px;">Post your <span style="color: darkblue;"><b>Importer</b></span> business profile</p>
+      </ion-col>
+      </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 6 -Exporter-->
+  <div style="text-align: -webkit-center; margin-top: -30px;"  *ngIf="exporter">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostExporter()">
+        <ion-card-header>
+          <!-- <p style="font-size: 16px; text-align: center; padding: 0px 5px 0px 5px;">Post your <span style="color: darkblue;"><b>Leasing</b></span> business profile</p> -->
+          <ion-row>
+      <ion-col width="60%">
+        <p style="font-size: 15px; text-align: center; padding: 30px 0px 0px 0px;">Post your <span style="color: darkblue;"><b>Exporter</b></span> business profile</p>
+      </ion-col>
+      <ion-col width="60%" >
+        <img src="../../../assets/Menu-items/After login/Car menu/exporter.png" style="width: 90px; margin-top: 10px; margin-left: 0px;">
+      </ion-col>
+    </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 7 -Workshop-->
+  <div style="text-align: -webkit-center; margin-top: -30px;" *ngIf="workshop">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostWorkshop()">
+        <ion-card-header>
+          <ion-row>
+      <ion-col width="60%" >
+        <img src="../../../assets/Menu-items/After login/Car menu/workshop.png" style="width: 90px; margin-top: 10px; margin-left: -30px;">
+      </ion-col>
+      <ion-col width="60%">
+        <p style="font-size: 15px; text-align: center; padding: 30px 0px 0px 0px;">Post your <span style="color: darkblue;"><b>Workshop</b></span> business profile</p>
+      </ion-col>
+      </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+      <!-- card 8 -Driving-School-->
+  <div style="text-align: -webkit-center; margin-top: -30px;" *ngIf="school">
+    <ion-col>
+      <ion-card class="btn-car" (click)="navigateToPostSchool()">
+        <ion-card-header>
+          <!-- <p style="font-size: 16px; text-align: center; padding: 0px 5px 0px 5px;">Post your <span style="color: darkblue;"><b>Leasing</b></span> business profile</p> -->
+          <ion-row>
+            <ion-col width="60%">
+              <p style="font-size: 15px; text-align: center; padding: 30px 0px 0px 0px;">Post your <span style="color: darkblue;"><b>Driving-School</b></span> business profile</p>
+            </ion-col>
+
+            <ion-col width="60%" >
+        <img src="../../../assets/Menu-items/After login/Car menu/driving-school.png" style="width: 90px; margin-top: 10px; margin-left: 0px;">
+      </ion-col>
+      </ion-row>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+      </ion-col>
+      </div>
+
+
+
+
+         <!-- Popup div -->
+<!-- Main Component Template (e.g., home.component.html) -->
+<div id="popupDiv1" class="popup-div" *ngIf="isPopupVisible" style="z-index: 999;">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+    <span class="close-btn" (click)="closePopup()">&times;</span>
+    
+    <!-- Popup Header -->
+    <h2>Upgrade Your Plan</h2>
+    
+    <!-- Popup Description -->
+    <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+    
+    <!-- Additional Content -->
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Access to all premium features
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Priority customer support
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Unlimited usage
+      </ion-item>
+    </ion-list>
+    
+    <!-- Popup Buttons -->
+    <div class="popup-buttons">
+      <ion-button (click)="buttonOneAction('Hotspot')">Hotspot</ion-button>
+      <ion-button (click)="buttonTwoAction('Supreme')">Supreme</ion-button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="popupDiv1" class="popup-div" *ngIf="isPopupVisibleDiv" style="z-index: 999;">
+  <div class="popup-content">
+    <!-- Close button inside the popup -->
+    <span class="close-btn" (click)="closePopup()">&times;</span>
+    
+    <!-- Popup Header -->
+    <h2>Upgrade Your Plan</h2>
+    
+    <!-- Popup Description -->
+    <p>Experience the full benefits of our services by upgrading to a premium plan. Get access to exclusive features and premium support.</p>
+    
+    <!-- Additional Content -->
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Access to all premium features
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Priority customer support
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+        Unlimited usage
+      </ion-item>
+    </ion-list>
+    
+    <!-- Popup Buttons -->
+    <div class="popup-buttons">
+      <ion-button (click)="buttonTwoAction('Supreme')">Supreme</ion-button>
+    </div>
+  </div>
+</div>
+
+
 </ion-content>
+
+

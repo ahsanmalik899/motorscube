@@ -18,8 +18,8 @@ interface Car {
   vehicle_power_transmission: string;
   vehicle_doors: string;
   vehicle_location: string;
-  vehicle_model: string;
-  vehicle_version: string;
+  vehicle_type: string;
+  vehicle_sub_type: string;
   vehicle_make: string;
   vehicle_price: string;
   vehicle_year: string;
@@ -145,7 +145,7 @@ export class CommercialHireListingPage implements OnInit {
       if (this.selectedCategory && car.vehicle_body_type !== this.selectedCategory) return false;
       if (this.selectedcolor && car.vehicle_color !== this.selectedcolor) return false;
       if (this.selectedSellerType && car.vehicle_private_trader !== this.selectedSellerType) return false;
-      if (this.selectedModelVersion && `${car.vehicle_model} ${car.vehicle_version}` !== this.selectedModelVersion) return false;
+      if (this.selectedModelVersion && `${car.vehicle_type} ${car.vehicle_sub_type}` !== this.selectedModelVersion) return false;
 
       return true;
     });

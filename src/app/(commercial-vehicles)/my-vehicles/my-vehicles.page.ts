@@ -284,7 +284,7 @@ async buttonOneAction(id: string, saletype: string) {
  
 
   async editSale(id: any){
-    this.router.navigate(['/car-ad-sale-update'], {
+    this.router.navigate(['/update-vehicle-sale-post'], {
       queryParams: {
         adsId: id,
       }
@@ -292,7 +292,7 @@ async buttonOneAction(id: string, saletype: string) {
   }
 
   async editHire(id: any){
-    this.router.navigate(['/car-ad-hire-update'], {
+    this.router.navigate(['/update-vehicle-hire-post'], {
       queryParams: {
         adsId: id,
       }
@@ -341,8 +341,8 @@ async buttonOneAction(id: string, saletype: string) {
       next: (data) => {
         this.carpostData = data;
         this.filteredCarPostData = this.carpostData.filter(item => item.user_id === this.userID);
-        this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Hire');
-        this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Sale');
+        this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Hire');
+        this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Sale');
         this.hideLoader(loader);
       },
       error: (error) => {

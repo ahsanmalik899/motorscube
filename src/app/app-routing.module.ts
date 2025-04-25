@@ -559,14 +559,7 @@ const routes: Routes = [
     path: 'commercial-vehicle-buseness',
     loadChildren: () => import('./(commercial-vehicles)/commercial-vehicle-buseness/commercial-vehicle-buseness.module').then( m => m.CommercialVehicleBusenessPageModule)
   },
-  {
-    path: 'update-vehicle-sale',
-    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-sale/update-vehicle-sale.module').then( m => m.UpdateVehicleSalePageModule)
-  },
-  {
-    path: 'update-vehicle-hire',
-    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-hire/update-vehicle-hire.module').then( m => m.UpdateVehicleHirePageModule)
-  },
+
   {
     path: 'post-vehicle-sale-ad',
     loadChildren: () => import('./(commercial-vehicles)/post-vehicle-sale-ad/post-vehicle-sale-ad.module').then( m => m.PostVehicleSaleAdPageModule)
@@ -583,6 +576,71 @@ const routes: Routes = [
     path: 'update-vehicle-hire-post',
     loadChildren: () => import('./(commercial-vehicles)/update-vehicle-hire-post/update-vehicle-hire-post.module').then( m => m.UpdateVehicleHirePostPageModule)
   },
+  {
+    path: 'post-vehicle-insurance',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-insurance/post-vehicle-insurance.module').then( m => m.PostVehicleInsurancePageModule)
+  },
+  {
+    path: 'post-vehicle-leasing',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-leasing/post-vehicle-leasing.module').then( m => m.PostVehicleLeasingPageModule)
+  },
+  {
+    path: 'post-vehicle-dealer',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-dealer/post-vehicle-dealer.module').then( m => m.PostVehicleDealerPageModule)
+  },
+  {
+    path: 'post-vehicle-showroom',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-showroom/post-vehicle-showroom.module').then( m => m.PostVehicleShowroomPageModule)
+  },
+  {
+    path: 'post-vehicle-importer',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-importer/post-vehicle-importer.module').then( m => m.PostVehicleImporterPageModule)
+  },
+  {
+    path: 'post-vehicle-driving-school',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-driving-school/post-vehicle-driving-school.module').then( m => m.PostVehicleDrivingSchoolPageModule)
+  },
+  {
+    path: 'post-vehicle-workshop',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-workshop/post-vehicle-workshop.module').then( m => m.PostVehicleWorkshopPageModule)
+  },
+  {
+    path: 'post-vehicle-exporter',
+    loadChildren: () => import('./(commercial-vehicles)/post-vehicle-exporter/post-vehicle-exporter.module').then( m => m.PostVehicleExporterPageModule)
+  },
+  {
+    path: 'update-vehicle-dealer',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-dealer/update-vehicle-dealer.module').then( m => m.UpdateVehicleDealerPageModule)
+  },
+  {
+    path: 'update-vehicle-driving-school',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-driving-school/update-vehicle-driving-school.module').then( m => m.UpdateVehicleDrivingSchoolPageModule)
+  },
+  {
+    path: 'update-vehicle-exporter',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-exporter/update-vehicle-exporter.module').then( m => m.UpdateVehicleExporterPageModule)
+  },
+  {
+    path: 'update-vehicle-importer',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-importer/update-vehicle-importer.module').then( m => m.UpdateVehicleImporterPageModule)
+  },
+  {
+    path: 'update-vehicle-leasing',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-leasing/update-vehicle-leasing.module').then( m => m.UpdateVehicleLeasingPageModule)
+  },
+  {
+    path: 'update-vehicle-showroom',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-showroom/update-vehicle-showroom.module').then( m => m.UpdateVehicleShowroomPageModule)
+  },
+  {
+    path: 'update-vehicle-workshop',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-workshop/update-vehicle-workshop.module').then( m => m.UpdateVehicleWorkshopPageModule)
+  },
+  {
+    path: 'update-vehicle-insurance',
+    loadChildren: () => import('./(commercial-vehicles)/update-vehicle-insurance/update-vehicle-insurance.module').then( m => m.UpdateVehicleInsurancePageModule)
+  },
+
 
 
 

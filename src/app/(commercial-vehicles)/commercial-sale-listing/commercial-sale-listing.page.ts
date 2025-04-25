@@ -20,6 +20,8 @@ interface Car {
   vehicle_model: string;
   vehicle_version: string;
   vehicle_make: string;
+  vehicle_type: string;
+  vehicle_sub_type: string;
   vehicle_price: string;
   vehicle_year: string;
   vehicle_mileage: string;
@@ -121,12 +123,7 @@ export class CommercialSaleListingPage implements OnInit {
       this.route.queryParams.subscribe(params => {
           if (params) {
               this.selectedcon = params['selectedcon'] ? params['selectedcon'].split(',') : [];
-              this.selectedmake = params['selectedmake']
-              ? params['selectedmake']
-                  .split(',')
-                  .map((make: string) => make.replace(/\s+/g, ' ').trim())
-              : [];
-            
+              this.selectedmake = params['selectedmake'] && typeof params['selectedmake'] === 'string' ? params['selectedmake'].split(',') : [];            
               this.selectedcity = params['selectedcity'] ? params['selectedcity'].split(',') : [];
               this.selectedhighprice = params['highprice'] || '';
               this.selectedlowprice = params['lowprice'] || '';
@@ -244,7 +241,7 @@ isSellerTypeMatch(car: Car): boolean {
 }
 
 isModelVersionMatch(car: Car): boolean {
-  return !this.selectedModelVersion || `${car.vehicle_model} ${car.vehicle_version}` === this.selectedModelVersion;
+  return !this.selectedModelVersion || `${car.vehicle_type} ${car.vehicle_sub_type}` === this.selectedModelVersion;
 }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicSlides, PopoverController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
@@ -129,7 +129,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   selectedEngineHighSize: string;
   filteredHighEngineSizes: string[];
   selectedValuesString = '';
-  constructor(public route: Router, private popoverController: PopoverController, private userService: UserService,private commrcialservice:CommercialService) {
+  constructor(public route: Router,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService,private commrcialservice:CommercialService) {
     this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
   this.selectedMake = localStorage.getItem('selectedmake') || '';
   this.selectedModel = localStorage.getItem('selectedmodel') || '';
@@ -600,36 +600,48 @@ selectModelVersion(combinedModelVersion: string) {
   this.popoverController.dismiss();
 }
 fetchModelsAndVersions(make: string) {
-  // Create FormData for the selected make
   const makeData = new FormData();
   makeData.append('make', make);
 
-  this.userService.getModels(makeData).subscribe({
+  this.commrcialservice.getModels().subscribe({
     next: (modelsData: string[]) => {
       this.models = modelsData;
       this.combinedModelVersions = [];  // Clear previous combinations
       this.filteredCombinedModelVersions = [];  // Reset filtered versions
 
-      // Fetch versions for each model and combine with model
-      modelsData.forEach(model => {
+      // Array to store version fetch promises
+      const versionRequests = modelsData.map(model => {
         const versionData = new FormData();
         versionData.append('make', make);
         versionData.append('model', model);
 
-        this.userService.getVersions(versionData).subscribe({
-          next: (versionsData: string[]) => {
+        return this.commrcialservice.getVersions(versionData).toPromise()
+          .catch(error => {
+            console.error(`Error fetching versions for model ${model}:`, error);
+            return [];  // Return an empty array if there's an error fetching versions for this model
+          });
+      });
+
+      // Wait for all version fetches to complete
+      Promise.all(versionRequests).then(results => {
+        results.forEach((versionsData, index) => {
+          const model = modelsData[index];
+
+          // Ensure versionsData is an array before processing
+          if (Array.isArray(versionsData) && versionsData.length > 0) {
             versionsData.forEach(version => {
-              // Combine model and version to create model-version combinations
               this.combinedModelVersions.push(`${model} ${version}`);
             });
-
-            // Update filtered list of combined model-version combinations
-            this.filteredCombinedModelVersions = [...this.combinedModelVersions];
-          },
-          error: (error: any) => {
-            console.error('Error fetching versions for model:', error);
+          } else {
+            console.warn(`No valid version data for model ${model}`);
           }
         });
+
+        // Populate the filtered list with all model-version combinations initially
+        this.filteredCombinedModelVersions = [...this.combinedModelVersions];
+        this.cdRef.detectChanges();  // Trigger change detection
+      }).catch(error => {
+        console.error('Error fetching versions for models:', error);
       });
     },
     error: (error: any) => {
@@ -637,6 +649,7 @@ fetchModelsAndVersions(make: string) {
     }
   });
 }
+
 
 loadSelectedModelsversion() {
   const selectedMakesModels = this.selectedModelVersion

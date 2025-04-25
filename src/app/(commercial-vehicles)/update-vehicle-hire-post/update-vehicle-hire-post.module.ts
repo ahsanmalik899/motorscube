@@ -15,6 +15,6 @@ import { UpdateVehicleHirePostPage } from './update-vehicle-hire-post.page';
     IonicModule,
     UpdateVehicleHirePostPageRoutingModule
   ],
-  declarations: [UpdateVehicleHirePostPage]
+ 
 })
 export class UpdateVehicleHirePostPageModule {}

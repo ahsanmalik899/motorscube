@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { IonicSlides, PopoverController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
 import { UserService } from 'src/app/(services)/user.service';
-
+ import { forkJoin } from 'rxjs';
+  
+ import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-vehical-hire-filter',
   templateUrl: './vehical-hire-filter.page.html',
@@ -127,7 +129,7 @@ export class VehicalHireFilterPage implements OnInit {
         selectedversionarray: string[] = [];
         selectedValues: string[] = [];
         filteredMakesModels: string[] = [];
-        constructor(public route: Router,private commerrcialservice:CommercialService, private popoverController: PopoverController, private userService: UserService) {
+        constructor(public route: Router,private commerrcialservice:CommercialService,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService) {
           this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
         this.selectedMake = localStorage.getItem('selectedmake') || '';
         this.selectedModelVersion= this.getStoredValue('selectedmodelversion');
@@ -283,7 +285,7 @@ export class VehicalHireFilterPage implements OnInit {
         fetchModels() {
           const formData = new FormData();
           formData.append('make', this.selectedMake);
-          this.userService.getModels(formData).subscribe({
+          this.commerrcialservice.getModels().subscribe({
             next: (data: string[]) => {
               this.models = data;
               this.filteredModels = [...this.models];
@@ -675,37 +677,53 @@ export class VehicalHireFilterPage implements OnInit {
     this.showmodel2 = true;  // Hide the make/model selectio
     this.popoverController.dismiss();
   }
+
+
+  
+  
   fetchModelsAndVersions(make: string) {
-    // Create FormData for the selected make
     const makeData = new FormData();
     makeData.append('make', make);
   
-    this.userService.getModels(makeData).subscribe({
+    this.commerrcialservice.getModels().subscribe({
       next: (modelsData: string[]) => {
         this.models = modelsData;
         this.combinedModelVersions = [];  // Clear previous combinations
         this.filteredCombinedModelVersions = [];  // Reset filtered versions
   
-        // Fetch versions for each model and combine with model
-        modelsData.forEach(model => {
+        // Array to store version fetch promises
+        const versionRequests = modelsData.map(model => {
           const versionData = new FormData();
           versionData.append('make', make);
           versionData.append('model', model);
   
-          this.userService.getVersions(versionData).subscribe({
-            next: (versionsData: string[]) => {
+          return this.commerrcialservice.getVersions(versionData).toPromise()
+            .catch(error => {
+              console.error(`Error fetching versions for model ${model}:`, error);
+              return [];  // Return an empty array if there's an error fetching versions for this model
+            });
+        });
+  
+        // Wait for all version fetches to complete
+        Promise.all(versionRequests).then(results => {
+          results.forEach((versionsData, index) => {
+            const model = modelsData[index];
+  
+            // Ensure versionsData is an array before processing
+            if (Array.isArray(versionsData) && versionsData.length > 0) {
               versionsData.forEach(version => {
-                // Combine model and version to create model-version combinations
                 this.combinedModelVersions.push(`${model} ${version}`);
               });
-  
-              // Update filtered list of combined model-version combinations
-              this.filteredCombinedModelVersions = [...this.combinedModelVersions];
-            },
-            error: (error: any) => {
-              console.error('Error fetching versions for model:', error);
+            } else {
+              console.warn(`No valid version data for model ${model}`);
             }
           });
+  
+          // Populate the filtered list with all model-version combinations initially
+          this.filteredCombinedModelVersions = [...this.combinedModelVersions];
+          this.cdRef.detectChanges();  // Trigger change detection
+        }).catch(error => {
+          console.error('Error fetching versions for models:', error);
         });
       },
       error: (error: any) => {
@@ -713,6 +731,11 @@ export class VehicalHireFilterPage implements OnInit {
       }
     });
   }
+  
+  
+  
+  
+  
   
   loadSelectedModelsversion() {
     const selectedMakesModels = this.selectedModelVersion
@@ -730,15 +753,12 @@ export class VehicalHireFilterPage implements OnInit {
       // Show selected makes section if any are selected
   }
   filterCombinedModelVersions(event: any) {
-    const searchTerm = event.target.value.trim().toLowerCase();  // Get the search term
-    if (!searchTerm) {
-      this.filteredCombinedModelVersions = this.combinedModelVersions;  // If no search term, show all combined versions
-    } else {
-      this.filteredCombinedModelVersions = this.combinedModelVersions.filter(combined => 
-        combined.toLowerCase().includes(searchTerm)  // Filter combined versions based on search term
-      );
-    }
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredCombinedModelVersions = this.combinedModelVersions.filter(combined =>
+      combined.toLowerCase().includes(searchTerm)
+    );
   }
+  
   // Method to clear the selected model-version combination
   clearSelectedModelVersion() {
     this.selectedModelVersion = '';

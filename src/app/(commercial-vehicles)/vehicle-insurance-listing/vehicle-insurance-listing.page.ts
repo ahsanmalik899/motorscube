@@ -59,12 +59,12 @@ export class VehicleInsuranceListingPage implements OnInit {
   }
   // Filter button to go to another page (e.g., filter options)
   filter() {
-    this.router.navigate(['vehicle-insurance-filter']);
+    this.router.navigate(['listing-insurance-filter']);
   }
 
 // Fetch the insurance data from the backend with caching
 fetchinsuranceData() {
-  // Always fetch data from API, no caching
+  // Always fetch data from API
   this.commercialservice.getinsuranceData().subscribe({
     next: (data: any[]) => {
       this.insuranceData = data;
@@ -77,7 +77,6 @@ fetchinsuranceData() {
     }
   });
 }
-
 
 
   // Sort cars by a specific type (oldest, newest, etc.)

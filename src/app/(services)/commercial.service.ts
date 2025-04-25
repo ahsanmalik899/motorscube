@@ -79,4 +79,16 @@ export class CommercialService {
       // Assuming you have an API endpoint to save user data
       return this.http.post<any>(this.apiUrl + 'save_vehicle_hire_post.php', formData);
   }
+  commercialSaleUpdate(userData: any): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_vehicle_sale_update.php', userData);
+  }
+  commercoalHireUpdate(userData: any): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'save_vehicle_hire_update.php', userData);
+  }
+  carDeletePostBusines(userData: any): Observable<any> {
+    // Assuming you have an API endpoint to save user data
+    return this.http.post<any>(this.apiUrl + 'delete_vehicle_post_busines.php', userData);
+  }
 }

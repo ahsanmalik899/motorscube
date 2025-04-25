@@ -69,6 +69,24 @@ import { VehicleSaleFilterPage } from './(commercial-vehicles)/vehicle-sale-filt
 import { VehicalHireFilterPage } from './(commercial-vehicles)/vehical-hire-filter/vehical-hire-filter.page';
 import { PostVehicleHirePage } from './(commercial-vehicles)/post-vehicle-hire/post-vehicle-hire.page';
 import { PostVehicleSaleAdPage } from './(commercial-vehicles)/post-vehicle-sale-ad/post-vehicle-sale-ad.page';
+import { UpdateVehicleHirePostPage } from './(commercial-vehicles)/update-vehicle-hire-post/update-vehicle-hire-post.page';
+import { UpdateVehicleSalePostPage } from './(commercial-vehicles)/update-vehicle-sale-post/update-vehicle-sale-post.page';
+import { UpdateVehicleWorkshopPage } from './(commercial-vehicles)/update-vehicle-workshop/update-vehicle-workshop.page';
+import { UpdateVehicleShowroomPage } from './(commercial-vehicles)/update-vehicle-showroom/update-vehicle-showroom.page';
+import { UpdateVehicleLeasingPage } from './(commercial-vehicles)/update-vehicle-leasing/update-vehicle-leasing.page';
+import { UpdateVehicleInsurancePage } from './(commercial-vehicles)/update-vehicle-insurance/update-vehicle-insurance.page';
+import { UpdateVehicleImporterPage } from './(commercial-vehicles)/update-vehicle-importer/update-vehicle-importer.page';
+import { UpdateVehicleExporterPage } from './(commercial-vehicles)/update-vehicle-exporter/update-vehicle-exporter.page';
+import { UpdateVehicleDrivingSchoolPage } from './(commercial-vehicles)/update-vehicle-driving-school/update-vehicle-driving-school.page';
+import { UpdateVehicleDealerPage } from './(commercial-vehicles)/update-vehicle-dealer/update-vehicle-dealer.page';
+import { PostVehicleWorkshopPage } from './(commercial-vehicles)/post-vehicle-workshop/post-vehicle-workshop.page';
+import { PostVehicleShowroomPage } from './(commercial-vehicles)/post-vehicle-showroom/post-vehicle-showroom.page';
+import { PostVehicleLeasingPage } from './(commercial-vehicles)/post-vehicle-leasing/post-vehicle-leasing.page';
+import { PostVehicleInsurancePage } from './(commercial-vehicles)/post-vehicle-insurance/post-vehicle-insurance.page';
+import { PostVehicleImporterPage } from './(commercial-vehicles)/post-vehicle-importer/post-vehicle-importer.page';
+import { PostVehicleExporterPage } from './(commercial-vehicles)/post-vehicle-exporter/post-vehicle-exporter.page';
+import { PostVehicleDrivingSchoolPage } from './(commercial-vehicles)/post-vehicle-driving-school/post-vehicle-driving-school.page';
+import { PostVehicleDealerPage } from './(commercial-vehicles)/post-vehicle-dealer/post-vehicle-dealer.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +142,24 @@ import { PostVehicleSaleAdPage } from './(commercial-vehicles)/post-vehicle-sale
     VehicalHireFilterPage,
     PostVehicleHirePage,
     PostVehicleSaleAdPage,
+    UpdateVehicleHirePostPage,
+    UpdateVehicleSalePostPage,
+    UpdateVehicleWorkshopPage,
+    UpdateVehicleShowroomPage,
+    UpdateVehicleLeasingPage,
+    UpdateVehicleInsurancePage,
+    UpdateVehicleImporterPage,
+    UpdateVehicleExporterPage,
+    UpdateVehicleDrivingSchoolPage,
+    UpdateVehicleDealerPage,
+    PostVehicleWorkshopPage,
+    PostVehicleShowroomPage,
+    PostVehicleLeasingPage,
+    PostVehicleInsurancePage,
+    PostVehicleImporterPage,
+    PostVehicleExporterPage,
+    PostVehicleDrivingSchoolPage,
+    PostVehicleDealerPage,
   ],
  
   bootstrap: [AppComponent],
