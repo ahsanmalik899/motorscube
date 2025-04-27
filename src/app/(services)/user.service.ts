@@ -12,7 +12,7 @@ export class UserService {
   }
 
 
-  private apiUrl = ' https://www.motorscube.com/user-app/'; // Change this to your PHP scripts location
+  private apiUrl = 'http://localhost/user-app/'; // Change this to your PHP scripts location
 
   constructor(private http: HttpClient, private storage: Storage) {
     this.storage.create(); }
@@ -194,7 +194,7 @@ getVersions(versionData: FormData): Observable<string[]> {
 
   carSalePost(userData: any): Observable<any> {
     // Assuming you have an API endpoint to save user data
-    return this.http.post<any>(this.apiUrl + 'save_bike_sale_post.php', userData);
+    return this.http.post<any>(this.apiUrl + 'save_car_sale_post.php', userData);
   }
   carSaleUpdate(userData: any): Observable<any> {
     // Assuming you have an API endpoint to save user data

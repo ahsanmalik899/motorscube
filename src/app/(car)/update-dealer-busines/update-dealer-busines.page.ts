@@ -5,7 +5,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BikeService } from 'src/app/(services)/bike.service';
+
   @Component({
     selector: 'app-update-dealer-busines',
     templateUrl: './update-dealer-busines.page.html',
@@ -32,7 +32,7 @@ history.back();
      selectedImageSrc = ''; // Property to hold the URL of the selected image
      visibleImages: boolean[] = [];
 
-    constructor(private bikeservice:BikeService, private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
+    constructor( private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
       private router: ActivatedRoute,  private loadingController: LoadingController,public route: Router,
     ) {
       this.userForm = this.formBuilder.group({
@@ -67,7 +67,7 @@ history.back();
 
     fetchCarSale() {
       // Fetch car sale data from the backend
-      this.bikeservice.getdealershipData().subscribe({
+      this.userService.getdealershipData().subscribe({
         next: (data) => {
           console.log('Fetched car data:', data);
           this.carSaleData = data; // Store fetched data in carData property
@@ -345,7 +345,7 @@ updateSelectOptions() {
       });
   
       // Now you can use formData for your API call
-      this.bikeservice.updateDealerBusiness(this.adsId, formData).subscribe(
+      this.userService.updateDealerBusiness(this.adsId, formData).subscribe(
         (response) => {
           console.log('Data saved successfully:', response);
           this.presentSuccessAlert(); // Show success alert

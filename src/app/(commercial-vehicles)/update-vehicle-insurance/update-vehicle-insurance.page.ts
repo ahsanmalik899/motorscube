@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { CommercialService } from 'src/app/(services)/commercial.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -31,7 +32,7 @@ back() {
      selectedImageSrc = ''; // Property to hold the URL of the selected image
      visibleImages: boolean[] = [];
 
-    constructor(private formBuilder: FormBuilder, private userService: UserService, private alertController: AlertController,
+    constructor(private formBuilder: FormBuilder,private commercialservice:CommercialService, private userService: UserService, private alertController: AlertController,
       private router: ActivatedRoute,  private loadingController: LoadingController,public route: Router,
     ) {
       this.userForm = this.formBuilder.group({
@@ -68,12 +69,12 @@ back() {
 
     fetchCarSale() {
       // Fetch car sale data from the backend
-      this.userService.getinsuranceData().subscribe({
+      this.commercialservice.getinsuranceData().subscribe({
         next: (data) => {
           console.log('Fetched car data:', data);
           this.carSaleData = data; // Store fetched data in carData property
           console.log('id:',this.adsId);
-          this.filteredCarSaleData = this.carSaleData.filter((item: { car_insurance_ad_sale_id: string; }) => item.car_insurance_ad_sale_id === this.adsId);
+          this.filteredCarSaleData = this.carSaleData.filter((item: {commercial_vehicle_insurance_ad_sale_id: string; }) => item.commercial_vehicle_insurance_ad_sale_id === this.adsId);
         
           const imageUrls = this.getImageUrls(this.filteredCarSaleData[0]);
           this.visibleImages = new Array(imageUrls.length).fill(true);
@@ -382,7 +383,7 @@ updateSelectOptions() {
   // Submit FormData to the backend with loader handling
   async submitFormData(formData: FormData, loading: any): Promise<void> {
     try {
-      const response = await this.userService.updateInsuranceBusiness(formData).toPromise();
+      const response = await this.commercialservice.updateInsuranceBusiness(formData).toPromise();
       console.log('Data saved successfully:', response);
       loading.dismiss();  // Hide the loader once the data is saved
       this.presentSuccessAlert();  // Show success alert
@@ -415,7 +416,7 @@ updateSelectOptions() {
           text: 'OK',
           handler: () => {
             // Navigate back to the previous page
-            this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+            this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
               this.route.navigate([this.router.url]);
             });
           }

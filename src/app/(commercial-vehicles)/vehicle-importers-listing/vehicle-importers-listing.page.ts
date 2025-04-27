@@ -107,7 +107,7 @@ export class VehicleImportersListingPage implements OnInit {
     );
   }
   navigateToimporterSingle(id: string) {
-    this.router.navigate(['/importer-single-view'], {
+    this.router.navigate(['/vehicle-importer-singleview'], {
       queryParams: {
         importerId: id,
       }

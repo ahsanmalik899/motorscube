@@ -640,6 +640,39 @@ const routes: Routes = [
     path: 'update-vehicle-insurance',
     loadChildren: () => import('./(commercial-vehicles)/update-vehicle-insurance/update-vehicle-insurance.module').then( m => m.UpdateVehicleInsurancePageModule)
   },
+  {
+    path: 'vehicle-insurance-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-insurance-singleview/vehicle-insurance-singleview.module').then( m => m.VehicleInsuranceSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-leasing-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-leasing-singleview/vehicle-leasing-singleview.module').then( m => m.VehicleLeasingSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-dealer-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-dealer-singleview/vehicle-dealer-singleview.module').then( m => m.VehicleDealerSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-showroom-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-showroom-singleview/vehicle-showroom-singleview.module').then( m => m.VehicleShowroomSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-importer-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-importer-singleview/vehicle-importer-singleview.module').then( m => m.VehicleImporterSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-exporter-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-exporter-singleview/vehicle-exporter-singleview.module').then( m => m.VehicleExporterSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-driving-school-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-driving-school-singleview/vehicle-driving-school-singleview.module').then( m => m.VehicleDrivingSchoolSingleviewPageModule)
+  },
+  {
+    path: 'vehicle-workshop-singleview',
+    loadChildren: () => import('./(commercial-vehicles)/vehicle-workshop-singleview/vehicle-workshop-singleview.module').then( m => m.VehicleWorkshopSingleviewPageModule)
+  },
+
 
 
 

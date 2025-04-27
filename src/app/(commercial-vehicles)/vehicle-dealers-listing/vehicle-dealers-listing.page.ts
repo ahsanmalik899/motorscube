@@ -109,7 +109,7 @@ export class VehicleDealersListingPage implements OnInit {
   }
 
   navigateToDealerSingle(id: string) {
-    this.router.navigate(['/dealer-single-view'], {
+    this.router.navigate(['/vehicle-dealer-singleview'], {
       queryParams: {
         dealerId: id,
       }

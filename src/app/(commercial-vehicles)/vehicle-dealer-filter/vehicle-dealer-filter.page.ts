@@ -122,7 +122,7 @@ throw new Error('Method not implemented.');
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
-    this.router.navigate(['/vehicle-dealer-listing'], {
+    this.router.navigate(['/vehicle-dealers-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
         selectedcity: this.selectedCity

@@ -2,8 +2,6 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 import { Router, ActivatedRoute } from '@angular/router';
 import { PopoverController, AlertController, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/(services)/user.service';
-import { CommerciaVehiclesHomePage } from '../commercials-vehicles-home/commercia-vehicles-home.page';
-import { CommercialService } from 'src/app/(services)/commercial.service';
 
 @Component({
   selector: 'app-update-vehicle-sale-post',
@@ -12,7 +10,7 @@ import { CommercialService } from 'src/app/(services)/commercial.service';
   standalone:false,
 })
 export class UpdateVehicleSalePostPage implements OnInit {
- 
+
 
   
 options = {
@@ -116,7 +114,7 @@ originalContent = '';
   selectedImage!: ElementRef<HTMLImageElement>;
 
 
-  constructor(public route: Router, private popoverController: PopoverController,private commercialservice:CommercialService, private userService: UserService, private alercontroler:AlertController,  private loadingController: LoadingController,
+  constructor(public route: Router, private popoverController: PopoverController, private userService: UserService, private alercontroler:AlertController,  private loadingController: LoadingController,
      private router: ActivatedRoute, private renderer: Renderer2, private el: ElementRef) {
       this.userID = sessionStorage.getItem('userId') || '';  // Default to empty string if null
       this.userType = sessionStorage.getItem('userType') || '';  // Default to empty string if null
@@ -140,59 +138,59 @@ originalContent = '';
 
   }
   back() {
-    this.route.navigate(['/my-vehicles']);
+    this.route.navigate(['/my-car-ads']);
   }
   
   fetchCarSale() {
     // Fetch car sale data from the backend
-    this.commercialservice.getCommercialSale().subscribe({
+    this.userService.getCarSale().subscribe({
       next: (data) => {
         console.log('Fetched car data:', data);
         this.carSaleData = data; // Store fetched data in carData property
-        this.filteredCarSaleData = this.carSaleData.filter((item: { commercial_vehicle_ad_sale_id: string; }) => item.commercial_vehicle_ad_sale_id === this.adsId);
+        this.filteredCarSaleData = this.carSaleData.filter((item: { car_ad_sale_id: string; }) => item.car_ad_sale_id === this.adsId);
         console.log('filter data : ', this.filteredCarSaleData);
         const imageUrls = this.getImageUrls(this.filteredCarSaleData[0]);
         this.visibleImages = new Array(imageUrls.length).fill(true);
 
         if (this.filteredCarSaleData.length > 0) {
           // Extract the car_name from the first item in the filtered array
-          this.selectedcon= this.filteredCarSaleData[0].vehicle_condition;
-          this.selectedCity= this.filteredCarSaleData[0].vehicle_city;
+          this.selectedcon= this.filteredCarSaleData[0].car_condition;
+          this.selectedCity= this.filteredCarSaleData[0].car_location;
           this.divVisible = true;
           this.showcar = false;
-          this.selectedMake = this.filteredCarSaleData[0].vehicle_make;
+          this.selectedMake = this.filteredCarSaleData[0].car_make;
           this.makedivVisible = true;
           this.showmake = false;
           this.showmodel2 = true;
           this.fetchModels();
-          this.selectedModel = this.filteredCarSaleData[0].vehicle_type;
+          this.selectedModel = this.filteredCarSaleData[0].car_model;
           this.modeldivVisible = true;
           this.showmodel = false;
           this.showversion2 = true;
           this.fetchVersions();
-          this.selectedVersion = this.filteredCarSaleData[0].vehicle_sub_type;
+          this.selectedVersion = this.filteredCarSaleData[0].car_version;
+          this.versiondivVisible = true;
           this.showversion = false;
-          this.versiondivVisible= true;
-          this.selectedYear= this.filteredCarSaleData[0].vehicle_year;
+          this.selectedYear= this.filteredCarSaleData[0].car_year;
           this.yeardivVisible = true;
           this.showyear = false;
-          this.selectedregisterCity = this.filteredCarSaleData[0].vehicle_reg_city;
+          this.selectedregisterCity = this.filteredCarSaleData[0].car_reg_city;
           this.registerdivVisible = true;
           this.showregister = false;
-          this.price=this.filteredCarSaleData[0].vehicle_price;
-          this.mileage = this.filteredCarSaleData[0].vehicle_mileage;
-          this.selectedFuel = this.filteredCarSaleData[0].vehicle_fuel_type;
+          this.price=this.filteredCarSaleData[0].car_price;
+          this.mileage = this.filteredCarSaleData[0].car_mileage;
+          this.selectedFuel = this.filteredCarSaleData[0].car_fuel_type;
           //this.selectedColor = this.filteredCarSaleData[0].car_body_colour;
           //console.log('body color : ' , this.filteredCarSaleData[0].car_body_colour);
-          this.selectColor(this.filteredCarSaleData[0].vehicle_color);
-          this.engineSize = this.filteredCarSaleData[0].vehicle_engine_size;
-          this.selectedCategory = this.filteredCarSaleData[0].vehicle_body_type;
-          this.selectedTransmission = this.filteredCarSaleData[0].vehicle_power_transmission;
-          this.selectedDrive = this.filteredCarSaleData[0].vehicle_transmission;
-          this.carAdNormalFeature = this.filteredCarSaleData[0].vehicle_ad_normal_feature;
-          this.selectedDoors = this.filteredCarSaleData[0].vehicle_doors;
+          this.selectColor(this.filteredCarSaleData[0].car_body_colour);
+          this.engineSize = this.filteredCarSaleData[0].car_engine_size;
+          this.selectedCategory = this.filteredCarSaleData[0].car_body_type;
+          this.selectedTransmission = this.filteredCarSaleData[0].car_power_transmission;
+          this.selectedDrive = this.filteredCarSaleData[0].car_transmission;
+          this.carAdNormalFeature = this.filteredCarSaleData[0].car_ad_normal_feature;
+          this.selectedDoors = this.filteredCarSaleData[0].car_no_of_doors;
           //this.selectedFeatures = this.filteredCarSaleData[0].car_features;
-          const carFeaturesString = this.filteredCarSaleData[0].vehicle_features;
+          const carFeaturesString = this.filteredCarSaleData[0].car_features;
           if (carFeaturesString) {
               try {
                   // Parse the JSON string into an array and store it in selectedFeatures
@@ -288,7 +286,7 @@ hideImage(index: number) {
 
 // select make car
   fetchMakes() {
-    this.commercialservice.getMakes().subscribe({
+    this.userService.getMakes().subscribe({
       next: (data) => {
         this.makes = data;
         //console.log('Fetched makes:', data);
@@ -335,7 +333,7 @@ hideImage(index: number) {
     formData.append('make', this.selectedMake);
 
     console.log(makeData);
-    this.commercialservice.getModels().subscribe({
+    this.userService.getModels(formData).subscribe({
       next: (data) => {
           // Handle successful response here
           console.log('Fetched models:', data);
@@ -382,7 +380,7 @@ hideImage(index: number) {
     formData.append('model', this.selectedModel);
 
 
-    this.commercialservice.getVersions(formData).subscribe({
+    this.userService.getVersions(formData).subscribe({
       next: (data) => {
           // Handle successful response here
           console.log('Fetched versions:', data);
@@ -721,7 +719,7 @@ async updateAd() {
 
   try {
     // Make the API request and wait for the response
-    const response = await this.commercialservice.commercialSaleUpdate(formData).toPromise();
+    const response = await this.userService.carSaleUpdate(formData).toPromise();
     console.log('Data saved successfully:', response);
     this.presentSuccessAlert(); // Display success message
   } catch (error) {
@@ -789,7 +787,7 @@ getItems(ev: any) {
           text: 'OK',
           handler: () => {
             // Navigate back to the previous page
-            this.route.navigateByUrl('/my-vehicles', { skipLocationChange: true }).then(() => {
+            this.route.navigateByUrl('/my-car-ads', { skipLocationChange: true }).then(() => {
               this.route.navigate([this.router.url]);
             });
             

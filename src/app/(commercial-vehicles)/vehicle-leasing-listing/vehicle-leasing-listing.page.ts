@@ -108,7 +108,7 @@ export class VehicleLeasingListingPage implements OnInit {
     );
   }
   navigateToleasingSingle(id: string) {
-    this.router.navigate(['/leasing-single-view'], {
+    this.router.navigate(['/vehicel-leasing-singleview'], {
       queryParams: {
         leasingId: id,
       }

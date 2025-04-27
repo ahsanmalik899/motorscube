@@ -89,15 +89,15 @@
     <!-- Left side: Upgrade profile / Send payment -->
     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
       <div *ngIf="car.post_status === 'Active'" >
-      <button *ngIf="!checkPaymentButton('dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.car_dealership_ad_sale_id, 'dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
-      <button *ngIf="checkPaymentButton('dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.car_dealership_ad_sale_id)">Send Payment</button>
+      <button *ngIf="!checkPaymentButton('Commercial Dealer',car.commercial_vehicle_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.commercial_vehicle_dealership_ad_sale_id, 'Commercial Dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
+      <button *ngIf="checkPaymentButton('Commercial Dealer',car.commercial_vehicle_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.commercial_vehicle_dealership_ad_sale_id)">Send Payment</button>
     </div>
     </div>
    
     <!-- Right side: Edit and Delete buttons -->
     <div style="display: flex; align-items: center; gap: 20px;">
-      <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editDealer(car.car_dealership_ad_sale_id)">
-      <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_dealership_ad_sale_id, 'dealer')">
+      <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editDealer(car.commercial_vehicle_dealership_ad_sale_id)">
+      <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.commercial_vehicle_dealership_ad_sale_id, 'dealer')">
     </div>
   </div>
 </div>
@@ -201,15 +201,15 @@
       <!-- Left side: Upgrade profile / Send payment -->
       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
         <div *ngIf="car.post_status === 'Active'">
-        <button *ngIf="!checkPaymentButton('showroom',car.car_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.car_showroom_ad_sale_id, 'showroom' , car.showroom_featured_type)">Upgrade profile</button>
-        <button *ngIf="checkPaymentButton('showroom',car.car_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_showroom_ad_sale_id)">Send payment</button>
+        <button *ngIf="!checkPaymentButton('Commercial Showroom',car.commercial_vehicle_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.commercial_vehicle_showroom_ad_sale_id, 'Commercial Showroom' , car.showroom_featured_type)">Upgrade profile</button>
+        <button *ngIf="checkPaymentButton('Commercial Showroom',car.commercial_vehicle_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_showroom_ad_sale_id)">Send payment</button>
       </div>
       </div>
   
       <!-- Right side: Edit and Delete buttons -->
       <div style="display: flex; align-items: center; gap: 20px;">
-        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editShowroom(car.car_showroom_ad_sale_id)">
-        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_showroom_ad_sale_id, 'showroom')">
+        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editShowroom(car.commercial_vehicle_showroom_ad_sale_id)">
+        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.commercial_vehicle_showroom_ad_sale_id, 'showroom')">
       </div>
     </div>
   </div>
@@ -272,15 +272,15 @@
                   <!-- Left side: Upgrade profile / Send payment -->
                   <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                     <div *ngIf="car.post_status === 'Active'" >
-                    <button id="signin-upgrade" *ngIf="!checkPaymentButton('insurance',car.car_insurance_ad_sale_id)"  (click)="openPopup(car.car_insurance_ad_sale_id, 'insurance' , car.insurance_featured_type)">Upgrade profile</button>
-              <button *ngIf="checkPaymentButton('insurance',car.car_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_insurance_ad_sale_id)">Send payment</button>
+                    <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Insurance',car.commercial_vehicle_insurance_ad_sale_id)"  (click)="openPopup(car.commercial_vehicle_insurance_ad_sale_id, 'Commercial Insurance' , car.insurance_featured_type)">Upgrade profile</button>
+              <button *ngIf="checkPaymentButton('Commercial Insurance',car.commercial_vehicle_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_insurance_ad_sale_id)">Send payment</button>
             </div>
                   </div>
               
                   <!-- Right side: Edit and Delete buttons -->
                   <div style="display: flex; align-items: center; gap: 20px;">
-                    <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editInsurance(car.car_insurance_ad_sale_id)">
-                    <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_insurance_ad_sale_id, 'insurance')">
+                    <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editInsurance(car.commercial_vehicle_insurance_ad_sale_id)">
+                    <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.commercial_vehicle_insurance_ad_sale_id, 'insurance')">
                   </div>
                 </div>
               </div>
@@ -340,15 +340,15 @@
                     <!-- Left side: Upgrade profile / Send payment -->
                     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                       <div *ngIf="car.post_status === 'Active'" >
-                      <button *ngIf="!checkPaymentButton('leasing',car.car_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.car_leasing_ad_sale_id, 'leasing' , car.leasing_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('leasing',car.car_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_leasing_ad_sale_id)">Send Payment</button>
+                      <button *ngIf="!checkPaymentButton('Commercial Leasing',car.commercial_vehicle_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.commercial_vehicle_leasing_ad_sale_id, 'Commercial Leasing' , car.leasing_featured_type)">Upgrade profile</button>
+                      <button *ngIf="checkPaymentButton('Commercial Leasing',car.commercial_vehicle_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_leasing_ad_sale_id)">Send Payment</button>
                     </div>
                     </div>
                 
                     <!-- Right side: Edit and Delete buttons -->
                     <div style="display: flex; align-items: center; gap: 20px;">
-                      <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editLeasing(car.car_leasing_ad_sale_id)">
-                      <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_leasing_ad_sale_id, 'leasing')">
+                      <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editLeasing(car.commercial_vehicle_leasing_ad_sale_id)">
+                      <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.commercial_vehicle_leasing_ad_sale_id, 'leasing')">
                     </div>
                   </div>
                 </div>
@@ -411,15 +411,15 @@
                       <!-- Left side: Upgrade profile / Send payment -->
                       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                         <div *ngIf="car.post_status === 'Active'" >
-                        <button id="signin-upgrade" *ngIf="!checkPaymentButton('importer',car.car_importer_ad_sale_id)"  (click)="openPopup(car.car_importer_ad_sale_id, 'importer' , car.importer_featured_type)">Upgrade profile</button>
-                  <button *ngIf="checkPaymentButton('importer',car.car_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.importer_ad_sale_id)">Send Payment</button>
+                        <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Importer',car.commercial_vehicle_importer_ad_sale_id)"  (click)="openPopup(car.commercial_vehicle_importer_ad_sale_id, 'Commercial Importer' , car.importer_featured_type)">Upgrade profile</button>
+                  <button *ngIf="checkPaymentButton('Commercial Importer',car.commercial_vehicle_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_importer_ad_sale_id)">Send Payment</button>
                 </div>
                       </div>
                   
                       <!-- Right side: Edit and Delete buttons -->
                       <div style="display: flex; align-items: center; gap: 20px;">
-                        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editImporter(car.car_importer_ad_sale_id)">
-                        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.car_importer_ad_sale_id, 'importer')">
+                        <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editImporter(car.commercial_vehicle_importer_ad_sale_id)">
+                        <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;"(click)="confirmDelete(car.commercial_vehicle_importer_ad_sale_id, 'importer')">
                       </div>
                     </div>
                   </div>
@@ -477,15 +477,15 @@
                         <!-- Left side: Upgrade profile / Send payment -->
                         <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                           <div *ngIf="car.post_status === 'Active'" >
-                          <button id="signin-upgrade" *ngIf="!checkPaymentButton('exporter',car.car_exporter_ad_sale_id)" (click)="openPopup(car.car_exporter_ad_sale_id ,'exporter' , car.exporter_featured_type)">Upgrade profile</button>
-                    <button *ngIf="checkPaymentButton('exporter',car.car_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_exporter_ad_sale_id)">Send Payment</button>
+                          <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Exporter',car.commercial_vehicle_exporter_ad_sale_id)" (click)="openPopup(car.commercial_vehicle_exporter_ad_sale_id ,'Commercial Exporter' , car.exporter_featured_type)">Upgrade profile</button>
+                    <button *ngIf="checkPaymentButton('Commercial Exporter',car.commercial_vehicle_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_exporter_ad_sale_id)">Send Payment</button>
                   </div>
                         </div>
                     
                         <!-- Right side: Edit and Delete buttons -->
                         <div style="display: flex; align-items: center; gap: 20px;">
-                          <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editExporter(car.car_exporter_ad_sale_id)">
-                          <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.car_exporter_ad_sale_id, 'exporter')">
+                          <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;" (click)="editExporter(car.commercial_vehicle_exporter_ad_sale_id)">
+                          <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.commercial_vehicle_exporter_ad_sale_id, 'exporter')">
                         </div>
                       </div>
                     </div>
@@ -543,15 +543,16 @@
                           <!-- Left side: Upgrade profile / Send payment -->
                           <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                             <div *ngIf="car.post_status === 'Active'" >
-                            <button id="signin-upgrade" *ngIf="!checkPaymentButton('workshop',car.car_workshop_ad_sale_id)" (click)="openPopup(car.car_workshop_ad_sale_id, 'workshop' , car.workshop_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('workshop',car.car_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_workshop_ad_sale_id)">Send Payment</button>
+                              
+                            <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Workshop',car.commercial_vehicle_workshop_ad_sale_id)" (click)="openPopup(car.commercial_vehicle_workshop_ad_sale_id, 'Commercial Workshop' , car.workshop_featured_type)">Upgrade profile</button>
+                      <button *ngIf="checkPaymentButton('Commercial Workshop',car.commercial_vehicle_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_workshop_ad_sale_id)">Send Payment</button>
                     </div>
                           </div>
                       
                           <!-- Right side: Edit and Delete buttons -->
                           <div style="display: flex; align-items: center; gap: 20px;">
-                            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editWorkshop(car.car_workshop_ad_sale_id)">
-                            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.car_workshop_ad_sale_id, 'workshop')">
+                            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editWorkshop(car.commercial_vehicle_workshop_ad_sale_id)">
+                            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.commercial_vehicle_workshop_ad_sale_id, 'workshop')">
                           </div>
                         </div>
                       </div>
@@ -610,15 +611,15 @@
                             <!-- Left side: Upgrade profile / Send payment -->
                             <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                               <div *ngIf="car.post_status === 'Active'" >
-                              <button id="signin-upgrade"  *ngIf="!checkPaymentButton('school',car.car_school_ad_sale_id)"  (click)="openPopup(car.car_school_ad_sale_id, 'school' , car.school_featured_type)">Upgrade profile</button>
-                        <button *ngIf="checkPaymentButton('school',car.car_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_school_ad_sale_id)">Send Payment</button>
+                              <button id="signin-upgrade"  *ngIf="!checkPaymentButton('Commercial School',car.commercial_school_ad_sale_id)"  (click)="openPopup(car.commercial_school_ad_sale_id, 'Commercial School' , car.school_featured_type)">Upgrade profile</button>
+                        <button *ngIf="checkPaymentButton('Commercial School',car.commercial_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_school_ad_sale_id)">Send Payment</button>
                       </div>
                             </div>
                         
                             <!-- Right side: Edit and Delete buttons -->
                             <div style="display: flex; align-items: center; gap: 20px;">
-                              <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editSchool(car.car_school_ad_sale_id)">
-                              <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.car_school_ad_sale_id, 'school')">
+                              <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; cursor: pointer;"  (click)="editSchool(car.commercial_school_ad_sale_id)">
+                              <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; cursor: pointer;" (click)="confirmDelete(car.commercial_school_ad_sale_id, 'school')">
                             </div>
                           </div>
                         </div>

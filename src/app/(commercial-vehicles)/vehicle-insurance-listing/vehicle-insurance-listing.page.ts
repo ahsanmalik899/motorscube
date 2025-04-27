@@ -59,7 +59,7 @@ export class VehicleInsuranceListingPage implements OnInit {
   }
   // Filter button to go to another page (e.g., filter options)
   filter() {
-    this.router.navigate(['listing-insurance-filter']);
+    this.router.navigate(['vehicle-insurance-filter']);
   }
 
 // Fetch the insurance data from the backend with caching
@@ -111,7 +111,7 @@ fetchinsuranceData() {
 
   // Navigate to the single insurance view page
   navigateToinsuranceSingle(id: string) {
-    this.router.navigate(['/insurance-single-view'], {
+    this.router.navigate(['/vehicle-insurance-singleview'], {
       queryParams: {
         insuranceId: id,
       }

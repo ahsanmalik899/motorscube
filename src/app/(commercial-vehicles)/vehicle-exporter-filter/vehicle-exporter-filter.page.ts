@@ -136,7 +136,7 @@ resetAll() {
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
-    this.router.navigate(['/vehicle-exporter-listing'], {
+    this.router.navigate(['/vehicle-exporters-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
         selectedcity: this.selectedCity

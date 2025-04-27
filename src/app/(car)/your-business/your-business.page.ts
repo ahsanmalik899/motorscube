@@ -331,14 +331,14 @@ constructor(public route: Router, private popoverController: PopoverController, 
        
           // Remove the deleted item from the local data array
           switch (this.deleteType) {
-            case 'dealer':
+            case 'Car Dealer':
               this.fetchdealershipData();
               this.cdr.detectChanges();
               loading.dismiss()
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
-          break;case 'showroom':
+          break;case 'Car Showroom':
           this.fetchschoolData()
           this.cdr.detectChanges();
           loading.dismiss()
@@ -346,7 +346,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             this.route.navigate([this.router.url]);
           });
            break;
-            case 'insurance':
+            case 'CAr Insurance':
               this.fetchinsuranceData()
               this.cdr.detectChanges();
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
@@ -354,7 +354,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
               });
               loading.dismiss()
           break;
-            case 'leasing':
+            case 'Car Leasing':
               this.fetchleasingData()
               this.cdr.detectChanges();
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
@@ -362,7 +362,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
               });
               loading.dismiss()
             break;
-            case 'importer':
+            case 'Car Importer':
               this.fetchimporterData()
               this.cdr.detectChanges();
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
@@ -370,7 +370,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
               });
               loading.dismiss() 
             break;
-            case 'exporter':
+            case 'Car Exporter':
               this.fetchexporterData()
               this.cdr.detectChanges();
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
@@ -378,7 +378,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
               });
               loading.dismiss()
             break;
-            case 'workshop':
+            case 'Car Workshop':
               this.fetchworkshopData()
               this.cdr.detectChanges();
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
@@ -386,7 +386,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
               });
               loading.dismiss() 
             break;
-            case 'school':
+            case 'Car School':
               this.fetchschoolData()
               this.cdr.detectChanges();
               this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
@@ -578,14 +578,14 @@ async fetchUpgradePost() {
       console.log('Filtered Data by User ID:', this.filteredCarPostData); // Check filtered data by user ID
 
       // Filter and assign data to respective post types
-      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'school');
-      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'workshop');
-      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'exporter');
-      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'importer');
-      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'leasing');
-      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'insurance');
-      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'showroom');
-      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'dealer');
+      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car School');
+      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Workshop');
+      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Exporter');
+      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Importer');
+      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Leasing');
+      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Insurance');
+      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Showroom');
+      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Car Dealer');
 
       // Debug: Log the filtered arrays
       console.log('School Upgrade:', this.schoolupgrade);
@@ -607,21 +607,21 @@ checkPaymentButton(postType: string, id: string): boolean {
   let postData: any[] | undefined;
 
   // Manually check for each postType
-  if (postType === 'school') {
+  if (postType === 'Car School') {
     postData = this.schoolupgrade;
-  } else if (postType === 'workshop') {
+  } else if (postType === 'Car Workshop') {
     postData = this.workshopupgrade;
-  } else if (postType === 'exporter') {
+  } else if (postType === 'Car Exporter') {
     postData = this.exporterupgrade;
-  } else if (postType === 'importer') {
+  } else if (postType === 'Car Importer') {
     postData = this.importerupgrade;
-  } else if (postType === 'leasing') {
+  } else if (postType === 'Car Leasing') {
     postData = this.leasingupgrade;
-  } else if (postType === 'insurance') {
+  } else if (postType === 'Car Insurance') {
     postData = this.insuranceupgrade;
-  } else if (postType === 'showroom') {
+  } else if (postType === 'Car Showroom') {
     postData = this.showroomupgrade;
-  } else if (postType === 'dealer') {
+  } else if (postType === 'Car Dealer') {
     postData = this. dealerupgrade;
   }
 

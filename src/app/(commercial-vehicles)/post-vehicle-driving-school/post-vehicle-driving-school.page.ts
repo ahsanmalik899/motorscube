@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { CommercialService } from 'src/app/(services)/commercial.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -31,6 +32,7 @@ userID: string |'';
   constructor(
     private formBuilder: FormBuilder, 
     private userService: UserService, 
+    private commercialservice:CommercialService,
     private alertController: AlertController,
     private route: Router, private router: ActivatedRoute,
          private loadingController: LoadingController,
@@ -263,7 +265,7 @@ userID: string |'';
     formData.append('user_id', this.userID);
   
     // Call service to submit data
-    this.userService.postDrivingSchool(formData).subscribe(
+    this.commercialservice.postDrivingSchool(formData).subscribe(
       (response) => {
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();  // Show success alert after successful submission
@@ -361,7 +363,7 @@ async presentInvalidFieldsAlert(invalidFields: string[], emptyFields: string[]):
         {
           text: 'OK',
           handler: () => {
-            this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+            this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
               this.route.navigate([this.router.url]);
             });
           }

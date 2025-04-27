@@ -107,7 +107,7 @@ export class VehicleShowroomsListingPage implements OnInit {
     );
   }
   navigateToshowroomSingle(id: string) {
-    this.router.navigate(['/showroom-single-view'], {
+    this.router.navigate(['/vehicle-showroom-singleview'], {
       queryParams: {
         showroomId: id,
       }

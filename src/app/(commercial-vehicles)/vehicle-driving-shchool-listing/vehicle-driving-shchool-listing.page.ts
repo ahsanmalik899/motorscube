@@ -109,7 +109,7 @@ export class VehicleDrivingShchoolListingPage implements OnInit {
     );
   }
   navigateToschoolSingle(id: string) {
-    this.router.navigate(['/drv-school-single-view'], {
+    this.router.navigate(['/vehicle-driving-school-singleview'], {
       queryParams: {
         schoolId: id,
       }

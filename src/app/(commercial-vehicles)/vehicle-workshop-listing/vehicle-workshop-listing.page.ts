@@ -123,7 +123,7 @@ export class VehicleWorkshopListingPage implements OnInit {
   }
 
   navigateToworkshopSingle(id: string) {
-    this.router.navigate(['/workshop-single-view'], {
+    this.router.navigate(['/vehicle-workshop-singleview'], {
       queryParams: {
         workshopId: id,
       }

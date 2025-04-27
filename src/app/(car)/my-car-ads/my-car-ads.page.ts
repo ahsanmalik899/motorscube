@@ -339,8 +339,8 @@ async buttonOneAction(id: string, saletype: string) {
       next: (data) => {
         this.carpostData = data;
         this.filteredCarPostData = this.carpostData.filter(item => item.user_id === this.userID);
-        this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Hire');
-        this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Sale');
+        this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Car Hire');
+        this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Car Sale');
         this.hideLoader(loader);
       },
       error: (error) => {

@@ -155,7 +155,7 @@ resetAll() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
     localStorage.setItem('selectedconditions', JSON.stringify(this.selectedConditions));
-    this.router.navigate(['/vehicle-workshoop-listing'], {
+    this.router.navigate(['/vehicle-workshop-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
         selectedcity: this.selectedCity,

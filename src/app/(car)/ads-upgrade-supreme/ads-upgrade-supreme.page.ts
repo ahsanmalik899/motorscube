@@ -42,31 +42,31 @@ throw new Error('Method not implemented.');
       this.saleType = params['saleType'];
       console.log('Ads id : ', this.adsId,  this.saleType);
 
-      if (this.saleType === 'Sale' || this.saleType === 'Hire'){
+      if (this.saleType === 'Car Sale' || this.saleType === 'Car Hire'){
         this.fetchCarSale();
       }
-      else if (this.saleType === 'dealer') {
+      else if (this.saleType === 'Car Dealer') {
         this.fetchdealershipData();
       }
-      else if (this.saleType === 'showroom') {
+      else if (this.saleType === 'Car Showroom') {
         this.fetchshowroomData();
       }
-      else if (this.saleType === 'insurance') {
+      else if (this.saleType === 'Car Insurance') {
         this.fetchinsuranceData();
       }
-      else if (this.saleType === 'leasing') {
+      else if (this.saleType === 'Car Leasing') {
         this.fetchleasingData();
       }
-      else if (this.saleType === 'importer') {
+      else if (this.saleType === 'Car Importer') {
         this.fetchimporterData();
       }
-      else if (this.saleType === 'exporter') {
+      else if (this.saleType === 'Car Exporter') {
         this.fetchexporterData();
       }
-      else if (this.saleType === 'workshop') {
+      else if (this.saleType === 'Car Workshop') {
         this.fetchworkshopData();
       }
-      else if (this.saleType === 'school') {
+      else if (this.saleType === 'Car School') {
         this.fetchschoolData();
       }
    });
@@ -227,7 +227,7 @@ throw new Error('Method not implemented.');
       next: (data) => {
         console.log('Fetched car data:', data);
         this.carSaleData = data; // Store fetched data in carData property
-        if (this.saleType === 'Sale') {
+        if (this.saleType === ' Car Sale') {
         this.filteredCarSaleData = this.carSaleData.filter(item => item.car_ad_sale_id === this.adsId);
         }
         else
@@ -248,7 +248,7 @@ throw new Error('Method not implemented.');
       next: (data) => {
         console.log('Fetched car data:', data);
         this.carHireData = data; // Store fetched data in carData property
-        if (this.saleType === 'Hire') {
+        if (this.saleType === 'Car Hire') {
         this.filteredCarSaleData = this.carHireData.filter(item => item.car_ad_hire_id === this.adsId);
         }
         console.log('filter hire data : ', this.filteredCarSaleData);
@@ -353,16 +353,40 @@ formData.forEach((value, key) => {
           text: 'OK',
           handler: () => {
             // Navigate back to the previous page
-            if(this.saleType=='Sale'||this.saleType=='Hire'){
+            if(this.saleType=='Car Sale'||this.saleType=='Car Hire'){
               this.route.navigateByUrl('/my-car-ads', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
             }
-            else{
+            else if(this.saleType=='Car Insurance'||this.saleType=='Car Leasing'||this.saleType=='Car Dealer'||this.saleType=='Car Showroom'
+              ||this.saleType=='Car Importer'||this.saleType=='Car Exporter'||this.saleType=='Car School'||this.saleType=='Car Workshop'
+            ){
             this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
               this.route.navigate([this.router.url]);
             });
           }
+          else if(this.saleType=='Bike Sale'||this.saleType=='Bike Hire'){
+            this.route.navigateByUrl('/bike-you-posted', { skipLocationChange: true }).then(() => {
+              this.route.navigate([this.router.url]);
+            });
+          } else if(this.saleType=='Bike Insurance'||this.saleType=='Bike Leasing'||this.saleType=='Bike Dealer'||this.saleType=='Bike Showroom'
+            ||this.saleType=='Bike Importer'||this.saleType=='Bike Exporter'||this.saleType=='Bike School'||this.saleType=='Bike Workshop'
+          ){
+          this.route.navigateByUrl('/bike-busenesses', { skipLocationChange: true }).then(() => {
+            this.route.navigate([this.router.url]);
+          });
+        }
+        else if(this.saleType=='Commercial Sale'||this.saleType=='Commercial Hire'){
+          this.route.navigateByUrl('/my-vehicles', { skipLocationChange: true }).then(() => {
+            this.route.navigate([this.router.url]);
+          });
+        } else if(this.saleType=='Commercial Insurance'||this.saleType=='Commercial Leasing'||this.saleType=='Commercial Dealer'||this.saleType=='Commercial Showroom'
+          ||this.saleType=='Commercial Importer'||this.saleType=='Commercial Exporter'||this.saleType=='Commercial School'||this.saleType=='Commercial Workshop'
+        ){
+        this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+          this.route.navigate([this.router.url]);
+        });
+      }
           }
         }
       ]

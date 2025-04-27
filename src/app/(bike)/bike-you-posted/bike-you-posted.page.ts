@@ -260,8 +260,9 @@ export class BikeYouPostedPage implements OnInit {
       next: (data) => {
         this.bikepostData = data;
         this.filteredBikePostData = this.bikepostData.filter(item => item.user_id === this.userID);
-        this.hire = this.filteredBikePostData.filter(item => item.post_type === 'Hire');
-        this.sale = this.filteredBikePostData.filter(item => item.post_type === 'Sale');
+        this.hire = this.filteredBikePostData.filter(item => item.post_type === 'Bike Hire');
+        this.sale = this.filteredBikePostData.filter(item => item.post_type === 'Bike Sale');
+        console.log(data)
       },
       error: (error) => {
         console.error('Error fetching upgrade post data:', error);

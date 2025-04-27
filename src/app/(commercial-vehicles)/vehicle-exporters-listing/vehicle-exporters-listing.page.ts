@@ -109,7 +109,7 @@ export class VehicleExportersListingPage implements OnInit {
   }
 
   navigateToexporterSingle(id: string) {
-    this.router.navigate(['/exporter-single-view'], {
+    this.router.navigate(['/vehicle-exporter-singleview'], {
       queryParams: {
         exporterId: id,
       }

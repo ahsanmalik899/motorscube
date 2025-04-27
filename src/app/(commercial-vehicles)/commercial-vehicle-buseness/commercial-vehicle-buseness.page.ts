@@ -327,7 +327,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
       formData.append('deleteid', this.deleteID);
       formData.append('deletetype', this.deleteType);
     
-      this.commercialservice.carDeletePostBusines(formData).subscribe(
+      this.commercialservice.commercialDeletePostBusines(formData).subscribe(
         (response) => {
           console.log('Data delete successfully:', response);
        
@@ -427,46 +427,46 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   navigateToPostDealer() {
-    this.route.navigate(['/post-dealer-busines']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
+    this.route.navigate(['/post-vehicle-dealer']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
   }
   navigateToPostShowroom() {
-    this.route.navigate(['/post-showroom-busines']);
+    this.route.navigate(['/post-vehicle-showroom']);
   }
   navigateToPostInsurance() {
-    this.route.navigate(['/post-insurance-busines']);
+    this.route.navigate(['/post-vehicle-insurance']);
   }
   navigateToPostLeasing() {
-    this.route.navigate(['/post-leasing-busines']);
+    this.route.navigate(['/post-vehicle-leasing']);
   }
   navigateToPostImporter() {
-    this.route.navigate(['/post-importer-busines']);
+    this.route.navigate(['/post-vehicle-importer']);
   }
   navigateToPostExporter() {
-    this.route.navigate(['/post-exporter-busines']);
+    this.route.navigate(['/post-vehicle-exporter']);
   }
   navigateToPostWorkshop() {
-    this.route.navigate(['/post-workshop-busines']);
+    this.route.navigate(['/post-vehicle-workshop']);
   }
   navigateToPostSchool() {
-    this.route.navigate(['/post-driving-school']);
+    this.route.navigate(['/post-vehicle-driving-school']);
   }
 
   editDealer(id: any){
-    this.route.navigate(['/update-dealer-busines'], {
+    this.route.navigate(['/update-vehicle-dealer'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editShowroom(id: any){
-    this.route.navigate(['/update-showroom-busines'], {
+    this.route.navigate(['/update-vehicle-showroom'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editInsurance(id: any){
-    this.route.navigate(['/update-insurance-busines'], {
+    this.route.navigate(['/update-vehicle-insurance'], {
       queryParams: {
         adsId: id,
       }
@@ -474,35 +474,35 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   editLeasing(id: any){
-    this.route.navigate(['/update-leasing-busines'], {
+    this.route.navigate(['/update-vehicle-leasing'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editImporter(id: any){
-    this.route.navigate(['/update-importer-busines'], {
+    this.route.navigate(['/update-vehicle-importer'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editExporter(id: any){
-    this.route.navigate(['/update-exporter-busines'], {
+    this.route.navigate(['/update-vehicle-exporter'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editWorkshop(id: any){
-    this.route.navigate(['/update-workshop-busines'], {
+    this.route.navigate(['/update-vehicle-workshop'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editSchool(id: any){
-    this.route.navigate(['/update-school-busines'], {
+    this.route.navigate(['/update-vehicle-driving-school'], {
       queryParams: {
         adsId: id,
       }
@@ -580,14 +580,14 @@ async fetchUpgradePost() {
       console.log('Filtered Data by User ID:', this.filteredCarPostData); // Check filtered data by user ID
 
       // Filter and assign data to respective post types
-      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'school');
-      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'workshop');
-      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'exporter');
-      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'importer');
-      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'leasing');
-      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'insurance');
-      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'showroom');
-      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'dealer');
+      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial School');
+      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Workshop');
+      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Exporter');
+      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Importer');
+      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Leasing');
+      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Insurance');
+      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Showroom');
+      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Dealer');
 
       // Debug: Log the filtered arrays
       console.log('School Upgrade:', this.schoolupgrade);
@@ -609,21 +609,21 @@ checkPaymentButton(postType: string, id: string): boolean {
   let postData: any[] | undefined;
 
   // Manually check for each postType
-  if (postType === 'school') {
+  if (postType === 'Commercial School') {
     postData = this.schoolupgrade;
-  } else if (postType === 'workshop') {
+  } else if (postType === 'Commercial Workshop') {
     postData = this.workshopupgrade;
-  } else if (postType === 'exporter') {
+  } else if (postType === 'Commercial Exporter') {
     postData = this.exporterupgrade;
-  } else if (postType === 'importer') {
+  } else if (postType === 'Commercial Importer') {
     postData = this.importerupgrade;
-  } else if (postType === 'leasing') {
+  } else if (postType === 'Commercial Leasing') {
     postData = this.leasingupgrade;
-  } else if (postType === 'insurance') {
+  } else if (postType === 'Commercial Insurance') {
     postData = this.insuranceupgrade;
-  } else if (postType === 'showroom') {
+  } else if (postType === 'Commercial Showroom') {
     postData = this.showroomupgrade;
-  } else if (postType === 'dealer') {
+  } else if (postType === 'Commercial Dealer') {
     postData = this. dealerupgrade;
   }
 
