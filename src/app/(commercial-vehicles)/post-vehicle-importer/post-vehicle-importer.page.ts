@@ -13,6 +13,7 @@ import { UserService } from 'src/app/(services)/user.service';
   standalone:false,
 })
 export class PostVehicleImporterPage implements OnInit {
+  DealIns!: string[];
 back() {
 history.back();
 }
@@ -42,6 +43,7 @@ selectedFileArray: FileList | null = null;
   ngOnInit(): void {
     this.initForm();
     this.fetchCities();
+    this.fetchDealIn();
   }
 
   initForm(): void {
@@ -52,7 +54,8 @@ selectedFileArray: FileList | null = null;
       bmobile: ['', Validators.required],
       bemail: ['', Validators.email],
       bwebsite: [''],
-      bcity: ['', ]  // Initialize bcity with an empty value
+      bcity: ['', ],
+      dealIn:[''],  // Initialize bcity with an empty value
     });
 
 
@@ -208,7 +211,48 @@ selectedFileArray: FileList | null = null;
   }
   
   
+  fetchDealIn() {
+    // Fetch city names from the backend
+    this.commercialservice.getModels().subscribe({
+      next: (data) => {
+        this.DealIns = data;
+      //console.log('Fetched cities:', this.cities);
+      //console.log('Fetched cities indata:', data);
+      this.updateSelectdeal();
+      },
+      error: (error) => {
+        console.error('Error fetching cities:', error);
+      }
+    });
+  }
+  updateSelectdeal() {
+    const selectElement = document.getElementById('dealIn') as HTMLSelectElement;
+    selectElement.innerHTML = ''; // Clear existing options
   
+    // Add placeholder option
+    const placeholderOption = document.createElement('option');
+    placeholderOption.text = '';
+    placeholderOption.disabled = true;
+    placeholderOption.selected = true;
+    selectElement.add(placeholderOption);
+  
+    // Add new options based on fetched cities
+    this.DealIns.forEach(dealIn => {
+      const option = document.createElement('option');
+      option.text = dealIn;
+      selectElement.add(option);
+    });
+  }
+  // Update city options in the form control
+  updateCitydeal() {
+  const bcityControl = this.userForm.get('dealIn');
+  bcityControl!.clearValidators(); // Clear any existing validators
+  bcityControl!.reset(); // Reset control to clear any previous value
+  
+  // Update city options based on fetched cities
+  this.DealIns.forEach(dealIn => {
+  });
+  }
 
 // async saveUser(): Promise<void> {
 //   if (this.userForm.valid) {

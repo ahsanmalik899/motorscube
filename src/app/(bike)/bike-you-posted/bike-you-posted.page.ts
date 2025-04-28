@@ -4,7 +4,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../(services)/user.service';
 import { AlertController, ModalController, PopoverController, LoadingController } from '@ionic/angular';
-import { MyBikeAdsPaymentComponent } from 'src/app/(bike)/my-bike-ads-payment/my-bike-ads-payment.component';
+import { MyCarAdsPaymentComponent } from 'src/app/(car)/my-car-ads-payment/my-car-ads-payment.component';
+
 
 @Component({
   selector: 'app-bike-you-posted',
@@ -142,11 +143,12 @@ export class BikeYouPostedPage implements OnInit {
     return text.length > limit ? text.substring(0, limit) + '...' : text;
   }
 
-  async openDialogueBox(bikeAdSaleId: string) {
+  async openDialogueBox(bikeAdSaleId: string,bikeAdType:string) {
     const modal = await this.modalController.create({
-      component: MyBikeAdsPaymentComponent,
+      component: MyCarAdsPaymentComponent,
       componentProps: {
-        bikeAdId: bikeAdSaleId
+        AdId: bikeAdSaleId,
+        AdType:bikeAdType,
       }
     });
     return await modal.present();

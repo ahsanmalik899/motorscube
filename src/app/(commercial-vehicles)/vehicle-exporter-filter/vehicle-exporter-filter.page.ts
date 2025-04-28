@@ -20,10 +20,11 @@ resetAll() {
   localStorage.removeItem('selectedcon');
   localStorage.removeItem('selectedcity');
   localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selecteddealin');
   // Reset the selected cities and conditions
   this.selectedCity = [];
   this.selectedcon = [];
-
+  this.selectedDealIn = [];
   // Reset filtered cities to show all cities
   this.filteredCities = [...this.cities];
 
@@ -34,7 +35,7 @@ resetAll() {
   // Reset any other relevant state or data if necessary
   this.isItemAvailable = false;
 }
-
+selectedDealIn: string[]=[];
   isItemAvailable = false;
   items: string[] = []; // Explicitly typed as string[]
   selected_looking_for: any; // Unused, consider removing or using it
@@ -52,7 +53,9 @@ resetAll() {
     private userService: UserService
   ) {  this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
-    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');}
+    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
+    this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
+  }
     getStoredArray(key: string): string[] {
       const value = localStorage.getItem(key);
       return value ? JSON.parse(value) : [];
@@ -102,7 +105,14 @@ resetAll() {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredCities = this.cities.filter((city: string) => city.toLowerCase().includes(searchTerm));
   }
-
+  selecteddealin(dealin: string) {
+    const index = this.selectedDealIn.indexOf(dealin);
+    if (index === -1) {
+      this.selectedDealIn.push(dealin); // Add condition type if not already selected
+    } else {
+      this.selectedDealIn.splice(index, 1); // Remove condition type if already selected
+    }
+  }
   // Select a city to add it to the selected cities list
   async selectCity(city: string) {
     this.divVisible = true;
@@ -136,10 +146,12 @@ resetAll() {
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
+    localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
     this.router.navigate(['/vehicle-exporters-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
-        selectedcity: this.selectedCity
+        selectedcity: this.selectedCity,
+        selecteddealin:this.selectedDealIn
       }
     });
   }

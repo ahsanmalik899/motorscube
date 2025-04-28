@@ -113,7 +113,7 @@
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <div *ngIf="saleItem.post_status==='Active'">
                   <div class="payment_btn" *ngIf="checksalePaymentStatus(saleItem.bike_ad_sale_id)">
-                    <ion-button (click)="openDialogueBox(saleItem.bike_ad_sale_id)">Send Payment</ion-button>
+                    <ion-button (click)="openDialogueBox(saleItem.bike_ad_sale_id,'Bike Sale')">Send Payment</ion-button>
                   </div>
                   <div *ngIf="checksaleUpgradeStatus(saleItem.bike_ad_sale_id)">
                     <button id="upgrade_btn_{{i}}" class="upgrade_btn" (click)="showPopup('popupDiv_' + i)">Upgrade</button>
@@ -267,7 +267,7 @@
             <div *ngIf="saleItem.post_status==='Active' " >
               <!-- Call the function to check payment status and control button visibility -->
               <div class="payment_btn" *ngIf="checksalePaymentStatus( saleItem.bike_ad_sale_id)">
-                <ion-button (click)="openDialogueBox(saleItem.bike_ad_sale_id)">Send Payment</ion-button>
+                <ion-button (click)="openDialogueBox(saleItem.bike_ad_sale_id,'Bike Sale')">Send Payment</ion-button>
               </div>
          
             

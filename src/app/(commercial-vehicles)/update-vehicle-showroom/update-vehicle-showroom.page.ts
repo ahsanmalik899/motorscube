@@ -12,6 +12,7 @@ import { UserService } from 'src/app/(services)/user.service';
   standalone:false,
 })
 export class UpdateVehicleShowroomPage implements OnInit {
+  DealIns!: string[];
 
 back() {
   history.back()}
@@ -41,7 +42,8 @@ back() {
       this.userForm = this.formBuilder.group({
         bcity: [''], // Assuming 'bcity' is the form control for city selection
         bcountries: [''], // Assuming 'bcity' is the form control for city selection
-        bmake:['']
+        bmake:[''],
+        dealIn:[''],
       });
       this.router.queryParams.subscribe(params => {
         this.adsId = params['adsId'];
@@ -52,6 +54,7 @@ back() {
       this.initForm();
       this.fetchCities();
       this.fetchMakes();
+      this.fetchDealIn();
     }
 
     initForm(): void {
@@ -66,7 +69,8 @@ back() {
         bcountry: ['', Validators.required],  // Initialize bcity with an empty value
         bmake: ['', Validators.required],
         bstartTime: ['', Validators.required],
-        bendTime: ['', Validators.required]
+        bendTime: ['', Validators.required],
+        dealIn: ['', Validators.required],
       });
 
       this.fetchCities();
@@ -104,7 +108,8 @@ back() {
             bcountry: carData.showroom_country || '',  // Initialize bcity with an empty value
             bmake: carData.showroom_make || '',
             bstartTime: carData.showroom_time_from || '',
-            bendTime: carData.showroom_time_to || ''
+            bendTime: carData.showroom_time_to || '',
+            dealIn: carData.showroom_deals_in || ''
           });
 
           Object.keys(this.filteredCarSaleData[0]).forEach(key => {
@@ -516,6 +521,52 @@ updateSelectOptions() {
     });
 
     await alert.present();
+  }
+  fetchDealIn() {
+    // Fetch city names from the backend
+    this.commercialservice.getModels().subscribe({
+      next: (data) => {
+        this.DealIns = data;
+      //console.log('Fetched cities:', this.cities);
+      //console.log('Fetched cities indata:', data);
+      this.updateSelectdeal();
+      },
+      error: (error) => {
+        console.error('Error fetching cities:', error);
+      }
+    });
+  }
+  updateSelectdeal() {
+    const selectElement = document.getElementById('dealIn') as HTMLSelectElement;
+    selectElement.innerHTML = ''; // Clear existing options
+  
+    // Add placeholder option
+    const placeholderOption = document.createElement('option');
+    placeholderOption.text = 'Select Deal IN';
+    placeholderOption.value = '';
+    placeholderOption.disabled = true;
+    selectElement.add(placeholderOption);
+  
+    // Add new options based on fetched cities
+    this.DealIns.forEach(dealin => {
+      const option = document.createElement('option');
+      option.text = dealin;
+      option.value = dealin;
+      if (dealin === this.userForm.get('dealIn')!.value) {
+        option.selected = true; // Pre-select the option if it matches bcity
+      }
+      selectElement.add(option);
+    });
+  }
+  // Update city options in the form control
+  updateCitydeal() {
+  const bcityControl = this.userForm.get('dealIn');
+  bcityControl!.clearValidators(); // Clear any existing validators
+  bcityControl!.reset(); // Reset control to clear any previous value
+  
+  // Update city options based on fetched cities
+  this.DealIns.forEach(dealIn => {
+  });
   }
   }
 

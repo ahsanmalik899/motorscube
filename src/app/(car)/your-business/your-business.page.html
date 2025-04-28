@@ -90,7 +90,7 @@
     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
       <div *ngIf="car.post_status === 'Active' && car.dealership_featured_type!=='Supreme'" >
       <button *ngIf="!checkPaymentButton('Car Dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.car_dealership_ad_sale_id, 'Car Dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
-      <button *ngIf="checkPaymentButton('Car Dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.car_dealership_ad_sale_id)">Send Payment</button>
+      <button *ngIf="checkPaymentButton('Car Dealer',car.car_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.car_dealership_ad_sale_id,'Car Dealer')">Send Payment</button>
     </div>
     </div>
    
@@ -202,7 +202,7 @@
       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
         <div *ngIf="car.post_status === 'Active' && car.showroom_featured_type !=='Supreme'">
         <button *ngIf="!checkPaymentButton('Car Showroom',car.car_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.car_showroom_ad_sale_id, 'Car Showroom' , car.showroom_featured_type)">Upgrade profile</button>
-        <button *ngIf="checkPaymentButton('Car Showroom',car.car_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_showroom_ad_sale_id)">Send payment</button>
+        <button *ngIf="checkPaymentButton('Car Showroom',car.car_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_showroom_ad_sale_id,'Car Showroom')">Send payment</button>
       </div>
       </div>
   
@@ -273,7 +273,7 @@
                   <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                     <div *ngIf="car.post_status === 'Active' && car.insurance_featured_type !=='Supreme'" >
                     <button id="signin-upgrade" *ngIf="!checkPaymentButton('Car Insurance',car.car_insurance_ad_sale_id)"  (click)="openPopup(car.car_insurance_ad_sale_id, 'Car Insurance' , car.insurance_featured_type)">Upgrade profile</button>
-              <button *ngIf="checkPaymentButton('Car Insurance',car.car_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_insurance_ad_sale_id)">Send payment</button>
+              <button *ngIf="checkPaymentButton('Car Insurance',car.car_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_insurance_ad_sale_id,'Car Insurance')">Send payment</button>
             </div>
                   </div>
               
@@ -341,7 +341,7 @@
                     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                       <div *ngIf="car.post_status === 'Active'&& car.leasing_featured_type !=='Supreme'" >
                       <button *ngIf="!checkPaymentButton('Car Leasing',car.car_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.car_leasing_ad_sale_id, 'Car Leasing' , car.leasing_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Car Leasing',car.car_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_leasing_ad_sale_id)">Send Payment</button>
+                      <button *ngIf="checkPaymentButton('Car Leasing',car.car_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_leasing_ad_sale_id,'Car Leasing')">Send Payment</button>
                     </div>
                     </div>
                 
@@ -412,7 +412,7 @@
                       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                         <div *ngIf="car.post_status === 'Active'&& car.importer_featured_type!=='Supreme'" >
                         <button id="signin-upgrade" *ngIf="!checkPaymentButton('Car Importer',car.car_importer_ad_sale_id)"  (click)="openPopup(car.car_importer_ad_sale_id, 'Car Importer' , car.importer_featured_type)">Upgrade profile</button>
-                  <button *ngIf="checkPaymentButton('Car Importer',car.car_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.importer_ad_sale_id)">Send Payment</button>
+                  <button *ngIf="checkPaymentButton('Car Importer',car.car_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.importer_ad_sale_id,'Car Importer')">Send Payment</button>
                 </div>
                       </div>
                   
@@ -478,7 +478,7 @@
                         <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                           <div *ngIf="car.post_status === 'Active'&& car.exporter_featured_type!=='Supreme'" >
                           <button id="signin-upgrade" *ngIf="!checkPaymentButton('Car Exporter',car.car_exporter_ad_sale_id)" (click)="openPopup(car.car_exporter_ad_sale_id ,'Car Exporter' , car.exporter_featured_type)">Upgrade profile</button>
-                    <button *ngIf="checkPaymentButton('Car Exporter',car.car_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_exporter_ad_sale_id)">Send Payment</button>
+                    <button *ngIf="checkPaymentButton('Car Exporter',car.car_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_exporter_ad_sale_id,'Car Exporter')">Send Payment</button>
                   </div>
                         </div>
                     
@@ -544,7 +544,7 @@
                           <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                             <div *ngIf="car.post_status === 'Active'&& car.workshop_featured_type!=='Supreme'" >
                             <button id="signin-upgrade" *ngIf="!checkPaymentButton('Car Workshop',car.car_workshop_ad_sale_id)" (click)="openPopup(car.car_workshop_ad_sale_id, 'Car Workshop' , car.workshop_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Car Workshop',car.car_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_workshop_ad_sale_id)">Send Payment</button>
+                      <button *ngIf="checkPaymentButton('Car Workshop',car.car_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_workshop_ad_sale_id,'Car Workshop')">Send Payment</button>
                     </div>
                           </div>
                       
@@ -611,7 +611,7 @@
                             <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                               <div *ngIf="car.post_status === 'Active'&& car.school_featured_type !=='Supreme'" >
                               <button id="signin-upgrade"  *ngIf="!checkPaymentButton('Car School',car.car_school_ad_sale_id)"  (click)="openPopup(car.car_school_ad_sale_id, 'Car School' , car.school_featured_type)">Upgrade profile</button>
-                        <button *ngIf="checkPaymentButton('Car School',car.car_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_school_ad_sale_id)">Send Payment</button>
+                        <button *ngIf="checkPaymentButton('Car School',car.car_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.car_school_ad_sale_id,'Car School')">Send Payment</button>
                       </div>
                             </div>
                         

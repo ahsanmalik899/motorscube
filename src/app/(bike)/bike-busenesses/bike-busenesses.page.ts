@@ -537,15 +537,16 @@ constructor(public route: Router,private bikeservice:BikeService, private popove
     });
   }
 
-  async openDialogueBox(carSaleId: string) {
+  async openDialogueBox(bikeAdSaleId: string,bikeAdType:string) {
     const modal = await this.modalController.create({
-        component: MyCarAdsPaymentComponent, // Pass your component
-        componentProps: {
-            carAdSaleId: carSaleId // Pass the carAdSaleId to the component
-        }
+      component: MyCarAdsPaymentComponent,
+      componentProps: {
+        AdId: bikeAdSaleId,
+        AdType:bikeAdType,
+      }
     });
     return await modal.present();
-}
+  }
 // Generic function to check if the payment button should be displayed for any post type
 
 async fetchUpgradePost() {

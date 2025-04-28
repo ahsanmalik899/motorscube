@@ -20,7 +20,7 @@ back() {
 
   isItemAvailable = false;
   items: string[] = []; // Explicitly typed as string[]
-
+  selectedDealIn: string[]=[];
   cities: string[] = []; // Explicitly typed as string[]
   filteredCities: string[] = []; // Explicitly typed as string[]
   selectedCity: string[] = []; // Explicitly typed as string[]
@@ -34,7 +34,9 @@ back() {
     private userService: UserService
   ) {  this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
-    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');}
+    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
+    this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
+  }
 
   ngOnInit() {
     this.fetchCities();
@@ -59,7 +61,14 @@ back() {
       'Quetta'
     ];
   }
-
+  selecteddealin(dealin: string) {
+    const index = this.selectedDealIn.indexOf(dealin);
+    if (index === -1) {
+      this.selectedDealIn.push(dealin); // Add condition type if not already selected
+    } else {
+      this.selectedDealIn.splice(index, 1); // Remove condition type if already selected
+    }
+  }
   // Filter items based on the search input
   getItems(ev: any) {
     // Reset items back to the full list
@@ -133,10 +142,12 @@ back() {
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
+    localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
     this.router.navigate(['//vehicle-importers-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
-        selectedcity: this.selectedCity
+        selectedcity: this.selectedCity,
+        selecteddealin:this.selectedDealIn
       }
     });
   }
@@ -144,10 +155,11 @@ back() {
     localStorage.removeItem('selectedCity');
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
+    localStorage.removeItem('selecteddealin');
     // Reset the selected cities and conditions
     this.selectedCity = [];
     this.selectedcon = [];
-  
+    this.selectedDealIn = [];
     // Reset filtered cities to show all cities
     this.filteredCities = [...this.cities];
   

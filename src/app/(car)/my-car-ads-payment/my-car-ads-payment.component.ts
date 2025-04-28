@@ -1,62 +1,79 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController, LoadingController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { UserService } from '../../(services)/user.service';
 
 @Component({
-    selector: 'app-my-car-ads-payment',
-    templateUrl: './my-car-ads-payment.component.html',
-    styleUrls: ['./my-car-ads-payment.component.scss'],
-    standalone: false
+  selector: 'app-my-car-ads-payment',
+  templateUrl: './my-car-ads-payment.component.html',
+  styleUrls: ['./my-car-ads-payment.component.scss'],
+  standalone: false
 })
 export class MyCarAdsPaymentComponent implements OnInit {
-String(arg0: string|number|null|undefined): string {
-throw new Error('Method not implemented.');
-}
   carAdSaleId = '';
+  carAdType = '';
   inputValue = '';
 
-  constructor(private modalController: ModalController, private userService: UserService, private navParams: NavParams) {}
+  constructor(
+    private modalController: ModalController,
+    private alertController: AlertController,
+    private loadingController: LoadingController, // ✅ Inject LoadingController
+    private userService: UserService,
+    private navParams: NavParams
+  ) {}
 
   ngOnInit() {
-    this.carAdSaleId = this.navParams.get('carAdSaleId');
+    this.carAdSaleId = this.navParams.get('AdId');
+    this.carAdType = this.navParams.get('AdType');
     console.log('Car Ad Sale ID:', this.carAdSaleId);
   }
-  // Function to close the dialogue box
+
   close() {
     this.modalController.dismiss();
   }
-  showInputValue() {
-    console.log(this.inputValue);
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.modalController.dismiss(); // ✅ Close modal on OK
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
-  onSubmit(submitvalue: string) {
-    console.log('Submitted Value:', submitvalue);
+  async onSubmit(submitvalue: any) {
+    const transactionId = String(submitvalue);
     const formData = new FormData();
 
-    // Append properties from userData to formData
     formData.append('post_id', this.carAdSaleId);
-    formData.append('transaction_id', submitvalue);
+    formData.append('transaction_id', transactionId);
+    formData.append('post_type', this.carAdType);
 
-    const formDataObject: Record<string, string | Blob> = {}; // Declaring the type for dynamic keys and mixed value types
-
-    formData.forEach((value, key) => {
-      formDataObject[key] = value; // No TypeScript errors, value can be a string or Blob
+    const loading = await this.loadingController.create({
+      message: 'Saving transaction...',
+      spinner: 'crescent'
     });
-    
-      console.log('FormData contents:', formDataObject);
-    //console.log(formData);
+
+    await loading.present();
+
     this.userService.savetransaction(formData).subscribe(
-      (response) => {
-          console.log('Data saved successfully:', response);
-          // Optionally, handle the response from the backend
+      async (response) => {
+        console.log('Data saved successfully:', response);
+        await loading.dismiss(); // ✅ Hide loader
+        this.showAlert('Success', 'Transaction saved successfully.');
       },
-      (error) => {
-          console.error('Error saving data:', error);
-          // Handle error if needed
+      async (error) => {
+        console.error('Error saving data:', error);
+        await loading.dismiss(); // ✅ Hide loader
+        this.showAlert('Error', 'Failed to save transaction. Please try again.');
       }
- );
-
+    );
   }
-
 }

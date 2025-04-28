@@ -189,15 +189,16 @@ trackByPostId(index: number, postItem: any): string {
     return text.length > limit ? text.substring(0, limit) + '...' : text;
   }
   // Function to open the dialogue box
-  async openDialogueBox(carSaleId: string) {
+  async openDialogueBox(carAdSaleId: string,carAdType:string) {
     const modal = await this.modalController.create({
-        component: MyCarAdsPaymentComponent, // Pass your component
-        componentProps: {
-            carAdSaleId: carSaleId // Pass the carAdSaleId to the component
-        }
+      component: MyCarAdsPaymentComponent,
+      componentProps: {
+        AdId: carAdSaleId,
+        AdType:carAdType,
+      }
     });
     return await modal.present();
-}
+  }
 
 
 

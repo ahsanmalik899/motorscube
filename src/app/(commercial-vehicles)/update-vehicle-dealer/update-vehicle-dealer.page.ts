@@ -13,6 +13,7 @@ import { UserService } from 'src/app/(services)/user.service';
   standalone:false,
 })
 export class UpdateVehicleDealerPage implements OnInit {
+  DealIns!: string[];
   back() {
   history.back();
   }
@@ -36,7 +37,8 @@ export class UpdateVehicleDealerPage implements OnInit {
         private router: ActivatedRoute,  private loadingController: LoadingController,public route: Router,
       ) {
         this.userForm = this.formBuilder.group({
-          bcity: [''] // Assuming 'bcity' is the form control for city selection
+          bcity: [''], // Assuming 'bcity' is the form control for city selection
+          dealin:['']
         });
   
         this.router.queryParams.subscribe(params => {
@@ -47,6 +49,7 @@ export class UpdateVehicleDealerPage implements OnInit {
       ngOnInit(): void {
         this.initForm();
         this.fetchCities();
+        this.fetchDealIn();
       }
   
       initForm(): void {
@@ -57,6 +60,7 @@ export class UpdateVehicleDealerPage implements OnInit {
           bmobile: ['', Validators.required],
           bemail: ['', [Validators.required, Validators.email]],
           bwebsite: ['', Validators.required],
+          dealIn:['',Validators.required],
           bcity: ['', Validators.required]  // Initialize bcity with an empty value
         });
   
@@ -88,8 +92,8 @@ export class UpdateVehicleDealerPage implements OnInit {
               bmobile: carData.dealership_phone || '',
               bemail: carData.dealership_email || '',
               bwebsite: carData.dealership_web || '',
-              bcity: carData.dealership_city || ''
-              
+              bcity: carData.dealership_city || '',
+              dealIn:carData.dealership_deals_in || '',
             });
   
             Object.keys(this.filteredCarSaleData[0]).forEach(key => {
@@ -408,8 +412,55 @@ export class UpdateVehicleDealerPage implements OnInit {
         bemail: 'Email',
         bwebsite: 'Website',
         bcity: 'City',
+        dealIn:'Deals In',
       };
       return fieldLabels[field] || field;
+    }
+    fetchDealIn() {
+      // Fetch city names from the backend
+      this.commercialservice.getModels().subscribe({
+        next: (data) => {
+          this.DealIns = data;
+        //console.log('Fetched cities:', this.cities);
+        //console.log('Fetched cities indata:', data);
+        this.updateSelectdeal();
+        },
+        error: (error) => {
+          console.error('Error fetching cities:', error);
+        }
+      });
+    }
+    updateSelectdeal() {
+      const selectElement = document.getElementById('dealIn') as HTMLSelectElement;
+      selectElement.innerHTML = ''; // Clear existing options
+    
+      // Add placeholder option
+      const placeholderOption = document.createElement('option');
+      placeholderOption.text = 'Select Deal IN';
+      placeholderOption.value = '';
+      placeholderOption.disabled = true;
+      selectElement.add(placeholderOption);
+    
+      // Add new options based on fetched cities
+      this.DealIns.forEach(dealin => {
+        const option = document.createElement('option');
+        option.text = dealin;
+        option.value = dealin;
+        if (dealin === this.userForm.get('dealIn')!.value) {
+          option.selected = true; // Pre-select the option if it matches bcity
+        }
+        selectElement.add(option);
+      });
+    }
+    // Update city options in the form control
+    updateCitydeal() {
+    const bcityControl = this.userForm.get('dealIn');
+    bcityControl!.clearValidators(); // Clear any existing validators
+    bcityControl!.reset(); // Reset control to clear any previous value
+    
+    // Update city options based on fetched cities
+    this.DealIns.forEach(dealIn => {
+    });
     }
     async presentErrorAlert(message: string): Promise<void> {
       const alert = await this.alertController.create({

@@ -46,6 +46,21 @@
           </ng-template>
           </ion-popover>
 
+          <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+          <ion-row><img src="../../../assets/extra-icon/seller-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+            <p style="margin-left: 20px; margin-top: 20px; font-weight: bold;">Deal IN</p></ion-row>
+  
+            <div style="width: 100%; text-align: center; display: flex; justify-content: space-around;">
+              <ion-row>
+                
+        <ion-button [color]="selectedDealIn.includes('Truck AND Trailers') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Truck AND Trailers')">Truck AND Trailers</ion-button>
+        <ion-button [color]="selectedDealIn.includes('Bus') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selecteddealin('Bus')">Bus</ion-button>
+        <ion-button [color]="selectedDealIn.includes('Van') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Van')">Van</ion-button>
+        <ion-button [color]="selectedDealIn.includes('LTV') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selecteddealin('LTV')">LTV</ion-button>
+        <ion-button [color]="selectedDealIn.includes('Others') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Others')">Others</ion-button>
+  
+      </ion-row>
+            </div>
         <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
         <ion-row><img src="../../../assets/extra-icon/seller-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>

@@ -15,11 +15,13 @@ export class VehicleExportersListingPage implements OnInit {
   filterData: any[] = [];
   selectedcon: any[] = [];
   selectedcity: any[] = [];
+  selecteddealin: any[] = [];
   constructor(public router: Router, private popoverController: PopoverController, private userService: UserService,private commercialservice:CommercialService,
     private route: ActivatedRoute,private cdr: ChangeDetectorRef,) {
     this.route.queryParams.subscribe(params => {
        this.selectedcon = params['selectedcon'];
        this.selectedcity = params['selectedcity'];
+       this.selecteddealin = params['selecteddealin'];
        console.log('condition : ',this.selectedcon);
     console.log('city' , this.selectedcity);
     this.fetchExporterData();
@@ -99,12 +101,14 @@ export class VehicleExportersListingPage implements OnInit {
     // Ensure selected conditions arrays exist and are arrays
     const city = this.selectedcity || [];
     const conditions = this.selectedcon || [];
+    const selectedDealin = this.selecteddealin || [];
     console.log('city1  :  ', city);
     console.log('condition1  :  ', conditions);
     this.filterData = this.exporterData.filter(car =>
       car.post_status === 'Active' &&
       (city.length === 0 || city.includes(car.exporter_country)) &&
-      (conditions.length === 0 || conditions.includes(car.exporter_featured_type))
+      (conditions.length === 0 || conditions.includes(car.exporter_featured_type))&&
+      (selectedDealin.length === 0 || selectedDealin.includes(car.exporter_deals_in))
     );
   }
 

@@ -13,6 +13,7 @@ import { UserService } from 'src/app/(services)/user.service';
 export class VehicleLeasingListingPage implements OnInit {
   leasingData: any[] = [];
   filterData: any[] = [];
+  selecteddealin: any[] = [];
   selectedcon: any[] = [];
   selectedcity: any[] = [];
   constructor(public router: Router, private popoverController: PopoverController, private userService: UserService, private cdr: ChangeDetectorRef,private commercialservice:CommercialService,
@@ -20,6 +21,7 @@ export class VehicleLeasingListingPage implements OnInit {
     this.route.queryParams.subscribe(params => {
        this.selectedcon = params['selectedcon'];
        this.selectedcity = params['selectedcity'];
+       this.selecteddealin = params['selecteddealin'];
        console.log('condition : ',this.selectedcon);
     console.log('city' , this.selectedcity);
     this.fetchleasingData();
@@ -44,6 +46,7 @@ export class VehicleLeasingListingPage implements OnInit {
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
+    localStorage.removeItem('selecteddealin');
   }
   filter(){
     this.router.navigate(['vehicle-leasing-filter']);
@@ -99,16 +102,18 @@ export class VehicleLeasingListingPage implements OnInit {
     // Ensure selected conditions arrays exist and are arrays
     const city = this.selectedcity || [];
     const conditions = this.selectedcon || [];
+    const selectedDealin = this.selecteddealin || [];
     console.log('city1  :  ', city);
     console.log('condition1  :  ', conditions);
     this.filterData = this.leasingData.filter(car =>
       car.post_status === 'Active' &&
       (city.length === 0 || city.includes(car.leasing_city)) &&
-      (conditions.length === 0 || conditions.includes(car.leasing_featured_type))
+      (conditions.length === 0 || conditions.includes(car.leasing_featured_type))&&
+      (selectedDealin.length === 0 || selectedDealin.includes(car.leasing_deals_in))
     );
   }
   navigateToleasingSingle(id: string) {
-    this.router.navigate(['/vehicel-leasing-singleview'], {
+    this.router.navigate(['/vehicle-leasing-singleview'], {
       queryParams: {
         leasingId: id,
       }

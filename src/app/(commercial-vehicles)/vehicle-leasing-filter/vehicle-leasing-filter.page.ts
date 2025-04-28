@@ -21,9 +21,11 @@ resetAll() {
   localStorage.removeItem('selectedcon');
   localStorage.removeItem('selectedcity');
   localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selecteddealin');
   // Reset the selected cities and conditions
   this.selectedCity = [];
   this.selectedcon = [];
+  this.selectedDealIn = [];
 
   // Reset filtered cities to show all cities
   this.filteredCities = [...this.cities];
@@ -35,7 +37,7 @@ resetAll() {
   // Reset any other relevant state or data if necessary
   this.isItemAvailable = false;
 }
-
+selectedDealIn: string[]=[];
   isItemAvailable = false;
   items: string[] = [];
   cities: string[] = [];
@@ -55,6 +57,8 @@ resetAll() {
     this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
     this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
+     this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
+     this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
   }
 
   ngOnInit() {
@@ -87,7 +91,14 @@ resetAll() {
       this.initializeItems(); // Reset items when the search is cleared
     }
   }
-
+  selecteddealin(dealin: string) {
+    const index = this.selectedDealIn.indexOf(dealin);
+    if (index === -1) {
+      this.selectedDealIn.push(dealin); // Add condition type if not already selected
+    } else {
+      this.selectedDealIn.splice(index, 1); // Remove condition type if already selected
+    }
+  }
   // Fetch cities from the backend
   fetchCities() {
     this.userService.getCities().subscribe({
@@ -144,10 +155,12 @@ resetAll() {
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
+    localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
     this.router.navigate(['/vehicle-leasing-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
         selectedcity: this.selectedCity,
+        selecteddealin:this.selectedDealIn
       },
     });
   }

@@ -14,7 +14,8 @@ export class VehicleInsuranceListingPage implements OnInit {
   insuranceData: any[] = [];
   selectedcon: string[] = [];
   selectedcity: string[] = [];
-
+  dealershipData: any[] = [];
+  selecteddealin: any[] = [];
   constructor(
     public router: Router,
     private popoverController: PopoverController,
@@ -26,7 +27,7 @@ export class VehicleInsuranceListingPage implements OnInit {
       // Ensure selectedcon and selectedcity are treated as arrays
       this.selectedcon = Array.isArray(params['selectedcon']) ? params['selectedcon'] : (params['selectedcon'] ? params['selectedcon'].split(',') : []);
       this.selectedcity = Array.isArray(params['selectedcity']) ? params['selectedcity'] : (params['selectedcity'] ? params['selectedcity'].split(',') : []);
-
+      this.selecteddealin = params['selecteddealin'];
       console.log('Condition:', this.selectedcon);
       console.log('City:', this.selectedcity);
 
@@ -55,6 +56,7 @@ export class VehicleInsuranceListingPage implements OnInit {
     localStorage.removeItem('selectedcity');
     this.router.navigate(['commercial-vehicles-home']);
     localStorage.removeItem('selectedCity');
+    localStorage.removeItem('selecteddealin');
    
   }
   // Filter button to go to another page (e.g., filter options)
@@ -99,11 +101,12 @@ fetchinsuranceData() {
   filterInsuranceData() {
     const cities = this.selectedcity || [];
     const conditions = this.selectedcon || [];
-
+    const selectedDealin = this.selecteddealin || [];
     this.insuranceData = this.insuranceData.filter(insurance => 
       insurance.post_status === 'Active' &&
       (cities.length === 0 || cities.includes(insurance.insurance_city)) &&
-      (conditions.length === 0 || conditions.includes(insurance.insurance_featured_type))
+      (conditions.length === 0 || conditions.includes(insurance.insurance_featured_type))&&
+      (selectedDealin.length === 0 || selectedDealin.includes(insurance.insurance_deals_in))
     );
 
     console.log('Filtered Insurance Data:', this.insuranceData);

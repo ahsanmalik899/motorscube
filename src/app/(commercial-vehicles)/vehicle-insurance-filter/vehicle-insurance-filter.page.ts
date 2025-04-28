@@ -20,10 +20,11 @@ resetAll() {
   localStorage.removeItem('selectedcon');
   localStorage.removeItem('selectedcity');
   localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selecteddealin');
   // Reset the selected cities and conditions
   this.selectedCity = [];
   this.selectedcon = [];
-
+  this.selectedDealIn = [];
   // Reset filtered cities to show all cities
   this.filteredCities = [...this.cities];
 
@@ -37,7 +38,7 @@ resetAll() {
 
   isItemAvailable = false;
   items: string[] = []; // Array for city list
-
+  selectedDealIn: string[]=[];
   cities: string[] = []; // Array to store cities fetched from backend
   filteredCities: string[] = []; // Array to store filtered cities based on search
   selectedCity: string[] = []; // Array to store selected cities
@@ -52,7 +53,10 @@ resetAll() {
     private userService: UserService
   ) {  this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
-    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');}
+    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
+    this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
+  }
+    
 
   ngOnInit() {
     this.fetchCities();
@@ -114,7 +118,14 @@ resetAll() {
       this.filterCities({ target: { value: '' } }); // Reset city filter
     }
   }
-
+  selecteddealin(dealin: string) {
+    const index = this.selectedDealIn.indexOf(dealin);
+    if (index === -1) {
+      this.selectedDealIn.push(dealin); // Add condition type if not already selected
+    } else {
+      this.selectedDealIn.splice(index, 1); // Remove condition type if already selected
+    }
+  }
   hideDiv(city: string) {
     this.showcar = true;
     
@@ -139,11 +150,13 @@ resetAll() {
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
+    localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
     // Navigate to the listing page with selected filters
     this.router.navigate(['/vehicle-insurance-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
-        selectedcity: this.selectedCity
+        selectedcity: this.selectedCity,
+        selecteddealin:this.selectedDealIn
       }
     });
   }

@@ -25,6 +25,7 @@ throw new Error('Method not implemented.');
   cities: string[] = []; // List of cities fetched from the backend
   filteredCities: string[] = []; // Filtered cities based on search term
   selectedCity: string[] = []; // Selected cities to be used in the search
+  selectedDealIn: string[]=[];
   selectedcon: string[] = []; // Selected conditions
   divVisible = false;
   showcar = true;
@@ -39,6 +40,7 @@ throw new Error('Method not implemented.');
     this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
     this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
+    this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
   }
 
   ngOnInit() {
@@ -117,15 +119,24 @@ throw new Error('Method not implemented.');
       this.selectedcon.splice(index, 1); // Remove condition type if already selected
     }
   }
-
+  selecteddealin(dealin: string) {
+    const index = this.selectedDealIn.indexOf(dealin);
+    if (index === -1) {
+      this.selectedDealIn.push(dealin); // Add condition type if not already selected
+    } else {
+      this.selectedDealIn.splice(index, 1); // Remove condition type if already selected
+    }
+  }
   // Perform search and navigate to the listing page with selected parameters
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
+    localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
     this.router.navigate(['/vehicle-dealers-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
-        selectedcity: this.selectedCity
+        selectedcity: this.selectedCity,
+        selecteddealin:this.selectedDealIn
       }
     });
   }
@@ -133,10 +144,11 @@ throw new Error('Method not implemented.');
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
+    localStorage.removeItem('selecteddealin');
     // Reset the selected cities and conditions
     this.selectedCity = [];
     this.selectedcon = [];
-  
+    this.selectedDealIn = [];
     // Reset filtered cities to show all cities
     this.filteredCities = [...this.cities];
   

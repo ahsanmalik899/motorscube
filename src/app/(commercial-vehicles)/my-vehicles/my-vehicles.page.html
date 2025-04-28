@@ -116,7 +116,7 @@
             <div *ngIf="saleItem.post_status==='Active' " >
               <!-- Call the function to check payment status and control button visibility -->
               <div class="payment_btn" *ngIf="checksalePaymentStatus(saleItem.commercial_vehicle_ad_sale_id)">
-                <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_sale_id)">Send Payment</ion-button>
+                <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_sale_id,'Commercial Sale')">Send Payment</ion-button>
               </div>
             
             
@@ -279,7 +279,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div *ngIf="saleItem.post_status==='Active' " >
           <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.commercial_vehicle_ad_hire_id)">
-            <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_hire_id)">Send Payment</ion-button>
+            <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_hire_id,'Commercial Hire')">Send Payment</ion-button>
           </div>
           <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.commercial_vehicle_ad_hire_id)" >
             <button id="upgrade_btn" (click)="showPopup('popupDiv1_' + j)">Upgrade</button>
@@ -457,7 +457,7 @@
             <div *ngIf="saleItem.post_status==='Active' " >
               <!-- Call the function to check payment status and control button visibility -->
               <div class="payment_btn" *ngIf="checksalePaymentStatus( saleItem.commercial_vehicle_ad_sale_id)">
-                <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_sale_id)">Send Payment</ion-button>
+                <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_sale_id,'Commercial Sale')">Send Payment</ion-button>
               </div>
          
             
@@ -630,7 +630,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div *ngIf="saleItem.post_status==='Active' " >
           <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.commercial_vehicle_ad_hire_id)">
-            <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_hire_id)">Send Payment</ion-button>
+            <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_hire_id,'Commercial Hire')">Send Payment</ion-button>
           </div>
           <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.commercial_vehicle_ad_hire_id)">
             <button id="upgrade_btn" (click)="showPopup('popupDiv3_' + j)">Upgrade</button>

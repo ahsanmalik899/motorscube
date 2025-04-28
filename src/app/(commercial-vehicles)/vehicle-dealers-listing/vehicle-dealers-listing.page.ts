@@ -14,12 +14,14 @@ export class VehicleDealersListingPage implements OnInit {
   dealershipData: any[] = [];
   filterData: any[] = [];
   selectedcon: any[] = [];
+  selecteddealin: any[] = [];
   selectedcity: any[] = [];
   constructor(public router: Router, private popoverController: PopoverController, private userService: UserService,private commercialservice:CommercialService,
     private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
     this.route.queryParams.subscribe(params => {
        this.selectedcon = params['selectedcon'];
        this.selectedcity = params['selectedcity'];
+       this.selecteddealin = params['selecteddealin'];
        console.log('condition : ',this.selectedcon);
     console.log('city' , this.selectedcity);
     this.fetchdealershipData();
@@ -44,6 +46,7 @@ export class VehicleDealersListingPage implements OnInit {
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
+    localStorage.removeItem('selecteddealin');
   }
   filter(){
     this.router.navigate(['vehicle-dealer-filter']);
@@ -99,12 +102,15 @@ export class VehicleDealersListingPage implements OnInit {
     // Ensure selected conditions arrays exist and are arrays
     const city = this.selectedcity || [];
     const conditions = this.selectedcon || [];
+    const selectedDealin = this.selecteddealin || [];
     console.log('city1  :  ', city);
     console.log('condition1  :  ', conditions);
+    console.log('condition1  :  ', selectedDealin);
     this.filterData = this.dealershipData.filter(car =>
       car.post_status === 'Active' &&
       (city.length === 0 || city.includes(car.dealership_city)) &&
-      (conditions.length === 0 || conditions.includes(car.dealership_featured_type))
+      (conditions.length === 0 || conditions.includes(car.dealership_featured_type))&&
+      (selectedDealin.length === 0 || selectedDealin.includes(car.dealership_deals_in))
     );
   }
 

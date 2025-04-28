@@ -42,7 +42,13 @@
         <!-- City options will be populated dynamically -->
       </select>
     </div>
-  
+    <div>
+      <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">Deal In</label>
+      <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let dealin of DealIns" [value]="dealin">{{ dealin }}</option>
+      </select>
+    </div>
     <!-- Business Website -->
     <div>
       <label for="bwebsite" [class.active]="userForm.get('bwebsite')?.value">Business Website</label>

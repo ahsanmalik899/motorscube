@@ -81,16 +81,16 @@
           </ion-col>
         </div>
 
-<p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car Dealer profile</b></p>
+<p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial Dealer profile</b></p>
 
 
 <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
   <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
     <!-- Left side: Upgrade profile / Send payment -->
     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-      <div *ngIf="car.post_status === 'Active'" >
+      <div *ngIf="car.post_status === 'Active'&& car.dealership_featured_type!='Supreme'" >
       <button *ngIf="!checkPaymentButton('Commercial Dealer',car.commercial_vehicle_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.commercial_vehicle_dealership_ad_sale_id, 'Commercial Dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
-      <button *ngIf="checkPaymentButton('Commercial Dealer',car.commercial_vehicle_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.commercial_vehicle_dealership_ad_sale_id)">Send Payment</button>
+      <button *ngIf="checkPaymentButton('Commercial Dealer',car.commercial_vehicle_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.commercial_vehicle_dealership_ad_sale_id,'Commercial Dealer')">Send Payment</button>
     </div>
     </div>
    
@@ -194,15 +194,15 @@
             </ion-col>
           </div>
   
-  <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car showroom profile</b></p>
+  <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial showroom profile</b></p>
   
   <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
     <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
       <!-- Left side: Upgrade profile / Send payment -->
       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-        <div *ngIf="car.post_status === 'Active'">
+        <div *ngIf="car.post_status === 'Active' && car.showroom_featured_type!='Supreme'">
         <button *ngIf="!checkPaymentButton('Commercial Showroom',car.commercial_vehicle_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.commercial_vehicle_showroom_ad_sale_id, 'Commercial Showroom' , car.showroom_featured_type)">Upgrade profile</button>
-        <button *ngIf="checkPaymentButton('Commercial Showroom',car.commercial_vehicle_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_showroom_ad_sale_id)">Send payment</button>
+        <button *ngIf="checkPaymentButton('Commercial Showroom',car.commercial_vehicle_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_showroom_ad_sale_id,'Commercial Showroom')">Send payment</button>
       </div>
       </div>
   
@@ -265,15 +265,15 @@
               </ion-col>
               </div>
               
-              <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car insurance profile</b></p>          
+              <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial insurance profile</b></p>          
            
               <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
                 <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                   <!-- Left side: Upgrade profile / Send payment -->
                   <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-                    <div *ngIf="car.post_status === 'Active'" >
+                    <div *ngIf="car.post_status === 'Active'&& car.insurance_featured_type!='Supreme'" >
                     <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Insurance',car.commercial_vehicle_insurance_ad_sale_id)"  (click)="openPopup(car.commercial_vehicle_insurance_ad_sale_id, 'Commercial Insurance' , car.insurance_featured_type)">Upgrade profile</button>
-              <button *ngIf="checkPaymentButton('Commercial Insurance',car.commercial_vehicle_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_insurance_ad_sale_id)">Send payment</button>
+              <button *ngIf="checkPaymentButton('Commercial Insurance',car.commercial_vehicle_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_insurance_ad_sale_id,'Commercial Insurance')">Send payment</button>
             </div>
                   </div>
               
@@ -333,15 +333,15 @@
                 </ion-col>
                 </div>
                 
-                <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car leasing profile</b></p>
+                <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial leasing profile</b></p>
 
                 <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
                   <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                     <!-- Left side: Upgrade profile / Send payment -->
                     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-                      <div *ngIf="car.post_status === 'Active'" >
+                      <div *ngIf="car.post_status === 'Active'&& car.leasing_featured_type!='Supreme'" >
                       <button *ngIf="!checkPaymentButton('Commercial Leasing',car.commercial_vehicle_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.commercial_vehicle_leasing_ad_sale_id, 'Commercial Leasing' , car.leasing_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Commercial Leasing',car.commercial_vehicle_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_leasing_ad_sale_id)">Send Payment</button>
+                      <button *ngIf="checkPaymentButton('Commercial Leasing',car.commercial_vehicle_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_leasing_ad_sale_id,'Commercial Leasing')">Send Payment</button>
                     </div>
                     </div>
                 
@@ -402,7 +402,7 @@
                   </ion-col>
                   </div>
                   
-                  <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car importer profile</b></p>
+                  <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial importer profile</b></p>
                   
                   
 
@@ -410,9 +410,9 @@
                     <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                       <!-- Left side: Upgrade profile / Send payment -->
                       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-                        <div *ngIf="car.post_status === 'Active'" >
+                        <div *ngIf="car.post_status === 'Active' && car.importer_featured_type!='Supreme'" >
                         <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Importer',car.commercial_vehicle_importer_ad_sale_id)"  (click)="openPopup(car.commercial_vehicle_importer_ad_sale_id, 'Commercial Importer' , car.importer_featured_type)">Upgrade profile</button>
-                  <button *ngIf="checkPaymentButton('Commercial Importer',car.commercial_vehicle_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_importer_ad_sale_id)">Send Payment</button>
+                  <button *ngIf="checkPaymentButton('Commercial Importer',car.commercial_vehicle_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_importer_ad_sale_id,'Commercial Importer')">Send Payment</button>
                 </div>
                       </div>
                   
@@ -471,14 +471,14 @@
                     </ion-col>
                     </div>
                     
-                    <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car exporter profile</b></p>
+                    <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial exporter profile</b></p>
                     <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
                       <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                         <!-- Left side: Upgrade profile / Send payment -->
                         <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-                          <div *ngIf="car.post_status === 'Active'" >
+                          <div *ngIf="car.post_status === 'Active' && car.exporter_featured_type!='Supreme'" >
                           <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Exporter',car.commercial_vehicle_exporter_ad_sale_id)" (click)="openPopup(car.commercial_vehicle_exporter_ad_sale_id ,'Commercial Exporter' , car.exporter_featured_type)">Upgrade profile</button>
-                    <button *ngIf="checkPaymentButton('Commercial Exporter',car.commercial_vehicle_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_exporter_ad_sale_id)">Send Payment</button>
+                    <button *ngIf="checkPaymentButton('Commercial Exporter',car.commercial_vehicle_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_exporter_ad_sale_id,'Commercial Exporter')">Send Payment</button>
                   </div>
                         </div>
                     
@@ -535,17 +535,17 @@
                       </ion-col>
                       </div>
                       
-                      <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car workshop profile</b></p>
+                      <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial workshop profile</b></p>
                       
                     
                       <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
                         <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                           <!-- Left side: Upgrade profile / Send payment -->
                           <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-                            <div *ngIf="car.post_status === 'Active'" >
+                            <div *ngIf="car.post_status === 'Active' &&car.workshop_featured_type!='Supreme'" >
                               
                             <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Workshop',car.commercial_vehicle_workshop_ad_sale_id)" (click)="openPopup(car.commercial_vehicle_workshop_ad_sale_id, 'Commercial Workshop' , car.workshop_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Commercial Workshop',car.commercial_vehicle_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_workshop_ad_sale_id)">Send Payment</button>
+                      <button *ngIf="checkPaymentButton('Commercial Workshop',car.commercial_vehicle_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_vehicle_workshop_ad_sale_id,'Commercial Workshoop')">Send Payment</button>
                     </div>
                           </div>
                       
@@ -604,15 +604,15 @@
                         </ion-col>
                         </div>
                         
-                        <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Car school profile</b></p>                      
+                        <p style="font-size: 15px; text-align: center; margin-top: -10px; margin-left: -190px; color: darkblue;"><b>Commercial school profile</b></p>                      
                        
                         <div style=" margin-left: 0px;"class="btn_bottom-upgrade">
                           <div class="bottom-upgrade" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                             <!-- Left side: Upgrade profile / Send payment -->
                             <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
-                              <div *ngIf="car.post_status === 'Active'" >
+                              <div *ngIf="car.post_status === 'Active' && car.school_featured_type!='Supreme'" >
                               <button id="signin-upgrade"  *ngIf="!checkPaymentButton('Commercial School',car.commercial_school_ad_sale_id)"  (click)="openPopup(car.commercial_school_ad_sale_id, 'Commercial School' , car.school_featured_type)">Upgrade profile</button>
-                        <button *ngIf="checkPaymentButton('Commercial School',car.commercial_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_school_ad_sale_id)">Send Payment</button>
+                        <button *ngIf="checkPaymentButton('Commercial School',car.commercial_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.commercial_school_ad_sale_id,'Commercial School')">Send Payment</button>
                       </div>
                             </div>
                         

@@ -22,6 +22,7 @@ back() {
   showPassword = false;
   passwordToggleIcon = 'eye';
   cities!: string[];
+  DealIns!:string[];
   selectedFiles: FileList | null = null; // Initialize selectedFiles variable
 selectedFileArray: FileList | null = null;
  
@@ -31,7 +32,8 @@ selectedFileArray: FileList | null = null;
      private loadingController: LoadingController, private route: Router, private router: ActivatedRoute,
   ) {
     this.userForm = this.formBuilder.group({
-      bcity: [''] // Assuming 'bcity' is the form control for city selection
+      bcity: [''] ,// Assuming 'bcity' is the form control for city selection
+      dealIn:[''],
     });
     this.userID = sessionStorage.getItem('userId')??'';
     if(this.userID==''){
@@ -42,6 +44,7 @@ selectedFileArray: FileList | null = null;
   ngOnInit(): void {
     this.initForm();
     this.fetchCities();
+    this.fetchDealIn();
   }
 
   initForm(): void {
@@ -52,7 +55,8 @@ selectedFileArray: FileList | null = null;
       bmobile: ['', Validators.required],
       bemail: ['', [Validators.required, Validators.email]],
       bwebsite: ['', Validators.required],
-      bcity: ['', Validators.required]  // Initialize bcity with an empty value
+      bcity: ['', Validators.required] , // Initialize bcity with an empty value
+      dealIn: ['', Validators.required]
     });
 
 
@@ -102,7 +106,48 @@ updateCityOptions() {
   });
 }
 
+fetchDealIn() {
+  // Fetch city names from the backend
+  this.commercialservice.getModels().subscribe({
+    next: (data) => {
+      this.DealIns = data;
+    //console.log('Fetched cities:', this.cities);
+    //console.log('Fetched cities indata:', data);
+    this.updateSelectdeal();
+    },
+    error: (error) => {
+      console.error('Error fetching cities:', error);
+    }
+  });
+}
+updateSelectdeal() {
+  const selectElement = document.getElementById('dealIn') as HTMLSelectElement;
+  selectElement.innerHTML = ''; // Clear existing options
 
+  // Add placeholder option
+  const placeholderOption = document.createElement('option');
+  placeholderOption.text = '';
+  placeholderOption.disabled = true;
+  placeholderOption.selected = true;
+  selectElement.add(placeholderOption);
+
+  // Add new options based on fetched cities
+  this.DealIns.forEach(dealIn => {
+    const option = document.createElement('option');
+    option.text = dealIn;
+    selectElement.add(option);
+  });
+}
+// Update city options in the form control
+updateCitydeal() {
+const bcityControl = this.userForm.get('dealIn');
+bcityControl!.clearValidators(); // Clear any existing validators
+bcityControl!.reset(); // Reset control to clear any previous value
+
+// Update city options based on fetched cities
+this.DealIns.forEach(dealIn => {
+});
+}
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
@@ -234,7 +279,7 @@ async saveUser(): Promise<void> {
 
     // Append user ID to FormData
     formData.append('user_id', this.userID);
-
+   
     // Show loading spinner while the request is in progress
     const loading = await this.loadingController.create({
       message: 'Saving your data...',

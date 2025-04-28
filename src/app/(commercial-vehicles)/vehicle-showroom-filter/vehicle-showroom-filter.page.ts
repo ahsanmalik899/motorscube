@@ -21,10 +21,11 @@ resetAll() {
   localStorage.removeItem('selectedCity');
   localStorage.removeItem('selectedcon');
   localStorage.removeItem('selectedcity');
+  localStorage.removeItem('selecteddealin');
   // Reset the selected cities and conditions
   this.selectedCity = [];
   this.selectedcon = [];
-
+  this.selectedDealIn = [];
   // Reset filtered cities to show all cities
   this.filteredCities = [...this.cities];
 
@@ -42,6 +43,7 @@ resetAll() {
   filteredCities: string[] = [];
   selectedCity: string[] = [];
   selectedcon: string[] = [];
+  selectedDealIn: string[]=[];
   divVisible = false; // Can be removed if not used in the popover logic
   showcar = true; // Can be removed if not needed in the UI
 
@@ -52,7 +54,10 @@ resetAll() {
     private alertController: AlertController // For showing error alerts
   ) {  this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
-    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');}
+    this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
+    this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
+  }
+
 
   ngOnInit() {
     this.fetchCities();
@@ -100,7 +105,14 @@ resetAll() {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredCities = this.cities.filter((city) => city.toLowerCase().includes(searchTerm));
   }
-
+  selecteddealin(dealin: string) {
+    const index = this.selectedDealIn.indexOf(dealin);
+    if (index === -1) {
+      this.selectedDealIn.push(dealin); // Add condition type if not already selected
+    } else {
+      this.selectedDealIn.splice(index, 1); // Remove condition type if already selected
+    }
+  }
   // Select a city and add it to the selectedCity list
   async selectCity(city: string) {
     this.divVisible = true;
@@ -134,10 +146,12 @@ resetAll() {
   search() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
+    localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
     this.router.navigate(['/vehicle-showrooms-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
-        selectedcity: this.selectedCity
+        selectedcity: this.selectedCity,
+        selecteddealin:this.selectedDealIn
       }
     });
   }
