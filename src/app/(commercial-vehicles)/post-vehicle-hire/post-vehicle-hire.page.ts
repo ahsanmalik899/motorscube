@@ -560,8 +560,7 @@ export class PostVehicleHirePage implements OnInit {
       fuel: this.selectedFuel,
       drive: this.selectedDrive,
       transmission: this.selectedTransmission,
-      
-      discription: description,
+        discription: description,
       change: this.selectedcon,
       selectDriver: this.selectdriver,
       duration: this.selectedDuration,

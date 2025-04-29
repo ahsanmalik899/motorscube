@@ -98,11 +98,22 @@ navigateToCarDetail(carId: string): void {
     }
   });
 }
-carSalePosting() {
-throw new Error('Method not implemented.');
+carHirePosting(): void {
+  
+  if (this.selectID) {
+    this.router.navigate(['/post-vehicle-hire']);
+  } else {
+    this.router.navigate(['/login']);
+  }
 }
-carHirePosting() {
-throw new Error('Method not implemented.');
+
+carSalePosting(): void {
+
+  if (this.selectID) {
+    this.router.navigate(['/post-vehicle-sale-ad']);
+  } else {
+    this.router.navigate(['/login']);
+  }
 }
 carHireListing() {
   this.router.navigate(['commercial-hire-listing']);

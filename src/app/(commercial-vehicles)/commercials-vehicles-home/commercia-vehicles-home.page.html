@@ -27,21 +27,33 @@
   
 
   <!-- background cover photo -->
-  <div style="width: 100%; text-align: center;">
-    <!-- <img src="../../../assets/Car-section/home-page/main-header.png" style="margin-top: -18px; width: 80px;"> -->
-    <!-- <img src="../../../assets/Car-section/home-page/main-header.png" style="margin-top: -18px; width: 80px;"> -->
-  <img src="../../assets/commercialsection/homepage/vehicle-home-page.jpg" style="margin-top: -25px; width: 100%; height: 400px !important; background-color: rgba(0, 0, 0, 0.8)">
+   <!-- background cover photo -->
+<div style="position: relative; width: 100%; height: 400px; text-align: center; overflow: hidden; margin-top: -25px;">
+  
+  <!-- Background image -->
+  <img src="../../assets/commercialsection/homepage/vehicle-home.png" 
+       style="width: 100%; height: 100%; object-fit: cover;" />
 
-  <p style="font-size: 35px; text-align: center; margin-top: -260px; color: white;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Search your dream Commercial Vehicle</b></p>
-  <p style="font-size: 19px; text-align: center; color: white; margin-top: 35px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">on simple clicks</p>
-</div>
+  <!-- Black overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+              background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
 
-<div class="bottom">
-  <div class="btn_bottom" style="text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
-    <button id="signin" type="button" (click)="commercialSaleListing()">Search Commercial vehicles</button>
-
+  <!-- Text content -->
+  <div style="position: absolute; top: 40%;  ;
+              color: white; z-index: 2; font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+    <p style="font-size: 30px; margin: 0;"><b>Search your dream Commercial Vehicle</b></p>
+    <p style="font-size: 19px; margin-top: 15px;">on simple clicks</p>
+    <div class="bottom">
+      <div class="btn_bottom" style="text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+        <button id="signin" type="button" (click)="commercialSaleListing()">Search Commercial vehicles</button>
+    
+      </div>
+    </div>
   </div>
 </div>
+
+
+
 <!--  -->
 
 <!-- slider -->
