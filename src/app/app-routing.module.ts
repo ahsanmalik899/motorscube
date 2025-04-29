@@ -672,6 +672,23 @@ const routes: Routes = [
     path: 'vehicle-workshop-singleview',
     loadChildren: () => import('./(commercial-vehicles)/vehicle-workshop-singleview/vehicle-workshop-singleview.module').then( m => m.VehicleWorkshopSingleviewPageModule)
   },
+  {
+    path: 'machinery-sale-listing',
+    loadChildren: () => import('./(Machinery)/machinery-sale-listing/machinery-sale-listing.module').then( m => m.MachinerySaleListingPageModule)
+  },
+  {
+    path: 'machinery-hire-listing',
+    loadChildren: () => import('./(Machinery)/machinery-hire-listing/machinery-hire-listing.module').then( m => m.MachineryHireListingPageModule)
+  },
+  {
+    path: 'machinery-sale-singleview',
+    loadChildren: () => import('./(Machinery)/machinery-sale-singleview/machinery-sale-singleview.module').then( m => m.MachinerySaleSingleviewPageModule)
+  },
+  {
+    path: 'machinery-hire-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-hire-single-view/machinery-hire-single-view.module').then( m => m.MachineryHireSingleViewPageModule)
+  },
+
 
 
 

@@ -1,4 +1,4 @@
-import { BikeService } from './../../(services)/bike.service';
+import { BikeService } from '../../(services)/bike.service';
 
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

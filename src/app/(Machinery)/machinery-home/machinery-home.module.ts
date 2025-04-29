@@ -15,6 +15,6 @@ import { MachineryHomePage } from './machinery-home.page';
     IonicModule,
     MachineryHomePageRoutingModule
   ],
-  declarations: [MachineryHomePage]
+  
 })
 export class MachineryHomePageModule {}

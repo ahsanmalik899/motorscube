@@ -27,21 +27,33 @@
   
 
   <!-- background cover photo -->
-  <div style="width: 100%; text-align: center;">
-    <!-- <img src="../../../assets/Car-section/home-page/main-header.png" style="margin-top: -18px; width: 80px;"> -->
-    <!-- <img src="../../../assets/Car-section/home-page/main-header.png" style="margin-top: -18px; width: 80px;"> -->
-  <img src="../../assets/extra/loader.png" style="margin-top: -25px; width: 100%; height: 400px !important;  background-color: rgb(0, 0, 0, 0.8)">
+   <!-- background cover photo -->
+<div style="position: relative; width: 100%; height: 400px; text-align: center; overflow: hidden; margin-top: -25px;">
+  
+  <!-- Background image -->
+  <img src="../../assets/commercialsection/homepage/vehicle-home.png" 
+       style="width: 100%; height: 100%; object-fit: cover;" />
 
-  <p style="font-size: 35px; text-align: center; margin-top: -260px; color: white;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Search your dream Machinery</b></p>
-  <p style="font-size: 19px; text-align: center; color: white; margin-top: 35px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">on simple clicks</p>
-</div>
+  <!-- Black overlay -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+              background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
 
-<div class="bottom">
-  <div class="btn_bottom" style="text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
-    <button id="signin" type="button" (click)="carSaleListing()">Search Machinery</button>
-
+  <!-- Text content -->
+  <div style="position: absolute; top: 40%;  ;
+              color: white; z-index: 2; font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+    <p style="font-size: 30px; margin: 0;"><b>Search your dream Machinery </b></p>
+    <p style="font-size: 19px; margin-top: 15px;">on simple clicks</p>
+    <div class="bottom">
+      <div class="btn_bottom" style="text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+        <button id="signin" type="button" (click)="commercialSaleListing()">Search Machinery vehicles</button>
+    
+      </div>
+    </div>
   </div>
 </div>
+
+
+
 <!--  -->
 
 <!-- slider -->
@@ -51,11 +63,11 @@
       <ion-card-header>
         <!-- Section Title -->
         <p style="font-size: 14px; font-weight: bold; margin: 10px 0px 0px 10px; color: black; text-align: left;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
-          Recent machinery for sale
+          Recent Vehicles for sale
         </p>
 
         <!-- View All Button -->
-        <div (click)="carSaleListing()" 
+        <div (click)="commercialSaleListing()" 
              style="height: 35px; border-radius: 30px; border-color: black; border: 1px solid skyblue; 
                     background-color: skyblue; margin-top: -30px; margin-left: 70%; margin-bottom: 20px; 
                     color: black; padding-top: 8px; padding-left: 0px;">
@@ -63,13 +75,39 @@
         </div>
 
         <!-- Conditional Display for Car Sale Data -->
-        <div *ngIf="carSaleData && carSaleData.length > 0; else noData">
-         
+        <div *ngIf="CommercialSaleData && CommercialSaleData.length > 0; else noData">
+    
+          <swiper-container [slidesPerView]="1" [spaceBetween]="10" [loop]="true" 
+                             [autoplay]="{ delay: 1000 }" [pagination]="{ clickable: true }" 
+                             [navigation]="true" style="height: 350px; overflow: hidden; margin-top: -12px;">
+            <ng-container *ngFor="let commercial of CommercialSaleData">
+              <swiper-slide *ngIf="commercial.feature_type === 'Supreme'" 
+                            (click)="navigateToCarDetail(commercial.machinery_ad_sale_id)">
+                <div style="text-align: center;">
+                  <!-- Image Section -->
+                  <div style="height: 250px; width: 100%; overflow: hidden; position: relative; margin: 0 auto;">
+                    <img *ngIf="commercial.image_url1" [src]="commercial.image_url1" class="car-image" 
+                         style="width: 100%; height: 100%; object-fit: cover;" alt="Commercial image for {{ commercial.make }} {{ commercial.model }}"/>
+                  </div>
+                  
+                  <!-- Car Details (Make, Model, Version) -->
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; color: gray;">
+                    {{ commercial.make }} {{ commercial.model }} {{ commercial.version }}
+                  </p>
+                  
+                  <!-- Price Section -->
+                  <p style="font-size: 18px; margin-top: 12px; font-weight: bold; text-align: center; color: #1a529c;">
+                   PKR {{ commercial.vehicle_price }}
+                  </p>
+                </div>
+              </swiper-slide>
+            </ng-container>
+          </swiper-container>
         </div>
 
         <!-- No Data Fallback Template -->
         <ng-template #noData>
-          <p style="text-align: center; color: gray; font-size: 14px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">No machinery sale data available</p>
+          <p style="text-align: center; color: gray; font-size: 14px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">No car sale data available</p>
         </ng-template>
       </ion-card-header>
     </ion-card>
@@ -86,7 +124,7 @@
    <ion-col style="text-align: -webkit-center;">
      <ion-card class="btn-post" style="margin-top: 5px;">
  <ion-card-header>
-  <p style="font-size: 18px; margin-top: 15px; color: white; text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Looking to sell or rent out machinery? <br> Post ad for free</p>
+  <p style="font-size: 18px; margin-top: 15px; color: white; text-align: center;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Looking to sell or rent out Vehicals? <br> Post ad for free</p>
   <!-- <p style="font-size: 16px; margin: 20px 0px 35px 0px; color: white; text-align: center;">Post your ad to 1000's of daily visitors for free</p> -->
 
   <div class="ad-post" style="margin-top: 35px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
@@ -108,7 +146,7 @@
       <ion-card-header>
         <!-- Section Title -->
         <p style="font-size: 14px; font-weight: bold; margin: 10px 0px 0px 10px; color: black; text-align: left;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
-          Recent machinery for hire
+          Recent Vehicals for hire
         </p>
         <!-- View All Button -->
         <div (click)="carHireListing()" 
@@ -118,14 +156,35 @@
           View all
         </div>
 
-        <!-- Conditional Display for Car Sale Data -->
-        <div *ngIf="carHireData && carHireData.length > 0; else noData">
-         
+        <!-- Conditional Display for Commercial \hire Data -->
+        <div *ngIf="  CommercialHireData &&   CommercialHireData.length > 0; else noData">
+          <swiper-container [slidesPerView]="1" [spaceBetween]="10" [loop]="true" 
+                             [autoplay]="{ delay: 1000 }" [pagination]="{ clickable: true }" 
+                             [navigation]="true" style="height: 350px; overflow: hidden; margin-top: -12px;">
+            <ng-container *ngFor="let commercial of   CommercialHireData">
+              <swiper-slide *ngIf="commercial.feature_type === 'Supreme'" 
+                            (click)=" navigateToCarHireDetail(commercial.machinery_ad_hire_id)">
+                <div style="text-align: center;">
+                  <!-- Image Section -->
+                  <div style="height: 250px; width: 100%; overflow: hidden; position: relative; margin: 0 auto;">
+                    <img *ngIf="commercial.image_url1" [src]="commercial.image_url1" class="car-image" 
+                         style="width: 100%; height: 100%; object-fit: cover;" alt="Car image for {{ commercial.make }} {{ commercial.model }}"/>
+                  </div>
+                  
+                  <!-- Car Details (Make, Model, Version) -->
+                  <p style="font-size: 14px; margin-top: 12px; text-align: center; color: gray;">
+                    {{ commercial.make }} {{ commercial.model }} {{ commercial.version }}
+                  </p>
+                
+                </div>
+              </swiper-slide>
+            </ng-container>
+          </swiper-container>
         </div>
 
         <!-- No Data Fallback Template -->
         <ng-template #noData>
-          <p style="text-align: center; color: gray; font-size: 14px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">No machinery sale data available</p>
+          <p style="text-align: center; color: gray; font-size: 14px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">No Vehicals sale data available</p>
         </ng-template>
       </ion-card-header>
     </ion-card>
@@ -173,7 +232,7 @@
 <div style="text-align: center; width: 100%;">
 <!-- <ion-col>
   <ion-row> -->
-<img src="../../../assets/Car-section/home-page/resources-2.png"style="width: 50px; margin-left: -10px; margin-bottom: 20px; border-radius: 10px"/>
+<img src="../../assets/commercialsection/homepage/truck (1).png"style="width: 50px; margin-left: -10px; margin-bottom: 20px; border-radius: 10px"/>
 <!-- </div> -->
 <!-- <div style="text-align: center; width: 100%;"> -->
 <img src="../../../assets/Car-section/home-page/resources-1.png"style="width: 50px; margin-left: 20px; margin-bottom: 20px; border-radius: 10px"/>
@@ -188,7 +247,7 @@
         <ion-card (click)="carInsurance()" class="btn-city" >
           <ion-card-header class="text-center-vertical"style="display:flex; align-items:center;">
 
-            <img src="../../assets/Menu-items/After login/All other section menu//insurnace-2.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; " fill="clear;"/>
+            <img src="../../assets/commercialsection/common/truck.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; " fill="clear;"/>
             <p style="font-size: 13px; margin-left: 10px; margin-top: -2px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Insurance</b></p>
           </ion-card-header>
         </ion-card>
@@ -197,7 +256,7 @@
       <ion-col size="6" style="text-align: -webkit-center;">
         <ion-card  (click)="carLeasing()"  class="btn-city" >
           <ion-card-header class="text-center-vertical"style="display:flex; align-items:center;">
-            <img src="../../../assets/Menu-items/After login/All other section menu//laeasing.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; "fill="clear;"/>
+            <img src="../../../assets/Menu-items/After login/All other section menu/laeasing.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; "fill="clear;"/>
             <p style="font-size: 13px; margin-left: 10px; margin-top: -2px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Leasing</b></p>
           </ion-card-header>
         </ion-card>
@@ -219,7 +278,7 @@
       <ion-col size="6" style="text-align: -webkit-center;">
         <ion-card  (click)="carShowroom()"  class="btn-city" >
           <ion-card-header class="text-center-vertical"style="display:flex; align-items:center;">
-            <img src="../../../assets/Menu-items/After login/All other section menu/showroom.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; " fill="clear;"/>
+            <img src="../../assets/commercialsection/common/showroom.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; " fill="clear;"/>
             <p style="font-size: 13px; margin-left: 10px; margin-top: -2px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Showrooms</b></p>
           </ion-card-header>
         </ion-card>
@@ -242,7 +301,7 @@
       <ion-col size="6" style="text-align: -webkit-center;">
         <ion-card  (click)="carExporter()"  class="btn-city" >
           <ion-card-header class="text-center-vertical"style="display:flex; align-items:center;">
-            <img src="../../../assets/Menu-items/After login/All other section menu//exporter.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; "fill="clear;"/>
+            <img src="../../../assets/Menu-items/After login/All other section menu/exporter.png" style="height: 60px; width: 60px; margin-top: 10px; margin-left: 10px;margin-bottom: 5px; "fill="clear;"/>
             <p style="font-size: 13px; margin-left: 10px; margin-top: -2px;font-family: ATVFabriga, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"><b>Exporters</b></p>
           </ion-card-header>
         </ion-card>

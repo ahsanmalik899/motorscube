@@ -1,65 +1,163 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { forkJoin, tap, finalize } from 'rxjs';
+import { AuthService } from 'src/app/(services)/auth.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
+interface Machinery {
+  
+  machinery_ad_sale_id: string;
+  machinery_ad_hire_id:string;
+  feature_type:string;
+  image_url1: any;
+  type: any;
+  subtype: any;
+  vehicle_version: any;
+  vehicle_price: any;
+  vehicle_charges:any;
+      id: any;
+      make: any;
+      model: any;
+      version:any;
+      price: any;
+      image_url: any; 
+  }
 @Component({
   selector: 'app-machinery-home',
   templateUrl: './machinery-home.page.html',
   styleUrls: ['./machinery-home.page.scss'],
   standalone:false,
 })
+
 export class MachineryHomePage implements OnInit {
+  CommercialSaleData: Machinery[] = [];
+  CommercialHireData:Machinery[] = [];
+  isLoading: boolean | undefined;
+  selectID: string | null | undefined;
+  constructor( private router: Router,private machinearyservice:MachineryService, private authService:AuthService) { 
+    
+  }
+  ngOnInit() {
+    this.authService.userID$.subscribe(userID => {
+      this.selectID = userID; // Update the userID in the component
+    });
+    this.selectID = localStorage.getItem('userId');
+
+    this.preloadCommercialData()
+  }
 back() {
   this.router.navigate(['/home']);
 }
-navigateToMainMenu() {
-throw new Error('Method not implemented.');
+
+
+async preloadCommercialData(): Promise<void> {
+  this.isLoading = true; // Optional: Show loader in UI
+
+  forkJoin({
+    sale: this.machinearyservice.getMachinerySale(),
+    hire: this.machinearyservice.getMachineryHire()
+  })
+    .pipe(
+      tap(({ sale, hire }) => {
+        this.CommercialSaleData = sale;
+        this.CommercialHireData = hire;
+        console.log('✅ Commercial Sale Data:', sale);
+        console.log('✅ Commercial Hire Data:', hire);
+      }),
+      finalize(() => {
+        this.isLoading = false; // Optional: Hide loader
+      })
+    )
+    .subscribe({
+      error: (error) => {
+        console.error('❌ Error loading commercial data:', error);
+        // Optionally show a toast/snackbar here
+      }
+    });
 }
-carSaleListing() {
-throw new Error('Method not implemented.');
+
+
+navigateToMainMenu(): void {
+  if (this.selectID) {
+    this.router.navigate(['/main-menu-after-login']);
+    // Redirect to main-menu if userID is not available
+  
+  }
+  else{
+    this.router.navigate(['/main-menu']);
+  }
+}
+commercialSaleListing() {
+this.router.navigate(['/machinery-sale-listing'])
 }
 carSaleData: any;
-carSalePosting() {
-throw new Error('Method not implemented.');
+  
+navigateToCarDetail(carId: string): void {
+  this.router.navigate(['/vehicle-sale-single-view'], {
+    queryParams: {
+      saleid: carId,
+    }
+  });
 }
-carHirePosting() {
-throw new Error('Method not implemented.');
+carHirePosting(): void {
+  
+  if (this.selectID) {
+    this.router.navigate(['/post-vehicle-hire']);
+  } else {
+    this.router.navigate(['/login']);
+  }
+}
+
+carSalePosting(): void {
+
+  if (this.selectID) {
+    this.router.navigate(['/post-vehicle-sale-ad']);
+  } else {
+    this.router.navigate(['/login']);
+  }
 }
 carHireListing() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['machinery-hire-listing']);
 }
 carHireData: any;
+navigateToCarHireDetail(carId: string) {
+  this.router.navigate(['/vehicle-hire-single-view'], {
+    queryParams: {
+      saleid: carId,
+    }
+    
+  });
+}
 carInsurance() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-insurance-listing']);
 }
 carLeasing() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-leasing-listing']);
 }
 carDealer() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-dealers-listing']);
 }
 carShowroom() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-showrooms-listing']);
 }
 carImporter() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-importers-listing']);
 }
 carExporter() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-exporters-listing']);
 }
 carSchool() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-driving-school-listing']);
 }
 carWorkshop() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['vehicle-workshop-listing']);
 }
 selectedIcon: any;
 selectIcon(arg0: string) {
 throw new Error('Method not implemented.');
 }
 
-  constructor( private router: Router,) { }
 
-  ngOnInit() {
-  }
+
+ 
 
 }

@@ -1,4 +1,4 @@
-import { CommercialService } from './../../(services)/commercial.service';
+import { CommercialService } from '../../(services)/commercial.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, tap } from 'rxjs';

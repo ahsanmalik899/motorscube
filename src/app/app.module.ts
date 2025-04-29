@@ -87,6 +87,7 @@ import { PostVehicleImporterPage } from './(commercial-vehicles)/post-vehicle-im
 import { PostVehicleExporterPage } from './(commercial-vehicles)/post-vehicle-exporter/post-vehicle-exporter.page';
 import { PostVehicleDrivingSchoolPage } from './(commercial-vehicles)/post-vehicle-driving-school/post-vehicle-driving-school.page';
 import { PostVehicleDealerPage } from './(commercial-vehicles)/post-vehicle-dealer/post-vehicle-dealer.page';
+import { MachineryHomePage } from './(Machinery)/machinery-home/machinery-home.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,6 +161,7 @@ import { PostVehicleDealerPage } from './(commercial-vehicles)/post-vehicle-deal
     PostVehicleExporterPage,
     PostVehicleDrivingSchoolPage,
     PostVehicleDealerPage,
+    MachineryHomePage,
   ],
  
   bootstrap: [AppComponent],
