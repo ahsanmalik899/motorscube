@@ -689,19 +689,196 @@ const routes: Routes = [
     loadChildren: () => import('./(Machinery)/machinery-hire-single-view/machinery-hire-single-view.module').then( m => m.MachineryHireSingleViewPageModule)
   },
 
+  {
+    path: 'machinery-insurance-listing',
+    loadChildren: () => import('./(Machinery)/machinery-insurance-listing/machinery-insurance-listing.module').then( m => m.MachineryInsuranceListingPageModule)
+  },
+  {
+    path: 'machinery-leasing-listing',
+    loadChildren: () => import('./(Machinery)/machinery-leasing-listing/machinery-leasing-listing.module').then( m => m.MachineryLeasingListingPageModule)
+  },
+  {
+    path: 'machinery-dealer-listing',
+    loadChildren: () => import('./(Machinery)/machinery-dealer-listing/machinery-dealer-listing.module').then( m => m.MachineryDealerListingPageModule)
+  },
+  {
+    path: 'machinery-showroom-listing',
+    loadChildren: () => import('./(Machinery)/machinery-showroom-listing/machinery-showroom-listing.module').then( m => m.MachineryShowroomListingPageModule)
+  },
+  {
+    path: 'machinery-exporter-listing',
+    loadChildren: () => import('./(Machinery)/machinery-exporter-listing/machinery-exporter-listing.module').then( m => m.MachineryExporterListingPageModule)
+  },
 
+  {
+    path: 'machinery-driving-school-listing',
+    loadChildren: () => import('./(Machinery)/machinery-driving-school-listing/machinery-driving-school-listing.module').then( m => m.MachineryDrivingSchoolListingPageModule)
+  },
+  {
+    path: 'machinery-workshop-listing',
+    loadChildren: () => import('./(Machinery)/machinery-workshop-listing/machinery-workshop-listing.module').then( m => m.MachineryWorkshopListingPageModule)
+  },
+  {
+    path: 'machinery-sale-filter',
+    loadChildren: () => import('./(Machinery)/machinery-sale-filter/machinery-sale-filter.module').then( m => m.MachinerySaleFilterPageModule)
+  },
+  {
+    path: 'machinery-hire-filter',
+    loadChildren: () => import('./(Machinery)/machinery-hire-filter/machinery-hire-filter.module').then( m => m.MachineryHireFilterPageModule)
+  },
+  {
+    path: 'machinery-dealer-filter',
+    loadChildren: () => import('./(Machinery)/machinery-dealer-filter/machinery-dealer-filter.module').then( m => m.MachineryDealerFilterPageModule)
+  },
+  {
+    path: 'machinery-driving-school-filter',
+    loadChildren: () => import('./(Machinery)/machinery-driving-school-filter/machinery-driving-school-filter.module').then( m => m.MachineryDrivingSchoolFilterPageModule)
+  },
+  {
+    path: 'machinery-exporter-filter',
+    loadChildren: () => import('./(Machinery)/machinery-exporter-filter/machinery-exporter-filter.module').then( m => m.MachineryExporterFilterPageModule)
+  },
+  {
+    path: 'machinery-insurance-filter',
+    loadChildren: () => import('./(Machinery)/machinery-insurance-filter/machinery-insurance-filter.module').then( m => m.MachineryInsuranceFilterPageModule)
+  },
+  {
+    path: 'machinery-leasing-filter',
+    loadChildren: () => import('./(Machinery)/machinery-leasing-filter/machinery-leasing-filter.module').then( m => m.MachineryLeasingFilterPageModule)
+  },
+  {
+    path: 'machinery-showroom-filter',
+    loadChildren: () => import('./(Machinery)/machinery-showroom-filter/machinery-showroom-filter.module').then( m => m.MachineryShowroomFilterPageModule)
+  },
+  {
+    path: 'machinery-workshop-filter',
+    loadChildren: () => import('./(Machinery)/machinery-workshop-filter/machinery-workshop-filter.module').then( m => m.MachineryWorkshopFilterPageModule)
+  },
+  {
+    path: 'machinery-dealer-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-dealer-single-view/machinery-dealer-single-view.module').then( m => m.MachineryDealerSingleViewPageModule)
+  },
 
-
-
-
-
-
-
-
-
-
-
-
+  {
+    path: 'machinery-driving-school-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-driving-school-single-view/machinery-driving-school-single-view.module').then( m => m.MachineryDrivingSchoolSingleViewPageModule)
+  },
+  {
+    path: 'machinery-exporter-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-exporter-single-view/machinery-exporter-single-view.module').then( m => m.MachineryExporterSingleViewPageModule)
+  },
+  {
+    path: 'machinery-insurance-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-insurance-single-view/machinery-insurance-single-view.module').then( m => m.MachineryInsuranceSingleViewPageModule)
+  },
+  {
+    path: 'machinery-leasing-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-leasing-single-view/machinery-leasing-single-view.module').then( m => m.MachineryLeasingSingleViewPageModule)
+  },
+  {
+    path: 'machinery-showroom-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-showroom-single-view/machinery-showroom-single-view.module').then( m => m.MachineryShowroomSingleViewPageModule)
+  },
+  {
+    path: 'machinery-workshop-single-view',
+    loadChildren: () => import('./(Machinery)/machinery-workshop-single-view/machinery-workshop-single-view.module').then( m => m.MachineryWorkshopSingleViewPageModule)
+  },
+  {
+    path: 'machinery-importer-listing',
+    loadChildren: () => import('./(Machinery)/machinery-importer-listing/machinery-importer-listing.module').then( m => m.MachineryImporterListingPageModule)
+  },
+  {
+    path: 'machinery-importer-filter',
+    loadChildren: () => import('./(Machinery)/machinery-importer-filter/machinery-importer-filter.module').then( m => m.MachineryImporterFilterPageModule)
+  },
+  {
+    path: 'machinery-importer-singleview',
+    loadChildren: () => import('./(Machinery)/machinery-importer-singleview/machinery-importer-singleview.module').then( m => m.MachineryImporterSingleviewPageModule)
+  },
+  {
+    path: 'machinery-you-posted',
+    loadChildren: () => import('./(Machinery)/machinery-you-posted/machinery-you-posted.module').then( m => m.MachineryYouPostedPageModule)
+  },
+  {
+    path: 'machinery-buseness',
+    loadChildren: () => import('./(Machinery)/machinery-buseness/machinery-buseness.module').then( m => m.MachineryBusenessPageModule)
+  },
+  {
+    path: 'post-machinery-sale',
+    loadChildren: () => import('./(Machinery)/post-machinery-sale/post-machinery-sale.module').then( m => m.PostMachinerySalePageModule)
+  },
+  {
+    path: 'post-machinery-hire',
+    loadChildren: () => import('./(Machinery)/post-machinery-hire/post-machinery-hire.module').then( m => m.PostMachineryHirePageModule)
+  },
+  {
+    path: 'post-machinery-showroom',
+    loadChildren: () => import('./(Machinery)/post-machinery-showroom/post-machinery-showroom.module').then( m => m.PostMachineryShowroomPageModule)
+  },
+  {
+    path: 'post-machinery-dealer',
+    loadChildren: () => import('./(Machinery)/post-machinery-dealer/post-machinery-dealer.module').then( m => m.PostMachineryDealerPageModule)
+  },
+  {
+    path: 'post-machinery-workshop',
+    loadChildren: () => import('./(Machinery)/post-machinery-workshop/post-machinery-workshop.module').then( m => m.PostMachineryWorkshopPageModule)
+  },
+  {
+    path: 'post-machinery-importer',
+    loadChildren: () => import('./(Machinery)/post-machinery-importer/post-machinery-importer.module').then( m => m.PostMachineryImporterPageModule)
+  },
+  {
+    path: 'post-machinery-exporter',
+    loadChildren: () => import('./(Machinery)/post-machinery-exporter/post-machinery-exporter.module').then( m => m.PostMachineryExporterPageModule)
+  },
+  {
+    path: 'post-machinery-insurance',
+    loadChildren: () => import('./(Machinery)/post-machinery-insurance/post-machinery-insurance.module').then( m => m.PostMachineryInsurancePageModule)
+  },
+  {
+    path: 'post-machinery-leasing',
+    loadChildren: () => import('./(Machinery)/post-machinery-leasing/post-machinery-leasing.module').then( m => m.PostMachineryLeasingPageModule)
+  },
+  {
+    path: 'update-machinery-sale',
+    loadChildren: () => import('./(Machinery)/update-machinery-sale/update-machinery-sale.module').then( m => m.UpdateMachinerySalePageModule)
+  },
+  {
+    path: 'update-machinery-hire',
+    loadChildren: () => import('./(Machinery)/update-machinery-hire/update-machinery-hire.module').then( m => m.UpdateMachineryHirePageModule)
+  },
+  {
+    path: 'update-machinery-dealer',
+    loadChildren: () => import('./(Machinery)/update-machinery-dealer/update-machinery-dealer.module').then( m => m.UpdateMachineryDealerPageModule)
+  },
+  {
+    path: 'update-machinery-exporter',
+    loadChildren: () => import('./(Machinery)/update-machinery-exporter/update-machinery-exporter.module').then( m => m.UpdateMachineryExporterPageModule)
+  },
+  {
+    path: 'update-machinery-importer',
+    loadChildren: () => import('./(Machinery)/update-machinery-importer/update-machinery-importer.module').then( m => m.UpdateMachineryImporterPageModule)
+  },
+  {
+    path: 'update-machinery-insurance',
+    loadChildren: () => import('./(Machinery)/update-machinery-insurance/update-machinery-insurance.module').then( m => m.UpdateMachineryInsurancePageModule)
+  },
+  {
+    path: 'update-machinery-leasing',
+    loadChildren: () => import('./(Machinery)/update-machinery-leasing/update-machinery-leasing.module').then( m => m.UpdateMachineryLeasingPageModule)
+  },
+  {
+    path: 'update-machinery-showroom',
+    loadChildren: () => import('./(Machinery)/update-machinery-showroom/update-machinery-showroom.module').then( m => m.UpdateMachineryShowroomPageModule)
+  },
+  {
+    path: 'update-machinery-workshop',
+    loadChildren: () => import('./(Machinery)/update-machinery-workshop/update-machinery-workshop.module').then( m => m.UpdateMachineryWorkshopPageModule)
+  },
+  {
+    path: 'update-machinery-driving-school',
+    loadChildren: () => import('./(Machinery)/update-machinery-driving-school/update-machinery-driving-school.module').then( m => m.UpdateMachineryDrivingSchoolPageModule)
+  },
 
 
 ];

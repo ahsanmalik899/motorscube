@@ -92,7 +92,7 @@ this.router.navigate(['/machinery-sale-listing'])
 carSaleData: any;
   
 navigateToCarDetail(carId: string): void {
-  this.router.navigate(['/vehicle-sale-single-view'], {
+  this.router.navigate(['/machinery-sale-singleview'], {
     queryParams: {
       saleid: carId,
     }
@@ -120,7 +120,7 @@ carHireListing() {
 }
 carHireData: any;
 navigateToCarHireDetail(carId: string) {
-  this.router.navigate(['/vehicle-hire-single-view'], {
+  this.router.navigate(['/machinery-hire-singleview'], {
     queryParams: {
       saleid: carId,
     }
@@ -128,28 +128,28 @@ navigateToCarHireDetail(carId: string) {
   });
 }
 carInsurance() {
-  this.router.navigate(['vehicle-insurance-listing']);
+  this.router.navigate(['machinery-insurance-listing']);
 }
 carLeasing() {
-  this.router.navigate(['vehicle-leasing-listing']);
+  this.router.navigate(['machinery-leasing-listing']);
 }
 carDealer() {
-  this.router.navigate(['vehicle-dealers-listing']);
+  this.router.navigate(['machinery-dealer-listing']);
 }
 carShowroom() {
-  this.router.navigate(['vehicle-showrooms-listing']);
+  this.router.navigate(['machinery-showroom-listing']);
 }
 carImporter() {
-  this.router.navigate(['vehicle-importers-listing']);
+  this.router.navigate(['machinery-importer-listing']);
 }
 carExporter() {
-  this.router.navigate(['vehicle-exporters-listing']);
+  this.router.navigate(['machinery-exporter-listing']);
 }
 carSchool() {
-  this.router.navigate(['vehicle-driving-school-listing']);
+  this.router.navigate(['machinery-driving-school-listing']);
 }
 carWorkshop() {
-  this.router.navigate(['vehicle-workshop-listing']);
+  this.router.navigate(['machinery-workshop-listing']);
 }
 selectedIcon: any;
 selectIcon(arg0: string) {

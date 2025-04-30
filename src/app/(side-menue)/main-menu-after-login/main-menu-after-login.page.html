@@ -338,7 +338,7 @@
 
         <!-- Machinery Dropdown -->
         <div class="dropdown-content" *ngIf="machineryDropdownVisible">
-          <div style="display: flex; margin-top: 10px;" (click)="navigateToMachinerySale()"> 
+          <div style="display: flex; margin-top: 10px;" (click)="navigateToMYMachinery()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/car-ads.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Machinery You Posted</span> </p>               
           </div>
@@ -364,7 +364,7 @@
             </div>
                       </div>
 
-          <div *ngIf="userType === 'Trader'" style="display: flex; margin-top: 10px;" (click)="navigateToBusiness()"> 
+          <div *ngIf="userType === 'Trader'" style="display: flex; margin-top: 10px;" (click)="navigateToMachineryBuseness()"> 
             <img src="../../../assets/Menu-items/After login/Car menu/business.png" style="width: 40px; margin-top: 0px; margin-left: 20px;">
             <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span style="color: rgb(143, 143, 143);">Are you business? Add profile for free</span> </p>               
           </div>
@@ -390,8 +390,8 @@
           <hr style="height: 4px; background-color: aquamarine;">
           <p style="font-size: 14px; margin-top: 12px; text-align: center; padding-right: 10px; width: 100%;"> <span class="main-heading"><b>Post Machinery</b></span> </p>               
           <div style="display: flex; justify-content: center;">
-            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToMachinerySale()">For Sale</button>  
-            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToMachineryHire()">For Hire</button>  
+            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToMachinerypostsale()">For Sale</button>  
+            <button style="background-color: rgb(240, 24, 24); color: white; border-radius: 10px; padding: 15px; padding-left: 25px; padding-right: 25px; width: 48%; margin:3px" (click)="navigateToMachineryposthire()">For Hire</button>  
           </div>
           <hr style="height: 4px; background-color: aquamarine;">
           <p class="main-heading" style="justify-content: center; display: flex;">Search For Businesses</p>

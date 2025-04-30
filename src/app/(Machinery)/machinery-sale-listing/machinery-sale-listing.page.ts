@@ -14,8 +14,8 @@ interface Car {
   image_url2: any;
   image_url3: any;
   transmission: any;
-  fuel_type: string;
-  condition: string;
+  fueltype: string;
+  condition_machinery: string;
   vehicle_power_transmission: string;
   vehicle_doors: string;
   vehicle_location: string;
@@ -26,7 +26,7 @@ interface Car {
  subtype: string;
   price: string;
   year: string;
-  mileage: string;
+   hourused: string;
   engine_size: string;
   body_type: string;
   color: string;
@@ -178,8 +178,8 @@ filterCarData() {
   this.filteredCarData = this.carData.filter((car: Car) => {
     return (
       car.post_status === 'Active' &&
-      this.isFieldMatch(car.fuel_type, filterConditions.fuelTypes) &&
-      this.isFieldMatch(car.condition, filterConditions.conditions) &&
+      this.isFieldMatch(car.fueltype, filterConditions.fuelTypes) &&
+      this.isFieldMatch(car.condition_machinery, filterConditions.conditions) &&
       this.isFieldMatch(car.transmission, filterConditions.transmissions) &&
       this.isFieldMatch(car.vehicle_doors, filterConditions.doorNumbers) &&
       this.isFieldMatch(car.make, filterConditions.makes) &&
@@ -218,8 +218,8 @@ isYearInRange(car: Car): boolean {
 
 isMileageInRange(car: Car): boolean {
   return (
-    (!this.selectedlowmilage || parseInt(car.mileage, 10) >= parseInt(this.selectedlowmilage, 10)) &&
-    (!this.selectedhighmilage || parseInt(car.mileage, 10) <= parseInt(this.selectedhighmilage, 10))
+    (!this.selectedlowmilage || parseInt(car.hourused, 10) >= parseInt(this.selectedlowmilage, 10)) &&
+    (!this.selectedhighmilage || parseInt(car.hourused, 10) <= parseInt(this.selectedhighmilage, 10))
   );
 }
 
@@ -249,7 +249,7 @@ isModelVersionMatch(car: Car): boolean {
 
 
   back() {
-    this.router.navigate(['commercial-vehicles-home']);
+    this.router.navigate(['/machinery-home']);
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedmake');
@@ -288,7 +288,7 @@ isModelVersionMatch(car: Car): boolean {
   }
 
   filter() {
-    this.router.navigate(['/vehicle-sale-filter']);
+    this.router.navigate(['/machinery-sale-filter']);
   }
 
   async dismissPopover() {

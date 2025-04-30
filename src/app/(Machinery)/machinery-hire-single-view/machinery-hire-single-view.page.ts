@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -37,7 +38,7 @@ isModalOpen = false;
   showcar: boolean | undefined;
 
   constructor(public router: Router,  private userService: UserService, private modalController: ModalController,
-    private commercialservice:CommercialService,
+    private machineryservice:MachineryService,
     private route: ActivatedRoute) {
       this.route.queryParams.subscribe(params => {
         this.saleID = params['saleid'];
@@ -109,7 +110,7 @@ isModalOpen = false;
   }
 
   fetchCarSale() {
-    this.commercialservice.getSinglevehiclehire(this.saleID).subscribe({
+    this.machineryservice.getSinglemachineryhire(this.saleID).subscribe({
       next: (data: any[]) => {
        
         this.carSaleData = data; // Store fetched data in carData property

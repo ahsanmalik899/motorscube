@@ -209,12 +209,12 @@ export class MachineryHireListingPage implements OnInit {
     }
   
     back() {
-      this.router.navigate(['commercial-vehicles-home']);
+      this.router.navigate(['/machinery-home']);
       localStorage.clear();
     }
   
     filter() {
-      this.router.navigate(['/vehical-hire-filter']);
+      this.router.navigate(['/machinery-hire-filter']);
     }
   
     async dismissPopover() {
@@ -230,7 +230,7 @@ export class MachineryHireListingPage implements OnInit {
     }
   
     navigateToCarHireDetail(carId: string): void {
-      this.router.navigate(['/vehicle-hire-single-view'], {
+      this.router.navigate(['/machinery-hire-single-view'], {
         queryParams: {
           saleid: carId,
         }

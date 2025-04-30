@@ -1,0 +1,91 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>listing-business-filter</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <p style="font-size: 16px; text-align: center; color: gray; margin-top: 20px;">Search Filters</p>
+  <div (click)="back()"style="text-align: right; margin-top: -30px; margin-bottom: 15px; margin-right: 20px;">
+  <ion-icon name="close"  ></ion-icon></div>
+  <div style="text-align: -webkit-center;">
+    <ion-col>
+      <ion-card class="btn-dark">
+        <ion-card-header>
+          <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+        </ion-col>
+        </div>
+
+        <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+          <p style="margin-left: 20px; margin-top: 20px;">Car location</p>
+          <div id="click-trigger_city" [hidden]="!showcar" trigger="click-trigger_city" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
+          </div></ion-row>
+          <div *ngIf="divVisible">
+          <ion-badge *ngFor="let City of selectedCity" style="margin-left: 45px; height: 35px; width: 120px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -25px; color: black;">{{ City }}</p>
+          <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="hideDiv(City)"></ion-icon></div></ion-badge>
+          </div>
+          <!--  -->
+                <!-- ion-popover -->
+          <!-- <ion-button id="click-trigger">Ion-Popover</ion-button> -->
+          <ion-popover trigger="click-trigger_city" triggerAction="click">
+          <ng-template>
+          <ion-content class="ion-padding">
+            <p style="font-size: 16px; text-align: center;">Select City</p>
+          
+            <ion-searchbar type="text" debounce="500" (ionChange)="filterCities($event)"></ion-searchbar>
+          
+            <ion-list>
+              <ion-item *ngFor="let city of filteredCities" (click)="selectCity(city)">
+                {{ city }}
+              </ion-item>
+            </ion-list>
+          </ion-content>
+          </ng-template>
+          </ion-popover>
+          <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+          <ion-row><img src="../../../assets/extra-icon/seller-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+            <p style="margin-left: 20px; margin-top: 20px; font-weight: bold;">Deal IN</p></ion-row>
+  
+            <div style="width: 100%; text-align: center; display: flex; justify-content: space-around;">
+              <ion-row>
+                
+        <ion-button [color]="selectedDealIn.includes('Truck AND Trailers') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Truck AND Trailers')">Truck AND Trailers</ion-button>
+        <ion-button [color]="selectedDealIn.includes('Bus') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selecteddealin('Bus')">Bus</ion-button>
+        <ion-button [color]="selectedDealIn.includes('Van') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Van')">Van</ion-button>
+        <ion-button [color]="selectedDealIn.includes('LTV') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selecteddealin('LTV')">LTV</ion-button>
+        <ion-button [color]="selectedDealIn.includes('Others') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Others')">Others</ion-button>
+  
+      </ion-row>
+            </div>
+        <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
+        <ion-row><img src="../../../assets/extra-icon/seller-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+          <p style="margin-left: 20px; margin-top: 20px; font-weight: bold;">Ad type</p></ion-row>
+
+          <div style="width: 100%; text-align: center; display: flex; justify-content: space-around;">
+            <ion-row>
+              <ion-button [color]="selectedcon.includes('General') ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedcondition('General')">General</ion-button>
+      <ion-button [color]="selectedcon.includes('Hotspot') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selectedcondition('Hotspot')">Hotspot</ion-button>
+      <ion-button [color]="selectedcon.includes('Supreme') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selectedcondition('Supreme')">Supreme</ion-button>
+    </ion-row>
+          </div>
+
+
+          <ion-item-divider style="height: 1px; margin-top: 130px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
+              <div style="text-align: -webkit-center; margin-top: 15px; position: sticky; bottom: 0px; z-index: 1; background-color: white;">
+                <ion-row style="text-align: -webkit-center;">
+                  <ion-col>
+                    <button id="reset" type="reset" (click)="resetAll()">Reset all</button>
+                    <button id="submit" (click)="search()">Search</button>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <ion-item-divider></ion-item-divider>
+
+
+</ion-content>

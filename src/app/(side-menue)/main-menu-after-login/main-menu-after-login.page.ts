@@ -204,40 +204,52 @@ this.router.navigate(['/home'])
     this.router.navigate(['/post-vehicle-hire']);
   }
 
+  navigateToMYMachinery() {
+    this.router.navigate(['/machinery-you-posted']);
+  }
+  navigateToMachineryBuseness() {
+    this.router.navigate(['/machinery-buseness']);
+  }
   navigateToMachinerySale() {
-    this.router.navigate(['/machinery-sale']);
+    this.router.navigate(['/machinery-sale-listing']);
   }
 
   navigateToMachineryHire() {
-    this.router.navigate(['/machinery-hire']);
+    this.router.navigate(['/machinery-hire-listing']);
   }
 
   navigateToMachineryShowroom() {
-    this.router.navigate(['/machinery-showroom']);
+    this.router.navigate(['/machinery-showroom-listing']);
   }
 
   navigateToMachineryDealer() {
-    this.router.navigate(['/machinery-dealer']);
+    this.router.navigate(['/machinery-dealer-listing']);
   }
 
   navigateToMachineryWorkshop() {
-    this.router.navigate(['/machinery-workshop']);
+    this.router.navigate(['/machinery-workshop-listing']);
   }
 
   navigateToMachineryImporter() {
-    this.router.navigate(['/machinery-importer']);
+    this.router.navigate(['/machinery-importer-listing']);
   }
 
   navigateToMachineryExporter() {
-    this.router.navigate(['/machinery-exporter']);
+    this.router.navigate(['/machinery-exporter-listing']);
   }
 
   navigateToMachineryInsurance() {
-    this.router.navigate(['/machinery-insurance']);
+    this.router.navigate(['/machinery-insurance-listing']);
   }
 
   navigateToMachineryLeasing() {
-    this.router.navigate(['/machinery-leasing']);
+    this.router.navigate(['/machinery-leasing-listing']);
+  }
+  navigateToMachinerypostsale() {
+    this.router.navigate(['/post-machinery-sale']);
+  }
+  navigateToMachineryposthire() {
+    this.router.navigate(['/post-machinery-hire']);
   }
 
   navigateToPlantsSale() {

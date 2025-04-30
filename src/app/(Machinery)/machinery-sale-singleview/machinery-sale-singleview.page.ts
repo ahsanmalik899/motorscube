@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class MachinerySaleSingleviewPage implements OnInit {
     private userService: UserService,
     private modalController: ModalController,
     private route: ActivatedRoute,
-    private commercialservice:CommercialService,
+    private machineryservice:MachineryService,
   ) {
     this.route.queryParams.subscribe(params => {
       this.saleID = params['saleid'];
@@ -85,7 +86,7 @@ export class MachinerySaleSingleviewPage implements OnInit {
 
 
   fetchCarSale() {
-    this.commercialservice.getSinglevehicleSale(this.saleID).subscribe({
+    this.machineryservice.getSinglemachinerySale(this.saleID).subscribe({
       next: (data: any[]) => {
        
         this.carSaleData = data; // Store fetched data in carData property
