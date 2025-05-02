@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController, LoadingController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -103,7 +104,7 @@ export class PostMachineryHirePage implements OnInit {
     private popoverController: PopoverController,
     private userService: UserService,
     private loadingController: LoadingController,
-    private commercialservice: CommercialService
+    private machineryservice:MachineryService,
   ) {
     this.userID = sessionStorage.getItem('userId') || ''; // Default to an empty string if null
     this.userType = sessionStorage.getItem('userType') || ''; // Default to an empty string if null
@@ -158,7 +159,7 @@ export class PostMachineryHirePage implements OnInit {
 
   // select make car
   fetchMakes() {
-    this.commercialservice.getMakes().subscribe({
+    this.machineryservice.getMakes().subscribe({
       next: (data) => {
         this.makes = data;
         //console.log('Fetched makes:', data);
@@ -205,7 +206,7 @@ export class PostMachineryHirePage implements OnInit {
     formData.append('make', this.selectedMake);
 
     console.log(makeData);
-    this.commercialservice.getModels().subscribe({
+    this.machineryservice.getModels().subscribe({
       next: (data) => {
         // Handle successful response here
         console.log('Fetched models:', data);
@@ -251,7 +252,7 @@ export class PostMachineryHirePage implements OnInit {
     const formData = new FormData();
     formData.append('model', this.selectedModel);
 
-    this.commercialservice.getVersions(formData).subscribe({
+    this.machineryservice.getVersions(formData).subscribe({
       next: (data) => {
         // Handle successful response here
         console.log('Fetched versions:', data);
@@ -619,8 +620,8 @@ export class PostMachineryHirePage implements OnInit {
 
       try {
         // Call the API and wait for response
-        const response = await this.commercialservice
-          .carHirePost(formData)
+        const response = await this.machineryservice
+          .machineryHirePost(formData)
           .toPromise();
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();

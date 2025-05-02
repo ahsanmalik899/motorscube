@@ -18,6 +18,8 @@ back() {
 history.back();
 }
 userID: string |'';
+types!: string[];
+subtypes!: string[];
   userForm: FormGroup;
   showService1 = true;
   showService2 = false;
@@ -50,6 +52,7 @@ selectedFileArray: FileList | null = null;
     this.initForm();
     this.fetchCities();
     this.fetchCategory();
+    this.fetchtype();
   }
 
   initForm(): void {
@@ -67,6 +70,8 @@ selectedFileArray: FileList | null = null;
       bservice4: ['',],
       bstartTime: [''],
       bendTime: ['', ],
+      type:[''],
+      subtype:[''],
       bcategory: [[], Validators.required]
     });
 
@@ -409,6 +414,90 @@ async presentSuccessAlert(): Promise<void> {
 }
 
 
+fetchtype() {
+  // Fetch city names from the backend
+  this.machineryservice.getModels().subscribe({
+    next: (data) => {
+      this.types = data;
+    //console.log('Fetched cities:', this.cities);
+    //console.log('Fetched cities indata:', data);
+    this.updateSelectdtype();
+    },
+    error: (error) => {
+      console.error('Error fetching cities:', error);
+    }
+  });
+}
+updateSelectdtype() {
+  const selectElement = document.getElementById('type') as HTMLSelectElement;
+  selectElement.innerHTML = ''; // Clear existing options
+
+  // Add placeholder
+  const placeholderOption = document.createElement('option');
+  placeholderOption.value = '';
+  placeholderOption.disabled = true;
+  placeholderOption.selected = true;
+  selectElement.add(placeholderOption);
+
+  // Add new options
+  this.types.forEach(type => {
+    const option = document.createElement('option');
+    option.text = type;
+    option.value = type;
+
+    if (type === this.userForm.get('type')!.value) {
+      option.selected = true;
+    }
+
+    selectElement.add(option);
+  });
+
+  // Add event listener
+  selectElement.onchange = (event) => {
+    const selectedType = (event.target as HTMLSelectElement).value;
+    this.userForm.get('type')?.setValue(selectedType);
+    this.fetchsubtype(selectedType);
+  };
+}
+
+
+fetchsubtype(type:string) {
+  // Fetch city names from the backend
+  const formData = new FormData();
+  formData.append('model', type);
+  this.machineryservice.getVersions(formData).subscribe({
+    next: (data) => {
+      this.subtypes = data;
+    //console.log('Fetched cities:', this.cities);
+    //console.log('Fetched cities indata:', data);
+    this.updateSelectdsubtype();
+    },
+    error: (error) => {
+      console.error('Error fetching cities:', error);
+    }
+  });
+}
+updateSelectdsubtype() {
+  const selectElement = document.getElementById('subtype') as HTMLSelectElement;
+  selectElement.innerHTML = ''; // Clear existing options
+
+  // Add placeholder option
+  const placeholderOption = document.createElement('option');
+  placeholderOption.value = '';
+  placeholderOption.disabled = true;
+  selectElement.add(placeholderOption);
+
+  // Add new options based on fetched cities
+  this.subtypes.forEach(subtype => {
+    const option = document.createElement('option');
+    option.text = subtype;
+    option.value = subtype;
+    if (subtype === this.userForm.get('subtype')!.value) {
+      option.selected = true; // Pre-select the option if it matches bcity
+    }
+    selectElement.add(option);
+  });
+}
 
 
 }

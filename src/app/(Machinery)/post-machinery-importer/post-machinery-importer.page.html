@@ -36,6 +36,12 @@
       </select>
     </div>
     <div>
+      <label for="bcountry" [class.active]="userForm.get('bcountry')?.value">Country</label>
+      <select id="bcountry" class="text-field" formControlName="bcountry" (focus)="onInputFocus('bcountry')" (blur)="onInputBlur('bcountry')">
+        <!-- Country options will be populated dynamically -->
+      </select>
+    </div>
+    <div>
       <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">Deal In</label>
       <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
         <!-- City options will be populated dynamically -->

@@ -23,7 +23,7 @@
 <!-- card 1 normal -->
 <ion-col *ngFor="let saleItem of filteredCarSaleData; ; let i = index">
   
-  <ng-container  *ngIf="saleItem.vehicle_feature_type === 'General'" >
+  <ng-container  *ngIf="saleItem.feature_type === 'General'" >
     
   <ion-card class="btn-card">
     <ion-card-header>
@@ -41,11 +41,11 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
           <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}

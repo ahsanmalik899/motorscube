@@ -4,7 +4,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black; font-size: 17px;">Post your car for Sale</ion-label>
+    <ion-label style="color: black; font-size: 17px;">Post your commercial vehicle for Sale</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -25,8 +25,8 @@
 </div> -->
 
       <ion-row style="margin-top: 25px;">
-        <img src="../../../assets/extra-icon/car-condition.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
-        <p style="margin-left: 20px;">Car condition</p></ion-row>
+        <img src="../../assets//commercialsection/common/bus.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Vehicle condition</p></ion-row>
 
   <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
     <ion-col>
@@ -43,7 +43,7 @@
 <ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
 <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Car location</p>
+<p style="margin-left: 20px; margin-top: 20px;">Vehicle location</p>
 <div id="click-trigger_city" [hidden]="!showcar" trigger="click-trigger_city" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
   <div *ngIf="divVisible">
@@ -70,6 +70,36 @@
 </ion-popover>
 
 
+<ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
+<ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+<p style="margin-left: 20px; margin-top: 20px;">Country</p>
+<div id="click-trigger_country" [hidden]="!showcountry" trigger="click-trigger_country" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="fetchCountries()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
+</div></ion-row>
+  <div *ngIf="divcountry">
+  <ion-badge style="margin-left: 45px; height: 35px; width: 120px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -25px; color: black;">{{ selectedCountry }}</p>
+    <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="hideDivcountry()"></ion-icon></div></ion-badge>
+  </div>
+<!--  -->
+          <!-- ion-popover -->
+<!-- <ion-button id="click-trigger">Ion-Popover</ion-button> -->
+<ion-popover trigger="click-trigger_country" triggerAction="click">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <p style="font-size: 16px; text-align: center;">Select Country</p>
+
+      <ion-searchbar type="text" debounce="500" (ionChange)="filterCountries($event)"></ion-searchbar>
+
+      <ion-list>
+        <ion-item *ngFor="let Country of filteredCountries" (click)="selectCountry(Country)">
+          {{ Country }}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+
 
 
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
@@ -78,7 +108,7 @@
 
 <!--  -->
 
-<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+<ion-row><img src="../../assets//commercialsection/common/bus (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
 <p style="margin-left: 20px; margin-top: 20px;">Make</p>
 <div [hidden]="!showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
@@ -111,7 +141,7 @@
 <!--  -->
 
 <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Model</p>
+<p style="margin-left: 20px; margin-top: 20px;">Vehicle Type</p>
 <div [hidden]="!showmodel" id="click-trigger_model" trigger="click-trigger_model" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -123,7 +153,7 @@
   <ng-template>
     <!-- Your popover content here -->
     <ion-content class="ion-padding">
-      <p style="font-size: 16px; text-align: center;">Select Model</p>
+      <p style="font-size: 16px; text-align: center;">Select Type</p>
       <ion-searchbar type="text" debounce="500" (ionChange)="filterModels($event)"></ion-searchbar>
       <ion-list>
         <!-- Iterate over filteredMakes array instead of makes array -->
@@ -140,7 +170,7 @@
 
 
 <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Version</p>
+<p style="margin-left: 20px; margin-top: 20px;">VehicleSub Type</p>
 <div [hidden]="!showversion" id="click-trigger_version" trigger="click-trigger_version" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -165,7 +195,6 @@
   </ion-popover>
 </div>
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-
 
 <ion-row><img src="../../../assets/extra-icon/year.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
 <p style="margin-left: 20px; margin-top: 20px;">Make year</p>
@@ -192,8 +221,8 @@
     </ng-template>
   </ion-popover>
 
-  <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-  
+<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
   <ion-row><img src="../../../assets/extra-icon/price.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
     <p style="margin-left: 20px; margin-top: 20px;">Price</p></ion-row>
   
@@ -204,45 +233,19 @@
       <input type="text" name="price" placeholder="price" [(ngModel)]="price" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
     </div>    
     
-    <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider> 
-
+    <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>  
     
-<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-  <p style="margin-left: 20px; margin-top: 20px;">Country</p>
-  <div [hidden]="!showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
-    <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
-  </div></ion-row>
-  <div *ngIf="makedivVisible">
-  <ion-badge style="margin-left: 45px; height: 35px; width: 150px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -10px; color: black;">{{ selectedMake }}</p>
-    <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="makeDiv()"></ion-icon></div></ion-badge>
-  </div>
-    <ion-popover trigger="click-trigger_make" triggerAction="click">
-      <ng-template>
-        <!-- Your popover content here -->
-        <ion-content class="ion-padding">
-          <p style="font-size: 16px; text-align: center;">Select Option</p>
-          <ion-searchbar type="text" debounce="500" (ionChange)="filterMakes($event)"></ion-searchbar>
-          <ion-list>
-            <!-- Iterate over filteredMakes array instead of makes array -->
-            <ion-item *ngFor="let make of filteredMakes" (click)="selectMake(make)">
-              {{ make }}
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ng-template>
-    </ion-popover>
-    <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider> 
     <div style="margin: 15px 0px 0px 15px;">
       <strong style="color: #1a529c; font-size: 15px;">About Vehicle</strong>
     </div>
     
     <ion-row>
       <img src="../../../assets/extra-icon/mileage.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-      <p style="margin-left: 20px; margin-top: 20px;">Used Hours</p>
+      <p style="margin-left: 20px; margin-top: 20px;">Hours Used</p>
     </ion-row>
     
     <div style="text-align: center;">
-      <input type="text" name="mileage" placeholder="mileage" [(ngModel)]="mileage" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px; ">
+      <input type="text" name="hourused" placeholder="hourused" [(ngModel)]="hourused" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px; ">
     </div> 
       <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
     
@@ -271,33 +274,29 @@
         
         <ion-row>
           <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-          <p style="margin-left: 20px; margin-top: 20px;">Weight in Kg</p>
+          <p style="margin-left: 20px; margin-top: 20px;">Weight in kg's</p>
         </ion-row>
         
         <div style="text-align: center;">
-          <input type="text" placeholder="e.g 1000" [(ngModel)]="engineSize" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+          <input type="text" placeholder="e.g 1000 kg" [(ngModel)]="weight" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
         </div>
-        
-         
         <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
         
         <ion-row>
           <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-          <p style="margin-left: 20px; margin-top: 20px;">Serial No</p>
+          <p style="margin-left: 20px; margin-top: 20px;">Machinery Serial No</p>
         </ion-row>
         
         <div style="text-align: center;">
-          <input type="text" placeholder="e.g 1000" [(ngModel)]="engineSize" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+          <input type="text" placeholder="e.g 13237" [(ngModel)]="serialno" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
         </div>
-        
           
-            
-
-              
-            
-              
-       
-                <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
+         
+  
+           
+              <ion-item-divider style="height: 1px; margin-top: -15px; width: 100%; margin-left: 0px;"></ion-item-divider>
+  
+        
                 
 
 <ion-row><img src="../../../assets/extra-icon/description.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>

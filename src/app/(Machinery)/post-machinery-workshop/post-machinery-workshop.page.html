@@ -36,7 +36,20 @@
         <!-- Options for cities will go here -->
       </select>
     </div>
-  
+    <div>
+      <label for="type" [ngClass]="{'active': userForm.get('type')?.value}">Workshop Sector</label>
+      <select id="type" class="text-field" aria-placeholder="Workshop Sector " formControlName="type" (focus)="onInputFocus('type')" (blur)="onInputBlur('type')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="subtype" [ngClass]="{'active': userForm.get('subtype')?.value}">Workshop Sub Sector</label>
+      <select id="subtype" class="text-field" aria-placeholder="Workshop Sub Sector " formControlName="subtype" (focus)="onInputFocus('subtype')" (blur)="onInputBlur('subtype')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let subtype of subtypes" [value]="subtype">{{ subtype }}</option>
+      </select>
+    </div>
     <!-- Business Website -->
     <div>
       <label for="bwebsite" [class.active]="userForm.get('bwebsite')?.value">Business Website</label>

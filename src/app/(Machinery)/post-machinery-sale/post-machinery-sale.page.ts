@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController, AlertController, LoadingController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -12,12 +13,14 @@ import { UserService } from 'src/app/(services)/user.service';
 })
 export class PostMachinerySalePage implements OnInit {
   selectedCity: string = '';
+  selectedCountry: string = '';
   selectedMake: string = '';
   selectedYear: any = '';
   selectedregisterCity: string = '';
   price: number = 0;
-  mileage: number = 0;
-  engineSize: number = 0;
+  hourused: number = 0;
+  weight: number = 0;
+  serialno:number=0;
   selectedFuel: string = '';
   selectedDrive: string = '';
   selectedDoors: any = '';
@@ -60,6 +63,7 @@ selectedFileArray: FileList | null = null;
 
 originalContent = '';
   filteredCities: string[] = [];
+  filteredCountries: string[] = [];
   filteredMakes: string[] = [];
   filteredModels: string[] = [];
   filteredVersions: string[] = [];
@@ -85,6 +89,7 @@ originalContent = '';
   showregister = true;
   showfeature = true;
   cities: string[] = [];
+  countries: string[] = [];
   makes: string[] = [];
   models: string[] = [];
   versions: string[] = [];
@@ -92,12 +97,15 @@ originalContent = '';
   features: string[] = [];
   selectedcon = '';
   selectedFile: File | undefined;
+  divcountry=false;
+  showcountry= true;
   constructor(
     public route: Router,
     private popoverController: PopoverController,
     private userService: UserService,
     private alertController: AlertController,
     private loadingController: LoadingController,
+    private machineryservice:MachineryService,
   ) {
     this.userID = sessionStorage.getItem('userId') || '';  // Use an empty string if null
     this.userType = sessionStorage.getItem('userType') || ''; // Use an empty string if null
@@ -110,11 +118,24 @@ originalContent = '';
     this.fetchMakes();
     this.fetchYears();
     this.fetchFeatures();
+    this.fetchCountries();
   }
 
   filterCities(event: any) {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredCities = this.cities.filter(city => city.toLowerCase().includes(searchTerm));
+  }
+  filterCountries(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredCountries = this.countries.filter(country => country.toLowerCase().includes(searchTerm));
+  }
+  async selectCountry(country: string) {
+    this.selectedCountry = country;
+    this.divcountry = true;
+    this.showcountry = false;
+    await this.popoverController.dismiss(country);
+  // Call filterCities with an empty search term
+  this.filterCities({ target: { value: '' } });
   }
 
   async selectCity(city: string) {
@@ -129,6 +150,10 @@ originalContent = '';
   hideDiv() {
     this.divVisible = false;
     this.showcar = true;
+  }
+  hideDivcountry() {
+    this.divcountry = true;
+    this.showcountry = false;
   }
 
   back(){
@@ -148,10 +173,24 @@ originalContent = '';
       }
     });
   }
+  fetchCountries() {
+    // Fetch city names from the backend
+    this.userService.getCountrties().subscribe({
+      next: (data: string[]) => {
+        this.countries = data;
+        this.filteredCountries = [...this.countries];
+      //console.log('Fetched cities:', this.cities);
+      //console.log('Fetched cities indata:', data);
+      },
+      error: (error: any) => {
+        console.error('Error fetching cities:', error);
+      }
+    });
+  }
 
 // select make car
   fetchMakes() {
-    this.userService.getMakes().subscribe({
+    this.machineryservice.getMakes().subscribe({
       next: (data: string[]) => {
         this.makes = data;
         //console.log('Fetched makes:', data);
@@ -191,14 +230,8 @@ originalContent = '';
 
   // select make car
   fetchModels() {
-    const makeData = {
-    make: this.selectedMake,
-    };
-    const formData = new FormData();
-    formData.append('make', this.selectedMake);
-
-    console.log(makeData);
-    this.userService.getModels(formData).subscribe({
+   
+    this.machineryservice.getModels().subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched models:', data);
@@ -241,11 +274,12 @@ originalContent = '';
 
   // select make car
   fetchVersions() {
+    console.log('model',this.selectedModel)
     const formData = new FormData();
     formData.append('model', this.selectedModel);
 
 
-    this.userService.getVersions(formData).subscribe({
+    this.machineryservice.getVersions(formData).subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched versions:', data);
@@ -323,6 +357,7 @@ originalContent = '';
   // Call filterCities with an empty search term
   this.filterCities({ target: { value: '' } });
   }
+  
   registerDiv() {
     this.registerdivVisible = false;
     this.showregister = true;
@@ -495,6 +530,9 @@ checkRequiredFields() {
   if (!this.selectedCity) {
     missingFields.push('City');
   }
+  if (!this.selectedCountry) {
+    missingFields.push('Country');
+  }
   if (!this.selectedMake) {
     missingFields.push('Make');
   }
@@ -504,33 +542,25 @@ checkRequiredFields() {
   if (!this.selectedYear) {
     missingFields.push('Year');
   }
-  if (!this.selectedregisterCity) {
-    missingFields.push('Registration City');
-  }
+ 
   if (this.price <= 0) {
     missingFields.push('Price');
   }
-  if (this.mileage <= 0) {
-    missingFields.push('Mileage');
+  if (this.hourused <= 0) {
+    missingFields.push('Hour Used');
   }
-  if (this.engineSize <= 0) {
-    missingFields.push('Engine Size');
+  if (this.weight <= 0) {
+    missingFields.push('Weight');
+  }
+  if (this.serialno <= 0) {
+    missingFields.push('Serial No');
   }
   if (!this.selectedFuel) {
     missingFields.push('Fuel Type');
   }
-  if (!this.selectedDrive) {
-    missingFields.push('Drive Type');
-  }
-  if (!this.selectedTransmission) {
-    missingFields.push('Transmission');
-  }
-  if (!this.selectedCategory) {
-    missingFields.push('Category');
-  }
-  if (!this.selectedColor) {
-    missingFields.push('Color');
-  }
+
+ 
+
   if (this.filesArray.length === 0) {
     missingFields.push('At least one image');
   }
@@ -643,8 +673,8 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       year: this.selectedYear,
       register: this.selectedregisterCity,
       price: this.price,
-      mileage: this.mileage,
-      engineSize: this.engineSize,
+      hourused: this.hourused,
+      weight: this.weight,
       fuel: this.selectedFuel,
       drive: this.selectedDrive,
       doors: this.selectedDoors,
@@ -657,6 +687,8 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       change: this.selectedcon,
       loginUser: this.userID,
       loginUserType: this.userType,
+      serialno:this.serialno,
+      country:this.selectedCountry,
     };
   
     // FormData logic (same as before)
@@ -677,7 +709,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
   
       try {
         // Call the API and wait for response
-        const response = await this.userService.carSalePost(formData).toPromise();
+        const response = await this.machineryservice.machinerysalePost(formData).toPromise();
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();
       } catch (error) {

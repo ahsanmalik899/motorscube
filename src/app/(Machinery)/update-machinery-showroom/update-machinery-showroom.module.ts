@@ -15,6 +15,6 @@ import { UpdateMachineryShowroomPage } from './update-machinery-showroom.page';
     IonicModule,
     UpdateMachineryShowroomPageRoutingModule
   ],
-  declarations: [UpdateMachineryShowroomPage]
+
 })
 export class UpdateMachineryShowroomPageModule {}

@@ -98,6 +98,14 @@ import { PostMachineryLeasingPage } from './(Machinery)/post-machinery-leasing/p
 import { PostMachineryShowroomPage } from './(Machinery)/post-machinery-showroom/post-machinery-showroom.page';
 import { PostMachineryWorkshopPage } from './(Machinery)/post-machinery-workshop/post-machinery-workshop.page';
 import { PostMachineryDrivingSchoolPage } from './(Machinery)/post-machinery-driving-school/post-machinery-driving-school.page';
+import { UpdateMachineryDealerPage } from './(Machinery)/update-machinery-dealer/update-machinery-dealer.page';
+import { UpdateMachineryDrivingSchoolPage } from './(Machinery)/update-machinery-driving-school/update-machinery-driving-school.page';
+import { UpdateMachineryExporterPage } from './(Machinery)/update-machinery-exporter/update-machinery-exporter.page';
+import { UpdateMachineryImporterPage } from './(Machinery)/update-machinery-importer/update-machinery-importer.page';
+import { UpdateMachineryInsurancePage } from './(Machinery)/update-machinery-insurance/update-machinery-insurance.page';
+import { UpdateMachineryLeasingPage } from './(Machinery)/update-machinery-leasing/update-machinery-leasing.page';
+import { UpdateMachineryShowroomPage } from './(Machinery)/update-machinery-showroom/update-machinery-showroom.page';
+import { UpdateMachineryWorkshopPage } from './(Machinery)/update-machinery-workshop/update-machinery-workshop.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -182,6 +190,14 @@ import { PostMachineryDrivingSchoolPage } from './(Machinery)/post-machinery-dri
     PostMachineryShowroomPage,
     PostMachineryWorkshopPage,
     PostMachineryDrivingSchoolPage,
+    UpdateMachineryDealerPage,
+    UpdateMachineryDrivingSchoolPage,
+    UpdateMachineryExporterPage,
+    UpdateMachineryImporterPage,
+    UpdateMachineryInsurancePage,
+    UpdateMachineryLeasingPage,
+    UpdateMachineryShowroomPage,
+    UpdateMachineryWorkshopPage,
   ],
  
   bootstrap: [AppComponent],

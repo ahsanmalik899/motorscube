@@ -65,7 +65,7 @@ export class MachineryService {
   }
 getVersions(versionData: FormData): Observable<string[]> {
   // Make a POST request to the API endpoint to fetch models based on the selected make
-  return this.http.post<string[]>(this.apiUrl + 'get_machinery_version_name.php', versionData);
+  return this.http.post<string[]>(this.apiUrl + 'get_machinery_subtype_name.php', versionData);
 }
 machineryDeletePostBusines(userData: any): Observable<any> {
   // Assuming you have an API endpoint to save user data
@@ -110,5 +110,51 @@ postDrivingSchool(formData: FormData): Observable<any> {
 machineryDeleteAds(userData: any): Observable<any> {
   // Assuming you have an API endpoint to save user data
   return this.http.post<any>(this.apiUrl + 'delete_machinery_ads.php', userData);
+}
+updateDealerBusiness(adsId: string, formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_dealer_business.php', formData);
+}
+updateInsuranceBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_insurance_business.php', formData);
+}
+
+updateLeasingBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_leasing_business.php', formData);
+}
+
+updateShowroomBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_showroom_business.php', formData);
+}
+
+updateImporterBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_importer_business.php', formData);
+}
+
+updateExporterBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_exporter_business.php', formData);
+}
+
+updateDrivingSchool(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_driving_school.php', formData);
+}
+
+updateWorkshopBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'update_machinery_workshop_business.php', formData);
+}
+machinerysalePost(userData: any): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_sale_post.php', userData);
+}
+machineryHirePost(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_hire_post.php', formData);
 }
 }

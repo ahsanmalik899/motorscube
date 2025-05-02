@@ -1,13 +1,134 @@
-<ion-header [translucent]="true">
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>update-machinery-driving-school</ion-title>
+    <ion-title>acc-create-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>account-prof-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">Post Your Driving School </ion-label>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">update-machinery-driving-school</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <div>
+        <label for="bname" [class.active]="userForm.get('bname')!.value">Business Name</label>
+        <input type="text" id="bname" class="text-field"  formControlName="bname" (focus)="onInputFocus('bname')" (blur)="onInputBlur('bname')">
+    </div>
+    <div>
+      <label for="bcity" [class.active]="userForm.get('bcity')!.value">City</label>
+      <select id="bcity" class="text-field"   aria-placeholder="3xxxxxxxxx" formControlName="bcity" (focus)="onInputFocus('bcity')" (blur)="onInputBlur('bcity')" >
+        
+      </select>
+  </div>
+  <div>
+    <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">School Machinery Type</label>
+    <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
+      <!-- City options will be populated dynamically -->
+      <option *ngFor="let dealin of DealIns" [value]="dealin">{{ dealin }}</option>
+    </select>
+  </div>
+    <div>
+      <label for="bwebsite" [class.active]="userForm.get('bwebsite')!.value">Business Website</label>
+      <input type="text" id="bwebsite"class="text-field"   aria-placeholder="3xxxxxxxxx" formControlName="bwebsite" (focus)="onInputFocus('bwebsite')" (blur)="onInputBlur('bwebsite')">
+  </div>
+    <div>
+        <label for="baddress" [class.active]="userForm.get('baddress')!.value">Business Address</label>
+        <textarea id="baddress" class="text-area"  formControlName="baddress" (focus)="onInputFocus('baddress')" rows="4" (blur)="onInputBlur('baddress')"></textarea>
+    </div>
+    <div>
+        <label for="bmobile" [class.active]="userForm.get('bmobile')!.value">Business Phone</label>
+        <input type="text" id="bmobile"class="text-field"   aria-placeholder="3xxxxxxxxx" formControlName="bmobile" (focus)="onInputFocus('bmobile')" (blur)="onInputBlur('bmobile')">
+    </div>
+    <div>
+        <label for="bemail" [class.active]="userForm.get('bemail')!.value">Business Email</label>
+        <input type="email" id="bemail" class="text-field"  aria-placeholder="ABC@abc.com" formControlName="bemail" (focus)="onInputFocus('bemail')" (blur)="onInputBlur('bemail')">
+    </div>
+    <div *ngIf="showService1">
+      <label for="bservice1" [class.active]="userForm.get('bservice1')!.value">Services 1</label>
+      <input type="text" id="bservice1" class="text-field"  aria-placeholder="ABC@abc.com" formControlName="bservice1" (focus)="onInputFocus('bservice1')" (blur)="onInputBlur('bservice1')">
+    </div>
+    <div *ngIf="showService2">
+      <label for="bservice2" [class.active]="userForm.get('bservice2')!.value">Services 2</label>
+      <input type="text" id="bservice2" class="text-field"  aria-placeholder="ABC@abc.com" formControlName="bservice2" (focus)="onInputFocus('bservice2')" (blur)="onInputBlur('bservice2')">
+    </div>
+    <div *ngIf="showService3">
+      <label for="bservice3" [class.active]="userForm.get('bservice3')!.value">Services 3</label>
+      <input type="text" id="bservice3" class="text-field"  aria-placeholder="ABC@abc.com" formControlName="bservice3" (focus)="onInputFocus('bservice3')" (blur)="onInputBlur('bservice3')">
+    </div>
+    <button type="button" *ngIf="showButton" id="moreservice" (click)="showNextService()">Add More Service</button>
+    
+    <div>
+      <label for="bdetail" [class.active]="userForm.get('bdetail')!.value">Business Details</label>
+      <textarea id="bdetail" class="text-area"  formControlName="bdetail" (focus)="onInputFocus('bdetail')" rows="4" (blur)="onInputBlur('bdetail')"></textarea>
+  </div>
+  
+  <div>
+    <label for="bstartTime" [class.active]="userForm.get('bstartTime')!.value">Open Time </label>
+    <input type="time" id="bstartTime" class="text-field"  aria-placeholder="ABC@abc.com" formControlName="bstartTime" (focus)="onInputFocus('bstartTime')" (blur)="onInputBlur('bstartTime')">
+</div>
+<div>
+  <label for="bendTime" [class.active]="userForm.get('bendTime')!.value">Closing Time</label>
+  <input type="time" id="bendTime" class="text-field"  aria-placeholder="ABC@abc.com" formControlName="bendTime" (focus)="onInputFocus('bendTime')" (blur)="onInputBlur('bendTime')">
+</div>  
+  
+        <div   class="form-button-container">
+            <button type="submit">Submit</button>
+        </div>
+   
+</form>
+<div>
+      
+  <div style="margin: 25px; text-align: center; border: 1px solid lightgray; padding: 20px; border-radius: 15px; margin-bottom: 50px;">
+         
+    <div id="imageContainer" style="display: none; position: relative;">
+      <img id="selectedImage" style="width: 100%; height: 100%;">
+      
+    </div>
+    
+    <!-- Display images using ngFor and filtered by getImageUrls -->
+    <div *ngFor="let imageUrl of getImageUrls(filteredCarSaleData[0]); let i = index"
+    class="image-wrapper"
+    style="display: inline-block; position: relative; margin: 5px;">
+
+    <img [src]="imageUrl"
+    alt="Car Image"
+    style="max-width: 100px; min-width: 100px; max-height: 100px; min-height: 100px;"
+    *ngIf="visibleImages[i]" />
+
+ <!-- Always show the close button -->
+ <button class="close-button"
+         (click)="hideImage(i)"
+         style="position: absolute; top: 0; right: 0; cursor: pointer;" *ngIf="visibleImages[i]"><img src="../../../assets/cross.webp" style="height: 20px; width: 20px; margin-left: 0px; margin-top: 0px;" fill="clear;"/></button>
+</div>
+
+
+    
+    
+    <div id="contentContainer">
+       <input type="file" id="fileInput" name="files[]" multiple style="display: none;" (change)="onFileSelected($event)">
+      <label for="fileInput">
+        <ion-col>
+          <img src="../../../assets/extra-icon/camera.png" style="height: 100px; width: 100px; margin-left: 0px; margin-top: 0px;" fill="clear;"/>
+          <p style="margin-left: 5px; margin-top: 0px;">Add Photo</p>
+        </ion-col>
+      </label>
+    </div>
+  </div>
+  
+  
+  
+          
+</div>
 </ion-content>

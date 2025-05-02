@@ -12,7 +12,7 @@ export interface Make {
   providedIn: 'root'
 })
 export class BikeService {
-  private apiUrl = 'https://motorscube.com/bike.motorscube.com/bike/';
+  private apiUrl = 'http://localhost/bike/';
   constructor(private http: HttpClient, private storage: Storage) { }
   getBikeSale(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl + 'get_bike_sale_data.php');

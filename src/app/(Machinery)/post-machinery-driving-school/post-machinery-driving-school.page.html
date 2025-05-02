@@ -37,7 +37,7 @@
       </select>
     </div>
     <div>
-      <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">Deal In</label>
+      <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">School Machinery Type</label>
       <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
         <!-- City options will be populated dynamically -->
         <option *ngFor="let dealin of DealIns" [value]="dealin">{{ dealin }}</option>

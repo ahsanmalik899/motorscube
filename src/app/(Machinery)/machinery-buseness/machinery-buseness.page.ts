@@ -454,21 +454,21 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   editDealer(id: any){
-    this.route.navigate(['/update-vehicle-dealer'], {
+    this.route.navigate(['/update-machinery-dealer'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editShowroom(id: any){
-    this.route.navigate(['/update-vehicle-showroom'], {
+    this.route.navigate(['/update-machinery-showroom'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editInsurance(id: any){
-    this.route.navigate(['/update-vehicle-insurance'], {
+    this.route.navigate(['/update-machinery-insurance'], {
       queryParams: {
         adsId: id,
       }
@@ -476,35 +476,35 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   editLeasing(id: any){
-    this.route.navigate(['/update-vehicle-leasing'], {
+    this.route.navigate(['/update-machinery-leasing'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editImporter(id: any){
-    this.route.navigate(['/update-vehicle-importer'], {
+    this.route.navigate(['/update-machinery-importer'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editExporter(id: any){
-    this.route.navigate(['/update-vehicle-exporter'], {
+    this.route.navigate(['/update-machinery-exporter'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editWorkshop(id: any){
-    this.route.navigate(['/update-vehicle-workshop'], {
+    this.route.navigate(['/update-machinery-workshop'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editSchool(id: any){
-    this.route.navigate(['/update-vehicle-driving-school'], {
+    this.route.navigate(['/update-machinery-driving-school'], {
       queryParams: {
         adsId: id,
       }

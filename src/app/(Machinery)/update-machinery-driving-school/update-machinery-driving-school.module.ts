@@ -15,6 +15,6 @@ import { UpdateMachineryDrivingSchoolPage } from './update-machinery-driving-sch
     IonicModule,
     UpdateMachineryDrivingSchoolPageRoutingModule
   ],
-  declarations: [UpdateMachineryDrivingSchoolPage]
+ 
 })
 export class UpdateMachineryDrivingSchoolPageModule {}

@@ -23,6 +23,7 @@ userID: string |'';
   showPassword = false;
   passwordToggleIcon = 'eye';
   cities: string[]=[];
+   countries: string[]=[];
   selectedFiles: FileList | null = null; // Initialize selectedFiles variable
 selectedFileArray: FileList | null = null;
 
@@ -32,7 +33,8 @@ selectedFileArray: FileList | null = null;
          private loadingController: LoadingController,private route: Router,
   ) {
     this.userForm = this.formBuilder.group({
-      bcity: [''] // Assuming 'bcity' is the form control for city selection
+      bcity: [''] ,// Assuming 'bcity' is the form control for city selection
+          bcountries: [''],
     });
     this.userID = sessionStorage.getItem('userId')??'';
     if(this.userID==''){
@@ -44,6 +46,7 @@ selectedFileArray: FileList | null = null;
     this.initForm();
     this.fetchCities();
     this.fetchDealIn();
+    this.fetchCountries();
   }
 
   initForm(): void {
@@ -55,6 +58,7 @@ selectedFileArray: FileList | null = null;
       bemail: ['', Validators.email],
       bwebsite: [''],
       bcity: ['', ],
+      bcountry: [''],
       dealIn:[''],  // Initialize bcity with an empty value
     });
 
@@ -94,6 +98,39 @@ selectedFileArray: FileList | null = null;
       selectElement.add(option);
     });
   }
+  
+fetchCountries() {
+  // Fetch city names from the backend
+  this.userService.getCountrties().subscribe({
+    next: (data) => {
+      this.countries = data;
+    //console.log('Fetched cities:', this.cities);
+    //console.log('Fetched cities indata:', data);
+    this.updateSelectcountry();
+    },
+    error: (error) => {
+      console.error('Error fetching cities:', error);
+    }
+  });
+}
+updateSelectcountry() {
+  const selectElement = document.getElementById('bcountry') as HTMLSelectElement;
+  selectElement.innerHTML = ''; // Clear existing options
+
+  // Add placeholder option
+  const placeholderOption = document.createElement('option');
+  placeholderOption.text = '';
+  placeholderOption.disabled = true;
+  placeholderOption.selected = true;
+  selectElement.add(placeholderOption);
+
+  // Add new options based on fetched cities
+  this.countries.forEach(country => {
+    const option = document.createElement('option');
+    option.text = country;
+    selectElement.add(option);
+  });
+}
   // Update city options in the form control
   updateCityOptions() {
     const bcityControl = this.userForm.get('bcity');
@@ -315,7 +352,8 @@ getFieldName(field: string): string {
   const fieldNames: { [key: string]: string } = {
     bname: 'Business Name',
     bmobile: 'Business Mobile',
-    bemail: 'Business Email'
+    bemail: 'Business Email',
+    bcountry: 'Business Country',
     // Add other form fields here as needed
   };
 
