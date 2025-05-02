@@ -15,6 +15,6 @@ import { PostMachineryDealerPage } from './post-machinery-dealer.page';
     IonicModule,
     PostMachineryDealerPageRoutingModule
   ],
-  declarations: [PostMachineryDealerPage]
+ 
 })
 export class PostMachineryDealerPageModule {}

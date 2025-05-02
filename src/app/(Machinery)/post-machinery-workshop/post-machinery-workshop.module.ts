@@ -15,6 +15,6 @@ import { PostMachineryWorkshopPage } from './post-machinery-workshop.page';
     IonicModule,
     PostMachineryWorkshopPageRoutingModule
   ],
-  declarations: [PostMachineryWorkshopPage]
+
 })
 export class PostMachineryWorkshopPageModule {}

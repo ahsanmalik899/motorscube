@@ -4,7 +4,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black; font-size: 17px;">Post your commercial vehicle for Sale</ion-label>
+    <ion-label style="color: black; font-size: 17px;">Post your car for Sale</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -25,8 +25,8 @@
 </div> -->
 
       <ion-row style="margin-top: 25px;">
-        <img src="../../assets//commercialsection/common/bus.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
-        <p style="margin-left: 20px;">Vehicle condition</p></ion-row>
+        <img src="../../../assets/extra-icon/car-condition.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Car condition</p></ion-row>
 
   <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
     <ion-col>
@@ -43,7 +43,7 @@
 <ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
 <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle location</p>
+<p style="margin-left: 20px; margin-top: 20px;">Car location</p>
 <div id="click-trigger_city" [hidden]="!showcar" trigger="click-trigger_city" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
   <div *ngIf="divVisible">
@@ -78,7 +78,7 @@
 
 <!--  -->
 
-<ion-row><img src="../../assets//commercialsection/common/bus (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
 <p style="margin-left: 20px; margin-top: 20px;">Make</p>
 <div [hidden]="!showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
@@ -111,7 +111,7 @@
 <!--  -->
 
 <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle Type</p>
+<p style="margin-left: 20px; margin-top: 20px;">Model</p>
 <div [hidden]="!showmodel" id="click-trigger_model" trigger="click-trigger_model" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -123,7 +123,7 @@
   <ng-template>
     <!-- Your popover content here -->
     <ion-content class="ion-padding">
-      <p style="font-size: 16px; text-align: center;">Select Type</p>
+      <p style="font-size: 16px; text-align: center;">Select Model</p>
       <ion-searchbar type="text" debounce="500" (ionChange)="filterModels($event)"></ion-searchbar>
       <ion-list>
         <!-- Iterate over filteredMakes array instead of makes array -->
@@ -140,7 +140,7 @@
 
 
 <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">VehicleSub Type</p>
+<p style="margin-left: 20px; margin-top: 20px;">Version</p>
 <div [hidden]="!showversion" id="click-trigger_version" trigger="click-trigger_version" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -165,6 +165,7 @@
   </ion-popover>
 </div>
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
 
 <ion-row><img src="../../../assets/extra-icon/year.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
 <p style="margin-left: 20px; margin-top: 20px;">Make year</p>
@@ -191,32 +192,6 @@
     </ng-template>
   </ion-popover>
 
-<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-
-<ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-  <p style="margin-left: 20px; margin-top: 20px;">Registered in</p>
-  <div [hidden]="!showregister" id="click-trigger_register" trigger="click-trigger_register" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
-  </div></ion-row>
-  
-<div *ngIf="registerdivVisible">
-  <ion-badge style="margin-left: 45px; height: 35px; width: 120px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -25px; color: black;">{{ selectedregisterCity }}</p>
-    <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="registerDiv()"></ion-icon></div></ion-badge>
-</div>
-    <ion-popover trigger="click-trigger_register" triggerAction="click">
-      <ng-template>
-        <ion-content class="ion-padding">
-          <p style="font-size: 16px; text-align: center;">Select City</p>
-    
-          <ion-searchbar type="text" debounce="500" (ionChange)="filterCities($event)"></ion-searchbar>
-    
-          <ion-list>
-            <ion-item *ngFor="let city of filteredCities" (click)="selectregistered(city)">
-              {{ city }}
-            </ion-item>
-          </ion-list>
-        </ion-content>
-      </ng-template>
-    </ion-popover>
   <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
   
   <ion-row><img src="../../../assets/extra-icon/price.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
@@ -229,15 +204,41 @@
       <input type="text" name="price" placeholder="price" [(ngModel)]="price" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
     </div>    
     
-    <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>  
+    <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider> 
+
     
+<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+  <p style="margin-left: 20px; margin-top: 20px;">Country</p>
+  <div [hidden]="!showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
+    <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
+  </div></ion-row>
+  <div *ngIf="makedivVisible">
+  <ion-badge style="margin-left: 45px; height: 35px; width: 150px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -10px; color: black;">{{ selectedMake }}</p>
+    <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="makeDiv()"></ion-icon></div></ion-badge>
+  </div>
+    <ion-popover trigger="click-trigger_make" triggerAction="click">
+      <ng-template>
+        <!-- Your popover content here -->
+        <ion-content class="ion-padding">
+          <p style="font-size: 16px; text-align: center;">Select Option</p>
+          <ion-searchbar type="text" debounce="500" (ionChange)="filterMakes($event)"></ion-searchbar>
+          <ion-list>
+            <!-- Iterate over filteredMakes array instead of makes array -->
+            <ion-item *ngFor="let make of filteredMakes" (click)="selectMake(make)">
+              {{ make }}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+    <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider> 
     <div style="margin: 15px 0px 0px 15px;">
       <strong style="color: #1a529c; font-size: 15px;">About Vehicle</strong>
     </div>
     
     <ion-row>
       <img src="../../../assets/extra-icon/mileage.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-      <p style="margin-left: 20px; margin-top: 20px;">Mileage</p>
+      <p style="margin-left: 20px; margin-top: 20px;">Used Hours</p>
     </ion-row>
     
     <div style="text-align: center;">
@@ -270,7 +271,19 @@
         
         <ion-row>
           <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-          <p style="margin-left: 20px; margin-top: 20px;">Engine size</p>
+          <p style="margin-left: 20px; margin-top: 20px;">Weight in Kg</p>
+        </ion-row>
+        
+        <div style="text-align: center;">
+          <input type="text" placeholder="e.g 1000" [(ngModel)]="engineSize" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+        </div>
+        
+         
+        <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+        <ion-row>
+          <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+          <p style="margin-left: 20px; margin-top: 20px;">Serial No</p>
         </ion-row>
         
         <div style="text-align: center;">
@@ -278,151 +291,13 @@
         </div>
         
           
-         
-      
-         
-         
-                      
-            <!--  -->
-            <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
             
-            <ion-row><img src="../../../assets/extra-icon/transmission.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-            <p style="margin-left: 20px; margin-top: 20px;">transmission</p></ion-row>
-            
-            <div style="width: 100%; margin-left: 25px; text-align: center;">
-              <ion-row style="display: flex; justify-content: center;">
-                <ion-button [color]="selectedTransmission === 'Auto' ? 'danger' : 'light'" class="fuel" style="width: 100px;" (click)="selectTransmission('Auto')">Auto</ion-button>
-                <ion-button [color]="selectedTransmission === 'Manual' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 15px;" (click)="selectTransmission('Manual')">Manual</ion-button>
-              </ion-row>
-              
-            </div>
-            
-            <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-            
-            <ion-row><img src="../../../assets/extra-icon/power.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-            <p style="margin-left: 20px; margin-top: 20px;">Power Transmission</p></ion-row>
-            
-            <div style="width: 100%; margin-left: 25px; text-align: center;">
-              <ion-row style="display: flex; justify-content: center;">
-                <ion-button [color]="selectedDrive === 'Front' ? 'danger' : 'light'" class="fuel" style="width: 100px;" (click)="selectDrive('Front')">Front</ion-button>
-                <ion-button [color]="selectedDrive === 'Rear' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 15px;" (click)="selectDrive('Rear')">Rear</ion-button>
-                <ion-button [color]="selectedDrive === '4x4' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 15px;" (click)="selectDrive('4x4')">4x4</ion-button>
-              </ion-row>
-              
-            </div>
-            
-            <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-
-            <ion-row><img src="../../assets//commercialsection/common/paint.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-              <p style="margin-left: 20px; margin-top: 20px;">Body color</p></ion-row>
-              
-              <swiper-container [slidesPerView]="5" [spaceBetween]="5" [loop]="true" style="margin-top: 15px; height: 60px;">
-                <swiper-slide (click)="selectColor('Red')">
-                  <div class="btn-capsule3" style="background-color: red;" [class.selected]="selectedColor === 'Red'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Red</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('White')">
-                  <div class="btn-capsule3" style="background-color: white;" [class.selected]="selectedColor === 'White'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">White</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Green')">
-                  <div class="btn-capsule3" style="background-color: green;" [class.selected]="selectedColor === 'Green'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Green</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Gray')" style="max-width: 100px;">
-                  <div class="btn-capsule3" style="background-color: gray;" [class.selected]="selectedColor === 'Gray'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Gray</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Black')">
-                  <div class="btn-capsule3" style="background-color: black;" [class.selected]="selectedColor === 'Black'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Black</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Silver')">
-                  <div class="btn-capsule3" style="background-color: silver;" [class.selected]="selectedColor === 'Silver'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Silver</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Blue')">
-                  <div class="btn-capsule3" style="background-color: blue;" [class.selected]="selectedColor === 'Blue'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Blue</p>
-                  </div>
-                </swiper-slide>
-              
-                <!-- Additional Colors -->
-                <swiper-slide (click)="selectColor('Yellow')">
-                  <div class="btn-capsule3" style="background-color: yellow;" [class.selected]="selectedColor === 'Yellow'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Yellow</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Purple')">
-                  <div class="btn-capsule3" style="background-color: purple;" [class.selected]="selectedColor === 'Purple'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Purple</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Orange')">
-                  <div class="btn-capsule3" style="background-color: orange;" [class.selected]="selectedColor === 'Orange'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Orange</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Pink')">
-                  <div class="btn-capsule3" style="background-color: pink;" [class.selected]="selectedColor === 'Pink'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Pink</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Brown')">
-                  <div class="btn-capsule3" style="background-color: brown;" [class.selected]="selectedColor === 'Brown'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Brown</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Beige')">
-                  <div class="btn-capsule3" style="background-color: beige;" [class.selected]="selectedColor === 'Beige'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Beige</p>
-                  </div>
-                </swiper-slide>
-              
-                <swiper-slide (click)="selectColor('Teal')">
-                  <div class="btn-capsule3" style="background-color: teal;" [class.selected]="selectedColor === 'Teal'">
-                    <p style="font-size: 13px; margin-top: 35px; width: 40px;">Teal</p>
-                  </div>
-                </swiper-slide>
-              </swiper-container>
-              
 
               
-              <!--  -->
-              <ion-item-divider style="height: 1px; margin-top: -15px; width: 100%; margin-left: 0px;"></ion-item-divider>
+            
               
-
-            <ion-row><img src="../../../assets/extra-icon/doors.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-              <p style="margin-left: 20px; margin-top: 20px;">No. of doors</p></ion-row>
-              
-              <div style="width: 100%; margin-left: 25px; text-align: center;">
-                <ion-row style="display: flex; justify-content: center;">
-                  <ion-button [color]="selectedDoors === '3 Doors' ? 'danger' : 'light'" class="fuel" style="width: 100px;" (click)="selectDoors('3 Doors')">Three</ion-button>
-                  <ion-button [color]="selectedDoors === '5 Doors' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 15px;" (click)="selectDoors('5 Doors')">Five</ion-button>
-                </ion-row>
-                
-              </div>
-              
-              <ion-item-divider style="height: 1px; margin-top: -15px; width: 100%; margin-left: 0px;"></ion-item-divider>
-  
-        
+       
+                <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
                 
 
 <ion-row><img src="../../../assets/extra-icon/description.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>

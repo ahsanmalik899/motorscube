@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController, PopoverController, AlertController, LoadingController } from '@ionic/angular';
 import { MyCarAdsPaymentComponent } from 'src/app/(car)/my-car-ads-payment/my-car-ads-payment.component';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -40,7 +41,7 @@ throw new Error('Method not implemented.');
     isLoading = true; // Add loading state
 
     constructor(private router: Router, 
-      private commercialservice: CommercialService, 
+      private machineryservice:MachineryService, 
       private modalController: ModalController,
       private popoverController: PopoverController, 
       private alertController: AlertController,
@@ -321,7 +322,7 @@ async buttonOneAction(id: string, saletype: string) {
 
   async fetchCarSale() {
     const loader = await this.showLoader();
-    this.commercialservice.getCommercialSale().subscribe({
+    this.machineryservice.getMachinerySale().subscribe({
       next: (data) => {
         this.carSaleData = data;
         this.filteredCarSaleData = this.carSaleData.filter(item => item.user_id === this.userID);
@@ -355,7 +356,7 @@ async buttonOneAction(id: string, saletype: string) {
 
   async fetchcarHire() {
     const loader = await this.showLoader();
-    this.commercialservice.getCommercialHire().subscribe({
+    this.machineryservice.getMachineryHire().subscribe({
       next: (data) => {
         this.carHireData = data;
         this.filteredCarHireData = this.carHireData.filter(item => item.user_id === this.userID);
@@ -378,7 +379,7 @@ async buttonOneAction(id: string, saletype: string) {
     formData.append('deleteid', this.deleteid);
     formData.append('deletetype', this.deletetype);
 
-    this.commercialservice.commercialDeleteAds(formData).subscribe(
+    this.machineryservice.machineryDeleteAds(formData).subscribe(
       (response) => {
         console.log('Data deleted successfully:', response);
         this.fetchCarSale();

@@ -15,6 +15,6 @@ import { PostMachineryShowroomPage } from './post-machinery-showroom.page';
     IonicModule,
     PostMachineryShowroomPageRoutingModule
   ],
-  declarations: [PostMachineryShowroomPage]
+  
 })
 export class PostMachineryShowroomPageModule {}

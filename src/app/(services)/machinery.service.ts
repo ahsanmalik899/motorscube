@@ -58,4 +58,57 @@ export class MachineryService {
     // Make a POST request to the API endpoint to fetch city names
     return this.http.get<string[]>(this.apiUrl + 'get_machinery_showroom.php');
   }
+  
+  getMakes(): Observable<string[]> {
+    // Make a POST request to the API endpoint to fetch city names
+    return this.http.get<string[]>(this.apiUrl + 'get__machinery_make_name.php');
+  }
+getVersions(versionData: FormData): Observable<string[]> {
+  // Make a POST request to the API endpoint to fetch models based on the selected make
+  return this.http.post<string[]>(this.apiUrl + 'get_machinery_version_name.php', versionData);
+}
+machineryDeletePostBusines(userData: any): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'delete_machinery_post_busines.php', userData);
+}
+
+postDealerBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_dealer_business.php', formData);
+}
+postExporterBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_exporter_business.php', formData);
+}
+postImporterBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_importer_business.php', formData);
+}
+postInsuranceBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_insurance_business.php', formData);
+}
+postLeasingBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_leasing_business.php', formData);
+} 
+postShowroomBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_showroom_business.php', formData);
+} 
+postWorkshopBusiness(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_workshop_business.php', formData);
+} 
+getModels() : Observable<string[]> {
+  return this.http.get<string[]>(this.apiUrl + 'get_machinery_type_name.php');
+}
+postDrivingSchool(formData: FormData): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_driving_school.php', formData);
+}
+machineryDeleteAds(userData: any): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'delete_machinery_ads.php', userData);
+}
 }

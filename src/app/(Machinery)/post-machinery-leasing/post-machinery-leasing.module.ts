@@ -15,6 +15,6 @@ import { PostMachineryLeasingPage } from './post-machinery-leasing.page';
     IonicModule,
     PostMachineryLeasingPageRoutingModule
   ],
-  declarations: [PostMachineryLeasingPage]
+ 
 })
 export class PostMachineryLeasingPageModule {}

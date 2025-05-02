@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PopoverController, LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { MyCarAdsPaymentComponent } from 'src/app/(car)/my-car-ads-payment/my-car-ads-payment.component';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -65,7 +66,7 @@ isPopupVisibleDiv = false;
 carpostData: any[] = [];
 filteredCarPostData: any[] = [];
 
-constructor(public route: Router, private popoverController: PopoverController, private userService: UserService,private commercialservice:CommercialService,
+constructor(public route: Router, private popoverController: PopoverController, private userService: UserService,private machineryservice:MachineryService,
   private router: ActivatedRoute, private renderer: Renderer2, private el: ElementRef, private loadingController: LoadingController, private alertController: AlertController,
    private modalController: ModalController,  private ngZone: NgZone,
    private cdr: ChangeDetectorRef) {
@@ -122,7 +123,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchdealershipData() {
     const loader = await this.showLoader();
-    this.commercialservice.getdealershipData().subscribe({
+    this.machineryservice.getdealershipData().subscribe({
       next: (data) => {
         this.dealershipData = data;
         this.filterdealershipData = this.dealershipData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -142,7 +143,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchshowroomData() {
     const loader = await this.showLoader();
-    this.commercialservice.getshowroomData().subscribe({
+    this.machineryservice.getshowroomData().subscribe({
       next: (data) => {
         this.showroomData = data;
         this.filterShowroomData = this.showroomData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -162,7 +163,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchinsuranceData() {
     const loader = await this.showLoader();
-    this.commercialservice.getinsuranceData().subscribe({
+    this.machineryservice.getinsuranceData().subscribe({
       next: (data) => {
         this.insuranceData = data;
         this.filterInsuranceData = this.insuranceData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -182,7 +183,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchleasingData() {
     const loader = await this.showLoader();
-    this.commercialservice.getleasingData().subscribe({
+    this.machineryservice.getleasingData().subscribe({
       next: (data) => {
         this.leasingData = data;
         this.filterLeasingData = this.leasingData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -204,7 +205,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
   
   async fetchimporterData() {
     const loader = await this.showLoader();
-    this.commercialservice.getimporterData().subscribe({
+    this.machineryservice.getimporterData().subscribe({
       next: (data) => {
         this.importerData = data;
         this.filterImporterData = this.importerData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -224,7 +225,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchexporterData() {
     const loader = await this.showLoader();
-    this.commercialservice.getexporterData().subscribe({
+    this.machineryservice.getexporterData().subscribe({
       next: (data) => {
         this.exporterData = data;
         this.filterExporterData = this.exporterData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -244,7 +245,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchworkshopData() {
     const loader = await this.showLoader();
-    this.commercialservice.getworkshopData().subscribe({
+    this.machineryservice.getworkshopData().subscribe({
       next: (data) => {
         this.workshopData = data;
         this.filterWorkshopData = this.workshopData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -264,7 +265,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchschoolData() {
     const loader = await this.showLoader();
-    this.commercialservice.getschoolData().subscribe({
+    this.machineryservice.getschoolData().subscribe({
       next: (data) => {
         this.schoolData = data;
         this.filterSchoolData = this.schoolData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -328,7 +329,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
       formData.append('deleteid', this.deleteID);
       formData.append('deletetype', this.deleteType);
     
-      this.commercialservice.commercialDeletePostBusines(formData).subscribe(
+      this.machineryservice.machineryDeletePostBusines(formData).subscribe(
         (response) => {
           console.log('Data delete successfully:', response);
        
@@ -338,21 +339,21 @@ constructor(public route: Router, private popoverController: PopoverController, 
               this.fetchdealershipData();
               this.cdr.detectChanges();
               loading.dismiss()
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
           break;case 'showroom':
           this.fetchschoolData()
           this.cdr.detectChanges();
           loading.dismiss()
-          this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+          this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
             this.route.navigate([this.router.url]);
           });
            break;
             case 'insurance':
               this.fetchinsuranceData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -360,7 +361,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'leasing':
               this.fetchleasingData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -368,7 +369,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'importer':
               this.fetchimporterData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -376,7 +377,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'exporter':
               this.fetchexporterData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -384,7 +385,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'workshop':
               this.fetchworkshopData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -392,7 +393,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'school':
               this.fetchschoolData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -428,28 +429,28 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   navigateToPostDealer() {
-    this.route.navigate(['/post-vehicle-dealer']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
+    this.route.navigate(['/post-machinery-dealer']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
   }
   navigateToPostShowroom() {
-    this.route.navigate(['/post-vehicle-showroom']);
+    this.route.navigate(['/post-machinery-showroom']);
   }
   navigateToPostInsurance() {
-    this.route.navigate(['/post-vehicle-insurance']);
+    this.route.navigate(['/post-machinery-insurance']);
   }
   navigateToPostLeasing() {
-    this.route.navigate(['/post-vehicle-leasing']);
+    this.route.navigate(['/post-machinery-leasing']);
   }
   navigateToPostImporter() {
-    this.route.navigate(['/post-vehicle-importer']);
+    this.route.navigate(['/post-machinery-importer']);
   }
   navigateToPostExporter() {
-    this.route.navigate(['/post-vehicle-exporter']);
+    this.route.navigate(['/post-machinery-exporter']);
   }
   navigateToPostWorkshop() {
-    this.route.navigate(['/post-vehicle-workshop']);
+    this.route.navigate(['/post-machinery-workshop']);
   }
   navigateToPostSchool() {
-    this.route.navigate(['/post-vehicle-driving-school']);
+    this.route.navigate(['/post-machinery-driving-school']);
   }
 
   editDealer(id: any){

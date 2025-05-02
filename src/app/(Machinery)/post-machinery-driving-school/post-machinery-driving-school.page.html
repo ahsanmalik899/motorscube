@@ -1,3 +1,4 @@
+
 <!-- <ion-header>
   <ion-toolbar>
     <ion-title>acc-create-pvt</ion-title>
@@ -15,98 +16,93 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black;">Post Your Workshop </ion-label>
+    <ion-label style="color: black;">Post Your Driving School </ion-label>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <form [formGroup]="userForm" (ngSubmit)="saveUser()">
-
     <!-- Business Name -->
     <div>
-      <label for="bname" [class.active]="userForm.get('bname')?.value">Business Name</label>
+      <label for="bname" [ngClass]="{'active': userForm.get('bname')?.value}">Business Name</label>
       <input type="text" id="bname" class="text-field" formControlName="bname" (focus)="onInputFocus('bname')" (blur)="onInputBlur('bname')">
     </div>
   
     <!-- City -->
     <div>
-      <label for="bcity" [class.active]="userForm.get('bcity')?.value">City</label>
+      <label for="bcity" [ngClass]="{'active': userForm.get('bcity')?.value}">City</label>
       <select id="bcity" class="text-field" formControlName="bcity" (focus)="onInputFocus('bcity')" (blur)="onInputBlur('bcity')">
-        <!-- Options for cities will go here -->
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
       </select>
     </div>
-  
+    <div>
+      <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">Deal In</label>
+      <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let dealin of DealIns" [value]="dealin">{{ dealin }}</option>
+      </select>
+    </div>
     <!-- Business Website -->
     <div>
-      <label for="bwebsite" [class.active]="userForm.get('bwebsite')?.value">Business Website</label>
-      <input type="text" id="bwebsite" class="text-field" formControlName="bwebsite" (focus)="onInputFocus('bwebsite')" (blur)="onInputBlur('bwebsite')">
+      <label for="bwebsite" [ngClass]="{'active': userForm.get('bwebsite')?.value}">Business Website</label>
+      <input type="text" id="bwebsite" class="text-field" aria-placeholder="www.example.com" formControlName="bwebsite" (focus)="onInputFocus('bwebsite')" (blur)="onInputBlur('bwebsite')">
     </div>
   
     <!-- Business Address -->
     <div>
-      <label for="baddress" [class.active]="userForm.get('baddress')?.value">Business Address</label>
+      <label for="baddress" [ngClass]="{'active': userForm.get('baddress')?.value}">Business Address</label>
       <textarea id="baddress" class="text-area" formControlName="baddress" (focus)="onInputFocus('baddress')" rows="4" (blur)="onInputBlur('baddress')"></textarea>
     </div>
   
     <!-- Business Phone -->
     <div>
-      <label for="bmobile" [class.active]="userForm.get('bmobile')?.value">Business Phone</label>
-      <input type="text" id="bmobile" class="text-field" formControlName="bmobile" (focus)="onInputFocus('bmobile')" (blur)="onInputBlur('bmobile')">
+      <label for="bmobile" [ngClass]="{'active': userForm.get('bmobile')?.value}">Business Phone</label>
+      <input type="text" id="bmobile" class="text-field" aria-placeholder="3xxxxxxxxx" formControlName="bmobile" (focus)="onInputFocus('bmobile')" (blur)="onInputBlur('bmobile')">
     </div>
   
     <!-- Business Email -->
     <div>
-      <label for="bemail" [class.active]="userForm.get('bemail')?.value">Business Email</label>
-      <input type="email" id="bemail" class="text-field" formControlName="bemail" (focus)="onInputFocus('bemail')" (blur)="onInputBlur('bemail')">
+      <label for="bemail" [ngClass]="{'active': userForm.get('bemail')?.value}">Business Email</label>
+      <input type="email" id="bemail" class="text-field" aria-placeholder="ABC@abc.com" formControlName="bemail" (focus)="onInputFocus('bemail')" (blur)="onInputBlur('bemail')">
     </div>
   
-    <!-- Workshop For -->
-    <div>
-      <ion-item style="border: 1px solid #7a7a7a; border-radius: 5px;">
-        <ion-label>Workshop For</ion-label>
-        <ion-select id="bcategory" formControlName="bcategory" multiple="true">
-          <ion-select-option *ngFor="let category of categories" [value]="category">{{ category }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </div>
-  
-    <!-- Services - Service 1, Service 2, etc. -->
+    <!-- Services 1 -->
     <div *ngIf="showService1">
-      <label for="bservice1" [class.active]="userForm.get('bservice1')?.value">Services 1</label>
-      <input type="text" id="bservice1" class="text-field" formControlName="bservice1" (focus)="onInputFocus('bservice1')" (blur)="onInputBlur('bservice1')">
-    </div>
-    <div *ngIf="showService2">
-      <label for="bservice2" [class.active]="userForm.get('bservice2')?.value">Services 2</label>
-      <input type="text" id="bservice2" class="text-field" formControlName="bservice2" (focus)="onInputFocus('bservice2')" (blur)="onInputBlur('bservice2')">
-    </div>
-    <div *ngIf="showService3">
-      <label for="bservice3" [class.active]="userForm.get('bservice3')?.value">Services 3</label>
-      <input type="text" id="bservice3" class="text-field" formControlName="bservice3" (focus)="onInputFocus('bservice3')" (blur)="onInputBlur('bservice3')">
-    </div>
-    <div *ngIf="showService4">
-      <label for="bservice4" [class.active]="userForm.get('bservice4')?.value">Services 4</label>
-      <input type="text" id="bservice4" class="text-field" formControlName="bservice4" (focus)="onInputFocus('bservice4')" (blur)="onInputBlur('bservice4')">
+      <label for="bservice1" [ngClass]="{'active': userForm.get('bservice1')?.value}">Services 1</label>
+      <input type="text" id="bservice1" class="text-field" aria-placeholder="Service 1" formControlName="bservice1" (focus)="onInputFocus('bservice1')" (blur)="onInputBlur('bservice1')">
     </div>
   
-    <!-- Button to add more services -->
+    <!-- Services 2 -->
+    <div *ngIf="showService2">
+      <label for="bservice2" [ngClass]="{'active': userForm.get('bservice2')?.value}">Services 2</label>
+      <input type="text" id="bservice2" class="text-field" aria-placeholder="Service 2" formControlName="bservice2" (focus)="onInputFocus('bservice2')" (blur)="onInputBlur('bservice2')">
+    </div>
+  
+    <!-- Services 3 -->
+    <div *ngIf="showService3">
+      <label for="bservice3" [ngClass]="{'active': userForm.get('bservice3')?.value}">Services 3</label>
+      <input type="text" id="bservice3" class="text-field" aria-placeholder="Service 3" formControlName="bservice3" (focus)="onInputFocus('bservice3')" (blur)="onInputBlur('bservice3')">
+    </div>
+  
+    <!-- Add More Service Button -->
     <button type="button" *ngIf="showButton" id="moreservice" (click)="showNextService()">Add More Service</button>
   
     <!-- Business Details -->
     <div>
-      <label for="bdetail" [class.active]="userForm.get('bdetail')?.value">Business Details</label>
+      <label for="bdetail" [ngClass]="{'active': userForm.get('bdetail')?.value}">Business Details</label>
       <textarea id="bdetail" class="text-area" formControlName="bdetail" (focus)="onInputFocus('bdetail')" rows="4" (blur)="onInputBlur('bdetail')"></textarea>
     </div>
   
     <!-- Open Time -->
     <div>
-      <label for="bstartTime" [class.active]="userForm.get('bstartTime')?.value">Open Time</label>
+      <label for="bstartTime" [ngClass]="{'active': userForm.get('bstartTime')?.value}">Open Time</label>
       <input type="time" id="bstartTime" class="text-field" formControlName="bstartTime" (focus)="onInputFocus('bstartTime')" (blur)="onInputBlur('bstartTime')">
     </div>
   
     <!-- Closing Time -->
     <div>
-      <label for="bendTime" [class.active]="userForm.get('bendTime')?.value">Closing Time</label>
+      <label for="bendTime" [ngClass]="{'active': userForm.get('bendTime')?.value}">Closing Time</label>
       <input type="time" id="bendTime" class="text-field" formControlName="bendTime" (focus)="onInputFocus('bendTime')" (blur)="onInputBlur('bendTime')">
     </div>
   
@@ -114,8 +110,9 @@
     <div class="form-button-container">
       <button type="submit">Submit</button>
     </div>
-  
   </form>
+  
+  
   
 <div style="margin: 25px; text-align: center; border: 1px solid lightgray; padding: 20px; border-radius: 15px; margin-bottom: 120px; margin-top: -10px;">
   <div id="imageContainer" style="display: none; position: relative;">

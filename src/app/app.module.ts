@@ -90,6 +90,14 @@ import { PostVehicleDealerPage } from './(commercial-vehicles)/post-vehicle-deal
 import { MachineryHomePage } from './(Machinery)/machinery-home/machinery-home.page';
 import { MachinerySaleFilterPage } from './(Machinery)/machinery-sale-filter/machinery-sale-filter.page';
 import { PostMachinerySalePage } from './(Machinery)/post-machinery-sale/post-machinery-sale.page';
+import { PostMachineryDealerPage } from './(Machinery)/post-machinery-dealer/post-machinery-dealer.page';
+import { PostMachineryExporterPage } from './(Machinery)/post-machinery-exporter/post-machinery-exporter.page';
+import { PostMachineryImporterPage } from './(Machinery)/post-machinery-importer/post-machinery-importer.page';
+import { PostMachineryInsurancePage } from './(Machinery)/post-machinery-insurance/post-machinery-insurance.page';
+import { PostMachineryLeasingPage } from './(Machinery)/post-machinery-leasing/post-machinery-leasing.page';
+import { PostMachineryShowroomPage } from './(Machinery)/post-machinery-showroom/post-machinery-showroom.page';
+import { PostMachineryWorkshopPage } from './(Machinery)/post-machinery-workshop/post-machinery-workshop.page';
+import { PostMachineryDrivingSchoolPage } from './(Machinery)/post-machinery-driving-school/post-machinery-driving-school.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -166,6 +174,14 @@ import { PostMachinerySalePage } from './(Machinery)/post-machinery-sale/post-ma
     MachineryHomePage,
     MachinerySaleFilterPage,
     PostMachinerySalePage,
+    PostMachineryDealerPage,
+    PostMachineryExporterPage,
+    PostMachineryImporterPage,
+    PostMachineryInsurancePage,
+    PostMachineryLeasingPage,
+    PostMachineryShowroomPage,
+    PostMachineryWorkshopPage,
+    PostMachineryDrivingSchoolPage,
   ],
  
   bootstrap: [AppComponent],

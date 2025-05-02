@@ -1,13 +1,104 @@
-<ion-header [translucent]="true">
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>post-machinery-exporter</ion-title>
+    <ion-title>acc-create-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>account-prof-pvt</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">Post Your Exporter Business</ion-label>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">post-machinery-exporter</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <!-- Business Name -->
+    <div>
+      <label for="bname" [class.active]="userForm.get('bname')?.value">Business Name</label>
+      <input type="text" id="bname" class="text-field" formControlName="bname" (focus)="onInputFocus('bname')" (blur)="onInputBlur('bname')">
+    </div>
+  
+    <!-- Country -->
+    <div>
+      <label for="bcountry" [class.active]="userForm.get('bcountry')?.value">Country</label>
+      <select id="bcountry" class="text-field" formControlName="bcountry" (focus)="onInputFocus('bcountry')" (blur)="onInputBlur('bcountry')">
+        <!-- Country options will be populated dynamically -->
+      </select>
+    </div>
+  
+    <!-- City -->
+    <div>
+      <label for="bcity" [class.active]="userForm.get('bcity')?.value">City</label>
+      <select id="bcity" class="text-field" formControlName="bcity" (focus)="onInputFocus('bcity')" (blur)="onInputBlur('bcity')">
+        <!-- City options will be populated dynamically -->
+      </select>
+    </div>
+    <div>
+      <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">Deal In</label>
+      <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let dealin of DealIns" [value]="dealin">{{ dealin }}</option>
+      </select>
+    </div>
+    <!-- Business Website -->
+    <div>
+      <label for="bwebsite" [class.active]="userForm.get('bwebsite')?.value">Business Website</label>
+      <input type="text" id="bwebsite" class="text-field" aria-placeholder="www.example.com" formControlName="bwebsite" (focus)="onInputFocus('bwebsite')" (blur)="onInputBlur('bwebsite')">
+    </div>
+  
+    <!-- Business Address -->
+    <div>
+      <label for="baddress" [class.active]="userForm.get('baddress')?.value">Business Address</label>
+      <textarea id="baddress" class="text-area" formControlName="baddress" (focus)="onInputFocus('baddress')" rows="4" (blur)="onInputBlur('baddress')"></textarea>
+    </div>
+  
+    <!-- Business Phone -->
+    <div>
+      <label for="bmobile" [class.active]="userForm.get('bmobile')?.value">Business Phone</label>
+      <input type="text" id="bmobile" class="text-field" aria-placeholder="3xxxxxxxxx" formControlName="bmobile" (focus)="onInputFocus('bmobile')" (blur)="onInputBlur('bmobile')">
+    </div>
+  
+    <!-- Business Email -->
+    <div>
+      <label for="bemail" [class.active]="userForm.get('bemail')?.value">Business Email</label>
+      <input type="email" id="bemail" class="text-field" aria-placeholder="ABC@abc.com" formControlName="bemail" (focus)="onInputFocus('bemail')" (blur)="onInputBlur('bemail')">
+    </div>
+  
+    <!-- Business Details -->
+    <div>
+      <label for="bdetail" [class.active]="userForm.get('bdetail')?.value">Business Details</label>
+      <textarea id="bdetail" class="text-area" formControlName="bdetail" (focus)="onInputFocus('bdetail')" rows="4" (blur)="onInputBlur('bdetail')"></textarea>
+    </div>
+  
+    <!-- Submit Button -->
+    <div class="form-button-container">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+  
+<div style="margin: 25px; text-align: center; border: 1px solid lightgray; padding: 20px; border-radius: 15px; margin-bottom: 120px; margin-top: -10px;">
+  <div id="imageContainer" style="display: none; position: relative;">
+    <img id="selectedImage" style="width: 100%; height: 100%;">
+    
+  </div>
+  
+    <input type="file" id="fileInput" name="files[]" multiple style="display: none;" (change)="onFileSelected($event)">
+    
+    <label for="fileInput">
+      <ion-col>
+        <img src="../../../assets/extra-icon/camera.png" id="addmoreContainer" style="height: 100px; width: 100px; margin-left: 0px; margin-top: 0px;" fill="clear;"/>
+        <p style="margin-left: 5px; margin-top: 0px;">Add Photo</p>
+      </ion-col>
+    </label>
+
+</div>
 </ion-content>

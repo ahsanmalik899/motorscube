@@ -879,6 +879,11 @@ const routes: Routes = [
     path: 'update-machinery-driving-school',
     loadChildren: () => import('./(Machinery)/update-machinery-driving-school/update-machinery-driving-school.module').then( m => m.UpdateMachineryDrivingSchoolPageModule)
   },
+  {
+    path: 'post-machinery-driving-school',
+    loadChildren: () => import('./(Machinery)/post-machinery-driving-school/post-machinery-driving-school.module').then( m => m.PostMachineryDrivingSchoolPageModule)
+  },
+
 
 
 ];

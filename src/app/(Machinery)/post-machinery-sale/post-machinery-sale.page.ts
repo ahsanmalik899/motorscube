@@ -98,7 +98,6 @@ originalContent = '';
     private userService: UserService,
     private alertController: AlertController,
     private loadingController: LoadingController,
-    private commercialservice:CommercialService
   ) {
     this.userID = sessionStorage.getItem('userId') || '';  // Use an empty string if null
     this.userType = sessionStorage.getItem('userType') || ''; // Use an empty string if null
@@ -152,7 +151,7 @@ originalContent = '';
 
 // select make car
   fetchMakes() {
-    this.commercialservice.getMakes().subscribe({
+    this.userService.getMakes().subscribe({
       next: (data: string[]) => {
         this.makes = data;
         //console.log('Fetched makes:', data);
@@ -192,8 +191,14 @@ originalContent = '';
 
   // select make car
   fetchModels() {
-   
-    this.commercialservice.getModels().subscribe({
+    const makeData = {
+    make: this.selectedMake,
+    };
+    const formData = new FormData();
+    formData.append('make', this.selectedMake);
+
+    console.log(makeData);
+    this.userService.getModels(formData).subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched models:', data);
@@ -236,12 +241,11 @@ originalContent = '';
 
   // select make car
   fetchVersions() {
-    console.log('model',this.selectedModel)
     const formData = new FormData();
     formData.append('model', this.selectedModel);
 
 
-    this.commercialservice.getVersions(formData).subscribe({
+    this.userService.getVersions(formData).subscribe({
       next: (data: string[]) => {
           // Handle successful response here
           console.log('Fetched versions:', data);
@@ -521,7 +525,9 @@ checkRequiredFields() {
   if (!this.selectedTransmission) {
     missingFields.push('Transmission');
   }
- 
+  if (!this.selectedCategory) {
+    missingFields.push('Category');
+  }
   if (!this.selectedColor) {
     missingFields.push('Color');
   }
@@ -671,7 +677,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
   
       try {
         // Call the API and wait for response
-        const response = await this.commercialservice.carSalePost(formData).toPromise();
+        const response = await this.userService.carSalePost(formData).toPromise();
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();
       } catch (error) {

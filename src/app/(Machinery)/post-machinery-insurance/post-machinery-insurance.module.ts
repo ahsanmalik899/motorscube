@@ -15,6 +15,6 @@ import { PostMachineryInsurancePage } from './post-machinery-insurance.page';
     IonicModule,
     PostMachineryInsurancePageRoutingModule
   ],
-  declarations: [PostMachineryInsurancePage]
+
 })
 export class PostMachineryInsurancePageModule {}

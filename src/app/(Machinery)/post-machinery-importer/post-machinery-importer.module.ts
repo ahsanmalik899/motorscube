@@ -15,6 +15,6 @@ import { PostMachineryImporterPage } from './post-machinery-importer.page';
     IonicModule,
     PostMachineryImporterPageRoutingModule
   ],
-  declarations: [PostMachineryImporterPage]
+ 
 })
 export class PostMachineryImporterPageModule {}
