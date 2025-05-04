@@ -135,7 +135,7 @@ originalContent = '';
     this.showcountry = false;
     await this.popoverController.dismiss(country);
   // Call filterCities with an empty search term
-  this.filterCities({ target: { value: '' } });
+  this.filterCountries({ target: { value: '' } });
   }
 
   async selectCity(city: string) {
@@ -152,8 +152,8 @@ originalContent = '';
     this.showcar = true;
   }
   hideDivcountry() {
-    this.divcountry = true;
-    this.showcountry = false;
+    this.divcountry = false;
+    this.showcountry = true;
   }
 
   back(){

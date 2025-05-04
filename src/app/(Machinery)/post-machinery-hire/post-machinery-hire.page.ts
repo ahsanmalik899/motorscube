@@ -20,6 +20,7 @@ export class PostMachineryHirePage implements OnInit {
   isItemAvailable: boolean = false;
   selected_looking_for: string = ''; // Assuming this is a string
   showModal: number = -1;
+  selectedCountry: string = '';
   options = {
     centeredSlides: true,
     slidesPerView: 3.5,
@@ -38,9 +39,10 @@ export class PostMachineryHirePage implements OnInit {
 
   // ngOnInit() {
   // }
-  engineSize: string = ''; // Initialize with an empty string or default value
+  weight: string = ''; // Initialize with an empty string or default value
   price: string = ''; // Initialize with an empty string or default value
-  mileage: string = ''; // Initialize with an empty string or default value
+  hourused: string = ''; // Initialize with an empty string or default value
+  serialno: string='';
   originalContent = '';
   selectedFiles: FileList | null = null; // Initialize selectedFiles variable
   selectedFileArray: FileList | null = null;
@@ -52,10 +54,11 @@ export class PostMachineryHirePage implements OnInit {
   filteredYears: string[] = [];
   filteredFeatures: string[] = [];
   selectedFeatures: string[] = [];
+  filteredCountries: string[] = [];
   selectedCity = '';
   selectedMake = '';
   selectedYear = '';
-  selectedregisterCity = '';
+  country = '';
   selectedfeature = '';
   divVisible = false; // Initialize divVisible to false
   makedivVisible = false;
@@ -65,8 +68,11 @@ export class PostMachineryHirePage implements OnInit {
   showcar = true;
   showyear = true;
   showregister = true;
+  divcountry=false;
+  showcountry= true;
   showfeature = true;
   cities: string[] = [];
+  countries: string[] = [];
   makes: string[] = [];
   years: string[] = [];
   features: string[] = [];
@@ -119,6 +125,7 @@ export class PostMachineryHirePage implements OnInit {
     this.fetchMakes();
     this.fetchYears();
     this.fetchFeatures();
+    this.fetchCountries();
   }
 
   filterCities(event: any) {
@@ -141,7 +148,37 @@ export class PostMachineryHirePage implements OnInit {
     this.divVisible = false;
     this.showcar = true;
   }
+  fetchCountries() {
+    // Fetch city names from the backend
+    this.userService.getCountrties().subscribe({
+      next: (data: string[]) => {
+        this.countries = data;
+        this.filteredCountries = [...this.countries];
+      //console.log('Fetched cities:', this.cities);
+      //console.log('Fetched cities indata:', data);
+      },
+      error: (error: any) => {
+        console.error('Error fetching cities:', error);
+      }
+    });
+  }
 
+  filterCountries(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredCountries = this.countries.filter(country => country.toLowerCase().includes(searchTerm));
+  }
+  async selectCountry(country: string) {
+    this.selectedCountry = country;
+    this.divcountry = true;
+    this.showcountry = false;
+    await this.popoverController.dismiss(country);
+  // Call filterCities with an empty search term
+  this.filterCities({ target: { value: '' } });
+  }
+  hideDivcountry() {
+    this.divcountry = true;
+    this.showcountry = false;
+  }
   fetchCities() {
     // Fetch city names from the backend
     this.userService.getCities().subscribe({
@@ -327,11 +364,11 @@ export class PostMachineryHirePage implements OnInit {
 
   //select registeration city
 
-  async selectregistered(city: string) {
-    this.selectedregisterCity = city;
+  async selectregistered(country: string) {
+    this.country = country;
     this.registerdivVisible = true;
     this.showregister = false;
-    await this.popoverController.dismiss(city);
+    await this.popoverController.dismiss(country);
     // Call filterCities with an empty search term
     this.filterCities({ target: { value: '' } });
   }
@@ -364,12 +401,8 @@ export class PostMachineryHirePage implements OnInit {
     console.log('Selected transmission:', transmissionType);
   }
 
-  selectDrive(driveType: string) {
-    // Set the selectedDrive variable to the clicked drive type
-    this.selectedDrive = driveType;
-    // Log the selected drive type to console
-    console.log('Selected drive:', driveType);
-  }
+
+  
 
   selectDoors(doorsType: string) {
     // Set the selectedDoors variable to the clicked doors type
@@ -519,10 +552,11 @@ export class PostMachineryHirePage implements OnInit {
     console.log('city.', this.selectedCity);
     console.log('make.', this.selectedMake);
     console.log('year.', this.selectedYear);
-    console.log('register.', this.selectedregisterCity);
+    console.log('register.', this.country);
     console.log('Price:', this.price);
-    console.log('Mileage:', this.mileage);
-    console.log('Engine size:', this.engineSize);
+    console.log('Mileage:', this.hourused);
+    console.log('Weight:', this.weight);
+    console.log('serialno:', this.serialno);
     console.log('fuel.', this.selectedFuel);
     console.log('Drive.', this.selectedDrive);
     console.log('Door.', this.selectedDoors);
@@ -543,21 +577,21 @@ export class PostMachineryHirePage implements OnInit {
       console.error('Textarea element not found');
     }
 
+
     // Form data to be sent
     const userData = {
-      regCity:this.selectedregisterCity,
+      country:this.selectedCountry,
       city: this.selectedCity,
       make: this.selectedMake,
       model: this.selectedModel,
       version: this.selectedVersion,
       year: this.selectedYear,
       price: this.price,
-      mileage: this.mileage,
-      engineSize: this.engineSize,
+      hourused: this.hourused,
+      serialno:this.serialno,
+      weight: this.weight,
       fuel: this.selectedFuel,
-      drive: this.selectedDrive,
-      transmission: this.selectedTransmission,
-        discription: description,
+      discription: description,
       change: this.selectedcon,
       selectDriver: this.selectdriver,
       duration: this.selectedDuration,
@@ -650,12 +684,11 @@ export class PostMachineryHirePage implements OnInit {
       version: 'Version',
       year: 'Year',
       price: 'Price',
-      mileage: 'Mileage',
-      engineSize: 'Engine Size',
+      hourused: 'Hour Used',
+      serialno:'Serial No',
+      weight: 'Weight',
       fuel: 'Fuel Type',
-      drive: 'Drive Type',
       doors: 'Doors',
-      transmission: 'Transmission',
       category: 'Category',
       color: 'Color',
       features: 'Features',

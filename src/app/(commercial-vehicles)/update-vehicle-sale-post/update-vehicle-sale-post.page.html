@@ -32,7 +32,7 @@
     <ion-col>
       <ion-row style="display: flex; justify-content: left;">
         <ion-button [color]="selectedcon === 'New' ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedcondition('New')">New</ion-button>
-        <ion-button [color]="selectedcon === 'used' ? 'danger' : 'light'" class="condition" (click)="selectedcondition('used')" style=" margin-left: 13px;">Used</ion-button>
+        <ion-button [color]="selectedcon === 'Used' ? 'danger' : 'light'" class="condition" (click)="selectedcondition('Used')" style=" margin-left: 13px;">Used</ion-button>
         <ion-button [color]="selectedcon === 'Re-condition' ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selectedcondition('Re-condition')">Re-condition</ion-button>
       </ion-row>
       
@@ -110,7 +110,7 @@
 <!--  -->
 
 <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle Type</p>
+<p style="margin-left: 20px; margin-top: 20px;">Model</p>
 <div [hidden]="!showmodel" id="click-trigger_model" trigger="click-trigger_model" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -122,7 +122,7 @@
   <ng-template>
     <!-- Your popover content here -->
     <ion-content class="ion-padding">
-      <p style="font-size: 16px; text-align: center;">Select Type</p>
+      <p style="font-size: 16px; text-align: center;">Select Model</p>
       <ion-searchbar type="text" debounce="500" (ionChange)="filterModels($event)"></ion-searchbar>
       <ion-list>
         <!-- Iterate over filteredMakes array instead of makes array -->
@@ -139,7 +139,7 @@
 
 
 <ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle Sub Type</p>
+<p style="margin-left: 20px; margin-top: 20px;">Version</p>
 <div [hidden]="!showversion" id="click-trigger_version" trigger="click-trigger_version" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -151,7 +151,7 @@
     <ng-template>
       
       <ion-content class="ion-padding">
-        <p style="font-size: 16px; text-align: center;">Select Sub Type</p>
+        <p style="font-size: 16px; text-align: center;">Select Version</p>
         <ion-searchbar type="text" debounce="500" (ionChange)="filterVersions($event)"></ion-searchbar>
         <ion-list>
           
@@ -277,7 +277,9 @@
           <input type="text" placeholder="e.g 1000" [(ngModel)]="engineSize" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
         </div>
         
-                     
+          
+      
+            
             
             <!--  -->
             <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
@@ -313,87 +315,87 @@
               <p style="margin-left: 20px; margin-top: 20px;">Body color</p></ion-row>
               
               <swiper-container [slidesPerView]="5" [spaceBetween]="5" [loop]="true" style="margin-top: 15px; height: 60px;">
-                <swiper-slide (click)="selectColor('red')">
-                  <div class="btn-capsule3" style="background-color: red;" [class.selected]="selectedColor === 'red'">
+                <swiper-slide (click)="selectColor('Red')">
+                  <div class="btn-capsule3" style="background-color: red;" [class.selected]="selectedColor === 'Red'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Red</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('white')">
-                  <div class="btn-capsule3" style="background-color: white;" [class.selected]="selectedColor === 'white'">
+                <swiper-slide (click)="selectColor('White')">
+                  <div class="btn-capsule3" style="background-color: white;" [class.selected]="selectedColor === 'White'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">White</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('green')">
-                  <div class="btn-capsule3" style="background-color: green;" [class.selected]="selectedColor === 'green'">
+                <swiper-slide (click)="selectColor('Green')">
+                  <div class="btn-capsule3" style="background-color: green;" [class.selected]="selectedColor === 'Green'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Green</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('gray')" style="max-width: 100px;">
-                  <div class="btn-capsule3" style="background-color: gray;" [class.selected]="selectedColor === 'gray'">
+                <swiper-slide (click)="selectColor('Gray')" style="max-width: 100px;">
+                  <div class="btn-capsule3" style="background-color: gray;" [class.selected]="selectedColor === 'Gray'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Gray</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('black')">
-                  <div class="btn-capsule3" style="background-color: black;" [class.selected]="selectedColor === 'black'">
+                <swiper-slide (click)="selectColor('Black')">
+                  <div class="btn-capsule3" style="background-color: black;" [class.selected]="selectedColor === 'Black'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Black</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('silver')">
-                  <div class="btn-capsule3" style="background-color: silver;" [class.selected]="selectedColor === 'silver'">
+                <swiper-slide (click)="selectColor('Silver')">
+                  <div class="btn-capsule3" style="background-color: silver;" [class.selected]="selectedColor === 'Silver'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Silver</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('blue')">
-                  <div class="btn-capsule3" style="background-color: blue;" [class.selected]="selectedColor === 'blue'">
+                <swiper-slide (click)="selectColor('Blue')">
+                  <div class="btn-capsule3" style="background-color: blue;" [class.selected]="selectedColor === 'Blue'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Blue</p>
                   </div>
                 </swiper-slide>
               
                 <!-- Additional Colors -->
-                <swiper-slide (click)="selectColor('yellow')">
-                  <div class="btn-capsule3" style="background-color: yellow;" [class.selected]="selectedColor === 'yellow'">
+                <swiper-slide (click)="selectColor('Yellow')">
+                  <div class="btn-capsule3" style="background-color: yellow;" [class.selected]="selectedColor === 'Yellow'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Yellow</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('purple')">
-                  <div class="btn-capsule3" style="background-color: purple;" [class.selected]="selectedColor === 'purple'">
+                <swiper-slide (click)="selectColor('Purple')">
+                  <div class="btn-capsule3" style="background-color: purple;" [class.selected]="selectedColor === 'Purple'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Purple</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('orange')">
-                  <div class="btn-capsule3" style="background-color: orange;" [class.selected]="selectedColor === 'orange'">
+                <swiper-slide (click)="selectColor('Orange')">
+                  <div class="btn-capsule3" style="background-color: orange;" [class.selected]="selectedColor === 'Orange'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Orange</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('pink')">
-                  <div class="btn-capsule3" style="background-color: pink;" [class.selected]="selectedColor === 'pink'">
+                <swiper-slide (click)="selectColor('Pink')">
+                  <div class="btn-capsule3" style="background-color: pink;" [class.selected]="selectedColor === 'Pink'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Pink</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('brown')">
-                  <div class="btn-capsule3" style="background-color: brown;" [class.selected]="selectedColor === 'brown'">
+                <swiper-slide (click)="selectColor('Brown')">
+                  <div class="btn-capsule3" style="background-color: brown;" [class.selected]="selectedColor === 'Brown'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Brown</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('beige')">
-                  <div class="btn-capsule3" style="background-color: beige;" [class.selected]="selectedColor === 'beige'">
+                <swiper-slide (click)="selectColor('Beige')">
+                  <div class="btn-capsule3" style="background-color: beige;" [class.selected]="selectedColor === 'Beige'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Beige</p>
                   </div>
                 </swiper-slide>
               
-                <swiper-slide (click)="selectColor('teal')">
-                  <div class="btn-capsule3" style="background-color: teal;" [class.selected]="selectedColor === 'teal'">
+                <swiper-slide (click)="selectColor('Teal')">
+                  <div class="btn-capsule3" style="background-color: teal;" [class.selected]="selectedColor === 'Teal'">
                     <p style="font-size: 13px; margin-top: 35px; width: 40px;">Teal</p>
                   </div>
                 </swiper-slide>
@@ -415,9 +417,9 @@
                 
               </div>
               
-              <ion-item-divider style="height: 1px; margin-top: -15px; width: 100%; margin-left: 0px;"></ion-item-divider>
-  
-
+            
+                
+                <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
                 
 
 <ion-row><img src="../../../assets/extra-icon/description.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>

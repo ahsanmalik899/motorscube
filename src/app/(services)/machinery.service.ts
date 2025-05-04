@@ -157,4 +157,12 @@ machineryHirePost(formData: FormData): Observable<any> {
   // Assuming you have an API endpoint to save user data
   return this.http.post<any>(this.apiUrl + 'save_machinery_hire_post.php', formData);
 }
+machineryHireUpdate(userData: any): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_hire_update.php', userData);
+}
+machinerySaleUpdate(userData: any): Observable<any> {
+  // Assuming you have an API endpoint to save user data
+  return this.http.post<any>(this.apiUrl + 'save_machinery_sale_update.php', userData);
+}
 }

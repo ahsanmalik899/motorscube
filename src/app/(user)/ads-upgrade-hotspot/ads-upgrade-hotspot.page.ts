@@ -383,7 +383,18 @@ formData.forEach((value, key) => {
         this.route.navigateByUrl('/commercial-vehicle-buseness', { skipLocationChange: true }).then(() => {
           this.route.navigate([this.router.url]);
         });
+      } else if(this.saleType=='Machinery Sale'||this.saleType=='Machinery Hire'){
+        this.route.navigateByUrl('/machinery-you-posted', { skipLocationChange: true }).then(() => {
+          this.route.navigate([this.router.url]);
+        });
       }
+      else if(this.saleType=='Machinery Insurance'||this.saleType=='Machinery Leasing'||this.saleType=='Machinery Dealer'||this.saleType=='Machinery Showroom'
+        ||this.saleType=='Machinery Importer'||this.saleType=='Machinery Exporter'||this.saleType=='Machinery School'||this.saleType=='Machinery Workshop'
+      ){
+      this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+        this.route.navigate([this.router.url]);
+      });
+    }
           }
         }
       ]

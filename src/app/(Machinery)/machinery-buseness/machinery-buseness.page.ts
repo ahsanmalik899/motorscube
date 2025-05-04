@@ -582,14 +582,14 @@ async fetchUpgradePost() {
       console.log('Filtered Data by User ID:', this.filteredCarPostData); // Check filtered data by user ID
 
       // Filter and assign data to respective post types
-      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial School');
-      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Workshop');
-      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Exporter');
-      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Importer');
-      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Leasing');
-      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Insurance');
-      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Showroom');
-      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Commercial Dealer');
+      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery School');
+      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Workshop');
+      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Exporter');
+      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Importer');
+      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Leasing');
+      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Insurance');
+      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Showroom');
+      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Dealer');
 
       // Debug: Log the filtered arrays
       console.log('School Upgrade:', this.schoolupgrade);
@@ -611,21 +611,21 @@ checkPaymentButton(postType: string, id: string): boolean {
   let postData: any[] | undefined;
 
   // Manually check for each postType
-  if (postType === 'Commercial School') {
+  if (postType === 'Machinery School') {
     postData = this.schoolupgrade;
-  } else if (postType === 'Commercial Workshop') {
+  } else if (postType === 'Machinery Workshop') {
     postData = this.workshopupgrade;
-  } else if (postType === 'Commercial Exporter') {
+  } else if (postType === 'Machinery Exporter') {
     postData = this.exporterupgrade;
-  } else if (postType === 'Commercial Importer') {
+  } else if (postType === 'Machinery Importer') {
     postData = this.importerupgrade;
-  } else if (postType === 'Commercial Leasing') {
+  } else if (postType === 'Machinery Leasing') {
     postData = this.leasingupgrade;
-  } else if (postType === 'Commercial Insurance') {
+  } else if (postType === 'Machinery Insurance') {
     postData = this.insuranceupgrade;
-  } else if (postType === 'Commercial Showroom') {
+  } else if (postType === 'Machinery Showroom') {
     postData = this.showroomupgrade;
-  } else if (postType === 'Commercial Dealer') {
+  } else if (postType === 'Machinery Dealer') {
     postData = this. dealerupgrade;
   }
 

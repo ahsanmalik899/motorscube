@@ -89,8 +89,8 @@
     <!-- Left side: Upgrade profile / Send payment -->
     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
       <div *ngIf="car.post_status === 'Active'&& car.dealership_featured_type!='Supreme'" >
-      <button *ngIf="!checkPaymentButton('Commercial Dealer',car.machinery_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.machinery_dealership_ad_sale_id, 'Machinery Dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
-      <button *ngIf="checkPaymentButton('Commercial Dealer',car.machinery_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.machinerydealership_ad_sale_id,'Machinery Dealer')">Send Payment</button>
+      <button *ngIf="!checkPaymentButton('Machinery Dealer',car.machinery_dealership_ad_sale_id)" id="signin-upgrade" type="submit" (click)="openPopup(car.machinery_dealership_ad_sale_id, 'Machinery Dealer', car.dealership_featured_type)" style="margin: 5px; padding: 10px 20px;">Upgrade profile</button>
+      <button *ngIf="checkPaymentButton('Machinery Dealer',car.machinery_dealership_ad_sale_id)" id="signin-upgrade" style="background-color: rgb(0, 189, 214); margin: 5px; padding: 10px 20px;" type="submit" (click)="openDialogueBox(car.machinery_dealership_ad_sale_id,'Machinery Dealer')">Send Payment</button>
     </div>
     </div>
    
@@ -201,8 +201,8 @@
       <!-- Left side: Upgrade profile / Send payment -->
       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
         <div *ngIf="car.post_status === 'Active' && car.showroom_featured_type!='Supreme'">
-        <button *ngIf="!checkPaymentButton('Commercial Showroom',car.machinery_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.machinery_showroom_ad_sale_id, 'Machinery Showroom' , car.showroom_featured_type)">Upgrade profile</button>
-        <button *ngIf="checkPaymentButton('Commercial Showroom',car.machinery_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_showroom_ad_sale_id,'Machinery Showroom')">Send payment</button>
+        <button *ngIf="!checkPaymentButton('Machinery Showroom',car.machinery_showroom_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.machinery_showroom_ad_sale_id, 'Machinery Showroom' , car.showroom_featured_type)">Upgrade profile</button>
+        <button *ngIf="checkPaymentButton('Machinery Showroom',car.machinery_showroom_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_showroom_ad_sale_id,'Machinery Showroom')">Send payment</button>
       </div>
       </div>
   
@@ -272,8 +272,8 @@
                   <!-- Left side: Upgrade profile / Send payment -->
                   <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                     <div *ngIf="car.post_status === 'Active'&& car.insurance_featured_type!='Supreme'" >
-                    <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Insurance',car.machinery_insurance_ad_sale_id)"  (click)="openPopup(car.machinery_insurance_ad_sale_id, 'Machinery Insurance' , car.insurance_featured_type)">Upgrade profile</button>
-              <button *ngIf="checkPaymentButton('Commercial Insurance',car.machinery_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_insurance_ad_sale_id,'Machinery Insurance')">Send payment</button>
+                    <button id="signin-upgrade" *ngIf="!checkPaymentButton('Machinery Insurance',car.machinery_insurance_ad_sale_id)"  (click)="openPopup(car.machinery_insurance_ad_sale_id, 'Machinery Insurance' , car.insurance_featured_type)">Upgrade profile</button>
+              <button *ngIf="checkPaymentButton('Machinery Insurance',car.machinery_insurance_ad_sale_id)"   style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_insurance_ad_sale_id,'Machinery Insurance')">Send payment</button>
             </div>
                   </div>
               
@@ -340,8 +340,8 @@
                     <!-- Left side: Upgrade profile / Send payment -->
                     <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                       <div *ngIf="car.post_status === 'Active'&& car.leasing_featured_type!='Supreme'" >
-                      <button *ngIf="!checkPaymentButton('Commercial Leasing',car.machinery_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.machinery_leasing_ad_sale_id, 'Machinery Leasing' , car.leasing_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Commercial Leasing',car.machinery_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_leasing_ad_sale_id,'Machinery Leasing')">Send Payment</button>
+                      <button *ngIf="!checkPaymentButton('Machinery Leasing',car.machinery_leasing_ad_sale_id)"  id="signin-upgrade" (click)="openPopup(car.machinery_leasing_ad_sale_id, 'Machinery Leasing' , car.leasing_featured_type)">Upgrade profile</button>
+                      <button *ngIf="checkPaymentButton('Machinery Leasing',car.machinery_leasing_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_leasing_ad_sale_id,'Machinery Leasing')">Send Payment</button>
                     </div>
                     </div>
                 
@@ -411,8 +411,8 @@
                       <!-- Left side: Upgrade profile / Send payment -->
                       <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                         <div *ngIf="car.post_status === 'Active' && car.importer_featured_type!='Supreme'" >
-                        <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Importer',car.machinery_importer_ad_sale_id)"  (click)="openPopup(car.machinery_importer_ad_sale_id, 'Machinery Importer' , car.importer_featured_type)">Upgrade profile</button>
-                  <button *ngIf="checkPaymentButton('Commercial Importer',car.machinery_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_importer_ad_sale_id,'Machinery Importer')">Send Payment</button>
+                        <button id="signin-upgrade" *ngIf="!checkPaymentButton('Machinery Importer',car.machinery_importer_ad_sale_id)"  (click)="openPopup(car.machinery_importer_ad_sale_id, 'Machinery Importer' , car.importer_featured_type)">Upgrade profile</button>
+                  <button *ngIf="checkPaymentButton('Machinery Importer',car.machinery_importer_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_importer_ad_sale_id,'Machinery Importer')">Send Payment</button>
                 </div>
                       </div>
                   
@@ -477,8 +477,8 @@
                         <!-- Left side: Upgrade profile / Send payment -->
                         <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                           <div *ngIf="car.post_status === 'Active' && car.exporter_featured_type!='Supreme'" >
-                          <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Exporter',car.machinery_exporter_ad_sale_id)" (click)="openPopup(car.machinery_exporter_ad_sale_id ,'Machinery Exporter' , car.exporter_featured_type)">Upgrade profile</button>
-                    <button *ngIf="checkPaymentButton('Commercial Exporter',car.machinery_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_exporter_ad_sale_id,'Machinery Exporter')">Send Payment</button>
+                          <button id="signin-upgrade" *ngIf="!checkPaymentButton('Machinery Exporter',car.machinery_exporter_ad_sale_id)" (click)="openPopup(car.machinery_exporter_ad_sale_id ,'Machinery Exporter' , car.exporter_featured_type)">Upgrade profile</button>
+                    <button *ngIf="checkPaymentButton('Machinery Exporter',car.machinery_exporter_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_exporter_ad_sale_id,'Machinery Exporter')">Send Payment</button>
                   </div>
                         </div>
                     
@@ -544,8 +544,8 @@
                           <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                             <div *ngIf="car.post_status === 'Active' &&car.workshop_featured_type!='Supreme'" >
                               
-                            <button id="signin-upgrade" *ngIf="!checkPaymentButton('Commercial Workshop',car.machinery_workshop_ad_sale_id)" (click)="openPopup(car.machinery_workshop_ad_sale_id, 'Machinery Workshop' , car.workshop_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Commercial Workshop',car.machinery_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_workshop_ad_sale_id,'Machinery Workshoop')">Send Payment</button>
+                            <button id="signin-upgrade" *ngIf="!checkPaymentButton('Machinery Workshop',car.machinery_workshop_ad_sale_id)" (click)="openPopup(car.machinery_workshop_ad_sale_id, 'Machinery Workshop' , car.workshop_featured_type)">Upgrade profile</button>
+                      <button *ngIf="checkPaymentButton('Machinery Workshop',car.machinery_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_workshop_ad_sale_id,'Machinery Workshoop')">Send Payment</button>
                     </div>
                           </div>
                       
@@ -611,8 +611,8 @@
                             <!-- Left side: Upgrade profile / Send payment -->
                             <div style="display: flex; flex-direction: column;"class="btn_bottom-upgrade">
                               <div *ngIf="car.post_status === 'Active' && car.school_featured_type!='Supreme'" >
-                              <button id="signin-upgrade"  *ngIf="!checkPaymentButton('Commercial School',car.machinery_school_ad_sale_id)"  (click)="openPopup(car.machinery_school_ad_sale_id, 'Machinery School' , car.school_featured_type)">Upgrade profile</button>
-                        <button *ngIf="checkPaymentButton('Commercial School',car.machinery_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_school_ad_sale_id,'Machinery School')">Send Payment</button>
+                              <button id="signin-upgrade"  *ngIf="!checkPaymentButton('Machinery School',car.machinery_school_ad_sale_id)"  (click)="openPopup(car.machinery_school_ad_sale_id, 'Machinery School' , car.school_featured_type)">Upgrade profile</button>
+                        <button *ngIf="checkPaymentButton('Machinery School',car.machinery_school_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.machinery_school_ad_sale_id,'Machinery School')">Send Payment</button>
                       </div>
                             </div>
                         

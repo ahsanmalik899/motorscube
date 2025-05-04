@@ -15,6 +15,6 @@ import { UpdateMachinerySalePage } from './update-machinery-sale.page';
     IonicModule,
     UpdateMachinerySalePageRoutingModule
   ],
-  declarations: [UpdateMachinerySalePage]
+
 })
 export class UpdateMachinerySalePageModule {}
