@@ -7,7 +7,7 @@ import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 interface Car {
   machinery_ad_sale_id: string;
-  vehicle_reg_city: any;
+  country: any;
   city: any;
   feature_type: any;
   image_url1: any;
