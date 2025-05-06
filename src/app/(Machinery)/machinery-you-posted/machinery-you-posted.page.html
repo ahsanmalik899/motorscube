@@ -41,37 +41,29 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_power_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -80,7 +72,7 @@
         <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_price }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.price }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -209,37 +201,29 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -248,7 +232,7 @@
         <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_charges }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.charges }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -383,37 +367,29 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:215px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_location}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -422,7 +398,7 @@
         <ion-card class="card-hotspot" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_price }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.price }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -560,46 +536,37 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:215px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_location}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
-
     <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
       <ion-col>
         <ion-card class="card-hotspot" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_charges }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.charges }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -737,37 +704,29 @@
  
 
     <div style="width: 100%; align-items: center; margin-top:-25px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -776,7 +735,7 @@
         <ion-card class="card-supreme" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_price }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.price }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -872,37 +831,29 @@
  
 
     <div style="width: 100%; align-items: center; margin-top:-25px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -911,7 +862,7 @@
         <ion-card class="card-supreme" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_charges }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.charges }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
