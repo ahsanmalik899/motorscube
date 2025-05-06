@@ -9,31 +9,31 @@ interface Car {
   machinery_ad_sale_id: string;
   machinery_reg_city: any;
   city: any;
+  country:any;
   feature_type: any;
   image_url1: any;
   image_url2: any;
   image_url3: any;
   vehicle_transmission: any;
-  vehicle_fuel_type: string;
-  vehicle_condition: string;
+  fueltype: string;
+  condition_machinery: string;
   vehicle_power_transmission: string;
   vehicle_doors: string;
-  vehicle_location: string;
-  vehicle_type: string;
-  vehicle_sub_type: string;
-  vehicle_make: string;
-  vehicle_price: string;
-  vehicle_year: string;
-  vehicle_mileage: string;
-  vehicle_engine_size: string;
+  type: string;
+  subtype: string;
+  make: string;
+  price: string;
+  year: string;
+  hourused: string;
+  weight: string;
   vehicle_body_type: string;
   vehicle_color: string;
-  vehicle_private_trader: string;
+  privateortrade: string;
     post_created_date: string;
     post_status: string;
-    vehicle_charges:string;
-    vehicle_about_charges:string;
-    vehicle_about_drive:string
+    charges:string;
+    about_charges:string;
+    about_drive:string
   }
 @Component({
   selector: 'app-machinery-hire-listing',
@@ -49,6 +49,7 @@ export class MachineryHireListingPage implements OnInit {
   
     selectedcon: string[] = [];
     selectedcity: string[] = [];
+    selectedcountry: string[] = [];
     selectedmake: string[] = [];
     selectedmodel: string[] = [];
     selectedversion: string[] = [];
@@ -81,6 +82,7 @@ export class MachineryHireListingPage implements OnInit {
       this.route.queryParams.subscribe(params => {
         this.selectedcon = this.parseQueryParam(params['selectedcon']);
         this.selectedcity = params['selectedcity'] ? params['selectedcity'].split(',') : [];
+        this.selectedcountry = params['selectedcountry'] ? params['selectedcountry'].split(',') : [];
         this.selectedmake = this.parseQueryParam(params['selectedmake']);
         this.selectedmodel = this.parseQueryParam(params['selectedmodel']);
         this.selectedversion = this.parseQueryParam(params['selectedversion']);
@@ -118,37 +120,39 @@ export class MachineryHireListingPage implements OnInit {
       const transmissions = new Set(this.selectedTransmission[0]?.split(',').map(t => t.trim().toLowerCase()));
       const doorNumbers = new Set(this.selecteddoor[0]?.split(',').map(d => d.trim().toLowerCase()));
       const cities = new Set(this.selectedcity);
+      const countryes = new Set(this.selectedcountry);
       const makes = new Set(this.selectedmake);
       const selectedCharges = new Set(this.selectedcharges);
       const selectedDrive = this.selecteddrive.trim().toLowerCase();
   
       this.filteredCarData = this.carHireData.filter((car: Car) => {
-        const carCondition = car.vehicle_condition?.toLowerCase();
+        const carCondition = car.condition_machinery?.toLowerCase();
         const carTransmission = car.vehicle_power_transmission?.toLowerCase();
         const carDoorNumber = car.vehicle_doors?.trim().toLowerCase();
-        const carDriverAvailability = car.vehicle_about_drive?.trim().toLowerCase();
+        const carDriverAvailability = car.about_drive?.trim().toLowerCase();
   
         if (car.post_status !== 'Active') return false;
-        if (fuelTypes.size > 0 && !fuelTypes.has(car.vehicle_fuel_type)) return false;
+        if (fuelTypes.size > 0 && !fuelTypes.has(car.fueltype)) return false;
         if (conditions.size > 0 && !conditions.has(carCondition)) return false;
         if (transmissions.size > 0 && !transmissions.has(carTransmission)) return false;
         if (doorNumbers.size > 0 && !doorNumbers.has(carDoorNumber)) return false;
         if (cities.size > 0 && !cities.has(car.city)) return false;
-        if (makes.size > 0 && !makes.has(car.vehicle_make)) return false;
-        if (selectedCharges.size > 0 && !selectedCharges.has(car.vehicle_about_charges)) return false;
+        if (countryes.size > 0 && !countryes.has(car.country)) return false;
+        if (makes.size > 0 && !makes.has(car.make)) return false;
+        if (selectedCharges.size > 0 && !selectedCharges.has(car.about_charges)) return false;
         if (selectedDrive && carDriverAvailability !== selectedDrive) return false;
-        if (this.selectedlowprice && parseInt(car.vehicle_charges, 10) < parseInt(this.selectedlowprice, 10)) return false;
-        if (this.selectedhighprice && parseInt(car.vehicle_charges, 10) > parseInt(this.selectedhighprice, 10)) return false;
-        if (this.selectedlowyear && parseInt(car.vehicle_year, 10) < parseInt(this.selectedlowyear, 10)) return false;
-        if (this.selectedhighyear && parseInt(car.vehicle_year, 10) > parseInt(this.selectedhighyear, 10)) return false;
-        if (this.selectedlowmilage && parseInt(car.vehicle_about_charges, 10) < parseInt(this.selectedlowmilage, 10)) return false;
-        if (this.selectedhighmilage && parseInt(car.vehicle_mileage, 10) > parseInt(this.selectedhighmilage, 10)) return false;
-        if (this.selectedlowengine && parseInt(car.vehicle_engine_size, 10) < parseInt(this.selectedlowengine, 10)) return false;
-        if (this.selectedhighengine && parseInt(car.vehicle_engine_size, 10) > parseInt(this.selectedhighengine, 10)) return false;
+        if (this.selectedlowprice && parseInt(car.charges, 10) < parseInt(this.selectedlowprice, 10)) return false;
+        if (this.selectedhighprice && parseInt(car.charges, 10) > parseInt(this.selectedhighprice, 10)) return false;
+        if (this.selectedlowyear && parseInt(car.year, 10) < parseInt(this.selectedlowyear, 10)) return false;
+        if (this.selectedhighyear && parseInt(car.year, 10) > parseInt(this.selectedhighyear, 10)) return false;
+        if (this.selectedlowmilage && parseInt(car.about_charges, 10) < parseInt(this.selectedlowmilage, 10)) return false;
+        if (this.selectedhighmilage && parseInt(car.hourused, 10) > parseInt(this.selectedhighmilage, 10)) return false;
+        if (this.selectedlowengine && parseInt(car.weight, 10) < parseInt(this.selectedlowengine, 10)) return false;
+        if (this.selectedhighengine && parseInt(car.weight, 10) > parseInt(this.selectedhighengine, 10)) return false;
         if (this.selectedCategory && car.vehicle_body_type !== this.selectedCategory) return false;
         if (this.selectedcolor && car.vehicle_color !== this.selectedcolor) return false;
-        if (this.selectedSellerType && car.vehicle_private_trader !== this.selectedSellerType) return false;
-        if (this.selectedModelVersion && `${car.vehicle_type} ${car.vehicle_sub_type}` !== this.selectedModelVersion) return false;
+        if (this.selectedSellerType && car.privateortrade !== this.selectedSellerType) return false;
+        if (this.selectedModelVersion && `${car.type} ${car.subtype}` !== this.selectedModelVersion) return false;
   
         return true;
       });

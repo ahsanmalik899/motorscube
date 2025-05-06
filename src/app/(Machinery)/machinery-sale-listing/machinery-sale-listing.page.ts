@@ -27,10 +27,10 @@ interface Car {
   price: string;
   year: string;
    hourused: string;
-  engine_size: string;
+  weight:string;
   body_type: string;
   color: string;
-  vehicle_private_trader: string;
+  privateortrade: string;
     post_created_date: string;
     post_status: string;
   }
@@ -225,8 +225,8 @@ isMileageInRange(car: Car): boolean {
 
 isEngineSizeInRange(car: Car): boolean {
   return (
-    (!this.selectedlowengine || parseInt(car.engine_size, 10) >= parseInt(this.selectedlowengine, 10)) &&
-    (!this.selectedhighengine || parseInt(car.engine_size, 10) <= parseInt(this.selectedhighengine, 10))
+    (!this.selectedlowengine || parseInt(car.weight, 10) >= parseInt(this.selectedlowengine, 10)) &&
+    (!this.selectedhighengine || parseInt(car.weight, 10) <= parseInt(this.selectedhighengine, 10))
   );
 }
 
@@ -239,7 +239,7 @@ isColorMatch(car: Car): boolean {
 }
 
 isSellerTypeMatch(car: Car): boolean {
-  return !this.selectedSellerType || car.vehicle_private_trader === this.selectedSellerType;
+  return !this.selectedSellerType || car.privateortrade === this.selectedSellerType;
 }
 
 isModelVersionMatch(car: Car): boolean {

@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicSlides, PopoverController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -76,18 +77,22 @@ export class MachineryHireFilterPage implements OnInit {
         highPriceOptions: string[] = [];
       originalContent = '';
         filteredCities: string[] = [];
+        filteredCountryes: string[] = [];
         filteredModels: string[] = [];
         filteredVersions: string[] = [];
         filteredYears: string[] = [];
         filteredFeatures: string[] = [];
         selectedFeatures: string[] = [];
         selectedCity: string[] = [];
+        selectedCountry: string[] = [];
         selectedModel = '';
         selectedVersion = '';
         selectedYear = '';
         selectedregisterCity = '';
+        selectedregisterCountry = '';
         selectedfeature = '';
         divVisible = false; 
+        divcountry = false;
         modeldivVisible = false;
         versiondivVisible = false;
         yeardivVisible = false;
@@ -98,10 +103,12 @@ export class MachineryHireFilterPage implements OnInit {
         showmodel = true;
         showmodel2 = false;
         showcar = true;
+        showcountry = true;
         showyear = true;
         showregister = true;
         showfeature = true;
         cities: string[] = [];
+        countryes: string[] = [];
         versions: string[] = [];
         features: string[] = [];
         selectedFuel: string[] = []; 
@@ -127,7 +134,7 @@ export class MachineryHireFilterPage implements OnInit {
         selectedversionarray: string[] = [];
         selectedValues: string[] = [];
         filteredMakesModels: string[] = [];
-        constructor(public route: Router,private commerrcialservice:CommercialService,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService) {
+        constructor(public route: Router,private machineryservice:MachineryService,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService) {
           this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
         this.selectedMake = localStorage.getItem('selectedmake') || '';
         this.selectedModelVersion= this.getStoredValue('selectedmodelversion');
@@ -142,14 +149,19 @@ export class MachineryHireFilterPage implements OnInit {
         this.selectedSellerType = localStorage.getItem('selectedSellerType') || '';
         this.selectedEngineHighSize = localStorage.getItem('highengine') || '';
         this.selectedEngineLowSize = localStorage.getItem('lowengine') || '';
-        this.divVisible = !!this.selectedCity;
+       this.selectedCity = this.getStoredArray('selectedcity');
+  this.selectedCountry = this.getStoredArray('selectedcountry');
+  this.divVisible = this.selectedCity.length > 0;
+  this.divcountry = this.selectedCountry.length > 0;
         this.showmodel2 = !!this.selectedMake;
         this.makedivVisible = !!this.selectedMake;
         this.showversion2 = !!this.selectedModel;
         this.modeldivVisible = !!this.selectedModel;
         this.versiondivVisible = !!this.selectedVersion;
-        this.selectedCity = this.getStoredArray('selectedCity');
+        this.selectedCity = this.getStoredArray('selectedcity');
+        this.selectedCountry = this.getStoredArray('selectedcountry');
       this.divVisible = !!this.selectedCity.length;
+      this.divcountry = !!this.selectedCountry.length;
         }
         ionViewWillEnter() {
           this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
@@ -173,7 +185,7 @@ export class MachineryHireFilterPage implements OnInit {
           this.selectedDoors = JSON.parse(localStorage.getItem('selectedDoors') || '[]');
           this.selectedDrive = localStorage.getItem('selectedDrive') || '';
           this.selectedCharges = JSON.parse(localStorage.getItem('selectedCharges') || '[]');
-          
+       
           // Apply selections to UI if necessary (e.g., update checkboxes, dropdowns)
         
         }
@@ -187,6 +199,7 @@ export class MachineryHireFilterPage implements OnInit {
           this.loadSelectedMakes();
           this.fetchModelsAndVersions(this.selectedMake);
           this.fetchCities(); 
+          this.fetchCountryes(); 
           this.fetchMakes();
           this.fetchYears();
           this.updateHighPriceOptions();
@@ -266,8 +279,19 @@ export class MachineryHireFilterPage implements OnInit {
                   await this.popoverController.dismiss(city);
             this.filterCities({ target: { value: '' } });
           }  }
+          filterCountryes(event: any) {
+            const searchTerm = event.target.value.toLowerCase();
+            this.filteredCountryes = this.countryes.filter(country => country.toLowerCase().includes(searchTerm));
+          }
+          async selectCountry(country: string) {
+            this.divcountry = true;
+            if (!this.selectedCountry.includes(country)) {
+              this.selectedCountry.push(country);
+                    await this.popoverController.dismiss(country);
+              this.filterCountryes({ target: { value: '' } });
+            }  }
         fetchMakes() {
-          this.commerrcialservice.getMakes().subscribe({
+          this.machineryservice.getMakes().subscribe({
             next: (data: string[]) => {
               this.makes = data;
               this.filteredMakes = [...this.makes];
@@ -283,7 +307,7 @@ export class MachineryHireFilterPage implements OnInit {
         fetchModels() {
           const formData = new FormData();
           formData.append('make', this.selectedMake);
-          this.commerrcialservice.getModels().subscribe({
+          this.machineryservice.getModels().subscribe({
             next: (data: string[]) => {
               this.models = data;
               this.filteredModels = [...this.models];
@@ -322,7 +346,15 @@ export class MachineryHireFilterPage implements OnInit {
             }
           });
         }
-      
+        fetchCountryes() {    this.userService.getCountrties().subscribe({
+          next: (data: string[]) => {
+            this.countryes = data;
+            this.filteredCountryes = [...this.countryes]; },
+          error: (error: any) => {
+            console.error('Error fetching cities:', error);
+          }
+        });
+      }
       selectFuel(fuelType: string) {
         const index = this.selectedFuel.indexOf(fuelType);
         if (index === -1) {    this.selectedFuel.push(fuelType);
@@ -400,6 +432,7 @@ export class MachineryHireFilterPage implements OnInit {
           // Clear specific items from localStorage
           localStorage.removeItem('selectedcon');
           localStorage.removeItem('selectedcity');
+          localStorage.removeItem('selectedcountry');
           localStorage.removeItem('selectedmake');
           localStorage.removeItem('selectedmodel');
           localStorage.removeItem('selectedversion');
@@ -419,6 +452,7 @@ export class MachineryHireFilterPage implements OnInit {
           // Reset selected filters
           this.selectedcon = [];
           this.selectedCity = [];
+          this.selectedCountry = [];
           this.selectedMake='';
           this.mergecararray = [];
           this.selectedLowPrice = '';
@@ -454,7 +488,8 @@ export class MachineryHireFilterPage implements OnInit {
            
             search() {
               // Store selected filters in localStorage
-              localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
+              localStorage.setItem('selectedcity', JSON.stringify(this.selectedCity));
+              localStorage.setItem('selectedcountry', JSON.stringify(this.selectedCountry));
               localStorage.setItem('selectedmake', this.selectedMake);
               localStorage.setItem('selectedmodel', this.selectedModel);
               localStorage.setItem('selectedversion', this.selectedVersion);
@@ -483,6 +518,7 @@ export class MachineryHireFilterPage implements OnInit {
                   selectedmodelversion:this.selectedModelVersion,
                   selectedmake: this.selectedMake,
                   selectedcity: this.selectedCity.join(','),
+                  selectedcountry: this.selectedCountry.join(','),
                   highprice: this.selectedHighPrice,
                   lowprice: this.selectedLowPrice,
                   highyear: this.selectedHighYear,
@@ -524,8 +560,14 @@ export class MachineryHireFilterPage implements OnInit {
         if (index !== -1) {
           this.selectedCity.splice(index, 1); 
         }
+        
       }
-      
+      hideDivcountry(country: string) {
+        this.showcountry = true;
+      const index = this.selectedCountry.indexOf(country); 
+      if (index !== -1) {
+        this.selectedCountry.splice(index, 1); 
+      }}
         // Method to toggle the selection of charges (Daily, Weekly, Monthly, etc.)
         toggleChargeSelection(chargeType: string) {
           const index = this.selectedCharges.indexOf(chargeType);
@@ -552,6 +594,7 @@ export class MachineryHireFilterPage implements OnInit {
   
     updateVisibilityFlags() {
       this.divVisible = !!this.selectedCity;
+      this.divcountry = !!this.selectedCountry;
       this.showmodel2 = !!this.selectedModelVersion;
       this.makedivVisible = !!this.selectedMake;
       this.showversion2 = !!this.selectedModel;
@@ -683,7 +726,7 @@ export class MachineryHireFilterPage implements OnInit {
     const makeData = new FormData();
     makeData.append('make', make);
   
-    this.commerrcialservice.getModels().subscribe({
+    this.machineryservice.getModels().subscribe({
       next: (modelsData: string[]) => {
         this.models = modelsData;
         this.combinedModelVersions = [];  // Clear previous combinations
@@ -695,7 +738,7 @@ export class MachineryHireFilterPage implements OnInit {
           versionData.append('make', make);
           versionData.append('model', model);
   
-          return this.commerrcialservice.getVersions(versionData).toPromise()
+          return this.machineryservice.getVersions(versionData).toPromise()
             .catch(error => {
               console.error(`Error fetching versions for model ${model}:`, error);
               return [];  // Return an empty array if there's an error fetching versions for this model

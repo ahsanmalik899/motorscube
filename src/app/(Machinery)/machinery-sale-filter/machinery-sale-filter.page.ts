@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicSlides, PopoverController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 interface MakeModelVersion {
   make: string;
@@ -53,7 +54,11 @@ makes: string[] = [];  // Holds all makes from the service
   selectedMake: string = '';  // Store selected make
   mergecararray: string[] = [];  // Holds selected makes for display in the div
   makedivVisible: boolean = false;  // Controls visibility of the selected makes div
-
+  filteredCountryes: string[] = [];
+  selectedCountry: string[] = []
+  divcountry = false;
+  showcountry = true;
+  countryes: string[] = [];
 models: string[] = [];
 versions: string[] = [];
 filteredMakesModels: string[] = [];
@@ -129,7 +134,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   selectedEngineHighSize: string;
   filteredHighEngineSizes: string[];
   selectedValuesString = '';
-  constructor(public route: Router,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService,private commrcialservice:CommercialService) {
+  constructor(public route: Router,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService,private machineryservice:MachineryService) {
     this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
   this.selectedMake = localStorage.getItem('selectedmake') || '';
   this.selectedModel = localStorage.getItem('selectedmodel') || '';
@@ -146,6 +151,8 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   this.selectedEngineHighSize = localStorage.getItem('highengine') || '';
   this.selectedEngineLowSize = localStorage.getItem('lowengine') || '';
   this.makedivVisible = !!this.selectedMake;
+  this.selectedCountry = this.getStoredArray('selectedcountry');
+  this.divcountry = this.selectedCountry.length > 0;
   this.showversion2 = !!this.selectedModel;
   this.modeldivVisible = !!this.selectedModel;
   this.versiondivVisible = !!this.selectedVersion;
@@ -155,11 +162,13 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   this.selectedHighYear = localStorage.getItem('selectedHighYear') || '';
   this.selectedModel= localStorage.getItem('selectedmodel') || '';
   this.selectedMake=localStorage.getItem('selectedmake') || '';
+  this.selectedCountry = this.getStoredArray('selectedcountry');
+  this.divcountry = !!this.selectedCountry.length;
   
   }
   ngOnInit() {
     this.fetchCities();
-
+    this.fetchCountryes(); 
     this.fetchYears();
     this.updateHighPriceOptions();
     this.updateHighYearOptions();  
@@ -213,6 +222,7 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
     this.divVisible = !!this.selectedCity;
     this.showmodel2 = !!this.selectedModelVersion;
     this.makedivVisible = !!this.selectedMake;
+    this.divcountry = !!this.selectedCountry;
     this.showversion2 = !!this.selectedModel;
     this.modeldivVisible = !!this.selectedModel;
     this.versiondivVisible = !!this.selectedVersion;
@@ -267,7 +277,26 @@ engineSizes: number[] = [100, 500, 1000, 2000, 5000, 10000];
   }  
   
 
-   
+  filterCountryes(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredCountryes = this.countryes.filter(country => country.toLowerCase().includes(searchTerm));
+  }
+  async selectCountry(country: string) {
+    this.divcountry = true;
+    if (!this.selectedCountry.includes(country)) {
+      this.selectedCountry.push(country);
+            await this.popoverController.dismiss(country);
+      this.filterCountryes({ target: { value: '' } });
+    }  }
+    fetchCountryes() {    this.userService.getCountrties().subscribe({
+      next: (data: string[]) => {
+        this.countryes = data;
+        this.filteredCountryes = [...this.countryes]; },
+      error: (error: any) => {
+        console.error('Error fetching cities:', error);
+      }
+    });
+  }
   integrateVersionsIntoMakes() {
     this.filteredMakes = [];
     this.filteredMakes.push(this.selectedMake);
@@ -378,6 +407,7 @@ updateHighMilageOptions() {
     localStorage.removeItem('selectedversion');
     localStorage.removeItem('lowprice');
     localStorage.removeItem('highprice');
+    localStorage.removeItem('selectedcountry');
     localStorage.removeItem('lowyear');
     localStorage.removeItem('highyear');
     localStorage.removeItem('lowmilage');
@@ -393,6 +423,7 @@ updateHighMilageOptions() {
     this.selectedCity = [];
     this.selectedmakearray = [];
     this.selectedmodelarray = [];
+    this.selectedCountry = [];
     this.selectedversionarray = [];
     this.mergecararray = [];
     this.selectedLowPrice = '';
@@ -432,6 +463,7 @@ updateHighMilageOptions() {
         localStorage.setItem('selectedLowYear', this.selectedLowYear);
         localStorage.setItem('selectedHighYear', this.selectedHighYear);
         localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
+        localStorage.setItem('selectedcountry', JSON.stringify(this.selectedCountry));
         localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
         localStorage.setItem('selectedmake', this.selectedMake);
         localStorage.setItem('selectedmodelversion', this.selectedModelVersion);
@@ -462,6 +494,7 @@ updateHighMilageOptions() {
                 highprice: this.selectedHighPrice,
                 lowprice: this.selectedLowPrice,
                 highyear: this.selectedHighYear,
+                selectedcountry: this.selectedCountry.join(','),
                 lowyear: this.selectedLowYear,
                 highmilage: this.selectedHighMilage,
                 lowmilage: this.selectedLowMilage,
@@ -511,7 +544,7 @@ updateHighYearOptions() {
   }
 }  
 fetchMakes() {
-  this,this.commrcialservice.getMakes().subscribe({
+  this,this.machineryservice.getMakes().subscribe({
     next: (makesData: string[]) => {
       this.makes = makesData; // Store makes data
       this.filteredMakes = makesData; // Initialize filtered makes with all makes data
@@ -521,7 +554,12 @@ fetchMakes() {
     }
   });
 }
-
+hideDivcountry(country: string) {
+  this.showcountry = true;
+const index = this.selectedCountry.indexOf(country); 
+if (index !== -1) {
+  this.selectedCountry.splice(index, 1); 
+}}
 // Handle make search input and filter makes
 filterMakes(event: any) {
   this.searchTerm = event.target.value.trim().toLowerCase();  // Update search term
@@ -603,7 +641,7 @@ fetchModelsAndVersions(make: string) {
   const makeData = new FormData();
   makeData.append('make', make);
 
-  this.commrcialservice.getModels().subscribe({
+  this.machineryservice.getModels().subscribe({
     next: (modelsData: string[]) => {
       this.models = modelsData;
       this.combinedModelVersions = [];  // Clear previous combinations
@@ -615,7 +653,7 @@ fetchModelsAndVersions(make: string) {
         versionData.append('make', make);
         versionData.append('model', model);
 
-        return this.commrcialservice.getVersions(versionData).toPromise()
+        return this.machineryservice.getVersions(versionData).toPromise()
           .catch(error => {
             console.error(`Error fetching versions for model ${model}:`, error);
             return [];  // Return an empty array if there's an error fetching versions for this model

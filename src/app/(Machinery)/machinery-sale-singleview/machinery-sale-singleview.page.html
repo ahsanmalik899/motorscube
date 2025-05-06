@@ -86,7 +86,7 @@
                         <div class="flex">
                           <div>
                             <img src="../../../assets/extra-icon/mileage.png" alt="no exist" style="width: 60px; height: 60px;">
-                            <p>{{ car.mileage }} Km</p>
+                            <p>{{ car.hourused }} Hour's</p>
                           </div>
                           <div>
                             <img src="../../../assets/extra-icon/fuel.png" alt="no exist" style="width: 50px; height: 50px;">
@@ -94,7 +94,7 @@
                           </div>
                           <div>
                             <img src="../../../assets/extra-icon/transmission.png" alt="no exist" style="width: 50px; height: 50px;">
-                            <p style="margin-top: 10px;">{{ car.power_transmission }}</p>
+                            <p style="margin-top: 10px;">{{ car.weight }}</p>
                           </div>
                         </div>
                         <ion-card-subtitle class="clr-white"></ion-card-subtitle>
@@ -112,15 +112,15 @@
                         <ion-card class="btn-car3">
                           <ion-card-header>
                             <div class="table">
-                              <p>Registered in</p>
-                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.reg_city }}</p>
+                              <p>Country</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.country }}</p>
                             </div>
                           <ion-item-divider class="item"></ion-item-divider>
 
                             <!-- <ion-item-divider></ion-item-divider> -->
                             <div class="table">
-                              <p>Engine size</p>
-                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.engine_size }}</p>
+                              <p>Weight</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.weight }}</p>
                             </div>
                             <ion-item-divider class="item"></ion-item-divider>
 
@@ -135,31 +135,18 @@
                             </div>
                             <ion-item-divider class="item"></ion-item-divider>
                             <div class="table">
-                              <p>Color</p>
-                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.color }}</p>
+                              <p>Serial No</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.serialno }}</p>
                             </div>
                             <ion-item-divider class="item"></ion-item-divider>
 
-                            <div class="table">
-                              <p>Power Transmission</p>
-                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.transmission }}</p>
-                            </div>
-                            <ion-item-divider class="item"></ion-item-divider>
+              
 
                           </ion-card-header>
                           </ion-card>
                           </ion-col>
                           </div>
 
-                          <!-- features -->
-                          <p class="key">Features</p>
-                          <div *ngFor="let feature of carFeaturesArray">
-                            <div class="listing">
-                              <img src="../../../assets/Car-section/car-post/For sale/check.png" alt="no exist" class="check">
-                              <p class="text">{{ feature }}</p>
-                          </div>
-                          <ion-item-divider class="item2"></ion-item-divider>
-                      </div>
 
                         
 
