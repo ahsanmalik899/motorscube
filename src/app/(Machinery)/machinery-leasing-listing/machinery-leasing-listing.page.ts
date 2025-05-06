@@ -114,7 +114,7 @@ export class MachineryLeasingListingPage implements OnInit {
     );
   }
   navigateToleasingSingle(id: string) {
-    this.router.navigate(['/vehicle-leasing-singleview'], {
+    this.router.navigate(['/machinery-leasing-single-view'], {
       queryParams: {
         leasingId: id,
       }

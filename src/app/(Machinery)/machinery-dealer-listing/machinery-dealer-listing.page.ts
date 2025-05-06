@@ -116,7 +116,7 @@ export class MachineryDealerListingPage implements OnInit {
   }
 
   navigateToDealerSingle(id: string) {
-    this.router.navigate(['/vehicle-dealer-singleview'], {
+    this.router.navigate(['/machinery-dealer-single-view'], {
       queryParams: {
         dealerId: id,
       }

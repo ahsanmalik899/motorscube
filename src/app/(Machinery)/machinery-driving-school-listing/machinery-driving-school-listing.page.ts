@@ -111,7 +111,7 @@ export class MachineryDrivingSchoolListingPage implements OnInit {
     );
   }
   navigateToschoolSingle(id: string) {
-    this.router.navigate(['/vehicle-driving-school-singleview'], {
+    this.router.navigate(['/machinery-driving-school-single-view'], {
       queryParams: {
         schoolId: id,
       }

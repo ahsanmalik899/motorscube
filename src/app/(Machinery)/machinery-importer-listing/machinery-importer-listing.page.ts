@@ -113,7 +113,7 @@ export class MachineryImporterListingPage implements OnInit {
     );
   }
   navigateToimporterSingle(id: string) {
-    this.router.navigate(['/vehicle-importer-singleview'], {
+    this.router.navigate(['/machinery-importer-singleview'], {
       queryParams: {
         importerId: id,
       }

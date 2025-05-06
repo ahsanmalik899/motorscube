@@ -114,7 +114,7 @@ export class MachineryExporterListingPage implements OnInit {
   }
 
   navigateToexporterSingle(id: string) {
-    this.router.navigate(['/vehicle-exporter-singleview'], {
+    this.router.navigate(['/machinery-exporter-single-view'], {
       queryParams: {
         exporterId: id,
       }

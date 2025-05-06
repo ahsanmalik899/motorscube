@@ -113,7 +113,7 @@ export class MachineryShowroomListingPage implements OnInit {
     );
   }
   navigateToshowroomSingle(id: string) {
-    this.router.navigate(['/vehicle-showroom-singleview'], {
+    this.router.navigate(['/machinery-showroom-single-view'], {
       queryParams: {
         showroomId: id,
       }

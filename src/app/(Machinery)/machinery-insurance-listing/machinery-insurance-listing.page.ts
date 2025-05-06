@@ -115,7 +115,7 @@ fetchinsuranceData() {
 
   // Navigate to the single insurance view page
   navigateToinsuranceSingle(id: string) {
-    this.router.navigate(['/vehicle-insurance-singleview'], {
+    this.router.navigate(['/machinery-insurance-single-view'], {
       queryParams: {
         insuranceId: id,
       }
