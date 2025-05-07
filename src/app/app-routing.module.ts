@@ -890,7 +890,15 @@ const routes: Routes = [
   {
     path: 'plant-hire-listing',
     loadChildren: () => import('./(industrial-plants)/plant-hire-listing/plant-hire-listing.module').then( m => m.PlantHireListingPageModule)
+  },  {
+    path: 'plant-sale-single-view',
+    loadChildren: () => import('./plant-sale-single-view/plant-sale-single-view.module').then( m => m.PlantSaleSingleViewPageModule)
   },
+  {
+    path: 'plant-hire-single-view',
+    loadChildren: () => import('./plant-hire-single-view/plant-hire-single-view.module').then( m => m.PlantHireSingleViewPageModule)
+  },
+
 
 
 

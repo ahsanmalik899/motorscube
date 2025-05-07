@@ -1,0 +1,246 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>hire-single-view</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+</ion-content> -->
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>sale-single-view</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" *ngFor="let car of filterData">
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black;">{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }} For Sale</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container" *ngFor="let car of filterData">
+    <div style="display: flex; justify-content: center;">
+    <img src="../../../assets/extra/Al-Ghani.jpg" alt="no exist" class="img"></div>
+    
+    
+  <!-- Image Thumbnails (Example) -->
+  <div *ngIf="selectedImage" style="text-align: center; margin-top: 20px; height: 250px; width: 100%;">
+    <img [src]="selectedImage" 
+         alt="no exist" 
+         (click)="openModal()" 
+         style="border-radius: 10px; max-width: 100%; height: 100%; cursor: pointer; transition: transform 0.5s;">
+  </div>
+
+  <!-- Modal Overlay (Visible only when isModalOpen is true) -->
+  <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <button class="close-button" color="light" (click)="closeModal()">&times;</button>
+      <img [src]="selectedImage" alt="Image" class="modal-image"/>
+      <button class="nav-button left transparent-bg" (click)="previousImage()">&#10094;</button>
+      <button class="nav-button right transparent-bg" (click)="nextImage()">&#10095;</button>
+      
+      <div class="label-container">
+        <ion-label style="color: white; text-align: left; max-width: 250px;">{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }} <br> PKR <span style="color: white; font-size: 17px; font-weight: bold;  display: inline-block; text-align: left;"> {{ car.vehicle_price }}</span></ion-label>
+        <ion-label style="color: white;">{{ currentIndex + 1 }} / {{ totalImages }} </ion-label>
+    </div>
+    </div>
+  </div>
+    
+    <div style="text-align: -webkit-center;">
+      <ion-col>
+        <ion-card class="btn-car">
+          <ion-card-header>
+               <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+        </ion-col>
+        </div>
+
+        <div style="text-align: -webkit-center;">
+      <ion-col>
+        <ion-card class="btn-car1">
+          <ion-card-header>
+            <div >
+            <p style="text-align: left; margin-left: 10px; margin-top: 10px;">{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}  {{ car.vehicle_year }}</p>
+            <p style="text-align: left; margin-left: 10px; margin-top: 10px;">PKR <span style="color: #1a529c; font-size: 17px; font-weight: bold;">{{ car.vehicle_price }}</span></p>
+            <p style="text-align: left; margin-left: 10px; margin-top: 10px;">{{ car.vehicle_city }}</p>
+
+            <div style="text-align: -webkit-center; margin-top: -25px;">
+              <ion-col>
+                <ion-card class="btn-car">
+                  <ion-card-header>
+                       <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                </ion-card-header>
+                </ion-card>
+                </ion-col>
+                </div>
+
+                <div style="text-align: -webkit-center; margin-top: -45px;">
+                  <ion-col>
+                    <ion-card class="btn-car2">
+                      <ion-card-header>
+                        <div class="flex">
+                          <div>
+                            <img src="../../../assets/extra-icon/mileage.png" alt="no exist" style="width: 60px; height: 60px;">
+                            <p>{{ car.vehicle_mileage }} Km</p>
+                          </div>
+                          <div>
+                            <img src="../../../assets/extra-icon/fuel.png" alt="no exist" style="width: 50px; height: 50px;">
+                            <p style="margin-top: 10px;">{{ car.vehicle_fuel_type }}</p>
+                          </div>
+                          <div>
+                            <img src="../../../assets/extra-icon/transmission.png" alt="no exist" style="width: 50px; height: 50px;">
+                            <p style="margin-top: 10px;">{{ car.vehicle_power_transmission }}</p>
+                          </div>
+                        </div>
+                        <ion-card-subtitle class="clr-white"></ion-card-subtitle>
+                      </ion-card-header>
+                    </ion-card>
+                  </ion-col>
+                </div>
+                    <!--  -->
+
+                    <!-- key facts -->
+                    <p class="key">Key Facts</p>
+
+                    <div style="text-align: -webkit-center; margin-top: -45px;">
+                      <ion-col>
+                        <ion-card class="btn-car3">
+                          <ion-card-header>
+                            <div class="table">
+                              <p>Registered in</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.vehicle_reg_city }}</p>
+                            </div>
+                          <ion-item-divider class="item"></ion-item-divider>
+
+                            <!-- <ion-item-divider></ion-item-divider> -->
+                            <div class="table">
+                              <p>Engine size</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.vehicle_engine_size }}</p>
+                            </div>
+                            <ion-item-divider class="item"></ion-item-divider>
+
+                            <div class="table">
+                              <p>Vehicle type</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.vehicle_type }}</p>
+                            </div>
+                            <ion-item-divider class="item"></ion-item-divider>
+                            <div class="table">
+                              <p>Vehicle sub type</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.vehicle_sub_type }}</p>
+                            </div>
+                            <ion-item-divider class="item"></ion-item-divider>
+                            <div class="table">
+                              <p>Color</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.vehicle_color }}</p>
+                            </div>
+                            <ion-item-divider class="item"></ion-item-divider>
+
+                            <div class="table">
+                              <p>Power Transmission</p>
+                              <p style="color: #1a529c; font-weight: bold; font-size: 16px;">{{ car.vehicle_transmission }}</p>
+                            </div>
+                            <ion-item-divider class="item"></ion-item-divider>
+
+                          </ion-card-header>
+                          </ion-card>
+                          </ion-col>
+                          </div>
+
+                          <!-- features -->
+                          <p class="key">Features</p>
+                          <div *ngFor="let feature of carFeaturesArray">
+                            <div class="listing">
+                              <img src="../../../assets/Car-section/car-post/For sale/check.png" alt="no exist" class="check">
+                              <p class="text">{{ feature }}</p>
+                          </div>
+                          <ion-item-divider class="item2"></ion-item-divider>
+                      </div>
+
+                        
+
+                      <!-- Vehicle details -->
+    <p class="key">Vehicle details</p>
+    <div [ngClass]="{'limitTextHeight': isReadMore}" style="margin-left: 5px; margin-right: 5px; text-align: center;">
+      {{ car.vehicle_description }}</div>
+       <p>When you call, please mention that you found this ad on Motorscube.com</p>
+    <ion-item-divider class="item2"></ion-item-divider>
+            <!--  -->
+</div>
+                                <!-- key facts
+                                <p class="key">Key Facts</p> -->
+                                <div *ngIf="filterUserData">
+      <div style="text-align: -webkit-center; margin-top: -45px;" *ngFor="let user of filterUserData">
+          <ion-col>
+            <ion-card class="btn-car4">
+                <ion-card-header>
+                                                  <!-- key facts -->
+            <p class="seller">Seller Details</p>
+
+     <!-- User Profile Image and Name -->
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+  <!-- User Image -->
+  <img [src]="user.image_url1" alt="no exist" class="check" onError="src='../../assets/Menu-items/user_default.png'" style="height: 90px; width: 90px; margin-top: -10px; border: 1px solid lightgray; border-radius: 50%; padding: 5px; display: inline-block;">
+  
+  <!-- User Name -->
+  <div style="margin-left: 15px;">
+    <p style="font-size: 16px; color: black; font-weight: bold; margin-top: 0;">{{user.user_name}}</p>
+    <p style="color: gray; margin-top: 5px;">{{user.user_type}}</p>
+  </div>
+</div>
+
+<!-- Address Section -->
+<div class="location" style=" margin-top: 15px;">
+  <img src="../../../assets/extra-icon/location.png" alt="no exist" class="check" style="height: 40px; width: 40px; margin-top: -5px;">
+  <p style="font-size: 15px; margin-left: 5px; margin-top: 10px;">Address: {{user.user_location}}</p>
+</div>
+
+                <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+                      </ion-card-header>
+                  </ion-card>
+          </ion-col>
+        </div>
+        </div>
+
+          <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+        </ion-card-header>
+        </ion-card>
+        </ion-col>
+        </div>
+
+<!--  -->
+  <div style="text-align: -webkit-center; position: sticky; bottom: 0px; z-index: 1; margin-top: 0px;">
+  <div style="text-align: -webkit-center; margin-top: -45px;">
+      <ion-card class="btn-car6">
+          <ion-card-header>
+            <div class="contact" style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 10px;">
+              <div class="message" style="flex: 1; text-align: center;">
+                <img src="../../../assets/extra-icon/message.png" alt="no exist" class="check" style="margin-top: 5px;">
+                <p style="color: gray; margin-top: 10px; margin-left: 5px;">Message</p>
+              </div>
+              <div class="call" style="flex: 1; text-align: center;">
+                <img src="../../../assets/extra-icon/call.png" alt="no exist" class="check" style="margin-top: 5px;">
+                <p style="color: white; margin-top: 11px; margin-left: 10px;">Call</p>
+              </div>
+            </div>           
+            <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+          </ion-card-header>
+          </ion-card>
+          
+          </div>
+        </div>
+     
+
+
+    <!-- <div class="header">
+        <div class="images">
+        </div>
+      </div> -->
+    </div>
+
+
+</ion-content>
