@@ -62,7 +62,7 @@ export class MachineryDealerSingleViewPage implements OnInit {
       // Ensure dealerId is compared directly with car_dealership_ad_sale_id as a string
       this.filterData = this.dealershipData.filter(car => {
         // Check if dealerId is empty or if the car's dealership id matches the dealerId
-        return (dealerId.length === 0 || car.commercial_vehicle_dealership_ad_sale_id === dealerId);
+        return (dealerId.length === 0 || car.machinery_dealership_ad_sale_id === dealerId);
       });
     
       console.log('Filtered Data:', this.filterData); // Log filtered data for debugging

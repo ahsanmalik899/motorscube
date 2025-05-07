@@ -18,7 +18,7 @@ export class MachineryWorkshopListingPage implements OnInit {
   selectedcity: any[] = [];
   selectedConditions: any[] = [];
   stepper: any;
-  
+  selecteddealin: any[] = [];
   constructor(public router: Router, private popoverController: PopoverController, private userService: UserService,private machineryservice:MachineryService,
     private route: ActivatedRoute,private cdr: ChangeDetectorRef,private platform: Platform,
     ) {
@@ -26,6 +26,7 @@ export class MachineryWorkshopListingPage implements OnInit {
        this.selectedcon = params['selectedcon'];
        this.selectedcity = params['selectedcity'];
        this.selectedConditions = params['selectedConditions'];
+       this.selecteddealin = params['selectedmake'];
        console.log('condition : ',this.selectedcon);
     console.log('city' , this.selectedcity);
     console.log('city' , this.selectedConditions);
@@ -52,6 +53,7 @@ export class MachineryWorkshopListingPage implements OnInit {
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
     localStorage.removeItem('selectedconditions');
+    localStorage.removeItem('selectedmake');
   }
   
 
@@ -111,6 +113,7 @@ export class MachineryWorkshopListingPage implements OnInit {
     const city = this.selectedcity || [];
     const conditions = this.selectedcon || [];
     const categories = this.selectedConditions || [];
+    const selectedDealin = this.selecteddealin || [];
     console.log('city1  :  ', city);
     console.log('condition1  :  ', conditions);
     console.log('categories  :  ', categories);
@@ -118,7 +121,8 @@ export class MachineryWorkshopListingPage implements OnInit {
       car.post_status === 'Active' &&
       (city.length === 0 || city.includes(car.workshop_city)) &&
       (conditions.length === 0 || conditions.includes(car.workshop_featured_type)) &&
-      (categories.length === 0 || categories.some(category => car.workshop_category.includes(category)))
+      (categories.length === 0 || categories.some(category => car.workshop_category.includes(category)))&&
+      (selectedDealin.length === 0 || selectedDealin.includes(car.workshop_sector))
     );
   }
 

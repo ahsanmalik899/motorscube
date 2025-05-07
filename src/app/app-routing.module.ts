@@ -883,6 +883,15 @@ const routes: Routes = [
     path: 'post-machinery-driving-school',
     loadChildren: () => import('./(Machinery)/post-machinery-driving-school/post-machinery-driving-school.module').then( m => m.PostMachineryDrivingSchoolPageModule)
   },
+  {
+    path: 'plant-sale-listing',
+    loadChildren: () => import('./(industrial-plants)/plant-sale-listing/plant-sale-listing.module').then( m => m.PlantSaleListingPageModule)
+  },
+  {
+    path: 'plant-hire-listing',
+    loadChildren: () => import('./(industrial-plants)/plant-hire-listing/plant-hire-listing.module').then( m => m.PlantHireListingPageModule)
+  },
+
 
 
 

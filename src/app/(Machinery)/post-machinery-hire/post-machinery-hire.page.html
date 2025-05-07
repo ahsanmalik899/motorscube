@@ -4,7 +4,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black; font-size: 17px;">Post your Vehicle for Hire</ion-label>
+    <ion-label style="color: black; font-size: 17px;">Post your Machinery for Hire</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -25,8 +25,8 @@
 </div> -->
 
       <ion-row style="margin-top: 25px;">
-        <img src="../../assets/commercialsection/common/bus.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
-        <p style="margin-left: 20px;">Vehicle condition</p></ion-row>
+        <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Machinery condition</p></ion-row>
 
   <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
     <ion-col>
@@ -42,7 +42,7 @@
 <ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
 <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle location</p>
+<p style="margin-left: 20px; margin-top: 20px;">Machinery location</p>
 <div id="click-trigger_city" [hidden]="!showcar" trigger="click-trigger_city" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
   <div *ngIf="divVisible">
@@ -77,7 +77,7 @@
 
 <!--  -->
 
-<ion-row><img src="../../assets/commercialsection/common/bus (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+<ion-row><img src="../../assets/machinery-section/crane-truck (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
 <p style="margin-left: 20px; margin-top: 20px;">Make</p>
 <div [hidden]="!showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
@@ -110,8 +110,8 @@
 
 <!--  -->
 
-<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle Type</p>
+<ion-row><img src="../../assets/machinery-section/crane-truck (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+<p style="margin-left: 20px; margin-top: 20px;">Machinery Type</p>
 <div [hidden]="!showmodel" id="click-trigger_model" trigger="click-trigger_model" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -139,8 +139,8 @@
   <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
 
-<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Vehicle Sub Type</p>
+<ion-row><img src="../../assets/machinery-section/crane-truck (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+<p style="margin-left: 20px; margin-top: 20px;">Machinery Sub Type</p>
 <div [hidden]="!showversion" id="click-trigger_version" trigger="click-trigger_version" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -246,7 +246,7 @@
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
         
         <ion-row>
-          <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+          <img src="../../assets/machinery-section/weight.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
           <p style="margin-left: 20px; margin-top: 20px;">Weight</p>
         </ion-row>
         
@@ -282,7 +282,7 @@
     <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>  
     
     <div style="margin: 15px 0px 0px 15px;">
-      <strong style="color: #1a529c; font-size: 15px;">About Vehicle</strong>
+      <strong style="color: #1a529c; font-size: 15px;">About Machinery</strong>
     </div>
     
     <ion-row>
@@ -295,7 +295,7 @@
     </div> 
       <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
       <ion-row>
-        <img src="../../../assets/extra-icon/mileage.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+        <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
         <p style="margin-left: 20px; margin-top: 20px;">Serial No</p>
       </ion-row>
       

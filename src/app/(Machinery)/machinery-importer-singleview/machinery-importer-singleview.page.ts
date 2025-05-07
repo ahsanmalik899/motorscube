@@ -61,7 +61,7 @@ export class MachineryImporterSingleviewPage implements OnInit {
   
     // Ensure exact match for importerId and car.car_importer_ad_sale_id
     this.filterData = this.importerData.filter(car =>
-      (importerId.length === 0 || importerId === car.commercial_vehicle_importer_ad_sale_id) // Exact match check
+      (importerId.length === 0 || importerId === car.machinery_importer_ad_sale_id) // Exact match check
     );
   
     console.log(this.filterData);

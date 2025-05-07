@@ -46,6 +46,7 @@ export class MachinerySaleListingPage implements OnInit {
   carData: Car[] = [];
   selectedcon: string[] = []; // Ensure these are typed as arrays of strings
   selectedcity: string[] = [];
+  selectedcountry: string[] = [];
   selectedadid: string[] = [];
   selectedlocation: string[]=[];
   selectedmake: string[] = [];
@@ -85,6 +86,7 @@ export class MachinerySaleListingPage implements OnInit {
       // Similarly check other parameters like selectedmake, selectedcity, etc.
       this.selectedcon = params['selectedcon'] ? params['selectedcon'].split(',') : [];
       this.selectedcity = params['selectedcity'] && typeof params['selectedcity'] === 'string' ? params['selectedcity'].split(',') : [];
+      this.selectedcountry = params['selectedcountry'] && typeof params['selectedcountry'] === 'string' ? params['selectedcountry'].split(',') : [];
       this.selectedadid = params['selectedadid'] ? params['selectedadid'].split(',') : [];
       this.selectedlocation = params['selectedlocation'] ? params['selectedlocation'].split(',') : [];
       this.selectedmake = params['selectedmake'] && typeof params['selectedmake'] === 'string' ? params['selectedmake'].split(',') : [];
@@ -127,6 +129,7 @@ export class MachinerySaleListingPage implements OnInit {
               this.selectedcon = params['selectedcon'] ? params['selectedcon'].split(',') : [];
               this.selectedmake = params['selectedmake'] && typeof params['selectedmake'] === 'string' ? params['selectedmake'].split(',') : [];            
               this.selectedcity = params['selectedcity'] ? params['selectedcity'].split(',') : [];
+              this.selectedcountry = params['selectedcountry'] ? params['selectedcountry'].split(',') : [];
               this.selectedhighprice = params['highprice'] || '';
               this.selectedlowprice = params['lowprice'] || '';
               this.selectedhighyear = params['highyear'] || '';
@@ -173,6 +176,7 @@ filterCarData() {
     doorNumbers: new Set(this.selecteddoor),
     cities: new Set(this.selectedcity),
     makes: new Set(this.selectedmake),
+    countryes:new Set(this.selectedcountry)
   };
 
   this.filteredCarData = this.carData.filter((car: Car) => {
@@ -184,6 +188,7 @@ filterCarData() {
       this.isFieldMatch(car.vehicle_doors, filterConditions.doorNumbers) &&
       this.isFieldMatch(car.make, filterConditions.makes) &&
       this.isFieldMatch(car.city, filterConditions.cities) &&
+      this.isFieldMatch(car.country, filterConditions.countryes) &&
       this.isPriceInRange(car) &&
       this.isYearInRange(car) &&
       this.isMileageInRange(car) &&
@@ -253,6 +258,7 @@ isModelVersionMatch(car: Car): boolean {
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedmake');
+    localStorage.removeItem('selectedcountry');
     localStorage.removeItem('selectedmodel');
     localStorage.removeItem('selectedversion');
     localStorage.removeItem('lowprice');

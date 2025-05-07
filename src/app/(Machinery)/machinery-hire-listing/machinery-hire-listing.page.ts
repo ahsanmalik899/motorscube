@@ -214,7 +214,33 @@ export class MachineryHireListingPage implements OnInit {
   
     back() {
       this.router.navigate(['/machinery-home']);
-      localStorage.clear();
+     
+    this.router.navigate(['/machinery-home']);
+    localStorage.removeItem('selectedcon');
+    localStorage.removeItem('selectedcity');
+    localStorage.removeItem('selectedmake');
+    localStorage.removeItem('selectedcountry');
+    localStorage.removeItem('selectedmodel');
+    localStorage.removeItem('selectedversion');
+    localStorage.removeItem('lowprice');
+    localStorage.removeItem('highprice');
+    localStorage.removeItem('lowyear');
+    localStorage.removeItem('highyear');
+    localStorage.removeItem('lowmilage');
+    localStorage.removeItem('highmilage');
+    localStorage.removeItem('selectedCategory');
+    localStorage.removeItem('selectedColor');
+    localStorage.removeItem('selectedSellerType');
+    localStorage.removeItem('highengine');
+    localStorage.removeItem('lowengine');
+    localStorage.removeItem('selectedCategory');
+    localStorage.removeItem('selectedFuel');
+    localStorage.removeItem('selectedTransmission');
+    localStorage.removeItem('selectedDoors');
+    localStorage.removeItem('selectedDrive');
+    localStorage.removeItem('selectedCharges');
+    localStorage.removeItem('selectedCity');
+    localStorage.removeItem('selectedmodelversion');
     }
   
     filter() {

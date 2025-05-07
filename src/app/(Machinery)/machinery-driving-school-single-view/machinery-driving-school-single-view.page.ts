@@ -62,7 +62,7 @@ export class MachineryDrivingSchoolSingleViewPage implements OnInit {
     if (typeof schoolId === 'string' ) {
       // Filter the school data based on matching schoolId
       this.filterData = this.schoolData.filter(school =>
-        school.commercial_school_ad_sale_id === schoolId // Direct comparison
+        school.machinery_school_ad_sale_id === schoolId // Direct comparison
       );
     } else {
       console.error('School ID is not a valid string');

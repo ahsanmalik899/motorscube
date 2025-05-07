@@ -150,7 +150,7 @@ replaceInvalidImageUrls(data: any): void {
 filterCarData() {
   const showroomId = this.showroomId;
   this.filterData = this.showroomData.filter((car) => {
-    return showroomId.length === 0 || car.commercial_vehicle_showroom_ad_sale_id === showroomId;
+    return showroomId.length === 0 || car.machinery_showroom_ad_sale_id === showroomId;
   });
 
   console.log('Filtered Data:', this.filterData); // Log filtered data for debugging

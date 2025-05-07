@@ -28,7 +28,7 @@ export class MachineryInsuranceListingPage implements OnInit {
       // Ensure selectedcon and selectedcity are treated as arrays
       this.selectedcon = Array.isArray(params['selectedcon']) ? params['selectedcon'] : (params['selectedcon'] ? params['selectedcon'].split(',') : []);
       this.selectedcity = Array.isArray(params['selectedcity']) ? params['selectedcity'] : (params['selectedcity'] ? params['selectedcity'].split(',') : []);
-      this.selecteddealin = params['selecteddealin'];
+      this.selecteddealin = params['selectedmake'];
       console.log('Condition:', this.selectedcon);
       console.log('City:', this.selectedcity);
 
@@ -57,7 +57,7 @@ export class MachineryInsuranceListingPage implements OnInit {
     localStorage.removeItem('selectedcity');
     this.router.navigate(['machinery-home']);
     localStorage.removeItem('selectedCity');
-    localStorage.removeItem('selecteddealin');
+    localStorage.removeItem(' selectedmake');
    
   }
   // Filter button to go to another page (e.g., filter options)

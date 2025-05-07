@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController, AlertController } from '@ionic/angular';
+import { MachineryService } from 'src/app/(services)/machinery.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -10,7 +11,13 @@ import { UserService } from 'src/app/(services)/user.service';
   standalone:false,
 })
 export class MachineryShowroomFilterPage implements OnInit {
+  filteredMakes: string[] | undefined;
+  searchTerm: any;
+  mergecararray: string[] = [];
 
+  showmodel: boolean | undefined;
+  selectedModelVersion: string | undefined;
+  showmodel2: boolean | undefined;
 getcitylist() {
 throw new Error('Method not implemented.');
 }
@@ -29,7 +36,9 @@ resetAll() {
   this.selectedDealIn = [];
   // Reset filtered cities to show all cities
   this.filteredCities = [...this.cities];
-
+  this.selectedmakearray = [];
+  this.makedivVisible = false;
+  this.selectedMake='';
   // Optionally, hide the divs or reset visibility if needed
   this.divVisible = false;
   this.showcar = true;
@@ -47,24 +56,91 @@ resetAll() {
   selectedDealIn: string[]=[];
   divVisible = false; // Can be removed if not used in the popover logic
   showcar = true; // Can be removed if not needed in the UI
-
+  selectedMake: string = '';
+  makes: string[] = []; 
+  makedivVisible: boolean = false;
+  showmake: boolean = false;
+  selectedmakearray: string[] = [];
+  selectedMakesModels: any[] = []; 
   constructor(
     public router: Router,
     private popoverController: PopoverController,
     private userService: UserService,
+    private machineryservice:MachineryService,
     private alertController: AlertController // For showing error alerts
   ) {  this.selectedCity = this.getStoredArray('selectedCity');
     this.divVisible = !!this.selectedCity.length;
     this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
     this.selectedDealIn = JSON.parse(localStorage.getItem('selecteddealin') || '[]');
+    this.selectedMake = localStorage.getItem('selectedmake') || '';
+    this.makedivVisible = !!this.selectedMake;
   }
 
 
   ngOnInit() {
     this.fetchCities();
     this.initializeItems();
+    this.fetchMakes();
+    const storedMake = this.getStoredValue('selectedmake');
+    if (storedMake) {
+      this.selectedMake = storedMake;
+      this.mergecararray = [storedMake];  // ✅ Add this line
+      this.showmake = true;
+      this.makedivVisible = true;
+      this.showmodel = true;
+    }
   }
 
+  getStoredValue(key: string, defaultValue: string = ''): string {
+    const value = localStorage.getItem(key);
+    return value !== null ? value : defaultValue;
+  }
+  fetchMakes() {
+    this,this.machineryservice.getModels().subscribe({
+      next: (makesData: string[]) => {
+        this.makes = makesData; // Store makes data
+        this.filteredMakes = makesData; // Initialize filtered makes with all makes data
+      },
+      error: (error: any) => {
+        console.error('Error fetching makes:', error);
+      }
+    });
+  }
+  filterMakes(event: any) {
+    this.searchTerm = event.target.value.trim().toLowerCase();  // Update search term
+    if (!this.searchTerm) {
+      this.filteredMakes = this.makes;  // If search term is empty, show all makes
+    } else {
+      // Filter makes based on search term
+      this.filteredMakes = this.makes.filter(make => make.toLowerCase().includes(this.searchTerm)); 
+    }
+  }selectMake(make: string) {
+    if (!this.mergecararray.includes(make)) {
+      this.mergecararray.push(make);  // Add selected make to the list
+  this.selectedMake=make;
+      this.showmake = true;  // Show selected makes
+      this.makedivVisible = true;  // Show div with selected makes
+    }
+
+    this.showmodel=true;
+    this.searchTerm = '';  // Clear the search term after selection
+    // Save selected makes to localStorage
+    this.popoverController.dismiss();
+  }
+  makeDiv(item: string) {
+    const index = this.mergecararray.indexOf(item);
+    if (index !== -1) {
+      this.mergecararray.splice(index, 1);  // Remove item from the list
+      this.showmake = this.mergecararray.length > 0;  // Hide div if no makes are selected
+      this.makedivVisible = this.mergecararray.length > 0;
+      this.selectedMake='';
+      localStorage.removeItem('selectedmake');
+      this.showmodel=false;
+      this.selectedModelVersion = '';
+      this.showmodel2=false;
+  
+    }
+  }
   // Navigate to the previous page
   back() {
      window.history.back()
@@ -148,11 +224,13 @@ resetAll() {
     localStorage.setItem('selectedCity', JSON.stringify(this.selectedCity));
     localStorage.setItem('selectedcon', JSON.stringify(this.selectedcon));
     localStorage.setItem('selecteddealin', JSON.stringify(this.selectedDealIn));
+    localStorage.setItem('selectedmake', this.selectedMake);
     this.router.navigate(['/machinery-showroom-listing'], {
       queryParams: {
         selectedcon: this.selectedcon,
         selectedcity: this.selectedCity,
-        selecteddealin:this.selectedDealIn
+        selecteddealin:this.selectedDealIn,
+        selectedmake: this.selectedMake,
       }
     });
   }
@@ -166,4 +244,6 @@ resetAll() {
     });
     await alert.present();
   }
-}
+} 
+ 
+

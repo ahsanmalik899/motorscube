@@ -22,7 +22,7 @@ export class MachineryShowroomListingPage implements OnInit {
     this.route.queryParams.subscribe(params => {
        this.selectedcon = params['selectedcon'];
        this.selectedcity = params['selectedcity'];
-       this.selecteddealin = params['selecteddealin'];
+       this.selecteddealin = params['selectedmake'];
        console.log('condition : ',this.selectedcon);
     console.log('city' , this.selectedcity);
     this.fetchshowroomData();
@@ -73,7 +73,7 @@ export class MachineryShowroomListingPage implements OnInit {
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
-    localStorage.removeItem('selecteddealin');
+    localStorage.removeItem('selectedmake');
   }
   filter(){
     this.router.navigate(['machinery-showroom-filter']);

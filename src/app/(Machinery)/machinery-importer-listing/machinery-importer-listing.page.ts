@@ -23,8 +23,9 @@ export class MachineryImporterListingPage implements OnInit {
     this.route.queryParams.subscribe(params => {
        this.selectedcon = params['selectedcon'];
        this.selectedcity = params['selectedcity'];
-       this.selecteddealin = params['selecteddealin'];
+       this.selecteddealin = params['selectedmake'];
        console.log('condition : ',this.selectedcon);
+       console.log('condition : ',this.selecteddealin);
     console.log('city' , this.selectedcity);
     this.fetchimporterData();
     });

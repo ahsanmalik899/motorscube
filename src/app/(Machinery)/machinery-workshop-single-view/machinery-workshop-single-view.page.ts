@@ -60,7 +60,7 @@ export class MachineryWorkshopSingleViewPage implements OnInit {
     const workshopId = this.workshopId;
     this.filterData = this.workshopData.filter(car => {
       // Ensure we are comparing the 'workshopId' as a string and doing an exact match
-      return workshopId && workshopId === car.commercial_vehicle_workshop_ad_sale_id.toString();
+      return workshopId && workshopId === car.machinery_workshop_ad_sale_id.toString();
     });
   
     console.log(this.filterData);

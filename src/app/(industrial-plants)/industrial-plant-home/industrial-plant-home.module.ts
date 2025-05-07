@@ -15,6 +15,6 @@ import { IndustrialPlantHomePage } from './industrial-plant-home.page';
     IonicModule,
     IndustrialPlantHomePageRoutingModule
   ],
-  declarations: [IndustrialPlantHomePage]
+
 })
 export class IndustrialPlantHomePageModule {}

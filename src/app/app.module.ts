@@ -107,6 +107,7 @@ import { UpdateMachineryLeasingPage } from './(Machinery)/update-machinery-leasi
 import { UpdateMachineryShowroomPage } from './(Machinery)/update-machinery-showroom/update-machinery-showroom.page';
 import { UpdateMachineryWorkshopPage } from './(Machinery)/update-machinery-workshop/update-machinery-workshop.page';
 import { UpdateMachinerySalePage } from './(Machinery)/update-machinery-sale/update-machinery-sale.page';
+import { IndustrialPlantHomePage } from './(industrial-plants)/industrial-plant-home/industrial-plant-home.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -200,6 +201,7 @@ import { UpdateMachinerySalePage } from './(Machinery)/update-machinery-sale/upd
     UpdateMachineryShowroomPage,
     UpdateMachineryWorkshopPage,
     UpdateMachinerySalePage,
+    IndustrialPlantHomePage,
   ],
  
   bootstrap: [AppComponent],

@@ -48,20 +48,53 @@
           </ng-template>
           </ion-popover>
           <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-          <ion-row><img src="../../../assets/extra-icon/seller-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-            <p style="margin-left: 20px; margin-top: 20px; font-weight: bold;">Deal IN</p></ion-row>
-  
-            <div style="width: 100%; text-align: center; display: flex; justify-content: space-around;">
-              <ion-row>
-                
-        <ion-button [color]="selectedDealIn.includes('Truck AND Trailers') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Truck AND Trailers')">Truck AND Trailers</ion-button>
-        <ion-button [color]="selectedDealIn.includes('Bus') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selecteddealin('Bus')">Bus</ion-button>
-        <ion-button [color]="selectedDealIn.includes('Van') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Van')">Van</ion-button>
-        <ion-button [color]="selectedDealIn.includes('LTV') ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selecteddealin('LTV')">LTV</ion-button>
-        <ion-button [color]="selectedDealIn.includes('Others') ? 'danger' : 'light'" class="condition" style="margin-left: 13px;" (click)="selecteddealin('Others')">Others</ion-button>
-  
-      </ion-row>
+          <ion-row>
+            <!-- Make section trigger -->
+            <img src="../../assets/machinery-section/crane-truck (2).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;" />
+            <p style="margin-left: 20px; margin-top: 20px;">Deal In</p>
+          
+            <!-- Add button for trigger -->
+            <div [hidden]="showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
+              <img src="../../../assets/extra-icon/add.png" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;" />
             </div>
+          </ion-row>
+          
+          <!-- Display selected Make in the div -->
+          <div *ngIf="makedivVisible">
+            <ion-badge *ngFor="let item of mergecararray" style="margin-left: 45px; height: 35px; width: 250px; background-color: lightgray;">
+              <p style="font-size: small; margin-top: 9px; margin-left: -10px; color: black;">{{ item }}</p>
+              <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;">
+                <ion-icon name="close-circle" (click)="makeDiv(item)"></ion-icon>
+              </div>
+            </ion-badge>
+          </div>
+          
+          <!-- Popover for Make selection -->
+          <ion-popover trigger="click-trigger_make" triggerAction="click" cssClass="full-screen-popover">
+            <ng-template>
+              <ion-content class="full-screen-content">
+                <p style="font-size: 16px; text-align: center;">Select Make</p>
+          
+                <!-- Search bar for filtering makes -->
+                <ion-searchbar 
+                  type="text" 
+                  debounce="500" 
+                  (ionInput)="filterMakes($event)" 
+                  [value]="searchTerm"
+                  placeholder="Search Makes"
+                  clearInput="true"
+                  style="width: 100%;">
+                </ion-searchbar>
+          
+                <!-- Display makes in the list -->
+                <ion-list>
+                  <ion-item *ngFor="let item of filteredMakes" (click)="selectMake(item)">
+                    {{item}}
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
         <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
         <ion-row><img src="../../../assets/extra-icon/seller-type.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>

@@ -61,7 +61,7 @@ export class MachineryLeasingSingleViewPage implements OnInit {
     
     // Ensure an exact match by using strict equality (===) for comparison
     this.filterData = this.leasingData.filter(car =>
-      (leasingId.length === 0 || leasingId === car.commercial_vehicle_leasing_ad_sale_id)
+      (leasingId.length === 0 || leasingId === car.machinery_leasing_ad_sale_id)
     );
     
     console.log(this.filterData);
