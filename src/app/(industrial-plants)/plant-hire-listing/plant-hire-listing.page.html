@@ -9,7 +9,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black;">{{ filteredCarData.length }}   Vehicles for hires</ion-label>
+    <ion-label style="color: black;">{{ filteredCarData.length }}   Plants for hires</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -104,7 +104,7 @@
 <ion-row>
   <div style="margin-top: -60px; margin-left: 80%;">
   <img src="../../../assets/Car-section/Listing/saved.png" style="height: 30px; width: 30px;" fill="clear;"/></div>
-  <p style="margin-top: -55px; margin-left: 10px; font-size: 20px;">3</p>
+  <p style="margin-top: -55px; margin-left: 10px; font-size: 20px;"></p>
 </ion-row>
 
 
@@ -117,9 +117,9 @@
 <!-- card 1 supream -->
 <ion-col *ngFor="let car of filteredCarData">
   
-  <ng-container *ngIf="car.vehicle_feature_type === 'Supreme' " >
+  <ng-container *ngIf="car.ad_type === 'Supreme' " >
     
-  <ion-card class="btn-supreme" (click)="navigateToCarHireDetail(car.commercial_vehicle_ad_hire_id)">
+  <ion-card class="btn-supreme" (click)="navigateToCarHireDetail(car.plant_ad_hire_id)">
     <ion-card-header>
 
       <ion-col  style="width: 100%; display:inline-block;">
@@ -159,14 +159,14 @@
 
 
     <div style="width: 100%; align-items: center;">
-      <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ car.make }} {{ car.model }} {{ car.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.engine_size }}
         </p>
       </div>
       
@@ -176,20 +176,20 @@
    <!-- First div for Fuel Type and Transmission -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.fuel_type }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.transmission }}
   </p>
 </div>
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.mileage }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.reg_city }}
   </p>
 </div>
 
@@ -198,7 +198,7 @@
         <ion-card class="card-supreme" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.vehicle_charges  }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.charges  }}</b></p>
               </div>
               <ion-card-subtitle class="clr-white" >per day</ion-card-subtitle>
 </ion-card-header>
@@ -222,9 +222,9 @@
 
   <ion-col *ngFor="let car of filteredCarData">
   
-    <ng-container *ngIf="car.vehicle_feature_type === 'Hotspot' " >
+    <ng-container *ngIf="car.ad_type === 'Hotspot' " >
       
-    <ion-card class="btn-card" (click)="navigateToCarHireDetail(car.commercial_vehicle_ad_hire_id)">
+    <ion-card class="btn-card" (click)="navigateToCarHireDetail(car.plant_ad_hire_id)">
       <ion-card-header>
   
         <ion-col  style="width: 100%; display:inline-block;">
@@ -255,14 +255,14 @@
   
   
       <div style="width: 100%; align-items: center; margin-top:250px;">
-        <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-        <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
+        <p class="main-heading truncate" >{{ car.make }} {{ car.model }} {{ car.version }}</p><br>
+        <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.city}}</p> <br>
         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
           <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-            <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
+            <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.year }}
           </p>
           <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-            <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
+            <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.engine_size }}
           </p>
         </div>
         
@@ -272,20 +272,20 @@
      <!-- First div for Fuel Type and Transmission -->
   <div style="display: flex; justify-content: space-between; margin-top: -20px;">
     <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
+      <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.fuel_type }}
     </p>
     <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
+      <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.transmission }}
     </p>
   </div>
   
   <!-- Second div for Mileage and Location -->
   <div style="display: flex; justify-content: space-between; margin-top: -20px;">
     <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
+      <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.mileage }}
     </p>
     <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
+      <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.reg_city }}
     </p>
   </div>
   
@@ -294,7 +294,7 @@
           <ion-card class="card-hotspot" >
             <ion-card-header>
               <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                  <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.car_charges  }}</b></p>
+                  <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.charges  }}</b></p>
                 </div>
                 <ion-card-subtitle class="clr-white" >per day</ion-card-subtitle>
   </ion-card-header>
@@ -320,9 +320,9 @@
 
 <ion-col *ngFor="let car of filteredCarData">
   
-  <ng-container *ngIf="car.vehicle_feature_type === 'General' " >
+  <ng-container *ngIf="car.ad_type === 'General' " >
  
-  <ion-card class="btn-card"   (click)="navigateToCarHireDetail(car.commercial_vehicle_ad_hire_id)">
+  <ion-card class="btn-card"   (click)="navigateToCarHireDetail(car.plant_ad_hire_id)">
     <ion-card-header>
 
       <ion-col  style="width: 100%; display:inline-block;">
@@ -339,14 +339,14 @@
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
 
-      <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ car.make }} {{ car.model }} {{ car.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
+          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.engine_size }}
         </p>
       </div>
       
@@ -356,20 +356,20 @@
    <!-- First div for Fuel Type and Transmission -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
+    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.fuel_type }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
+    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.transmission }}
   </p>
 </div>
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.mileage }}
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.reg_city }}
   </p>
 </div>
 
@@ -378,7 +378,7 @@
         <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.vehicle_charges  }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.charges  }}</b></p>
               </div>
               <ion-card-subtitle class="clr-white" >per day</ion-card-subtitle>
 </ion-card-header>

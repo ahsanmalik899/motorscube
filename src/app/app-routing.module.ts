@@ -890,14 +890,40 @@ const routes: Routes = [
   {
     path: 'plant-hire-listing',
     loadChildren: () => import('./(industrial-plants)/plant-hire-listing/plant-hire-listing.module').then( m => m.PlantHireListingPageModule)
-  },  {
+  },
+  {
     path: 'plant-sale-single-view',
-    loadChildren: () => import('./plant-sale-single-view/plant-sale-single-view.module').then( m => m.PlantSaleSingleViewPageModule)
+    loadChildren: () => import('./(industrial-plants)/plant-sale-single-view/plant-sale-single-view.module').then( m => m.PlantSaleSingleViewPageModule)
   },
   {
     path: 'plant-hire-single-view',
-    loadChildren: () => import('./plant-hire-single-view/plant-hire-single-view.module').then( m => m.PlantHireSingleViewPageModule)
+    loadChildren: () => import('./(industrial-plants)/plant-hire-single-view/plant-hire-single-view.module').then( m => m.PlantHireSingleViewPageModule)
   },
+  {
+    path: 'my-plants',
+    loadChildren: () => import('./(industrial-plants)/my-plants/my-plants.module').then( m => m.MyPlantsPageModule)
+  },
+  {
+    path: 'plant-buseness',
+    loadChildren: () => import('./(industrial-plants)/plant-buseness/plant-buseness.module').then( m => m.PlantBusenessPageModule)
+  },
+  {
+    path: 'post-plant-sale',
+    loadChildren: () => import('./(industrial-plants)/post-plant-sale/post-plant-sale.module').then( m => m.PostPlantSalePageModule)
+  },
+  {
+    path: 'post-plant-hire',
+    loadChildren: () => import('./(industrial-plants)/post-plant-hire/post-plant-hire.module').then( m => m.PostPlantHirePageModule)
+  },  {
+    path: 'plant-sale-filter',
+    loadChildren: () => import('./plant-sale-filter/plant-sale-filter.module').then( m => m.PlantSaleFilterPageModule)
+  },
+  {
+    path: 'plant-hire-filter',
+    loadChildren: () => import('./plant-hire-filter/plant-hire-filter.module').then( m => m.PlantHireFilterPageModule)
+  },
+
+
 
 
 

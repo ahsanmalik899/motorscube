@@ -207,7 +207,7 @@ export class PlantHireListingPage implements OnInit {
   }
 
   back() {
-    this.router.navigate(['commercial-vehicles-home']);
+    this.router.navigate(['industrial-plant-home']);
     localStorage.clear();
   }
 
@@ -228,7 +228,7 @@ export class PlantHireListingPage implements OnInit {
   }
 
   navigateToCarHireDetail(carId: string): void {
-    this.router.navigate(['/vehicle-hire-single-view'], {
+    this.router.navigate(['/plant-hire-single-view'], {
       queryParams: {
         saleid: carId,
       }

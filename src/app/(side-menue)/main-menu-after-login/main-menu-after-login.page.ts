@@ -251,13 +251,23 @@ this.router.navigate(['/home'])
   navigateToMachineryposthire() {
     this.router.navigate(['/post-machinery-hire']);
   }
-
-  navigateToPlantsSale() {
-    this.router.navigate(['/plants-sale']);
+  navigateTomyPlants() {
+    this.router.navigate(['/my-plants']);
   }
-
-  navigateToPlantsHire() {
-    this.router.navigate(['/plants-hire']);
+  PostPlantsSale() {
+    this.router.navigate(['/post-plant-sale']);
+  }
+  navigateplantbuseness(){
+    this.router.navigate(['/plant-buseness']);
+  }
+  navigateToPlantsSale(){
+    this.router.navigate(['/post-plant-sale']);
+  }
+  navigateToPlantsHire(){
+    this.router.navigate(['/post-plant-hire']);
+  }
+  postPlantsHire() {
+    this.router.navigate(['/post-plant-hire']);
   }
 
   navigateToPlantsShowroom() {
