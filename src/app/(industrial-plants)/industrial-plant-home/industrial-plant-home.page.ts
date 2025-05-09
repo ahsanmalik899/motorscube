@@ -91,7 +91,7 @@ this.router.navigate(['/plant-sale-listing'])
 carSaleData: any;
   
 navigateToCarDetail(carId: string): void {
-  this.router.navigate(['/plant-sale-singleview'], {
+  this.router.navigate(['/plant-sale-single-view'], {
     queryParams: {
       saleid: carId,
     }
@@ -119,7 +119,7 @@ carHireListing() {
 }
 carHireData: any;
 navigateToCarHireDetail(carId: string) {
-  this.router.navigate(['/plant-hire-singleview'], {
+  this.router.navigate(['/plant-hire-single-view'], {
     queryParams: {
       saleid: carId,
     }

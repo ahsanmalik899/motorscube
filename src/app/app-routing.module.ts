@@ -914,14 +914,24 @@ const routes: Routes = [
   {
     path: 'post-plant-hire',
     loadChildren: () => import('./(industrial-plants)/post-plant-hire/post-plant-hire.module').then( m => m.PostPlantHirePageModule)
-  },  {
+  },
+  {
     path: 'plant-sale-filter',
-    loadChildren: () => import('./plant-sale-filter/plant-sale-filter.module').then( m => m.PlantSaleFilterPageModule)
+    loadChildren: () => import('./(industrial-plants)/plant-sale-filter/plant-sale-filter.module').then( m => m.PlantSaleFilterPageModule)
   },
   {
     path: 'plant-hire-filter',
-    loadChildren: () => import('./plant-hire-filter/plant-hire-filter.module').then( m => m.PlantHireFilterPageModule)
+    loadChildren: () => import('./(industrial-plants)/plant-hire-filter/plant-hire-filter.module').then( m => m.PlantHireFilterPageModule)
   },
+  {
+    path: 'update-plant-sale',
+    loadChildren: () => import('./(industrial-plants)/update-plant-sale/update-plant-sale.module').then( m => m.UpdatePlantSalePageModule)
+  },
+  {
+    path: 'update-plant-hire',
+    loadChildren: () => import('./(industrial-plants)/update-plant-hire/update-plant-hire.module').then( m => m.UpdatePlantHirePageModule)
+  },
+
 
 
 

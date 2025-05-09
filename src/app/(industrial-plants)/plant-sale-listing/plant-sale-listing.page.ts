@@ -7,28 +7,31 @@ interface Car {
   plant_ad_sale_id: string;
   reg_city: any;
   city: any;
+  hour_used:string;
+  gross_weight:string;
   ad_type: any;
   image_url1: any;
   image_url2: any;
   image_url3: any;
   transmission: any;
   fuel_type: string;
-  condition: string;
+  plant_condition: string;
   power_transmission: string;
   doors: string;
   location: string;
   model: string;
   version: string;
   make: string;
-  type: string;
-  sub_type: string;
+  sector: string;
+  sub_sector: string;
   price: string;
   year: string;
   mileage: string;
   engine_size: string;
   body_type: string;
+  country:string;
   color: string;
-  private_trader: string;
+  seller_type: string;
     post_created_date: string;
     post_status: string;
   }
@@ -39,11 +42,11 @@ interface Car {
   standalone:false,
 })
 export class PlantSaleListingPage implements OnInit {
-
  filteredCarData: Car[] = [];
   carData: Car[] = [];
   selectedcon: string[] = []; // Ensure these are typed as arrays of strings
   selectedcity: string[] = [];
+  selectedcountry: string[] = [];
   selectedadid: string[] = [];
   selectedlocation: string[]=[];
   selectedmake: string[] = [];
@@ -83,6 +86,7 @@ export class PlantSaleListingPage implements OnInit {
       // Similarly check other parameters like selectedmake, selectedcity, etc.
       this.selectedcon = params['selectedcon'] ? params['selectedcon'].split(',') : [];
       this.selectedcity = params['selectedcity'] && typeof params['selectedcity'] === 'string' ? params['selectedcity'].split(',') : [];
+      this.selectedcountry = params['selectedcountry'] && typeof params['selectedcountry'] === 'string' ? params['selectedcountry'].split(',') : [];
       this.selectedadid = params['selectedadid'] ? params['selectedadid'].split(',') : [];
       this.selectedlocation = params['selectedlocation'] ? params['selectedlocation'].split(',') : [];
       this.selectedmake = params['selectedmake'] && typeof params['selectedmake'] === 'string' ? params['selectedmake'].split(',') : [];
@@ -125,6 +129,7 @@ export class PlantSaleListingPage implements OnInit {
               this.selectedcon = params['selectedcon'] ? params['selectedcon'].split(',') : [];
               this.selectedmake = params['selectedmake'] && typeof params['selectedmake'] === 'string' ? params['selectedmake'].split(',') : [];            
               this.selectedcity = params['selectedcity'] ? params['selectedcity'].split(',') : [];
+              this.selectedcountry = params['selectedcountry'] ? params['selectedcountry'].split(',') : [];
               this.selectedhighprice = params['highprice'] || '';
               this.selectedlowprice = params['lowprice'] || '';
               this.selectedhighyear = params['highyear'] || '';
@@ -171,17 +176,17 @@ filterCarData() {
     doorNumbers: new Set(this.selecteddoor),
     cities: new Set(this.selectedcity),
     makes: new Set(this.selectedmake),
+    countryes:new Set(this.selectedcountry)
   };
 
   this.filteredCarData = this.carData.filter((car: Car) => {
     return (
       car.post_status === 'Active' &&
-      this.isFieldMatch(car.fuel_type, filterConditions.fuelTypes) &&
-      this.isFieldMatch(car.condition, filterConditions.conditions) &&
+      this.isFieldMatch(car.plant_condition, filterConditions.conditions) &&
       this.isFieldMatch(car.transmission, filterConditions.transmissions) &&
-      this.isFieldMatch(car.doors, filterConditions.doorNumbers) &&
       this.isFieldMatch(car.make, filterConditions.makes) &&
       this.isFieldMatch(car.city, filterConditions.cities) &&
+      this.isFieldMatch(car.country, filterConditions.countryes) &&
       this.isPriceInRange(car) &&
       this.isYearInRange(car) &&
       this.isMileageInRange(car) &&
@@ -216,15 +221,15 @@ isYearInRange(car: Car): boolean {
 
 isMileageInRange(car: Car): boolean {
   return (
-    (!this.selectedlowmilage || parseInt(car.mileage, 10) >= parseInt(this.selectedlowmilage, 10)) &&
-    (!this.selectedhighmilage || parseInt(car.mileage, 10) <= parseInt(this.selectedhighmilage, 10))
+    (!this.selectedlowmilage || parseInt(car.hour_used, 10) >= parseInt(this.selectedlowmilage, 10)) &&
+    (!this.selectedhighmilage || parseInt(car.hour_used, 10) <= parseInt(this.selectedhighmilage, 10))
   );
 }
 
 isEngineSizeInRange(car: Car): boolean {
   return (
-    (!this.selectedlowengine || parseInt(car.engine_size, 10) >= parseInt(this.selectedlowengine, 10)) &&
-    (!this.selectedhighengine || parseInt(car.engine_size, 10) <= parseInt(this.selectedhighengine, 10))
+    (!this.selectedlowengine || parseInt(car.gross_weight, 10) >= parseInt(this.selectedlowengine, 10)) &&
+    (!this.selectedhighengine || parseInt(car.gross_weight, 10) <= parseInt(this.selectedhighengine, 10))
   );
 }
 
@@ -237,20 +242,21 @@ isColorMatch(car: Car): boolean {
 }
 
 isSellerTypeMatch(car: Car): boolean {
-  return !this.selectedSellerType || car.private_trader === this.selectedSellerType;
+  return !this.selectedSellerType || car.seller_type === this.selectedSellerType;
 }
 
 isModelVersionMatch(car: Car): boolean {
-  return !this.selectedModelVersion || `${car.type} ${car.sub_type}` === this.selectedModelVersion;
+  return !this.selectedModelVersion || `${car.sector} ${car.sub_sector}` === this.selectedModelVersion;
 }
 
 
 
   back() {
-    this.router.navigate(['industrial-plant-home']);
+    this.router.navigate(['/industrial-plant-home']);
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedmake');
+    localStorage.removeItem('selectedcountry');
     localStorage.removeItem('selectedmodel');
     localStorage.removeItem('selectedversion');
     localStorage.removeItem('lowprice');
@@ -286,7 +292,7 @@ isModelVersionMatch(car: Car): boolean {
   }
 
   filter() {
-    this.router.navigate(['/vehicle-sale-filter']);
+    this.router.navigate(['/plant-sale-filter']);
   }
 
   async dismissPopover() {

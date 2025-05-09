@@ -9,7 +9,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black;">Commercial Vehicle ads you posted</ion-label>
+    <ion-label style="color: black;">Machinery ads you posted</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -41,37 +41,29 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_power_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -80,7 +72,7 @@
         <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_price }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.price }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -115,13 +107,13 @@
             <!-- Check the payment status and control button visibility -->
             <div *ngIf="saleItem.post_status==='Active' " >
               <!-- Call the function to check payment status and control button visibility -->
-              <div class="payment_btn" *ngIf="checksalePaymentStatus(saleItem.commercial_vehicle_ad_sale_id)">
-                <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_sale_id,'Commercial Sale')">Send Payment</ion-button>
+              <div class="payment_btn" *ngIf="checksalePaymentStatus(saleItem.plant_ad_sale_id,'Plant Sale')">
+                <ion-button (click)="openDialogueBox(saleItem.plant_ad_sale_id,'Plant Sale')">Send Payment</ion-button>
               </div>
             
             
            
-              <div  *ngIf="checksaleUpgradeStatus(saleItem.commercial_vehicle_ad_sale_id)" >
+              <div  *ngIf="checksaleUpgradeStatus(saleItem.plant_ad_sale_id,'Plant Sale')" >
 
                 <button id="upgrade_btn_{{i}}" class="upgrade_btn" (click)="showPopup('popupDiv_' + i)">Upgrade</button>
                 
@@ -132,10 +124,10 @@
           <!-- Container for edit and delete images (placed on the right side) -->
           <div style="display: flex; align-items: center; margin-left: auto;">
             <!-- Edit Image -->
-            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.commercial_vehicle_ad_sale_id)">
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.plant_ad_sale_id)">
             
             <!-- Delete Image -->
-            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="confirmDelete(saleItem.commercial_vehicle_ad_sale_id, 'Commercial Sale')">
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="confirmDelete(saleItem.plant_ad_sale_id, 'Plant Sale')">
           </div>
         
         </div>
@@ -181,8 +173,8 @@
     </ion-list>
     <!-- Popup Buttons -->
     <div class="popup-buttons">
-      <ion-button (click)="buttonOneAction(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">Hotspot</ion-button>
-      <ion-button (click)="buttonTwoAction(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">Supreme</ion-button>
+      <ion-button (click)="buttonOneAction(saleItem.plant_ad_sale_id , 'Plant Sale')">Hotspot</ion-button>
+      <ion-button (click)="buttonTwoAction(saleItem.plant_ad_sale_id , 'Plant Sale')">Supreme</ion-button>
     </div>
   </div>
 
@@ -209,37 +201,29 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:0px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -248,7 +232,7 @@
         <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_charges }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.charges }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -278,10 +262,10 @@
         <!-- Container for the payment button, upgrade button, and images all in one line -->
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div *ngIf="saleItem.post_status==='Active' " >
-          <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.commercial_vehicle_ad_hire_id)">
-            <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_hire_id,'Commercial Hire')">Send Payment</ion-button>
+          <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.machinery_ad_hire_id,'Machinery Hire')">
+            <ion-button (click)="openDialogueBox(saleItem.machinery_ad_hire_id,'Machinery Hire')">Send Payment</ion-button>
           </div>
-          <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.commercial_vehicle_ad_hire_id)" >
+          <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.machinery_ad_hire_id,'Machinery Hire')" >
             <button id="upgrade_btn" (click)="showPopup('popupDiv1_' + j)">Upgrade</button>
           </div>
         </div>
@@ -291,10 +275,10 @@
           <!-- Container for edit and delete images (placed on the right side) -->
           <div style="display: flex; align-items: center; margin-left: auto;">
             <!-- Edit Image -->
-            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.commercial_vehicle_ad_hire_id)">
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.plant_ad_hire_id)">
             
             <!-- Delete Image -->
-            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="confirmDelete(saleItem.commercial_vehicle_ad_hire_id, 'Commercial Hire')">
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="confirmDelete(saleItem.plant_ad_hire_id, 'Plant Hire')">
           </div>
         
         </div>
@@ -343,8 +327,8 @@
         </ion-list>
         <!-- Popup Buttons -->
         <div class="popup-buttons">
-          <ion-button (click)="buttonOneAction(saleItem.commercial_vehicle_ad_hire_id , 'Commercial Hire')">Hotspot</ion-button>
-          <ion-button (click)="buttonTwoAction(saleItem.commercial_vehicle_ad_hire_id , 'Commercial Hire')">Supreme</ion-button>
+          <ion-button (click)="buttonOneAction(saleItem.plant_ad_hire_id , 'Plant Hire')">Hotspot</ion-button>
+          <ion-button (click)="buttonTwoAction(saleItem.plant_ad_hire_id , 'Plant Hire')">Supreme</ion-button>
         </div>
       </div>
     
@@ -383,37 +367,29 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:215px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_location}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -422,7 +398,7 @@
         <ion-card class="card-hotspot" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_price }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.price }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -456,13 +432,13 @@
             <!-- Check the payment status and control button visibility -->
             <div *ngIf="saleItem.post_status==='Active' " >
               <!-- Call the function to check payment status and control button visibility -->
-              <div class="payment_btn" *ngIf="checksalePaymentStatus( saleItem.commercial_vehicle_ad_sale_id)">
-                <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_sale_id,'Commercial Sale')">Send Payment</ion-button>
+              <div class="payment_btn" *ngIf="checksalePaymentStatus( saleItem.plant_ad_sale_id,'Plant Sale')">
+                <ion-button (click)="openDialogueBox(saleItem.machinery_ad_sale_id,'Machinery Sale')">Send Payment</ion-button>
               </div>
          
             
          
-          <div class="upgrad_btn" *ngIf="checksaleUpgradeStatus(saleItem.commercial_vehicle_ad_sale_id)">
+          <div class="upgrad_btn" *ngIf="checksaleUpgradeStatus(saleItem.plant_ad_sale_id,'Plant Sale')">
               <button id="upgrade_btn_{{j}}" class="upgrade_btn" (click)="showPopup('popupDiv2_' + j)">Upgrade</button>
             </div>
           </div>
@@ -475,10 +451,10 @@
           <!-- Container for edit and delete images (placed on the right side) -->
           <div style="display: flex; align-items: center; margin-left: auto;">
             <!-- Edit Image -->
-            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.commercial_vehicle_ad_sale_id)">
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.plant_ad_sale_id)">
             
             <!-- Delete Image -->
-            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.plant_ad_sale_id , 'Plant Sale')">
           </div>
         
         </div>
@@ -525,7 +501,7 @@
     </ion-list>
     <!-- Popup Buttons -->
     <div class="popup-buttons">
-      <ion-button (click)="buttonTwoAction(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">Supreme</ion-button>
+      <ion-button (click)="buttonTwoAction(saleItem.machinery_ad_sale_id , 'Machinery Sale')">Supreme</ion-button>
     </div>
   </div>
 
@@ -560,46 +536,37 @@
   </div>
 
     <div style="width: 100%; align-items: center; margin-top:215px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_location}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
-
     <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
       <ion-col>
         <ion-card class="card-hotspot" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_charges }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.charges }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -629,20 +596,20 @@
         <!-- Container for the payment button, upgrade button, and images all in one line -->
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div *ngIf="saleItem.post_status==='Active' " >
-          <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.commercial_vehicle_ad_hire_id)">
-            <ion-button (click)="openDialogueBox(saleItem.commercial_vehicle_ad_hire_id,'Commercial Hire')">Send Payment</ion-button>
+          <div class="payment_btn" *ngIf="checkhirePaymentStatus(saleItem.plant_ad_hire_id,'Plant Hire')">
+            <ion-button (click)="openDialogueBox(saleItem.plant_ad_hire_id,'Plant Hire')">Send Payment</ion-button>
           </div>
-          <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.commercial_vehicle_ad_hire_id)">
+          <div class="upgrad_btn" *ngIf="checkhireUpgradeStatus(saleItem.plant_ad_hire_id,'Machinery Hire')">
             <button id="upgrade_btn" (click)="showPopup('popupDiv3_' + j)">Upgrade</button>
           </div>
         </div>
           <!-- Container for edit and delete images (placed on the right side) -->
           <div style="display: flex; align-items: center; margin-left: auto;">
             <!-- Edit Image -->
-            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.commercial_vehicle_ad_hire_id)">
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.plant_ad_hire_id)">
             
             <!-- Delete Image -->
-            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.commercial_vehicle_ad_hire_id , 'Commercial Hire')">
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.plant_ad_hire_id , 'Plant Hire')">
           </div>
         
         </div>
@@ -688,7 +655,7 @@
     </ion-list>
     <!-- Popup Buttons -->
     <div class="popup-buttons">
-      <ion-button (click)="buttonTwoAction(saleItem.commercial_vehicle_ad_hire_id , 'Commercial Hire')">Supreme</ion-button>
+      <ion-button (click)="buttonTwoAction(saleItem.plant_ad_hire_id , 'Plant Hire')">Supreme</ion-button>
     </div>
   </div>
 
@@ -737,37 +704,29 @@
  
 
     <div style="width: 100%; align-items: center; margin-top:-25px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -776,7 +735,7 @@
         <ion-card class="card-supreme" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_price }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.price }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -813,10 +772,10 @@
           <!-- Container for edit and delete images (placed on the right side) -->
           <div style="display: flex; align-items: center; margin-left: auto;">
             <!-- Edit Image -->
-            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.commercial_vehicle_ad_sale_id)">
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editSale(saleItem.plant_ad_sale_id)">
             
             <!-- Delete Image -->
-            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.plant_ad_sale_id , 'Plant Sale')">
           </div>
         
         </div>
@@ -872,37 +831,29 @@
  
 
     <div style="width: 100%; align-items: center; margin-top:-25px;">
-      <p class="main-heading truncate" >{{ saleItem.vehicle_make }} {{ saleItem.vehicle_model }} {{ saleItem.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.vehicle_city}}</p> <br>
+      <p class="main-heading truncate" >{{ saleItem.make }} {{ saleItem.model }} {{ saleItem.version }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ saleItem.city}}</p> <br>
       <div style="display: flex; justify-content: space-between; margin-top: 20px;">
         <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_year }}
+          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.year }}
         </p>
         <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_engine_size }}
+          <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.fueltype }}
         </p>
       </div>
       
      
       
    
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_transmission }}
-  </p>
-</div>
+
 
 <!-- Second div for Mileage and Location -->
 <div style="display: flex; justify-content: space-between; margin-top: -20px;">
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.vehicle_mileage }} Km
+    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ saleItem.weight }} Km
   </p>
   <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.vehicle_reg_city }}
+    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ saleItem.country }}
   </p>
 </div>
 
@@ -911,7 +862,7 @@
         <ion-card class="card-supreme" >
           <ion-card-header>
             <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.vehicle_charges }}</b></p>
+                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ saleItem.charges }}</b></p>
             </div>
 <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
 </ion-card-header>
@@ -944,10 +895,10 @@
           <!-- Container for edit and delete images (placed on the right side) -->
           <div style="display: flex; align-items: center; margin-left: auto;">
             <!-- Edit Image -->
-            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.commercial_vehicle_ad_hire_id)">
+            <img src="../../../assets/Car-section/Cars added/edit.png" style="width: 30px; height: 30px; margin-left: 10px;" (click)="editHire(saleItem.plant_ad_hire_id)">
             
             <!-- Delete Image -->
-            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.commercial_vehicle_ad_hire_id , 'Commercial Hire')">
+            <img src="../../../assets/Car-section/Cars added/delete.png" style="width: 30px; height: 30px; margin-left: 10px;"  (click)="confirmDelete(saleItem.plant_ad_hire_id , 'Plant Hire')">
           </div>
         
         </div>
@@ -985,8 +936,8 @@
       </ion-list>
       <!-- Popup Buttons -->
       <div class="popup-buttons">
-        <ion-button (click)="buttonOneAction(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">Hotspot</ion-button>
-        <ion-button (click)="buttonTwoAction(saleItem.commercial_vehicle_ad_sale_id , 'Commercial Sale')">Supreme</ion-button>
+        <ion-button (click)="buttonOneAction(saleItem.plant_ad_sale_id , 'Plant Sale')">Hotspot</ion-button>
+        <ion-button (click)="buttonTwoAction(saleItem.plant_ad_sale_id , 'Plant Sale')">Supreme</ion-button>
       </div>
     </div>
   

@@ -212,7 +212,7 @@ export class PlantHireListingPage implements OnInit {
   }
 
   filter() {
-    this.router.navigate(['/vehical-hire-filter']);
+    this.router.navigate(['/plant-hire-filter']);
   }
 
   async dismissPopover() {

@@ -395,6 +395,18 @@ formData.forEach((value, key) => {
         this.route.navigate([this.router.url]);
       });
     }
+    else if(this.saleType=='Plant Sale'||this.saleType=='Plant Hire'){
+      this.route.navigateByUrl('/my-plants', { skipLocationChange: true }).then(() => {
+        this.route.navigate([this.router.url]);
+      });
+    }
+    else if(this.saleType=='Car Insurance'||this.saleType=='Car Leasing'||this.saleType=='Car Dealer'||this.saleType=='Car Showroom'
+      ||this.saleType=='Car Importer'||this.saleType=='Car Exporter'||this.saleType=='Car School'||this.saleType=='Car Workshop'
+    ){
+    this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+      this.route.navigate([this.router.url]);
+    });
+  }
           }
         }
       ]

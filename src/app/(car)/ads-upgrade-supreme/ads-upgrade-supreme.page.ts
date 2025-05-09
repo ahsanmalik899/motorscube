@@ -399,6 +399,18 @@ formData.forEach((value, key) => {
         this.route.navigate([this.router.url]);
       });
     }
+    else if(this.saleType=='Plant Sale'||this.saleType=='Plant Hire'){
+      this.route.navigateByUrl('/my-plants', { skipLocationChange: true }).then(() => {
+        this.route.navigate([this.router.url]);
+      });
+    }
+    else if(this.saleType=='Plant Insurance'||this.saleType=='Plant Leasing'||this.saleType=='Plant Dealer'||this.saleType=='Plant Showroom'
+      ||this.saleType=='Plant Importer'||this.saleType=='Plant Exporter'||this.saleType=='Plant School'||this.saleType=='Plant Workshop'
+    ){
+    this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+      this.route.navigate([this.router.url]);
+    });
+  }
           }
         }
       ]
