@@ -12,7 +12,7 @@ export class UserService {
   }
 
 
-  private apiUrl = 'http://localhost/user-app/'; // Change this to your PHP scripts location
+  private apiUrl = 'https://motorscube.com/user-app/'; // Change this to your PHP scripts location
 
   constructor(private http: HttpClient, private storage: Storage) {
     this.storage.create(); }

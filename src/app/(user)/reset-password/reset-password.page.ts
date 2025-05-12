@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../(services)/user.service';
 import { AlertController } from '@ionic/angular';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { File } from '@ionic-native/file/ngx';
 
 @Component({
     selector: 'app-reset-password',
