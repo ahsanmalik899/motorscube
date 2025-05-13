@@ -400,10 +400,10 @@ formData.forEach((value, key) => {
         this.route.navigate([this.router.url]);
       });
     }
-    else if(this.saleType=='Car Insurance'||this.saleType=='Car Leasing'||this.saleType=='Car Dealer'||this.saleType=='Car Showroom'
-      ||this.saleType=='Car Importer'||this.saleType=='Car Exporter'||this.saleType=='Car School'||this.saleType=='Car Workshop'
+    else if(this.saleType=='Plant Insurance'||this.saleType=='Plant Leasing'||this.saleType=='Plant Dealer'||this.saleType=='Plant Showroom'
+      ||this.saleType=='Plant Importer'||this.saleType=='Plant Exporter'||this.saleType=='Plant School'||this.saleType=='Plant Workshop'
     ){
-    this.route.navigateByUrl('/your-business', { skipLocationChange: true }).then(() => {
+    this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
       this.route.navigate([this.router.url]);
     });
   }

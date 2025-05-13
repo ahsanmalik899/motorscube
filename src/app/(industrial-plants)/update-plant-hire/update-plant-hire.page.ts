@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 import { Router, ActivatedRoute } from '@angular/router';
 import { PopoverController, AlertController, LoadingController } from '@ionic/angular';
 import { MachineryService } from 'src/app/(services)/machinery.service';
+import { PlantsService } from 'src/app/(services)/plants.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -113,7 +114,7 @@ selectedFileArray: FileList | null = null;
  @ViewChild('imageContainer') imageContainer!: ElementRef<HTMLDivElement>;
  @ViewChild('selectedImage') selectedImage!: ElementRef<HTMLImageElement>;
 
-   constructor(public route: Router, private popoverController: PopoverController,private machineryservice:MachineryService, private userService: UserService, private alertcontroler:AlertController,
+   constructor(public route: Router, private popoverController: PopoverController,private plantservice:PlantsService, private userService: UserService, private alertcontroler:AlertController,
       private loadingController: LoadingController,private router: ActivatedRoute, private renderer: Renderer2, private el: ElementRef) {
      this.userID = sessionStorage.getItem('userId')!;
      this.userType = sessionStorage.getItem('userType')!;
@@ -139,18 +140,18 @@ selectedFileArray: FileList | null = null;
 
   fetchCarHire() {
     // Fetch car sale data from the backend
-    this.machineryservice.getMachineryHire().subscribe({
+    this.plantservice.getPlantHire().subscribe({
       next: (data) => {
         console.log('Fetched car data:', data);
         this.carSaleData = data; // Store fetched data in carData property
-        this.filteredCarSaleData = this.carSaleData.filter((item: { machinery_ad_hire_id: string; }) => item.machinery_ad_hire_id === this.adsId);
+        this.filteredCarSaleData = this.carSaleData.filter((item: { plant_ad_hire_id: string; }) => item.plant_ad_hire_id === this.adsId);
         console.log('filter data : ', this.filteredCarSaleData);
         const imageUrls = this.getImageUrls(this.filteredCarSaleData[0]);
         this.visibleImages = new Array(imageUrls.length).fill(true);
 
         if (this.filteredCarSaleData.length > 0) {
           // Extract the car_name from the first item in the filtered array
-          this.selectedcon= this.filteredCarSaleData[0].condition_machinery;
+          this.selectedcon= this.filteredCarSaleData[0].plant_condition;
           this.selectedCity= this.filteredCarSaleData[0].city;
           this.divVisible = true;
           this.showcar = false;
@@ -159,16 +160,16 @@ selectedFileArray: FileList | null = null;
           this.showmake = false;
           this.showmodel2 = true;
           this.fetchModels();
-          this.selectedModel = this.filteredCarSaleData[0].type;
+          this.selectedModel = this.filteredCarSaleData[0].sector;
           this.modeldivVisible = true;
           this.showmodel = false;
           this.showversion2 = true;
           this.divcountry=true;
           this.showcountry= false;
           this.fetchVersions();
-          this.weight = this.filteredCarSaleData[0].weight;
+          this.weight = this.filteredCarSaleData[0].gross_weight;
           this.selectedCountry=this.filteredCarSaleData[0].country;
-          this.selectedVersion = this.filteredCarSaleData[0].subtype;
+          this.selectedVersion = this.filteredCarSaleData[0].sub_sector;
           this.versiondivVisible = true;
           this.showversion = false;
           this.selectedYear= this.filteredCarSaleData[0].year;
@@ -183,7 +184,7 @@ selectedFileArray: FileList | null = null;
           this.selectedDuration = this.filteredCarSaleData[0].about_charges;
           this.selectdriver = this.filteredCarSaleData[0].about_drive;
           this.mileage = this.filteredCarSaleData[0].mileage;
-          this.hourused= this.filteredCarSaleData[0].hourused;
+          this.hourused= this.filteredCarSaleData[0].hour_used;
           this.selectedFuel = this.filteredCarSaleData[0].fueltype;
           //this.selectedColor = this.filteredCarSaleData[0].car_body_colour;
           //console.log('body color : ' , this.filteredCarSaleData[0].car_body_colour);
@@ -323,7 +324,7 @@ back(){
 
 // select make car
 fetchMakes() {
-  this.machineryservice.getMakes().subscribe({
+  this.plantservice.getMakes().subscribe({
     next: (data) => {
       this.makes = data;
       //console.log('Fetched makes:', data);
@@ -370,7 +371,7 @@ fetchModels() {
   formData.append('make', this.selectedMake);
 
   console.log(makeData);
-  this.machineryservice.getModels().subscribe({
+  this.plantservice.getModels().subscribe({
     next: (data) => {
         // Handle successful response here
         console.log('Fetched models:', data);
@@ -417,7 +418,7 @@ fetchVersions() {
   formData.append('model', this.selectedModel);
 
 
-  this.machineryservice.getVersions(formData).subscribe({
+  this.plantservice.getVersions(formData).subscribe({
     next: (data) => {
         // Handle successful response here
         console.log('Fetched versions:', data);
@@ -752,7 +753,7 @@ console.log('adsid',this.adsId);
 
   // Make the API request to update the ad
   try {
-    const response = await this.machineryservice.machineryHireUpdate(formData).toPromise();
+    const response = await this.plantservice.plantHireUpdate(formData).toPromise();
     console.log('Data saved successfully:', response);
     this.presentSuccessAlert(); // Display success message after the update
   } catch (error) {

@@ -218,28 +218,7 @@
     </ng-template>
   </ion-popover>
 
-<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
-
-<ion-row><img src="../../../assets/extra-icon/drive.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">About Drive</p></ion-row>
-
-<div style="width: 100%; margin-left: 30px; text-align: center;">
-<ion-col>
-
-  <ion-row style="display: flex; justify-content: left;">
-    <ion-button [color]="selectdriver === 'With Driver' ? 'danger' : 'light'" class="fuel" (click)="aboutDriver('With Driver')">With Driver</ion-button>
-    <ion-button [color]="selectdriver === 'Self Driver' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 13px;" (click)="aboutDriver('Self Driver')">Self Driver</ion-button>
-    <ion-button [color]="selectdriver === 'Both' ? 'danger' : 'light'" class="fuel" style="width: 90px; margin-left: 15px;" (click)="aboutDriver('Both')">Both</ion-button>
-  </ion-row>
-  
-  <!-- <ion-row style="margin-top: 10px;">
-    <ion-button color="light" class="fuel">Hybrid</ion-button>
-    <ion-button color="light" class="fuel" style="margin-left: 15px;">Electric</ion-button>
-    <ion-button color="light" class="fuel" style="width: 90px; margin-left: 15px;">LPG</ion-button>
-  </ion-row> -->
-</ion-col>
-</div>  
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
 <ion-row><img src="../../../assets/extra-icon/drive.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
@@ -291,44 +270,8 @@
     <div style="text-align: center;">
       <input type="text" name="mileage" placeholder="mileage" [(ngModel)]="hourused" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px; ">
     </div> 
-    <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-        
-    <ion-row>
-      <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-      <p style="margin-left: 20px; margin-top: 20px;">Machinery Serial No </p>
-    </ion-row>
-    
-    <div style="text-align: center;">
-      <input type="text" placeholder="e.g 1000 kg" [(ngModel)]="serialno" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
-    </div>
-    
-      <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
-    
-      <ion-row><img src="../../../assets/extra-icon/drive.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-        <p style="margin-left: 20px; margin-top: 20px;">Fuel type</p></ion-row>
-        
-        <div style="width: 100%; margin-left: 30px; text-align: center;">
-          <ion-col>
-            <ion-row style="display: flex; justify-content: center;">
-              <ion-button [color]="selectedFuel === 'Petrol' ? 'danger' : 'light'" class="fuel" (click)="selectFuel('Petrol')">Petrol</ion-button>
-              <ion-button [color]="selectedFuel === 'Diesel' ? 'danger' : 'light'" class="fuel" style="width: 100px; margin-left: 13px;" (click)="selectFuel('Diesel')">Diesel</ion-button>
-              <ion-button [color]="selectedFuel === 'CNG' ? 'danger' : 'light'" class="fuel" style="width: 90px; margin-left: 15px;" (click)="selectFuel('CNG')">CNG</ion-button>
-            </ion-row>
-            <ion-row style="margin-top: 10px; display: flex; justify-content: center;">
-              <ion-button [color]="selectedFuel === 'Hybrid' ? 'danger' : 'light'" class="fuel" (click)="selectFuel('Hybrid')">Hybrid</ion-button>
-              <ion-button [color]="selectedFuel === 'Electric' ? 'danger' : 'light'" class="fuel" style="margin-left: 15px;" (click)="selectFuel('Electric')">Electric</ion-button>
-              <ion-button [color]="selectedFuel === 'LPG' ? 'danger' : 'light'" class="fuel" style="width: 90px; margin-left: 15px;" (click)="selectFuel('LPG')">LPG</ion-button>
-            </ion-row>
-            
-            
-            
-        </ion-col>
-        </div>
-        
-        
-    
-            <!--  -->
-            
+   
+      
                 
                 <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
                 
