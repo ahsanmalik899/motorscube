@@ -32,6 +32,7 @@ interface Car {
   country:string;
   color: string;
   seller_type: string;
+  plant_name:string; 
     post_created_date: string;
     post_status: string;
   }

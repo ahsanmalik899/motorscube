@@ -282,15 +282,21 @@
          
         <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
         
-        <ion-row>
-          <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
-          <p style="margin-left: 20px; margin-top: 20px;">Parameter Type</p>
-        </ion-row>
-        
-        <div style="text-align: center;">
-          <input type="text" placeholder="e.g 13237" [(ngModel)]="plantparameter" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
-        </div>
-          
+      <ion-row style="margin-top: 25px;">
+        <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Parameter Type</p></ion-row>
+
+  <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
+    <ion-col>
+      <ion-row style="display: flex; justify-content: left;">
+        <ion-button [color]="selectedparameter === 'Meters' ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedparametre('Meters')">{{ 'In Meters' | titlecase }}</ion-button>
+        <ion-button [color]="selectedparameter === 'Inches' ? 'danger' : 'light'" class="condition" (click)="selectedparametre('Inches')" style=" margin-left: 13px;">{{ 'In Inches' | titlecase }}</ion-button>
+        <ion-button [color]="selectedparameter === 'Feets' ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selectedparametre('Feets')">{{ 'In Meters' | titlecase }}</ion-button>
+    </ion-row>
+    
+      
+  </ion-col>
+  </div>
            
               <ion-item-divider style="height: 1px; margin-top: -15px; width: 100%; margin-left: 0px;"></ion-item-divider>
   

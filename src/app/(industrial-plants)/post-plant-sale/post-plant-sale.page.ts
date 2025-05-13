@@ -104,6 +104,7 @@ originalContent = '';
   years: string[] = [];
   features: string[] = [];
   selectedcon = '';
+  selectedparameter= '';
   selectedFile: File | undefined;
   divcountry=false;
   showcountry= true;
@@ -386,7 +387,12 @@ originalContent = '';
     // Log the selected fuel type to console
     console.log('Selected fuel:', conitionType);
   }
-
+  selectedparametre(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedparameter = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
   //select transmisison
 
 selectTransmission(transmissionType: string) {
@@ -563,7 +569,7 @@ checkRequiredFields() {
   }
   if (!this.plantmake ) {
     missingFields.push('Plant Make');
-  }  if (this.plantparameter ='') {
+  }  if (!this.selectedparameter ) {
     missingFields.push('Plant Parameter');
   }
   if (!this.plantversion) {
@@ -703,7 +709,7 @@ async presentMissingFieldsAlert(missingFields: string[]): Promise<void> {
       change: this.selectedcon,
       loginUser: this.userID,
       loginUserType: this.userType,
-      plantparameter:this.plantparameter,
+      plantparameter:this.selectedparameter,
       plantdimention:this.plantdimention,
       plantversion:this.plantversion,
       plantmodel:this.plantmodel,

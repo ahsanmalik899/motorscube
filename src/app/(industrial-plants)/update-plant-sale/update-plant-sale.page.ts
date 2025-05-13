@@ -107,6 +107,7 @@ export class UpdatePlantSalePage implements OnInit {
   selectedCategory = ''; // Initialize selectedCategory variable
   selectedColor = '';
   selectedcon = '';
+  selectedparameter = '';
   fileName = '';
 
   selectedFile!: File;
@@ -212,6 +213,7 @@ export class UpdatePlantSalePage implements OnInit {
         if (this.filteredCarSaleData.length > 0) {
           // Extract the car_name from the first item in the filtered array
           this.selectedcon = this.filteredCarSaleData[0].plant_condition;
+          this.selectedparameter=this.filteredCarSaleData[0].parameter_type;
           this.selectedCity = this.filteredCarSaleData[0].city;
           this.divVisible = true;
           this.showcar = false;
@@ -247,7 +249,7 @@ export class UpdatePlantSalePage implements OnInit {
 
           this.plantdimention = this.filteredCarSaleData[0].dimension;
           this.plantname = this.filteredCarSaleData[0].plant_name;
-          this.plantparameter = this.filteredCarSaleData[0].parameter_type;
+    
           this.plantmake = this.filteredCarSaleData[0].make;
           this.plantmodel = this.filteredCarSaleData[0].model;
           this.plantversion = this.filteredCarSaleData[0].version;
@@ -538,7 +540,12 @@ export class UpdatePlantSalePage implements OnInit {
     // Log the selected fuel type to console
     console.log('Selected fuel:', conitionType);
   }
-
+  selectedparametre(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedparameter = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
   //select transmisison
 
   selectTransmission(transmissionType: string) {
@@ -723,7 +730,7 @@ export class UpdatePlantSalePage implements OnInit {
       serialno: this.serialno,
       plantdimention: this.plantdimention,
       plantname: this.plantname,
-      plantparameter:  this.plantparameter,
+      plantparameter:  this.selectedparameter,
       plantmake: this.plantmake,
       plantmodel: this.plantmodel,
       plantversion: this.plantversion,

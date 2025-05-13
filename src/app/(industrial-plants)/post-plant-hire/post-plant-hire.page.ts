@@ -21,7 +21,11 @@ export class PostPlantHirePage implements OnInit {
   isItemAvailable: boolean = false;
   selected_looking_for: string = ''; // Assuming this is a string
   showModal: number = -1;
+  selectedinstalationservice ='';
+  selectedmatanerepair='';
+  selectedmantainence ='';
   selectedCountry: string = '';
+   selectedperiod: string = '';
   options = {
     centeredSlides: true,
     slidesPerView: 3.5,
@@ -57,10 +61,13 @@ export class PostPlantHirePage implements OnInit {
   filteredFeatures: string[] = [];
   selectedFeatures: string[] = [];
   filteredCountries: string[] = [];
+   filteredperiodss: string[] = [];
   selectedCity = '';
   selectedMake = '';
   selectedYear = '';
   country = '';
+  period= '';
+  selectedparameter= '';
   selectedfeature = '';
   divVisible = false; // Initialize divVisible to false
   makedivVisible = false;
@@ -71,10 +78,13 @@ export class PostPlantHirePage implements OnInit {
   showyear = true;
   showregister = true;
   divcountry=false;
+  divperiod=false;
   showcountry= true;
+   showperiod= true;
   showfeature = true;
   cities: string[] = [];
   countries: string[] = [];
+  periods:string[] =[];
   makes: string[] = [];
   years: string[] = [];
   features: string[] = [];
@@ -132,6 +142,7 @@ export class PostPlantHirePage implements OnInit {
     this.fetchFeatures();
     this.fetchCountries();
     this.fetchModels();
+    this.fetchPeriods()
   }
 
   filterCities(event: any) {
@@ -173,6 +184,10 @@ export class PostPlantHirePage implements OnInit {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredCountries = this.countries.filter(country => country.toLowerCase().includes(searchTerm));
   }
+   filterperiod(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredperiodss = this.periods.filter(period => period.toLowerCase().includes(searchTerm));
+  }
   async selectCountry(country: string) {
     this.selectedCountry = country;
     this.divcountry = true;
@@ -181,9 +196,35 @@ export class PostPlantHirePage implements OnInit {
   // Call filterCities with an empty search term
   this.filterCities({ target: { value: '' } });
   }
+ async selectperiod(period: string) {
+  this.selectedperiod = period;
+
+  // Convert "12+ Months" to 13, otherwise extract the number
+  if (period === '12+ Months') {
+    this.selectedperiod = '13';
+  } else {
+    this.selectedperiod = period; // Converts "1 Month" to 1, etc.
+  }
+
+  this.divperiod = true;
+  this.showperiod = false;
+
+  await this.popoverController.dismiss(period);
+
+  // Clear search
+  this.filterCities({ target: { value: '' } });
+}
+
   hideDivcountry() {
-    this.divcountry = true;
-    this.showcountry = false;
+    this.divcountry = false;
+    this.showcountry = true;
+    this.selectedCountry='';
+  }
+   hideDivperiod() {
+    this.divperiod = false;
+    this.showperiod = true;
+    this.selectedperiod='';
+    
   }
   fetchCities() {
     // Fetch city names from the backend
@@ -199,6 +240,20 @@ export class PostPlantHirePage implements OnInit {
       },
     });
   }
+  fetchPeriods() {
+  // Generate the period options
+  this.periods = [];
+
+  for (let i = 1; i <= 12; i++) {
+    this.periods.push(`${i} Month`);
+  }
+
+  // Add the "12+ Months" option at the end
+  this.periods.push('12+ Months');
+
+  // Duplicate array for filtering purposes
+  this.filteredperiodss = [...this.periods];
+}
 
   // select make car
   
@@ -382,6 +437,24 @@ export class PostPlantHirePage implements OnInit {
   selectedcondition(conitionType: string) {
     // Set the selectedFuel variable to the clicked fuel type
     this.selectedcon = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
+   selectedregularmantain(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedmantainence = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
+   selectedrepairmantain(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedmatanerepair = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
+   selectedinstalation(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedinstalationservice = conitionType;
     // Log the selected fuel type to console
     console.log('Selected fuel:', conitionType);
   }
@@ -575,6 +648,7 @@ export class PostPlantHirePage implements OnInit {
     // Form data to be sent
     const userData = {
       country:this.selectedCountry,
+      period:this.selectedperiod,
       city: this.selectedCity,
       model: this.selectedModel,
       version: this.selectedVersion,
@@ -591,8 +665,11 @@ export class PostPlantHirePage implements OnInit {
       plantmodel:this.plantmodel,
       plantmake:this.plantmake,
       plantname:this.plantname,
-      plantparameter:this.plantparameter,
+      plantparameter:this.selectedparameter,
       plantdimention:this.plantdimention,
+      instalationservice:this.selectedinstalationservice,
+      selectedmaintainrepair:this.selectedmatanerepair,
+      selectedmantainence:this.selectedmantainence,
     };
 
     // Validation: Check for empty fields
@@ -669,7 +746,12 @@ export class PostPlantHirePage implements OnInit {
       loading.dismiss();
     }
   }
-
+ selectedparametre(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedparameter = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
   // Function to get a human-readable field name for the alert
   getFieldLabel(field: string): string {
     const fieldLabels: { [key: string]: string } = {
@@ -696,7 +778,7 @@ export class PostPlantHirePage implements OnInit {
       plantmodel:'Plant Model',
       plantmake:'Plant Make',
       plantname:'Plant Name',
-      plantparameter:'Plant Parameter Type',
+        selectedparameter:'Plant Parameter Type',
       plantdimention:'Dimension',
     };
 
