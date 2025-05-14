@@ -343,8 +343,8 @@ export class MyPlantsPage implements OnInit {
         next: (data) => {
           this.carpostData = data;
           this.filteredCarPostData = this.carpostData.filter(item => item.user_id === this.userID);
-          this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Hire');
-          this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Sale');
+          this.hire = this.filteredCarPostData.filter(item => item.post_type === 'Plant Hire');
+          this.sale = this.filteredCarPostData.filter(item => item.post_type === 'Plant Sale');
           this.hideLoader(loader);
         },
         error: (error) => {

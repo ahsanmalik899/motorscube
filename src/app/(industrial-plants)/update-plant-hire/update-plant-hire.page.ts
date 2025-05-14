@@ -40,10 +40,19 @@ selected_looking_for: any;
   price!: string;
   mileage!: string;
 originalContent = '';
+ period= '';
+  filteredperiodss: string[] = [];
+  selectedparameter= '';
 selectedFiles: FileList | null = null; // Initialize selectedFiles variable
 selectedFileArray: FileList | null = null;
-
+selectedperiod: string = '';
+ selectedinstalationservice ='';
+  selectedmatanerepair='';
+  selectedmantainence ='';
+   plantdimention='';
    filesArray: File[] = [];
+  
+   periods:string[] =[];
    hourused!: string;
   filteredCities: string[] = [];
   filteredMakes: string[] = [];
@@ -54,6 +63,10 @@ selectedFileArray: FileList | null = null;
   selectedFeatures: string[] = [];
   weight!: string;
   serialno!: string;
+    plantname:string='';
+  plantmake:string='';
+  plantmodel:string='';
+  plantversion:string='';
   selectedCity = '';
   selectedMake = '';
   selectedYear = '';
@@ -66,7 +79,9 @@ selectedFileArray: FileList | null = null;
   showmake = true;
   showcar = true;
   divcountry=false;
+  divperiod=false;
   showcountry= true;
+  showperiod= true;
   showyear = true;
   showregister = true;
   showfeature = true;
@@ -135,6 +150,7 @@ selectedFileArray: FileList | null = null;
     this.fetchFeatures();
     this.fetchCarHire();
     this.fetchCountries();
+    this.fetchPeriods()
   }
 
 
@@ -152,10 +168,18 @@ selectedFileArray: FileList | null = null;
         if (this.filteredCarSaleData.length > 0) {
           // Extract the car_name from the first item in the filtered array
           this.selectedcon= this.filteredCarSaleData[0].plant_condition;
+          this.plantname=this.filteredCarSaleData[0].plant_name;
+           this.plantmake=this.filteredCarSaleData[0].make;
+            this.plantmodel=this.filteredCarSaleData[0].model;
+             this.plantversion=this.filteredCarSaleData[0].version;
+              this.plantdimention=this.filteredCarSaleData[0].dimension;
+              this.selectedparameter=this.filteredCarSaleData[0].parameter_type;
+              this.selectedinstalationservice=this.filteredCarSaleData[0].installation_service;
+                this.selectedmantainence=this.filteredCarSaleData[0].regular_maintenance;
+                this.selectedmatanerepair=this.filteredCarSaleData[0].maintenance_repair;
           this.selectedCity= this.filteredCarSaleData[0].city;
           this.divVisible = true;
           this.showcar = false;
-          this.selectedMake = this.filteredCarSaleData[0].make;
           this.makedivVisible = true;
           this.showmake = false;
           this.showmodel2 = true;
@@ -165,10 +189,15 @@ selectedFileArray: FileList | null = null;
           this.showmodel = false;
           this.showversion2 = true;
           this.divcountry=true;
+          this.divperiod=true;
           this.showcountry= false;
+           this.showperiod= false;
           this.fetchVersions();
           this.weight = this.filteredCarSaleData[0].gross_weight;
           this.selectedCountry=this.filteredCarSaleData[0].country;
+            const rawPeriod = this.filteredCarSaleData[0].hire_period;
+this.selectedperiod = this.getDisplayPeriod(rawPeriod);
+
           this.selectedVersion = this.filteredCarSaleData[0].sub_sector;
           this.versiondivVisible = true;
           this.showversion = false;
@@ -225,10 +254,28 @@ selectedFileArray: FileList | null = null;
       }
     });
   }
+  fetchPeriods() {
+  // Generate the period options
+  this.periods = [];
+
+  for (let i = 1; i <= 12; i++) {
+    this.periods.push(`${i} Month`);
+  }
+
+  // Add the "12+ Months" option at the end
+  this.periods.push('12+ Months');
+
+  // Duplicate array for filtering purposes
+  this.filteredperiodss = [...this.periods];
+}
 
   filterCountries(event: any) {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredCountries = this.countries.filter(country => country.toLowerCase().includes(searchTerm));
+  }
+    filterperiod(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredperiodss = this.periods.filter(period => period.toLowerCase().includes(searchTerm));
   }
   async selectCountry(country: string) {
     this.selectedCountry = country;
@@ -239,6 +286,30 @@ selectedFileArray: FileList | null = null;
   this.filterCountries({ target: { value: '' } });
   }
 
+ async selectperiod(period: string) {
+  this.selectedperiod = period;
+
+  // Convert "12+ Months" to 13, otherwise extract the number
+  if (period === '12+ Months') {
+    this.selectedperiod = '13';
+  } else {
+    this.selectedperiod = period; // Converts "1 Month" to 1, etc.
+  }
+
+  this.divperiod = true;
+  this.showperiod = false;
+
+  await this.popoverController.dismiss(period);
+
+  // Clear search
+  this.filterCities({ target: { value: '' } });
+}
+  hideDivperiod() {
+    this.divperiod = false;
+    this.showperiod = true;
+    this.selectedperiod='';
+    
+  }
   fetchCountries() {
     // Fetch city names from the backend
     this.userService.getCountrties().subscribe({
@@ -695,6 +766,7 @@ console.log('adsid',this.adsId);
     adsID: this.adsId,
     oldfilesArray: this.oldfilesArray,
     make: this.selectedMake,
+     period:this.selectedperiod,
     model: this.selectedModel,
     version: this.selectedVersion,
     year: this.selectedYear,
@@ -719,6 +791,15 @@ console.log('adsid',this.adsId);
     country:this.selectedCountry,
     weight: this.weight,
     serialno:this.serialno,
+    plantversion:this.plantversion,
+      plantmodel:this.plantmodel,
+      plantmake:this.plantmake,
+      plantname:this.plantname,
+      plantparameter:this.selectedparameter,
+      plantdimention:this.plantdimention,
+      instalationservice:this.selectedinstalationservice,
+      selectedmaintainrepair:this.selectedmatanerepair,
+      selectedmantainence:this.selectedmantainence,
   };
 
   // Create a FormData object to append all user data and files
@@ -794,7 +875,30 @@ console.log('adsid',this.adsId);
   show(index: number){
   this.showModal = index;
   }
-
+  selectedparametre(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedparameter = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
+selectedregularmantain(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedmantainence = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
+  selectedrepairmantain(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedmatanerepair = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
+  selectedinstalation(conitionType: string) {
+    // Set the selectedFuel variable to the clicked fuel type
+    this.selectedinstalationservice = conitionType;
+    // Log the selected fuel type to console
+    console.log('Selected fuel:', conitionType);
+  }
   close(){
   this.showModal = -1;
   }
@@ -816,7 +920,7 @@ console.log('adsid',this.adsId);
           text: 'OK',
           handler: () => {
             // Navigate back to the previous page
-            this.route.navigateByUrl('/machinery-you-posted', { skipLocationChange: true }).then(() => {
+            this.route.navigateByUrl('/my-plants', { skipLocationChange: true }).then(() => {
               this.route.navigate([this.router.url]);
             });
           }
@@ -826,4 +930,15 @@ console.log('adsid',this.adsId);
 
     await alert.present();
   }
+  getDisplayPeriod(value: string): string {
+  const num = parseInt(value, 10);
+  if (num >= 1 && num <= 12) {
+    return `${num} Month${num > 1 ? 's' : ''}`;
+  } else if (num === 13) {
+    return '12+ Months';
+  } else {
+    return 'Unknown';
+  }
+}
+
 }

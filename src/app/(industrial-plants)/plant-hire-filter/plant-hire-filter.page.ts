@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicSlides, PopoverController } from '@ionic/angular';
 import { MachineryService } from 'src/app/(services)/machinery.service';
+import { PlantsService } from 'src/app/(services)/plants.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -37,10 +38,19 @@ export class PlantHireFilterPage implements OnInit {
       categorie = {
         slidesPerView: 3.0,
       };
+      periods: { label: string, value: number }[] = [];
+filteredperiodss: { label: string, value: number }[] = [];
+selectedperiod: string = '';
+selectedperiodValue: number | null = null;
+
       selectedLowYear: string = '1950';  // Default low year
       selectedHighYear: string = '2025'; // Default high year
       filteredCombinedModelVersions: string[] = [];
-  
+  instalationservice: string = '';
+mantaineneceandrepair: string = '';
+regularmantance: string = '';
+divperiod: boolean = false;
+showperiod: boolean = true;
     // Store the selected model-version combination
     selectedModelVersion: string = '';
   
@@ -64,6 +74,7 @@ export class PlantHireFilterPage implements OnInit {
       selectedFileArray: FileList | null = null;
       selectedDrive: string = ''; // This will store the selected drive option
       selectedCharges: string[] = [];
+      selectedparameter: string = '';
          filesArray: File[] = [];
         engineSize: string | undefined;
         price!: string;
@@ -93,6 +104,7 @@ export class PlantHireFilterPage implements OnInit {
         divcountry = false;
         modeldivVisible = false;
         versiondivVisible = false;
+        
         yeardivVisible = false;
         registerdivVisible = false;
         showmake = false;
@@ -132,7 +144,7 @@ export class PlantHireFilterPage implements OnInit {
         selectedversionarray: string[] = [];
         selectedValues: string[] = [];
         filteredMakesModels: string[] = [];
-        constructor(public route: Router,private machineryservice:MachineryService,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService) {
+        constructor(public route: Router,private plantservice:PlantsService,private cdRef: ChangeDetectorRef, private popoverController: PopoverController, private userService: UserService) {
           this.filteredHighEngineSizes = this.engineSizes.map(size => size.toString());
         this.selectedMake = localStorage.getItem('selectedmake') || '';
         this.selectedModelVersion= this.getStoredValue('selectedmodelversion');
@@ -162,6 +174,17 @@ export class PlantHireFilterPage implements OnInit {
       this.divcountry = !!this.selectedCountry.length;
         }
         ionViewWillEnter() {
+          const storedLabel = localStorage.getItem('selectedperiod');
+  const storedValue = localStorage.getItem('selectedperiodValue');
+
+  if (storedLabel && storedValue) {
+    this.selectedperiod = storedLabel;
+    this.selectedperiodValue = +storedValue;
+    this.divperiod = true;
+  }
+          this.instalationservice = localStorage.getItem('instalationservice')||'';
+           this.mantaineneceandrepair = localStorage.getItem('mantaineneceandrepair')||'';
+            this.regularmantance = localStorage.getItem('regularmantance')||'';
           this.selectedcon = JSON.parse(localStorage.getItem('selectedcon') || '[]');
           this.selectedMake = localStorage.getItem('selectedmake') || '';
           this.selectedVersion = localStorage.getItem('selectedversion') || '';
@@ -170,6 +193,7 @@ export class PlantHireFilterPage implements OnInit {
           this.selectedLowYear = localStorage.getItem('lowyear') || '1950';
           this.selectedHighYear = localStorage.getItem('highyear') || '2025';
           this.selectedLowMilage = localStorage.getItem('lowmilage') || '';
+           this.selectedparameter = localStorage.getItem('selectedparameter') || '';
           this.selectedHighMilage = localStorage.getItem('highmilage') || '';
           this.selectedCategory = localStorage.getItem('selectedCategory') || '';
           this.selectedColor = localStorage.getItem('selectedColor') || '';
@@ -183,7 +207,7 @@ export class PlantHireFilterPage implements OnInit {
           this.selectedDoors = JSON.parse(localStorage.getItem('selectedDoors') || '[]');
           this.selectedDrive = localStorage.getItem('selectedDrive') || '';
           this.selectedCharges = JSON.parse(localStorage.getItem('selectedCharges') || '[]');
-       
+       this.selectedparameter = JSON.parse(localStorage.getItem('selectedparameter') || '[]');
           // Apply selections to UI if necessary (e.g., update checkboxes, dropdowns)
         
         }
@@ -200,14 +224,21 @@ export class PlantHireFilterPage implements OnInit {
           this.fetchCountryes(); 
           this.fetchMakes();
           this.fetchYears();
+          this.fetchPeriods();
           this.updateHighPriceOptions();
           this.fetchYears(); // Fetch years when the component initializes
           this.updateHighYearOptions();  
           this.updateHighMilageOptions();
           this.fetchYears();
           this.updateVisibilityFlags();
-          // Helper function to safely parse JSON
-  
+  const storedLabel = localStorage.getItem('selectedperiod');
+  const storedValue = localStorage.getItem('selectedperiodValue');
+
+  if (storedLabel && storedValue) {
+    this.selectedperiod = storedLabel;
+    this.selectedperiodValue = +storedValue;
+    this.divperiod = true;
+  }
           const parseLocalStorage = (key: string, defaultValue: any) => {
             const storedValue = localStorage.getItem(key);
             try {
@@ -289,7 +320,7 @@ export class PlantHireFilterPage implements OnInit {
               this.filterCountryes({ target: { value: '' } });
             }  }
         fetchMakes() {
-          this.machineryservice.getMakes().subscribe({
+          this.plantservice.getMakes().subscribe({
             next: (data: string[]) => {
               this.makes = data;
               this.filteredMakes = [...this.makes];
@@ -305,7 +336,7 @@ export class PlantHireFilterPage implements OnInit {
         fetchModels() {
           const formData = new FormData();
           formData.append('make', this.selectedMake);
-          this.machineryservice.getModels().subscribe({
+          this.plantservice.getModels().subscribe({
             next: (data: string[]) => {
               this.models = data;
               this.filteredModels = [...this.models];
@@ -428,7 +459,11 @@ export class PlantHireFilterPage implements OnInit {
         }  
         resetAll() {
           // Clear specific items from localStorage
+       
           localStorage.removeItem('selectedcon');
+             localStorage.removeItem('instalationservice');
+                localStorage.removeItem('mantaineneceandrepair');
+                   localStorage.removeItem('regularmantance');
           localStorage.removeItem('selectedcity');
           localStorage.removeItem('selectedcountry');
           localStorage.removeItem('selectedmake');
@@ -447,6 +482,14 @@ export class PlantHireFilterPage implements OnInit {
           localStorage.removeItem('lowengine');
           localStorage.removeItem('selectedCategory');
           localStorage.removeItem('selectedmodelversion');
+          localStorage.removeItem('selectedperiod');
+          localStorage.removeItem('Installation Service');
+           localStorage.removeItem('selectedperiodValue');
+this.selectedperiodValue = null;
+this.divperiod = false;
+ this.instalationservice = '';
+this.mantaineneceandrepair = '';
+this.regularmantance= '';
           // Reset selected filters
           this.selectedcon = [];
           this.selectedCity = [];
@@ -466,6 +509,7 @@ export class PlantHireFilterPage implements OnInit {
           this.selectedColor = '';
           this.selectedDoors = [];
           this.selectedCharges=[];
+          this.selectedparameter='';
           this.selectedDrive='';
           this.selectedEngineLowSize = '';
           this.selectedEngineHighSize = '';
@@ -508,9 +552,11 @@ export class PlantHireFilterPage implements OnInit {
               localStorage.setItem('selectedmodelversion', this.selectedModelVersion);
               localStorage.setItem('selectedDrive', this.selectedDrive); // Driver type
               localStorage.setItem('selectedCharges', JSON.stringify(this.selectedCharges)); // Charges type
-              
+               localStorage.setItem('selectedparameter', JSON.stringify(this.selectedparameter));
+               localStorage.setItem('selectedperiod', this.selectedperiod);
+
               // Navigate with query parameters
-              this.route.navigate(['/machinery-hire-listing'], {
+              this.route.navigate(['/plant-hire-listing'], {
                 queryParams: {
                   selectedcon: this.selectedcon.join(','),
                   selectedmodelversion:this.selectedModelVersion,
@@ -532,8 +578,12 @@ export class PlantHireFilterPage implements OnInit {
                   highengine: this.selectedEngineHighSize,
                   lowengine: this.selectedEngineLowSize,
                   selectedDrive: this.selectedDrive, // New: Driver type
-                  selectedCharges: this.selectedCharges.join(',') // New: Charges type
-                  
+                  selectedCharges: this.selectedCharges.join(','), // New: Charges type
+                  selectedparameter: this.selectedparameter,
+                  instalationservice: this.instalationservice,
+                  mantaineneceandrepair:this.mantaineneceandrepair,
+                  regularmantance:this.regularmantance,
+                  period:this.selectedperiodValue,
                 }
               });
             }
@@ -560,6 +610,43 @@ export class PlantHireFilterPage implements OnInit {
         }
         
       }
+      
+fetchPeriods() {
+  this.periods = Array.from({ length: 13 }, (_, i) => {
+    return {
+      label: i < 12 ? `${i + 1} Month` : '12+ Month',
+      value: i < 12 ? i + 1 : 13
+    };
+  });
+  this.filteredperiodss = [...this.periods];
+}
+
+
+filterperiod(event: any) {
+  const searchTerm = event.detail.value.toLowerCase();
+  this.filteredperiodss = this.periods.filter(p =>
+    p.label.toLowerCase().includes(searchTerm)
+  );
+}
+
+selectperiod(period: { label: string, value: number }) {
+  this.selectedperiod = period.label;            // Display full label in UI
+  this.selectedperiodValue = period.value;       // Store numeric value for backend/query use
+  this.divperiod = true;
+
+  // Save both for later use
+  localStorage.setItem('selectedperiod', this.selectedperiod);
+  localStorage.setItem('selectedperiodValue', this.selectedperiodValue.toString());
+
+  this.popoverController.dismiss();
+}
+
+
+hideDivperiod() {
+  this.selectedperiodValue = null;
+  this.divperiod = false;
+  localStorage.removeItem('selectedperiodValue');
+}
       hideDivcountry(country: string) {
         this.showcountry = true;
       const index = this.selectedCountry.indexOf(country); 
@@ -581,8 +668,10 @@ export class PlantHireFilterPage implements OnInit {
           // Save the selected charges to localStorage
           localStorage.setItem('selectedCharges', JSON.stringify(this.selectedCharges));
         }
-      
-      
+  selectedparametre(param: string) {
+  this.selectedparameter = param;
+  localStorage.setItem('selectedparameter', this.selectedparameter);
+}
    
     
   
@@ -704,6 +793,24 @@ export class PlantHireFilterPage implements OnInit {
     this.makedivVisible = this.mergecararray.length > 0;
     this.showmodel = this.mergecararray.length > 0;
   }
+  toggleInstalation() {
+  this.instalationservice = this.instalationservice === 'Yes' ? '' : 'Yes';
+  localStorage.setItem('instalationservice', this.instalationservice);
+  console.log('Installation Service:', this.instalationservice);
+}
+
+toggleRepair() {
+  this.mantaineneceandrepair = this.mantaineneceandrepair === 'Yes' ? '' : 'Yes';
+  localStorage.setItem('mantaineneceandrepair', this.mantaineneceandrepair);
+  console.log('Maintenance & Repair:', this.mantaineneceandrepair);
+}
+
+toggleRegular() {
+  this.regularmantance = this.regularmantance === 'Yes' ? '' : 'Yes';
+  localStorage.setItem('regularmantance', this.regularmantance);
+  console.log('Regular Maintenance:', this.regularmantance);
+}
+
   selectModelVersion(combinedModelVersion: string) {
     this.selectedModelVersion = combinedModelVersion;
   
@@ -724,7 +831,7 @@ export class PlantHireFilterPage implements OnInit {
     const makeData = new FormData();
     makeData.append('make', make);
   
-    this.machineryservice.getModels().subscribe({
+    this.plantservice.getModels().subscribe({
       next: (modelsData: string[]) => {
         this.models = modelsData;
         this.combinedModelVersions = [];  // Clear previous combinations
@@ -736,7 +843,7 @@ export class PlantHireFilterPage implements OnInit {
           versionData.append('make', make);
           versionData.append('model', model);
   
-          return this.machineryservice.getVersions(versionData).toPromise()
+          return this.plantservice.getVersions(versionData).toPromise()
             .catch(error => {
               console.error(`Error fetching versions for model ${model}:`, error);
               return [];  // Return an empty array if there's an error fetching versions for this model

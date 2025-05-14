@@ -87,6 +87,9 @@ export class MachineryHireFilterPage implements OnInit {
         selectedCountry: string[] = [];
         selectedModel = '';
         selectedVersion = '';
+        instalationservice='';
+        mantaineneceandrepair='';
+        regularmantance='';
         selectedYear = '';
         selectedregisterCity = '';
         selectedregisterCountry = '';
@@ -584,7 +587,21 @@ export class MachineryHireFilterPage implements OnInit {
           localStorage.setItem('selectedCharges', JSON.stringify(this.selectedCharges));
         }
       
-      
+   toggleInstalation() {
+  this.instalationservice = this.instalationservice === 'Yes' ? 'No' : 'Yes';
+  console.log('Installation Service:', this.instalationservice);
+}
+
+toggleRepair() {
+  this.mantaineneceandrepair = this.mantaineneceandrepair === 'Yes' ? 'No' : 'Yes';
+  console.log('Maintenance & Repair:', this.mantaineneceandrepair);
+}
+
+toggleRegular() {
+  this.regularmantance = this.regularmantance === 'Yes' ? 'No' : 'Yes';
+  console.log('Regular Maintenance:', this.regularmantance);
+}
+
    
     
   

@@ -38,7 +38,16 @@
       
   </ion-col>
   </div>
+<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+<ion-row>
+  <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+  <p style="margin-left: 20px; margin-top: 20px;">Plant Name</p>
+</ion-row>
 
+<div style="text-align: center;">
+  <input type="text" placeholder="e.g abc" [(ngModel)]="plantname" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+</div>
 <ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
 
 <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
@@ -74,6 +83,39 @@
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
 <!--  -->
 
+  <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+  <ion-row>
+    <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+    <p style="margin-left: 20px; margin-top: 20px;">Plant Make</p>
+  </ion-row>
+  
+  <div style="text-align: center;">
+    <input type="text" placeholder="e.g abc" [(ngModel)]="plantmake" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+  </div>
+  <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+  <ion-row>
+    <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+    <p style="margin-left: 20px; margin-top: 20px;">Plant Model</p>
+  </ion-row>
+  
+  <div style="text-align: center;">
+    <input type="text" placeholder="e.g 13237" [(ngModel)]="plantmodel" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+  </div>
+  <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+  <ion-row>
+    <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+    <p style="margin-left: 20px; margin-top: 20px;">Plant Version</p>
+  </ion-row>
+  
+  <div style="text-align: center;">
+    <input type="text" placeholder="e.g 13237" [(ngModel)]="plantversion" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+  </div>
+    
+<ion-item-divider style="height: 1px; margin-top: -40px; width: 100%; margin-left: 0px;"></ion-item-divider>
+
 <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
   <p style="margin-left: 20px; margin-top: 20px;">Country</p>
   <div id="click-trigger_country" [hidden]="!showcountry" trigger="click-trigger_country" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="fetchCountries()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
@@ -102,32 +144,7 @@
   </ion-popover>
 
 <!--  -->
-<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-<ion-row><img src="../../../assets/extra-icon/make.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Make</p>
-<div [hidden]="!showmake" id="click-trigger_make" trigger="click-trigger_make" triggerAction="click">
-  <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
-</div></ion-row>
-<div *ngIf="makedivVisible">
-<ion-badge style="margin-left: 45px; height: 35px; width: 150px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -10px; color: black;">{{ selectedMake }}</p>
-  <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="makeDiv()"></ion-icon></div></ion-badge>
-</div>
-  <ion-popover trigger="click-trigger_make" triggerAction="click">
-    <ng-template>
-      <!-- Your popover content here -->
-      <ion-content class="ion-padding">
-        <p style="font-size: 16px; text-align: center;">Select Option</p>
-        <ion-searchbar type="text" debounce="500" (ionChange)="filterMakes($event)"></ion-searchbar>
-        <ion-list>
-          <!-- Iterate over filteredMakes array instead of makes array -->
-          <ion-item *ngFor="let make of filteredMakes" (click)="selectMake(make)">
-            {{ make }}
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ng-template>
-  </ion-popover>
-  
+
 
 <div [hidden]="!showmodel2">
   <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
@@ -244,7 +261,37 @@
 </ion-col>
 </div>
 <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
-        
+        <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+ 
+<ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
+  <p style="margin-left: 20px; margin-top: 20px;">Hire Period</p>
+  <div id="click-trigger_period" [hidden]="!showperiod" trigger="click-trigger_period" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="fetchPeriods()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
+  </div></ion-row>
+    <div *ngIf="divperiod">
+    <ion-badge style="margin-left: 45px; height: 35px; width: 120px; background-color: lightgray;"><p style="font-size: small; margin-top: 9px; margin-left: -25px; color: black;">{{ selectedperiod }}</p>
+      <div style="margin-top: -28px; font-size: 20px; text-align: right; color: #0000ff96;"><ion-icon name="close-circle" (click)="hideDivperiod()"></ion-icon></div></ion-badge>
+    </div>
+  <!--  -->
+            <!-- ion-popover -->
+  <!-- <ion-button id="click-trigger">Ion-Popover</ion-button> -->
+  <ion-popover trigger="click-trigger_period" triggerAction="click">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <p style="font-size: 16px; text-align: center;">Select Time Period</p>
+  
+        <ion-searchbar type="text" debounce="500" (ionChange)="filterperiod($event)"></ion-searchbar>
+  
+        <ion-list>
+          <ion-item *ngFor="let period of filteredperiodss" (click)="selectperiod(period)">
+            {{ period }}
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+                
+                <ion-item-divider style="height: 1px; margin-top: 0px; width: 100%; margin-left: 0px;"></ion-item-divider>
+                
 <ion-row>
   <img src="../../../assets/extra-icon/engine.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
   <p style="margin-left: 20px; margin-top: 20px;">Weight</p>
@@ -256,6 +303,87 @@
 
     <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>  
     
+        <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+        <ion-row>
+          <img src="../../assets/machinery-section/bar-code.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;">
+          <p style="margin-left: 20px; margin-top: 20px;">Dimension</p>
+        </ion-row>
+        
+        <div style="text-align: center;">
+          <input type="text" placeholder="e.g 13237" [(ngModel)]="plantdimention" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
+        </div>
+          
+         
+        <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+      <ion-row style="margin-top: 25px;">
+        <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Parameter Type</p></ion-row>
+
+  <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
+    <ion-col>
+      <ion-row style="display: flex; justify-content: left;">
+        <ion-button [color]="selectedparameter === 'Meters' ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedparametre('Meters')">{{ 'In Meters' | titlecase }}</ion-button>
+        <ion-button [color]="selectedparameter === 'Inches' ? 'danger' : 'light'" class="condition" (click)="selectedparametre('Inches')" style=" margin-left: 13px;">{{ 'In Inches' | titlecase }}</ion-button>
+        <ion-button [color]="selectedparameter === 'Feets' ? 'danger' : 'light'" class="condition" style="width: 130px; margin-left: 13px;" (click)="selectedparametre('Feets')">{{ 'In Feets' | titlecase }}</ion-button>
+    </ion-row>
+    
+      
+  </ion-col>
+  </div>
+  <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+      <ion-row style="margin-top: 25px;">
+        <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Instalation Service</p></ion-row>
+
+  <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
+    <ion-col>
+      <ion-row style="display: flex; justify-content: left;">
+        <ion-button [color]="selectedinstalationservice === 'Yes' ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedinstalation('Yes')">{{ 'Yes' | titlecase }}</ion-button>
+        <ion-button [color]="selectedinstalationservice === 'No' ? 'danger' : 'light'" class="condition" (click)="selectedinstalation('No')" style=" margin-left: 13px;">{{ 'No' | titlecase }}</ion-button>
+      
+    </ion-row>
+    
+      
+  </ion-col>
+  </div>
+  <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+      <ion-row style="margin-top: 25px;">
+        <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Maintenace & Repair Service</p></ion-row>
+
+  <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
+    <ion-col>
+      <ion-row style="display: flex; justify-content: left;">
+      <ion-button [color]="selectedmatanerepair === 'Yes' ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedrepairmantain('Yes')">{{ 'Yes' | titlecase }}</ion-button>
+        <ion-button [color]="selectedmatanerepair === 'No' ? 'danger' : 'light'" class="condition" (click)="selectedrepairmantain('No')" style=" margin-left: 13px;">{{ 'No' | titlecase }}</ion-button>
+      
+    </ion-row>
+    
+      
+  </ion-col>
+  </div>
+    <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
+        
+      <ion-row style="margin-top: 25px;">
+        <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
+        <p style="margin-left: 20px;">Regular Maintenace</p></ion-row>
+
+  <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
+    <ion-col>
+      <ion-row style="display: flex; justify-content: left;">
+      <ion-button [color]="selectedmantainence === 'Yes' ? 'danger' : 'light'" class="condition" style="width: 70px; margin-left: 15px;" (click)="selectedregularmantain('Yes')">{{ 'Yes' | titlecase }}</ion-button>
+        <ion-button [color]="selectedmantainence  === 'No' ? 'danger' : 'light'" class="condition" (click)="selectedregularmantain('No')" style=" margin-left: 13px;">{{ 'No' | titlecase }}</ion-button>
+      
+    </ion-row>
+    
+      
+  </ion-col>
+  </div>
+<ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>
   
    
     <div style="margin: 15px 0px 0px 15px;">
