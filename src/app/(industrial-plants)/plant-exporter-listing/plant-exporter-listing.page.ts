@@ -42,7 +42,7 @@ export class PlantExporterListingPage implements OnInit {
     return text;
   }
   back() {
-    this.router.navigate(['/industrial-plant-home']);
+    this.router.navigate(['industrial-plant-home']);
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');

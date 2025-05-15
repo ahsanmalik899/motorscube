@@ -38,7 +38,7 @@ throw new Error('Method not implemented.');
     private formBuilder: FormBuilder,
     private userService: UserService,
     private alertController: AlertController,
-    private file: File,
+  
     private navController: NavController,
     private loadingController: LoadingController // Injecting LoadingController for loading indicator
   ) {

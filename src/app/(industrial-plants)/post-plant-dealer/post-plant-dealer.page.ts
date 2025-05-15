@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { MachineryService } from 'src/app/(services)/machinery.service';
+import { PlantsService } from 'src/app/(services)/plants.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -29,7 +30,7 @@ selectedFileArray: FileList | null = null;
  
    filesArray: File[] = [];
 
-  constructor(private formBuilder: FormBuilder,private machineryservice:MachineryService, private userService: UserService, private alertController: AlertController,
+  constructor(private formBuilder: FormBuilder,private plantservice:PlantsService, private userService: UserService, private alertController: AlertController,
      private loadingController: LoadingController, private route: Router, private router: ActivatedRoute,
   ) {
     this.userForm = this.formBuilder.group({
@@ -145,7 +146,7 @@ updateCityOptions() {
 
 fetchDealIn() {
   // Fetch city names from the backend
-  this.machineryservice.getModels().subscribe({
+  this.plantservice.getModels().subscribe({
     next: (data) => {
       this.DealIns = data;
     //console.log('Fetched cities:', this.cities);
@@ -325,7 +326,7 @@ async saveUser(): Promise<void> {
     await loading.present();
 
     // Make the API request to post the dealer business data
-    this.machineryservice.postDealerBusiness(formData).subscribe(
+    this.plantservice.postDealerBusiness(formData).subscribe(
       (response) => {
         console.log('Data saved successfully:', response);
         this.presentSuccessAlert();
