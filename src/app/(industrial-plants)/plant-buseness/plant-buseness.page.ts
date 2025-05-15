@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PopoverController, LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { MyCarAdsPaymentComponent } from 'src/app/(car)/my-car-ads-payment/my-car-ads-payment.component';
 import { MachineryService } from 'src/app/(services)/machinery.service';
+import { PlantsService } from 'src/app/(services)/plants.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -66,7 +67,7 @@ isPopupVisibleDiv = false;
 carpostData: any[] = [];
 filteredCarPostData: any[] = [];
 
-constructor(public route: Router, private popoverController: PopoverController, private userService: UserService,private machineryservice:MachineryService,
+constructor(public route: Router, private popoverController: PopoverController, private userService: UserService,private plantservice:PlantsService,
   private router: ActivatedRoute, private renderer: Renderer2, private el: ElementRef, private loadingController: LoadingController, private alertController: AlertController,
    private modalController: ModalController,  private ngZone: NgZone,
    private cdr: ChangeDetectorRef) {
@@ -123,7 +124,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchdealershipData() {
     const loader = await this.showLoader();
-    this.machineryservice.getdealershipData().subscribe({
+    this.plantservice.getdealershipData().subscribe({
       next: (data) => {
         this.dealershipData = data;
         this.filterdealershipData = this.dealershipData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -143,7 +144,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchshowroomData() {
     const loader = await this.showLoader();
-    this.machineryservice.getshowroomData().subscribe({
+    this.plantservice.getshowroomData().subscribe({
       next: (data) => {
         this.showroomData = data;
         this.filterShowroomData = this.showroomData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -163,7 +164,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchinsuranceData() {
     const loader = await this.showLoader();
-    this.machineryservice.getinsuranceData().subscribe({
+    this.plantservice.getinsuranceData().subscribe({
       next: (data) => {
         this.insuranceData = data;
         this.filterInsuranceData = this.insuranceData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -183,7 +184,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchleasingData() {
     const loader = await this.showLoader();
-    this.machineryservice.getleasingData().subscribe({
+    this.plantservice.getleasingData().subscribe({
       next: (data) => {
         this.leasingData = data;
         this.filterLeasingData = this.leasingData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -205,7 +206,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
   
   async fetchimporterData() {
     const loader = await this.showLoader();
-    this.machineryservice.getimporterData().subscribe({
+    this.plantservice.getimporterData().subscribe({
       next: (data) => {
         this.importerData = data;
         this.filterImporterData = this.importerData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -225,7 +226,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchexporterData() {
     const loader = await this.showLoader();
-    this.machineryservice.getexporterData().subscribe({
+    this.plantservice.getexporterData().subscribe({
       next: (data) => {
         this.exporterData = data;
         this.filterExporterData = this.exporterData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -245,7 +246,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchworkshopData() {
     const loader = await this.showLoader();
-    this.machineryservice.getworkshopData().subscribe({
+    this.plantservice.getworkshopData().subscribe({
       next: (data) => {
         this.workshopData = data;
         this.filterWorkshopData = this.workshopData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -265,7 +266,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
 
   async fetchschoolData() {
     const loader = await this.showLoader();
-    this.machineryservice.getschoolData().subscribe({
+    this.plantservice.getschoolData().subscribe({
       next: (data) => {
         this.schoolData = data;
         this.filterSchoolData = this.schoolData.filter((item: { user_id: string; }) => item.user_id === this.userID);
@@ -329,7 +330,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
       formData.append('deleteid', this.deleteID);
       formData.append('deletetype', this.deleteType);
     
-      this.machineryservice.machineryDeletePostBusines(formData).subscribe(
+      this.plantservice.plantDeletePostBusines(formData).subscribe(
         (response) => {
           console.log('Data delete successfully:', response);
        
@@ -339,21 +340,21 @@ constructor(public route: Router, private popoverController: PopoverController, 
               this.fetchdealershipData();
               this.cdr.detectChanges();
               loading.dismiss()
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
           break;case 'showroom':
           this.fetchschoolData()
           this.cdr.detectChanges();
           loading.dismiss()
-          this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+          this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
             this.route.navigate([this.router.url]);
           });
            break;
             case 'insurance':
               this.fetchinsuranceData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -361,7 +362,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'leasing':
               this.fetchleasingData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -369,7 +370,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'importer':
               this.fetchimporterData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -377,7 +378,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'exporter':
               this.fetchexporterData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss()
@@ -385,7 +386,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'workshop':
               this.fetchworkshopData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 
@@ -393,7 +394,7 @@ constructor(public route: Router, private popoverController: PopoverController, 
             case 'school':
               this.fetchschoolData()
               this.cdr.detectChanges();
-              this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+              this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
                 this.route.navigate([this.router.url]);
               });
               loading.dismiss() 

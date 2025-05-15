@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CommercialService } from 'src/app/(services)/commercial.service';
+import { PlantsService } from 'src/app/(services)/plants.service';
 import { UserService } from 'src/app/(services)/user.service';
 
 @Component({
@@ -37,7 +38,7 @@ isModalOpen = false;
   showcar: boolean | undefined;
 
   constructor(public router: Router,  private userService: UserService, private modalController: ModalController,
-    private commercialservice:CommercialService,
+    private plantservice:PlantsService,
     private route: ActivatedRoute) {
       this.route.queryParams.subscribe(params => {
         this.saleID = params['saleid'];
@@ -109,7 +110,7 @@ isModalOpen = false;
   }
 
   fetchCarSale() {
-    this.commercialservice.getSinglevehiclehire(this.saleID).subscribe({
+    this.plantservice.getSingleplanthire(this.saleID).subscribe({
       next: (data: any[]) => {
        
         this.carSaleData = data; // Store fetched data in carData property
@@ -195,6 +196,15 @@ isModalOpen = false;
             console.error('Error fetching car data:', error); // Logging any errors
         }
     });
+}
+getFormattedHirePeriod(period: number | string): string {
+  const months = parseInt(period as string, 10);
+
+  if (isNaN(months)) return 'Unknown';
+
+  if (months > 12) return '12+ Months';
+
+  return months === 1 ? '1 Month' : `${months} Months`;
 }
 
   toggleZoom(): void {

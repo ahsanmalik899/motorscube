@@ -1,0 +1,272 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>listing-business</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black; font-size: 17px;">{{ filterData.length }} importer Providers</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: -webkit-center; position: sticky; top: -5px; z-index: 1;">
+    <ion-col>
+      <ion-card class="btn-white">
+        <ion-card-header>
+
+          <ion-row>
+        <!--card filter -->
+          <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1;">
+            <ion-col>
+              <ion-card class="btn-filter" style="margin-left: 0px;" (click)="filter()">
+                <ion-card-header>
+                  <div style="width: 100px; margin-top: -6px; border-radius: 13px;">
+                    <ion-row><img src="../../../assets/Car-section/Listing/filter.png" style="height: 20px; width: 20px;" fill="clear;"/>
+                      <strong style="margin-left: 10px;">Filters</strong></ion-row>
+                  </div>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+  </ion-card-header>
+  </ion-card>
+  </ion-col>
+  </div>
+
+  <!--card sort by -->
+  <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1;">
+            <ion-col>
+              <ion-card class="btn-filter" id="click-trigger" trigger="click-trigger" triggerAction="click">
+                <ion-card-header>
+                  <div style="width: 100px; margin-top: -6px; border-radius: 13px;">
+                    <ion-row><img src="../../../assets/Car-section/Listing/sort-by.png" style="height: 20px; width: 20px;" fill="clear;"/>
+                      <strong style="margin-left: 10px;">Sort by</strong></ion-row>
+                  </div>
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+  </ion-card-header>
+  </ion-card>
+  </ion-col>
+  </div>
+</ion-row>
+<!--  -->
+            <!-- ion-popover -->
+<!-- <ion-button id="click-trigger">Ion-Popover</ion-button> -->
+<ion-popover trigger="click-trigger" triggerAction="click">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <p style="font-size: 15px; text-align: left;">Sort by</p>
+      <div style="text-align: right; margin-top: -30px; margin-bottom: 15px;">
+      <ion-icon name="close"></ion-icon></div>
+      <div style="text-align: -webkit-center;">
+        <ion-col>
+          <ion-card class="btn-dark">
+            <ion-card-header>
+              <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+            </ion-card-header>
+            </ion-card>
+            </ion-col>
+            </div>
+
+  <div style="text-align: center; margin-bottom: 10px; margin-top: 10px;">
+<table width="100%; height: 100px; margin: 5px 5px 5px 5px">
+  <ion-radio-group (ionChange)="sortCars($event.detail.value)">
+   
+    <ion-item>
+      <ion-label>Show oldest to newest ads</ion-label>
+      <ion-radio value="oldestToNewest"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Show latest to oldest ads</ion-label>
+      <ion-radio value="latestToOldest"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  
+</table>
+</div>
+</ion-content>
+  </ng-template>
+</ion-popover>
+
+
+    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+  </ion-card-header>
+  </ion-card>
+  </ion-col>
+  </div>
+<!--  -->
+
+
+
+
+<!-- card 1 supream -->
+<ion-col *ngFor="let car of filterData">
+  
+  <ng-container *ngIf="car.importer_featured_type === 'Supreme'">
+    
+  <ion-card class="btn-supreme" (click)="navigateToimporterSingle(car.machinery_importer_ad_sale_id )">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+    <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+      <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+    </ion-avatar>
+    
+        <ion-card class="supreme">
+          <ion-card-header>
+            <div style="width: 100px; margin-bottom: 20px border-radius 13px;">
+
+                <p style="margin-left: -65px; margin-top:-10px; color: white;">Supreme</p>
+            </div>
+      <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+     
+  </div> 
+  </div>
+<!-- </div> -->
+
+<!--  -->
+
+
+
+    <div style="width: 100%; align-items: center;margin-top: 220px;">
+      <p class="main-heading truncate truncate" >{{ car.importer_name }}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.importer_city}}</p> <br>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <ion-icon name="call"     style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_phone }}
+        </p>     
+   <!-- First div for Fuel Type and Transmission -->
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{car.importer_web }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_address }}
+  </p>
+<!-- Second div for Mileage and Location -->
+  </div>  
+  </ion-col>
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+  </ng-container>
+  </ion-col>
+<!--  -->
+
+<!-- card 1 hotSpot -->
+
+<ion-col *ngFor="let car of filterData">
+  
+  <ng-container *ngIf="car.importer_featured_type === 'Hotspot'" >
+    
+  <ion-card class="btn-card" (click)="navigateToimporterSingle(car.machinery_importer_ad_sale_id )">
+    <ion-card-header>
+
+      <ion-col  style="width: 100%; display:inline-block;">
+       
+          <!-- <div> -->
+          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+    <div style="width: 100%; text-align: center;">
+    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+    <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+      <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+    </ion-avatar>
+    
+        <ion-card class="hotspot">
+          <ion-card-header>
+            <div style="width: 100px; margin-bottom: 20px border-radius 13px;">
+
+                <p style="margin-left: -65px; margin-top:-10px; color: white;">Hotspot</p>
+            </div>
+      <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+      </ion-card-header>
+      </ion-card>
+     
+  </div>
+    
+  </div>
+<!-- </div> -->
+<!--  -->
+    <div style="width: 100%; align-items: center; margin-top:220px;">
+      <p class="main-heading truncate" >{{ car.importer_name}}</p><br>
+      <p class="listing-text" style=" color: gray; margin-top: -30px;">{{ car.importer_city}}</p> <br>
+        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+          <ion-icon name="call" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_phone }}
+        </p>       
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_web }}
+  </p>
+  <p class="sub-heading" style="color: gray; flex: 1; ">
+    <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_address }}
+  </p>
+
+
+
+</div>
+  </ion-col>
+
+  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+  </ng-container>
+  </ion-col>
+
+
+
+<!--normal card -->
+
+
+<ion-col *ngFor="let car of filterData">
+
+<ng-container *ngIf="car.importer_featured_type === 'General'" >
+  
+<ion-card class="btn-card" (click)="navigateToimporterSingle(car.machinery_importer_ad_sale_id )">
+  <ion-card-header>
+
+    <ion-col  style="width: 100%; display:inline-block;">
+     
+        <!-- <div> -->
+        <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
+  <div style="width: 100%; text-align: center;">
+  <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+  <ion-avatar style="height: 100px; width: 100px; margin-top: -107px;">
+    <img alt="Business logo" [src]="car.image_url2 " onError="src = '../../assets/Menu-items/deafult_buisness.png'"/>
+  </ion-avatar>
+   
+</div>
+  
+</div>
+
+  <div style="width: 100%; align-items: center; margin-top:-20px;">
+    <p class="main-heading truncate" >{{ car.importer_name }}</p><br>
+    <p class="listing-text" style=" color: gray; margin-top: -30px;"> {{ car.importer_city}}</p> <br>
+      <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
+        <ion-icon name="call" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_phone }}
+      </p>   
+ <!-- First div for Fuel Type and Transmission -->
+<p class="sub-heading" style="color: gray; flex: 1; ">
+  <ion-icon name="globe" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_web }}
+</p>
+<p class="sub-heading" style="color: gray; flex: 1; ">
+  <ion-icon name="map" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.importer_address }}
+</p>
+</div> 
+</ion-col>
+
+<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+</ion-card-header>
+</ion-card>
+</ng-container>
+</ion-col>
+
+
+
+
+</ion-content>

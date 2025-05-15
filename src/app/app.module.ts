@@ -109,6 +109,14 @@ import { UpdateMachineryWorkshopPage } from './(Machinery)/update-machinery-work
 import { UpdateMachinerySalePage } from './(Machinery)/update-machinery-sale/update-machinery-sale.page';
 import { IndustrialPlantHomePage } from './(industrial-plants)/industrial-plant-home/industrial-plant-home.page';
 import { PostPlantSalePage } from './(industrial-plants)/post-plant-sale/post-plant-sale.page';
+import { PostPlantDealerPage } from './(industrial-plants)/post-plant-dealer/post-plant-dealer.page';
+import { PostPlantExporterPage } from './(industrial-plants)/post-plant-exporter/post-plant-exporter.page';
+import { PostPlantImporterPage } from './(industrial-plants)/post-plant-importer/post-plant-importer.page';
+import { PostPlantInsurancePage } from './(industrial-plants)/post-plant-insurance/post-plant-insurance.page';
+import { PostPlantLeasingPage } from './(industrial-plants)/post-plant-leasing/post-plant-leasing.page';
+import { PostPlantSchoolPage } from './(industrial-plants)/post-plant-school/post-plant-school.page';
+import { PostPlantShowroomPage } from './(industrial-plants)/post-plant-showroom/post-plant-showroom.page';
+import { PostPlantWorkshopPage } from './(industrial-plants)/post-plant-workshop/post-plant-workshop.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -204,6 +212,14 @@ import { PostPlantSalePage } from './(industrial-plants)/post-plant-sale/post-pl
     UpdateMachinerySalePage,
     IndustrialPlantHomePage,
     PostPlantSalePage,
+    PostPlantDealerPage,
+    PostPlantExporterPage,
+    PostPlantImporterPage,
+    PostPlantInsurancePage,
+    PostPlantLeasingPage,
+    PostPlantSchoolPage,
+    PostPlantShowroomPage,
+    PostPlantWorkshopPage,
   ],
  
   bootstrap: [AppComponent],

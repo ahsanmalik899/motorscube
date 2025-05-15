@@ -127,28 +127,28 @@ navigateToCarHireDetail(carId: string) {
   });
 }
 carInsurance() {
-  this.router.navigate(['machinery-insurance-listing']);
+  this.router.navigate(['plant-insurance-listing']);
 }
 carLeasing() {
-  this.router.navigate(['machinery-leasing-listing']);
+  this.router.navigate(['plant-leasing-listing']);
 }
 carDealer() {
-  this.router.navigate(['machinery-dealer-listing']);
+  this.router.navigate(['plant-dealer-listing']);
 }
 carShowroom() {
-  this.router.navigate(['machinery-showroom-listing']);
+  this.router.navigate(['plant-showroom-listing']);
 }
 carImporter() {
-  this.router.navigate(['machinery-importer-listing']);
+  this.router.navigate(['plant-importer-listing']);
 }
 carExporter() {
-  this.router.navigate(['machinery-exporter-listing']);
+  this.router.navigate(['plant-exporter-listing']);
 }
 carSchool() {
-  this.router.navigate(['machinery-driving-school-listing']);
+  this.router.navigate(['plant-school-listing']);
 }
 carWorkshop() {
-  this.router.navigate(['machinery-workshop-listing']);
+  this.router.navigate(['plant-workshop-listing']);
 }
 selectedIcon: any;
 selectIcon(arg0: string) {
