@@ -75,13 +75,7 @@
       <input type="email" id="bemail" class="text-field" aria-placeholder="e.g., abc@abc.com" formControlName="bemail" (focus)="onInputFocus('bemail')" (blur)="onInputBlur('bemail')">
     </div>
   
-    <!-- Daling in Make -->
-    <div>
-      <label for="bmake" [class.active]="userForm.get('bmake')?.value">Dealing in Make</label>
-      <select id="bmake" class="text-field" aria-placeholder="Select a make" formControlName="bmake" (focus)="onInputFocus('bmake')" (blur)="onInputBlur('bmake')">
-        <!-- Dynamic make options will go here -->
-      </select>
-    </div>
+   
   
     <!-- Open Time -->
     <div>

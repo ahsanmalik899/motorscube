@@ -52,7 +52,7 @@ export class PlantSchoolListingPage implements OnInit {
 
  
   filter(){
-    this.router.navigate(['machinery-driving-school-filter']);
+    this.router.navigate(['plant-school-filter']);
   }
   fetchSchoolData() {
    

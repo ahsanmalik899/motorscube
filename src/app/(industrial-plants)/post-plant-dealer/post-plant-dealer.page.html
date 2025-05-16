@@ -41,7 +41,17 @@
     <label for="bwebsite" [ngClass]="{'active': userForm.get('bwebsite')?.value}">Business Website</label>
     <input type="text" id="bwebsite" class="text-field" aria-placeholder="www.example.com" formControlName="bwebsite" (focus)="onInputFocus('bwebsite')" (blur)="onInputBlur('bwebsite')">
   </div>
-
+    <!-- Open Time -->
+    <div>
+      <label for="bstartTime" [ngClass]="{'active': userForm.get('bstartTime')?.value}">Open Time</label>
+      <input type="time" id="bstartTime" class="text-field" formControlName="bstartTime" (focus)="onInputFocus('bstartTime')" (blur)="onInputBlur('bstartTime')">
+    </div>
+  
+    <!-- Closing Time -->
+    <div>
+      <label for="bendTime" [ngClass]="{'active': userForm.get('bendTime')?.value}">Closing Time</label>
+      <input type="time" id="bendTime" class="text-field" formControlName="bendTime" (focus)="onInputFocus('bendTime')" (blur)="onInputBlur('bendTime')">
+    </div>
   <div>
     <label for="baddress" [ngClass]="{'active': userForm.get('baddress')?.value}">Business Address</label>
     <textarea id="baddress" class="text-area" formControlName="baddress" (focus)="onInputFocus('baddress')" rows="4" (blur)="onInputBlur('baddress')"></textarea>
@@ -60,6 +70,7 @@
     <label for="bdetail" [ngClass]="{'active': userForm.get('bdetail')?.value}">Business Details</label>
     <textarea id="bdetail" class="text-area" formControlName="bdetail" (focus)="onInputFocus('bdetail')" rows="4" (blur)="onInputBlur('bdetail')"></textarea>
   </div>
+  
 
   <div class="form-button-container">
     <button type="submit">Submit</button>

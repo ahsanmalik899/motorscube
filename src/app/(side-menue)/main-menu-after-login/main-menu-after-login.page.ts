@@ -261,41 +261,43 @@ this.router.navigate(['/home'])
     this.router.navigate(['/plant-buseness']);
   }
   navigateToPlantsSale(){
-    this.router.navigate(['/post-plant-sale']);
+    this.router.navigate(['/plant-sale-listing']);
   }
   navigateToPlantsHire(){
-    this.router.navigate(['/post-plant-hire']);
+    this.router.navigate(['/plant-hire-listing']);
   }
   postPlantsHire() {
     this.router.navigate(['/post-plant-hire']);
   }
-
+ postPlantsSale() {
+    this.router.navigate(['/post-plant-sale']);
+  }
   navigateToPlantsShowroom() {
-    this.router.navigate(['/plants-showroom']);
+    this.router.navigate(['/plant-showroom-listing']);
   }
 
   navigateToPlantsDealer() {
-    this.router.navigate(['/plants-dealer']);
+    this.router.navigate(['/plant-dealer-listing']);
   }
 
   navigateToPlantsWorkshop() {
-    this.router.navigate(['/plants-workshop']);
+    this.router.navigate(['/plant-workshop-listing']);
   }
 
   navigateToPlantsImporter() {
-    this.router.navigate(['/plants-importer']);
+    this.router.navigate(['/plant-importer-listing']);
   }
 
   navigateToPlantsExporter() {
-    this.router.navigate(['/plants-exporter']);
+    this.router.navigate(['/plant-exporter-listing']);
   }
 
   navigateToPlantsInsurance() {
-    this.router.navigate(['/plants-insurance']);
+    this.router.navigate(['/plant-insurance-listing']);
   }
 
   navigateToPlantsLeasing() {
-    this.router.navigate(['/plants-leasing']);
+    this.router.navigate(['/plant-leasing-listing']);
   }
 
   logout() {

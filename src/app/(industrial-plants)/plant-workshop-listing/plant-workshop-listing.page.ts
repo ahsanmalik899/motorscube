@@ -58,7 +58,7 @@ export class PlantWorkshopListingPage implements OnInit {
   
 
   filter(){
-    this.router.navigate(['machinery-workshop-filter']);
+    this.router.navigate(['plant-workshop-filter']);
   }
   fetchWorkshopData() {
     // Check if workshop data is already cached

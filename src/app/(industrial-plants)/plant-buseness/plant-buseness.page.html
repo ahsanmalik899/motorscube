@@ -545,7 +545,7 @@
                             <div *ngIf="car.post_status === 'Active' &&car.workshop_featured_type!='Supreme'" >
                               
                             <button id="signin-upgrade" *ngIf="!checkPaymentButton('Plant Workshop',car.plant_workshop_ad_sale_id)" (click)="openPopup(car.plant_workshop_ad_sale_id, 'Plant Workshop' , car.workshop_featured_type)">Upgrade profile</button>
-                      <button *ngIf="checkPaymentButton('Plant Workshop',car.plant_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.plant_workshop_ad_sale_id,'Plant Workshoop')">Send Payment</button>
+                      <button *ngIf="checkPaymentButton('Plant Workshop',car.plant_workshop_ad_sale_id)"  style="background-color: rgb(0, 189, 214);" id="signin-upgrade" (click)="openDialogueBox(car.plant_workshop_ad_sale_id,'Plant Workshop')">Send Payment</button>
                     </div>
                           </div>
                       

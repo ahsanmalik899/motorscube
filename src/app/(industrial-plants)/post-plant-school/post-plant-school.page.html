@@ -36,13 +36,7 @@
         <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
       </select>
     </div>
-    <div>
-      <label for="dealIn" [ngClass]="{'active': userForm.get('dealIn')?.value}">School Machinery Type</label>
-      <select id="dealIn" class="text-field" aria-placeholder="Deal In " formControlName="dealIn" (focus)="onInputFocus('dealIn')" (blur)="onInputBlur('dealIn')">
-        <!-- City options will be populated dynamically -->
-        <option *ngFor="let dealin of DealIns" [value]="dealin">{{ dealin }}</option>
-      </select>
-    </div>
+
     <!-- Business Website -->
     <div>
       <label for="bwebsite" [ngClass]="{'active': userForm.get('bwebsite')?.value}">Business Website</label>
@@ -61,6 +55,20 @@
       <input type="text" id="bmobile" class="text-field" aria-placeholder="3xxxxxxxxx" formControlName="bmobile" (focus)="onInputFocus('bmobile')" (blur)="onInputBlur('bmobile')">
     </div>
   
+    <div>
+      <label for="type" [ngClass]="{'active': userForm.get('type')?.value}">School Sector</label>
+      <select id="type" class="text-field" aria-placeholder="School Sector " formControlName="type" (focus)="onInputFocus('type')" (blur)="onInputBlur('type')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="subtype" [ngClass]="{'active': userForm.get('subtype')?.value}">School Sub Sector</label>
+      <select id="subtype" class="text-field" aria-placeholder="School Sub Sector " formControlName="subtype" (focus)="onInputFocus('subtype')" (blur)="onInputBlur('subtype')">
+        <!-- City options will be populated dynamically -->
+        <option *ngFor="let subtype of subtypes" [value]="subtype">{{ subtype }}</option>
+      </select>
+    </div>
     <!-- Business Email -->
     <div>
       <label for="bemail" [ngClass]="{'active': userForm.get('bemail')?.value}">Business Email</label>
@@ -73,20 +81,7 @@
       <input type="text" id="bservice1" class="text-field" aria-placeholder="Service 1" formControlName="bservice1" (focus)="onInputFocus('bservice1')" (blur)="onInputBlur('bservice1')">
     </div>
   
-    <!-- Services 2 -->
-    <div *ngIf="showService2">
-      <label for="bservice2" [ngClass]="{'active': userForm.get('bservice2')?.value}">Services 2</label>
-      <input type="text" id="bservice2" class="text-field" aria-placeholder="Service 2" formControlName="bservice2" (focus)="onInputFocus('bservice2')" (blur)="onInputBlur('bservice2')">
-    </div>
-  
-    <!-- Services 3 -->
-    <div *ngIf="showService3">
-      <label for="bservice3" [ngClass]="{'active': userForm.get('bservice3')?.value}">Services 3</label>
-      <input type="text" id="bservice3" class="text-field" aria-placeholder="Service 3" formControlName="bservice3" (focus)="onInputFocus('bservice3')" (blur)="onInputBlur('bservice3')">
-    </div>
-  
-    <!-- Add More Service Button -->
-    <button type="button" *ngIf="showButton" id="moreservice" (click)="showNextService()">Add More Service</button>
+ 
   
     <!-- Business Details -->
     <div>

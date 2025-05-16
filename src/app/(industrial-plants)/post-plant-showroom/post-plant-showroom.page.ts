@@ -463,7 +463,7 @@ async presentSuccessAlert(): Promise<void> {
       {
         text: 'OK',
         handler: () => {
-          this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+          this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
             this.route.navigate([this.router.url]);
           });
         }

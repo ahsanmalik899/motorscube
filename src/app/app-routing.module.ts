@@ -995,15 +995,72 @@ const routes: Routes = [
     path: 'post-plant-school',
     loadChildren: () => import('./(industrial-plants)/post-plant-school/post-plant-school.module').then( m => m.PostPlantSchoolPageModule)
   },
+  {
+    path: 'update-plant-dealer',
+    loadChildren: () => import('./(industrial-plants)/update-plant-dealer/update-plant-dealer.module').then( m => m.UpdatePlantDealerPageModule)
+  },
+  {
+    path: 'update-plant-exporter',
+    loadChildren: () => import('./(industrial-plants)/update-plant-exporter/update-plant-exporter.module').then( m => m.UpdatePlantExporterPageModule)
+  },
+  {
+    path: 'update-plant-importer',
+    loadChildren: () => import('./(industrial-plants)/update-plant-importer/update-plant-importer.module').then( m => m.UpdatePlantImporterPageModule)
+  },
+  {
+    path: 'update-plant-insurance',
+    loadChildren: () => import('./(industrial-plants)/update-plant-insurance/update-plant-insurance.module').then( m => m.UpdatePlantInsurancePageModule)
+  },
+  {
+    path: 'update-plant-leasing',
+    loadChildren: () => import('./(industrial-plants)/update-plant-leasing/update-plant-leasing.module').then( m => m.UpdatePlantLeasingPageModule)
+  },
+  {
+    path: 'update-plant-school',
+    loadChildren: () => import('./(industrial-plants)/update-plant-school/update-plant-school.module').then( m => m.UpdatePlantSchoolPageModule)
+  },
+  {
+    path: 'update-plant-showroom',
+    loadChildren: () => import('./(industrial-plants)/update-plant-showroom/update-plant-showroom.module').then( m => m.UpdatePlantShowroomPageModule)
+  },
+  {
+    path: 'update-plant-workshop',
+    loadChildren: () => import('./(industrial-plants)/update-plant-workshop/update-plant-workshop.module').then( m => m.UpdatePlantWorkshopPageModule)
+  },
+  {
+    path: 'plant-dealer-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-dealer-filter/plant-dealer-filter.module').then( m => m.PlantDealerFilterPageModule)
+  },
+   {
+    path: 'plant-exporter-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-exporter-filter/plant-exporter-filter.module').then( m => m.PlantExporterFilterPageModule)
+  },
+   {
+    path: 'plant-importer-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-importer-filter/plant-importer-filter.module').then( m => m.PlantImporterFilterPageModule)
+  },
+   {
+    path: 'plant-insurance-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-insurance-filter/plant-insurance-filter.module').then( m => m.PlantInsuranceFilterPageModule)
+  },
+   {
+    path: 'plant-leasing-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-leasing-filter/plant-leasing-filter.module').then( m => m.PlantLeasingFilterPageModule)
+  },
+   {
+    path: 'plant-school-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-school-filter/plant-school-filter.module').then( m => m.PlantSchoolFilterPageModule)
 
-
-
-
-
-
-
-
-
+  },
+   {
+    path: 'plant-showroom-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-showroom-filter/plant-showroom-filter.module').then( m => m.PlantShowroomFilterPageModule)
+  },
+   {
+    path: 'plant-workshop-filter',
+    loadChildren: () => import('./(industrial-plants)/plant-workshop-filter/plant-workshop-filter.module').then( m => m.PlantWorkshopFilterPageModule)
+  },
+ 
 
 ];
 

@@ -51,7 +51,7 @@ export class PlantDealerListingPage implements OnInit {
     localStorage.removeItem('selecteddealin');
   }
   filter(){
-    this.router.navigate(['machinery-dealer-filter']);
+    this.router.navigate(['plant-dealer-filter']);
   }
   fetchdealershipData() {
     

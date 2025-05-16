@@ -37,6 +37,8 @@ selectedFileArray: FileList | null = null;
       bcity: [''] ,// Assuming 'bcity' is the form control for city selection
       dealIn:[''],
       bcountry: [''],
+       bstartTime: [''],
+      bendTime: [''],
     });
     this.userID = sessionStorage.getItem('userId')??'';
     if(this.userID==''){
@@ -62,6 +64,8 @@ selectedFileArray: FileList | null = null;
       bcity: ['', Validators.required] , // Initialize bcity with an empty value
       dealIn: ['', Validators.required],
       bcountry: [''],
+       bstartTime: [''],
+      bendTime: [''],
     });
 
 
@@ -374,6 +378,8 @@ getFieldLabel(field: string): string {
     bemail: 'Email',
     bwebsite: 'Website',
     bcity: 'City',
+     bstartTime: 'Business Start Time',
+      bendTime: 'Business End Time',
     bcountry: 'Business Country',
   };
   return fieldLabels[field] || field;
@@ -398,7 +404,7 @@ async presentSuccessAlert(): Promise<void> {
     {
       text: 'OK',
       handler: () => {
-        this.route.navigateByUrl('/machinery-buseness', { skipLocationChange: true }).then(() => {
+        this.route.navigateByUrl('/plant-buseness', { skipLocationChange: true }).then(() => {
           this.route.navigate([this.router.url]);
         });
         

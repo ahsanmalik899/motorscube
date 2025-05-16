@@ -430,46 +430,46 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   navigateToPostDealer() {
-    this.route.navigate(['/post-machinery-dealer']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
+    this.route.navigate(['/post-plant-dealer']);  // Replace '/post-dealer' with the actual path to the Post Dealer page
   }
   navigateToPostShowroom() {
-    this.route.navigate(['/post-machinery-showroom']);
+    this.route.navigate(['/post-plant-showroom']);
   }
   navigateToPostInsurance() {
-    this.route.navigate(['/post-machinery-insurance']);
+    this.route.navigate(['/post-plant-insurance']);
   }
   navigateToPostLeasing() {
-    this.route.navigate(['/post-machinery-leasing']);
+    this.route.navigate(['/post-plant-leasing']);
   }
   navigateToPostImporter() {
-    this.route.navigate(['/post-machinery-importer']);
+    this.route.navigate(['/post-plant-importer']);
   }
   navigateToPostExporter() {
-    this.route.navigate(['/post-machinery-exporter']);
+    this.route.navigate(['/post-plant-exporter']);
   }
   navigateToPostWorkshop() {
-    this.route.navigate(['/post-machinery-workshop']);
+    this.route.navigate(['/post-plant-workshop']);
   }
   navigateToPostSchool() {
-    this.route.navigate(['/post-machinery-driving-school']);
+    this.route.navigate(['/post-plant-school']);
   }
 
   editDealer(id: any){
-    this.route.navigate(['/update-machinery-dealer'], {
+    this.route.navigate(['/update-plant-dealer'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editShowroom(id: any){
-    this.route.navigate(['/update-machinery-showroom'], {
+    this.route.navigate(['/update-plant-showroom'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editInsurance(id: any){
-    this.route.navigate(['/update-machinery-insurance'], {
+    this.route.navigate(['/update-plant-insurance'], {
       queryParams: {
         adsId: id,
       }
@@ -477,35 +477,35 @@ constructor(public route: Router, private popoverController: PopoverController, 
   }
 
   editLeasing(id: any){
-    this.route.navigate(['/update-machinery-leasing'], {
+    this.route.navigate(['/update-plant-leasing'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editImporter(id: any){
-    this.route.navigate(['/update-machinery-importer'], {
+    this.route.navigate(['/update-plant-importer'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editExporter(id: any){
-    this.route.navigate(['/update-machinery-exporter'], {
+    this.route.navigate(['/update-plant-exporter'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editWorkshop(id: any){
-    this.route.navigate(['/update-machinery-workshop'], {
+    this.route.navigate(['/update-plant-workshop'], {
       queryParams: {
         adsId: id,
       }
     });
   }
   editSchool(id: any){
-    this.route.navigate(['/update-machinery-driving-school'], {
+    this.route.navigate(['/update-plant-school'], {
       queryParams: {
         adsId: id,
       }
@@ -583,14 +583,14 @@ async fetchUpgradePost() {
       console.log('Filtered Data by User ID:', this.filteredCarPostData); // Check filtered data by user ID
 
       // Filter and assign data to respective post types
-      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery School');
-      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Workshop');
-      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Exporter');
-      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Importer');
-      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Leasing');
-      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Insurance');
-      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Showroom');
-      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Machinery Dealer');
+      this.schoolupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant School');
+      this.workshopupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Workshop');
+      this.exporterupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Exporter');
+      this.importerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Importer');
+      this.leasingupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Leasing');
+      this.insuranceupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Insurance');
+      this.showroomupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Showroom');
+      this.dealerupgrade = this.filteredCarPostData.filter(item => item.post_type === 'Plant Dealer');
 
       // Debug: Log the filtered arrays
       console.log('School Upgrade:', this.schoolupgrade);
@@ -612,21 +612,21 @@ checkPaymentButton(postType: string, id: string): boolean {
   let postData: any[] | undefined;
 
   // Manually check for each postType
-  if (postType === 'Machinery School') {
+  if (postType === 'Plant School') {
     postData = this.schoolupgrade;
-  } else if (postType === 'Machinery Workshop') {
+  } else if (postType === 'Plant Workshop') {
     postData = this.workshopupgrade;
-  } else if (postType === 'Machinery Exporter') {
+  } else if (postType === 'Plant Exporter') {
     postData = this.exporterupgrade;
-  } else if (postType === 'Machinery Importer') {
+  } else if (postType === 'Plant Importer') {
     postData = this.importerupgrade;
-  } else if (postType === 'Machinery Leasing') {
+  } else if (postType === 'Plant Leasing') {
     postData = this.leasingupgrade;
-  } else if (postType === 'Machinery Insurance') {
+  } else if (postType === 'Plant Insurance') {
     postData = this.insuranceupgrade;
-  } else if (postType === 'Machinery Showroom') {
+  } else if (postType === 'Plant Showroom') {
     postData = this.showroomupgrade;
-  } else if (postType === 'Machinery Dealer') {
+  } else if (postType === 'Plant Dealer') {
     postData = this. dealerupgrade;
   }
 

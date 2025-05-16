@@ -77,7 +77,7 @@ export class PlantShowroomListingPage implements OnInit {
     localStorage.removeItem('selectedmake');
   }
   filter(){
-    this.router.navigate(['machinery-showroom-filter']);
+    this.router.navigate(['plant-showroom-filter']);
   }
   fetchshowroomData() {
 

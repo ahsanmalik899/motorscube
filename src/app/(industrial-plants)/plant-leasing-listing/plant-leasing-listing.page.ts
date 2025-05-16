@@ -51,7 +51,7 @@ export class PlantLeasingListingPage implements OnInit {
     localStorage.removeItem('selectedmake');
   }
   filter(){
-    this.router.navigate(['machinery-leasing-filter']);
+    this.router.navigate(['plant-leasing-filter']);
   }
   fetchleasingData() {
     

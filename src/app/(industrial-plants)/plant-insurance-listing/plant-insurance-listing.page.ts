@@ -62,7 +62,7 @@ export class PlantInsuranceListingPage implements OnInit {
   }
   // Filter button to go to another page (e.g., filter options)
   filter() {
-    this.router.navigate(['machinery-insurance-filter']);
+    this.router.navigate(['plant-insurance-filter']);
   }
 
 // Fetch the insurance data from the backend with caching

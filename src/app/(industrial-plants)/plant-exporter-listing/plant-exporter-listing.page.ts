@@ -48,7 +48,7 @@ export class PlantExporterListingPage implements OnInit {
     localStorage.removeItem('selectedCity');
   }
   filter(){
-    this.router.navigate(['machinery-exporter-filter']);
+    this.router.navigate(['plant-exporter-filter']);
   }
   fetchExporterData() {
     
