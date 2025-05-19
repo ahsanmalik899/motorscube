@@ -30,7 +30,7 @@ interface Machinery {
 export class IndustrialPlantHomePage implements OnInit {
   CommercialSaleData: Machinery[] = [];
   CommercialHireData:Machinery[] = [];
-  isLoading: boolean | undefined;
+  isLoading: boolean = false;
   selectID: string | null | undefined;
   services = [
     {
@@ -91,31 +91,32 @@ back() {
 
 
 async preloadCommercialData(): Promise<void> {
-  this.isLoading = true; // Optional: Show loader in UI
+  this.isLoading = true;
 
-  forkJoin({
-    sale: this.plantsservice.getPlantSale(),
-    hire: this.plantsservice.getPlantHire()
-  })
-    .pipe(
-      tap(({ sale, hire }) => {
-        this.CommercialSaleData = sale;
-        this.CommercialHireData = hire;
-        console.log('✅ Commercial Sale Data:', sale);
-        console.log('✅ Commercial Hire Data:', hire);
-      }),
-      finalize(() => {
-        this.isLoading = false; // Optional: Hide loader
-      })
-    )
-    .subscribe({
-      error: (error) => {
-        console.error('❌ Error loading commercial data:', error);
-        // Optionally show a toast/snackbar here
-      }
-    });
+  try {
+    const result = await forkJoin({
+      sale: this.plantsservice.getPlantSale(),
+      hire: this.plantsservice.getPlantHire()
+    }).toPromise();
+
+    if (result) {
+      this.CommercialSaleData = result.sale || [];
+      this.CommercialHireData = result.hire || [];
+      console.log('✅ Commercial Sale Data:', this.CommercialSaleData);
+      console.log('✅ Commercial Hire Data:', this.CommercialHireData);
+    }
+  } catch (error) {
+    console.error('❌ Error loading commercial data:', error);
+    this.CommercialSaleData = [];
+    this.CommercialHireData = [];
+  } finally {
+    this.isLoading = false;
+  }
 }
 
+isDataEmpty(data: Machinery[]): boolean {
+  return !data || data.length === 0;
+}
 
 navigateToMainMenu(): void {
   if (this.selectID) {

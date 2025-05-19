@@ -38,7 +38,7 @@
             </button>
           </div>
 
-          <div *ngIf="CommercialSaleData && CommercialSaleData.length > 0; else noData">
+          <div *ngIf="!isLoading && !isDataEmpty(CommercialSaleData); else noData">
             <swiper-container [slidesPerView]="1" [spaceBetween]="16" [loop]="true" 
                              [autoplay]="{ delay: 3000 }" [pagination]="{ clickable: true }" 
                              [navigation]="true" style="height: 380px; overflow: hidden; padding: 0 16px;">
@@ -83,13 +83,13 @@
           </div>
 
           <ng-template #noData>
-            <div style="text-align: center; padding: 48px 24px; background: #f8f9fa; border-radius: 16px; margin: 0 16px; height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <img src="../../assets/plant/home/default-plant.jpg" style="width: 80px; height: 80px; margin-bottom: 16px; opacity: 0.5;" alt="No data">
-              <p style="color: #666; font-size: 16px; margin: 0 0 8px 0; font-weight: 500;">No Supreme Ads Available</p>
-              <p style="color: #999; font-size: 14px; margin: 0 0 16px 0;">Be the first to list your plant as a Supreme ad</p>
-              <button (click)="carSalePosting()" style="background: #FF4B2B; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,75,43,0.2);">
+            <div class="empty-state">
+              <ion-icon name="construct-outline" class="empty-icon"></ion-icon>
+              <h2>No Supreme Ads Available</h2>
+              <p>Be the first to list your industrial plant and get maximum visibility</p>
+              <ion-button expand="block" (click)="carSalePosting()" class="list-button">
                 List Your Plant
-              </button>
+              </ion-button>
             </div>
           </ng-template>
         </ion-card-header>
@@ -113,7 +113,7 @@
             </button>
           </div>
 
-          <div *ngIf="CommercialHireData && CommercialHireData.length > 0; else noHireData">
+          <div *ngIf="!isLoading && !isDataEmpty(CommercialHireData); else noHireData">
             <swiper-container [slidesPerView]="1" [spaceBetween]="16" [loop]="true" 
                              [autoplay]="{ delay: 3000 }" [pagination]="{ clickable: true }" 
                              [navigation]="true" style="height: 380px; overflow: hidden; padding: 0 16px;">
@@ -128,7 +128,7 @@
                       <img *ngIf="!commercial.image_url1" src="../../assets/plant/home/default-plant.jpg"
                            style="width: 100%; height: 100%; object-fit: contain; background: #f8f9fa;" 
                            alt="Default plant image"/>
-                      <div style="position: absolute; top: 16px; right: 16px; background: rgba(255,75,43,0.95); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: white; backdrop-filter: blur(4px);">
+                      <div style="position: absolute; top: 16px; right: 16px; background: rgba(33,150,243,0.95); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: white; backdrop-filter: blur(4px);">
                         For Hire
                       </div>
                     </div>
@@ -143,10 +143,10 @@
                         </p>
                       </div>
                       <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <p style="font-size: 20px; color: #FF4B2B; font-weight: 700; margin: 0;">
+                        <p style="font-size: 20px; color: #2196F3; font-weight: 700; margin: 0;">
                           PKR {{ commercial.price }}/day
                         </p>
-                        <button style="background: #FF4B2B; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,75,43,0.2);">
+                        <button style="background: #2196F3; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(33,150,243,0.2);">
                           View Details
                         </button>
                       </div>
@@ -158,13 +158,13 @@
           </div>
 
           <ng-template #noHireData>
-            <div style="text-align: center; padding: 48px 24px; background: #f8f9fa; border-radius: 16px; margin: 0 16px; height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <img src="../../assets/plant/home/default-plant.jpg" style="width: 80px; height: 80px; margin-bottom: 16px; opacity: 0.5;" alt="No data">
-              <p style="color: #666; font-size: 16px; margin: 0 0 8px 0; font-weight: 500;">No Supreme Ads for Hire</p>
-              <p style="color: #999; font-size: 14px; margin: 0 0 16px 0;">Be the first to list your plant for hire as a Supreme ad</p>
-              <button (click)="carHirePosting()" style="background: #FF4B2B; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,75,43,0.2);">
+            <div class="empty-state">
+              <ion-icon name="time-outline" class="empty-icon"></ion-icon>
+              <h2>No Supreme Ads for Hire</h2>
+              <p>List your industrial plant for hire and reach potential customers</p>
+              <ion-button expand="block" (click)="carHirePosting()" class="list-button">
                 List for Hire
-              </button>
+              </ion-button>
             </div>
           </ng-template>
         </ion-card-header>
@@ -210,5 +210,11 @@
         <img src="../../../assets/Landing page/footer-icon/profile.png" style="width: 24px; height: 24px;" alt="Profile">
       </div>
     </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading...</p>
   </div>
 </ion-content>
