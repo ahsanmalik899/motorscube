@@ -112,11 +112,11 @@ export class PlantSchoolListingPage implements OnInit {
       car.post_status === 'Active' &&
       (city.length === 0 || city.includes(car.school_city)) &&
       (conditions.length === 0 || conditions.includes(car.school_featured_type))&&
-      (selectedDealin.length === 0 || selectedDealin.includes(car.school_vehicle_type))
+      (selectedDealin.length === 0 || selectedDealin.includes(car.school_sector))
     );
   }
   navigateToschoolSingle(id: string) {
-    this.router.navigate(['/machinery-driving-school-single-view'], {
+    this.router.navigate(['/plant-school-single-view'], {
       queryParams: {
         schoolId: id,
       }

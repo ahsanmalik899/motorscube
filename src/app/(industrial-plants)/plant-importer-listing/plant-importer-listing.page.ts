@@ -46,9 +46,11 @@ export class PlantImporterListingPage implements OnInit {
 
   back() {
     this.router.navigate(['industrial-plant-home']);
+    localStorage.removeItem('selectedCity');
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
-    localStorage.removeItem('selectedCity');
+    localStorage.removeItem('selecteddealin');
+    localStorage.removeItem('selectedmake');
   }
   filter(){
     this.router.navigate(['plant-importer-filter']);
@@ -114,7 +116,7 @@ export class PlantImporterListingPage implements OnInit {
     );
   }
   navigateToimporterSingle(id: string) {
-    this.router.navigate(['/machinery-importer-singleview'], {
+    this.router.navigate(['/plant-importer-single-view'], {
       queryParams: {
         importerId: id,
       }

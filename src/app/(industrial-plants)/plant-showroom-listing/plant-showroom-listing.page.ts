@@ -71,10 +71,10 @@ export class PlantShowroomListingPage implements OnInit {
   }
   back() {
     this.router.navigate(['industrial-plant-home']);
-    localStorage.removeItem('selectedcon');
-    localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
-    localStorage.removeItem('selectedmake');
+  localStorage.removeItem('selectedcon');
+  localStorage.removeItem('selectedcity');
+  localStorage.removeItem('selecteddealin');
   }
   filter(){
     this.router.navigate(['plant-showroom-filter']);
@@ -114,7 +114,7 @@ export class PlantShowroomListingPage implements OnInit {
     );
   }
   navigateToshowroomSingle(id: string) {
-    this.router.navigate(['/machinery-showroom-single-view'], {
+    this.router.navigate(['/plant-showroom-single-view'], {
       queryParams: {
         showroomId: id,
       }

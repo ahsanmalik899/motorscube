@@ -53,11 +53,12 @@ export class PlantInsuranceListingPage implements OnInit {
 
   // Navigate back to the previous page
   back() {
-    localStorage.removeItem('selectedcon');
-    localStorage.removeItem('selectedcity');
     this.router.navigate(['industrial-plant-home']);
-    localStorage.removeItem('selectedCity');
-    localStorage.removeItem(' selectedmake');
+    localStorage.removeItem('selectedcon');
+  localStorage.removeItem('selectedcity');
+  localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selecteddealin');
+  localStorage.removeItem('selectedmake');
    
   }
   // Filter button to go to another page (e.g., filter options)
@@ -115,7 +116,7 @@ fetchinsuranceData() {
 
   // Navigate to the single insurance view page
   navigateToinsuranceSingle(id: string) {
-    this.router.navigate(['/machinery-insurance-single-view'], {
+    this.router.navigate(['/plant-insurance-single-view'], {
       queryParams: {
         insuranceId: id,
       }

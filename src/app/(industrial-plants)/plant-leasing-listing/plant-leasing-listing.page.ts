@@ -45,10 +45,11 @@ export class PlantLeasingListingPage implements OnInit {
 
   back() {
     this.router.navigate(['industrial-plant-home']);
-    localStorage.removeItem('selectedcon');
-    localStorage.removeItem('selectedcity');
-    localStorage.removeItem('selectedCity');
-    localStorage.removeItem('selectedmake');
+      localStorage.removeItem('selectedcon');
+  localStorage.removeItem('selectedcity');
+  localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selecteddealin');
+  localStorage.removeItem('selectedmake');
   }
   filter(){
     this.router.navigate(['plant-leasing-filter']);
@@ -115,7 +116,7 @@ export class PlantLeasingListingPage implements OnInit {
     );
   }
   navigateToleasingSingle(id: string) {
-    this.router.navigate(['/machinery-leasing-single-view'], {
+    this.router.navigate(['/plant-leasing-single-view'], {
       queryParams: {
         leasingId: id,
       }

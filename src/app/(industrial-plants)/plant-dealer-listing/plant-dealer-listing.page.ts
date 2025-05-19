@@ -45,10 +45,11 @@ export class PlantDealerListingPage implements OnInit {
 
   back() {
     this.router.navigate(['industrial-plant-home']);
-    localStorage.removeItem('selectedcon');
+   localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedCity');
     localStorage.removeItem('selecteddealin');
+    localStorage.removeItem('selectedmake');
   }
   filter(){
     this.router.navigate(['plant-dealer-filter']);
@@ -117,7 +118,7 @@ export class PlantDealerListingPage implements OnInit {
   }
 
   navigateToDealerSingle(id: string) {
-    this.router.navigate(['/machinery-dealer-single-view'], {
+    this.router.navigate(['/plant-dealer-single-view'], {
       queryParams: {
         dealerId: id,
       }

@@ -43,9 +43,11 @@ export class PlantExporterListingPage implements OnInit {
   }
   back() {
     this.router.navigate(['industrial-plant-home']);
-    localStorage.removeItem('selectedcon');
-    localStorage.removeItem('selectedcity');
-    localStorage.removeItem('selectedCity');
+     localStorage.removeItem('selectedcon');
+  localStorage.removeItem('selectedcity');
+  localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selecteddealin');
+  localStorage.removeItem('selectedmake');
   }
   filter(){
     this.router.navigate(['plant-exporter-filter']);
@@ -114,7 +116,7 @@ export class PlantExporterListingPage implements OnInit {
   }
 
   navigateToexporterSingle(id: string) {
-    this.router.navigate(['/machinery-exporter-single-view'], {
+    this.router.navigate(['/plant-exporter-single-view'], {
       queryParams: {
         exporterId: id,
       }

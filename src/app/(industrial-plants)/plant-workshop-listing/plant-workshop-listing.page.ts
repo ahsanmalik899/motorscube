@@ -49,11 +49,10 @@ export class PlantWorkshopListingPage implements OnInit {
   }
   back() {
     this.router.navigate(['industrial-plant-home']);
-    localStorage.removeItem('selectedcon');
-    localStorage.removeItem('selectedcity');
-    localStorage.removeItem('selectedCity');
     localStorage.removeItem('selectedconditions');
-    localStorage.removeItem('selectedmake');
+  localStorage.removeItem('selectedCity');
+  localStorage.removeItem('selectedcon');
+  localStorage.removeItem('selectedcity');
   }
   
 
@@ -127,7 +126,7 @@ export class PlantWorkshopListingPage implements OnInit {
   }
 
   navigateToworkshopSingle(id: string) {
-    this.router.navigate(['/machinery-workshop-single-view'], {
+    this.router.navigate(['/plant-workshoop-single-view'], {
       queryParams: {
         workshopId: id,
       }
