@@ -67,10 +67,8 @@
   margin-right: 3px;
   margin-top: -3px;
   height: 180px !important;
-  // width: 400px !important;
   width: 95% !important;
   border-radius: 10px !important;
-  // background: white !important;
   background: rgb(0 0 0 / 12%) !important;
   border: 2px !important;
 }
@@ -82,12 +80,10 @@
   margin-left: 5px;
   margin-right: 3px;
   margin-top: -3px;
-  height: 260px !important;
-  // width: 400px !important;
+  height: 180px !important;
   width: 95% !important;
   border-radius: 10px !important;
   background: white !important;
-  // background: rgb(0 0 0 / 12%) !important;
   border: 2px !important;
 }
 .clr-white{
@@ -99,13 +95,12 @@
   margin-left: 5px;
   margin-right: 3px;
   margin-top: -3px;
-  height: 310px !important;
-  // width: 400px !important;
+  height: 180px !important;
   width: 95% !important;
   border-radius: 10px !important;
   background: white !important;
-  // background: rgb(0 0 0 / 12%) !important;
   border: 2px !important;
+  margin-bottom: 10px;
 }
 .clr-white{
   color: gray !important;
@@ -117,17 +112,27 @@
   margin-right: 3px;
   margin-top: -3px;
   height: 180px !important;
-  // width: 400px !important;
   width: 95% !important;
   border-radius: 10px !important;
   background: white !important;
   border: 2px !important;
+  margin-bottom: 10px;
 }
 .clr-white{
   color: gray !important;
   margin-top: 100px;
 }
 
+.btn-accessories{
+  margin-left: 5px;
+  margin-right: 3px;
+  margin-top: -3px;
+  height: 180px !important;
+  width: 95% !important;
+  border-radius: 10px !important;
+  background: white !important;
+  border: 2px !important;
+}
 
 .bottom{
   .btn_bottom{
@@ -968,7 +973,6 @@ ion-content {
     }
   }
 }
-
 .accessories-card {
   background: linear-gradient(135deg, #2196f3 0%, #64b5f6 50%, #90caf9 75%, #bbdefb 100%) !important;
   border: none !important;
@@ -1030,3 +1034,4 @@ ion-content {
     }
   }
 }
+
