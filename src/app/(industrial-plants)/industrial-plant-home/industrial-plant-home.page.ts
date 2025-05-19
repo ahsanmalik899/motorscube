@@ -100,7 +100,7 @@ navigateToCarDetail(carId: string): void {
 carHirePosting(): void {
   
   if (this.selectID) {
-    this.router.navigate(['/post-machinery-hire']);
+    this.router.navigate(['/post-plant-hire']);
   } else {
     this.router.navigate(['/login']);
   }
@@ -109,7 +109,7 @@ carHirePosting(): void {
 carSalePosting(): void {
 
   if (this.selectID) {
-    this.router.navigate(['/post-machinery-sale']);
+    this.router.navigate(['/post-plant-sale']);
   } else {
     this.router.navigate(['/login']);
   }

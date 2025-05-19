@@ -4,7 +4,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black; font-size: 17px;">Post your Machinery for Hire</ion-label>
+    <ion-label style="color: black; font-size: 17px;">Post your Plant for Hire</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
 
       <ion-row style="margin-top: 25px;">
         <img src="../../assets/machinery-section/crane.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: -10px" fill="clear;" />
-        <p style="margin-left: 20px;">Machinery condition</p></ion-row>
+        <p style="margin-left: 20px;">Plant condition</p></ion-row>
 
   <div style="width: 100%; margin-left: 30px; text-align: center; margin-top: -20px;">
     <ion-col>
@@ -51,7 +51,7 @@
   <input type="text" placeholder="e.g abc" [(ngModel)]="plantname" style="height: 40px; width: 230px; border-radius: 10px; box-shadow: 0 0 10px;">
 </div>
 <ion-row><img src="../../../assets/extra-icon/location.png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Machinery location</p>
+<p style="margin-left: 20px; margin-top: 20px;">Plant location</p>
 <div id="click-trigger_city" [hidden]="!showcar" trigger="click-trigger_city" triggerAction="click" >  <img src="../../../assets/extra-icon/add.png" (change)="getcitylist()" style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
   <div *ngIf="divVisible">
@@ -124,7 +124,7 @@
 <!--  -->
 
 <ion-row><img src="../../assets/machinery-section/crane-truck (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Machinery Type</p>
+<p style="margin-left: 20px; margin-top: 20px;">Plant Type</p>
 <div [hidden]="!showmodel" id="click-trigger_model" trigger="click-trigger_model" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -153,7 +153,7 @@
 
 
 <ion-row><img src="../../assets/machinery-section/crane-truck (1).png" style="height: 30px; width: 30px; margin-left: 10px; margin-top: 10px;" fill="clear;"/>
-<p style="margin-left: 20px; margin-top: 20px;">Machinery Sub Type</p>
+<p style="margin-left: 20px; margin-top: 20px;">Plant Sub Type</p>
 <div [hidden]="!showversion" id="click-trigger_version" trigger="click-trigger_version" triggerAction="click">
   <img src="../../../assets/extra-icon/add.png"  style="height: 30px; width: 30px; position: absolute; right: 30px; margin-top: 15px;" fill="clear;"/>
 </div></ion-row>
@@ -354,7 +354,7 @@
     <ion-item-divider style="height: 1px; margin-top: -25px; width: 100%; margin-left: 0px;"></ion-item-divider>  
     
     <div style="margin: 15px 0px 0px 15px;">
-      <strong style="color: #1a529c; font-size: 15px;">About Machinery</strong>
+      <strong style="color: #1a529c; font-size: 15px;">About Plant</strong>
     </div>
     
     <ion-row>
