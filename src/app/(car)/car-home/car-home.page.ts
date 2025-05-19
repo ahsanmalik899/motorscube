@@ -6,32 +6,29 @@ import { AuthService } from 'src/app/(services)/auth.service';
 import { IonicSlides } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { forkJoin, tap } from 'rxjs';
+
 interface Car {
-car_ad_sale_id: string;
-car_ad_hire_id: string;
-car_ad_normal_feature: any;
-image_url2: any;
-car_make: any;
-car_model: any;
-car_version: any;
-car_price: any;
-  id: any;
-  make: any;
-  model: any;
-  price: any;
-  image_url: any;  // Replace with actual field names returned by your API
+  car_ad_sale_id: string;
+  car_ad_hire_id: string;
+  car_ad_normal_feature: any;
+  image_url1: string;
+  image_url2: string;
+  car_make: string;
+  car_model: string;
+  car_version: string;
+  car_price: number;
 }
 
 @Component({
-    selector: 'app-car-home',
-    templateUrl: './car-home.page.html',
-    styleUrls: ['./car-home.page.scss'],
-    standalone: false
+  selector: 'app-car-home',
+  templateUrl: './car-home.page.html',
+  styleUrls: ['./car-home.page.scss'],
+  standalone: false
 })
 export class CarHomePage implements OnInit {
-back() {
-this.router.navigate(['/home']);
-}
+  back() {
+    this.router.navigate(['/home']);
+  }
   
   slideOpts = {
     initialSlide: 0,  
@@ -50,23 +47,30 @@ this.router.navigate(['/home']);
   carSaleData: Car[] = [];
   carHireData: Car[] = [];
   displayedAds = 0;
-  selectID: string | null = null; // Ensure this is properly initialized or assigned
+  selectID: string | null = null;
+  selectedIcon: string = 'home';
+
+  services = [
+    { icon: '../../assets/Menu-items/After login/Car menu/insurance.png', title: 'Insurance', action: () => this.carInsurance() },
+    { icon: '../../../assets/Menu-items/After login/Car menu/leasing.png', title: 'Leasing', action: () => this.carLeasing() },
+    { icon: '../../../assets/Menu-items/After login/Bike menu/dealer.png', title: 'Dealers', action: () => this.carDealer() },
+    { icon: '../../../assets/Menu-items/After login/Bike menu/showroom.png', title: 'Showrooms', action: () => this.carShowroom() },
+    { icon: '../../../assets/Menu-items/After login/Car menu/importer.png', title: 'Importers', action: () => this.carImporter() },
+    { icon: '../../../assets/Menu-items/After login/Car menu/exporter.png', title: 'Exporters', action: () => this.carExporter() },
+    { icon: '../../../assets/Menu-items/After login/Bike menu/workshops.png', title: 'Workshops', action: () => this.carWorkshop() }
+  ];
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute,
-    
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    // Fetch data only if it is not available in cache
     this.preloadCarData();
-    
-    // Fetch user ID for routing decisions
     this.authService.userID$.subscribe(userID => {
-      this.selectID = userID; // Update the userID in the component
+      this.selectID = userID;
     });
     this.selectID = localStorage.getItem('userId');
   }
@@ -76,28 +80,19 @@ this.router.navigate(['/home']);
     const cachedCarHireData = localStorage.getItem('carHireData');
   
     if (cachedCarSaleData && cachedCarHireData) {
-      // Use cached data for faster access
       this.carSaleData = JSON.parse(cachedCarSaleData);
       this.carHireData = JSON.parse(cachedCarHireData);
-  
     } else {
-      // Make API requests if no cached data exists
       forkJoin([
         this.userService.getCarSale(),
         this.userService.getCarHire()
       ])
         .pipe(
-          // When the response comes in, store it in localStorage
           tap(([carSaleData, carHireData]) => {
-            
-  
-            // Store data in localStorage for faster access next time
             localStorage.setItem('carSaleData', JSON.stringify(carSaleData));
             localStorage.setItem('carHireData', JSON.stringify(carHireData));
-  
-            // Update component state
             this.carSaleData = carSaleData;
-            this.carHireData = carHireData;  
+            this.carHireData = carHireData;
           })
         )
         .subscribe({
@@ -108,19 +103,10 @@ this.router.navigate(['/home']);
     }
   }
   
-
-  
-
-  // Separate method to check userId and navigate
- 
-
   navigateToMainMenu(): void {
     if (this.selectID) {
       this.router.navigate(['/main-menu-after-login']);
-      // Redirect to main-menu if userID is not available
-    
-    }
-    else{
+    } else {
       this.router.navigate(['/main-menu']);
     }
   }
@@ -134,7 +120,6 @@ this.router.navigate(['/home']);
   }
 
   carHirePosting(): void {
-  
     if (this.selectID) {
       this.router.navigate(['/car-hire']);
     } else {
@@ -143,7 +128,6 @@ this.router.navigate(['/home']);
   }
 
   carSalePosting(): void {
-
     if (this.selectID) {
       this.router.navigate(['/car-sale-post']);
     } else {
@@ -199,10 +183,14 @@ this.router.navigate(['/home']);
     });
   }
 
-  selectedIcon: string = 'home'; // Set 'home' as the default selected icon
-
-  // Method to handle icon selection
   selectIcon(icon: string) {
     this.selectedIcon = icon;
+  }
+
+  onImageError(event: Event): void {
+    const imgElement = event.target as HTMLImageElement;
+    if (imgElement) {
+      imgElement.src = '../../assets/Carsection/default-car.jpg';
+    }
   }
 }

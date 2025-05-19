@@ -156,8 +156,47 @@ selectIcon(arg0: string) {
 throw new Error('Method not implemented.');
 }
 
-
-
- 
+services = [
+  {
+    icon: '/../assets/commercialsection/common/truck.png',
+    title: 'Insurance',
+    action: () => this.carInsurance()
+  },
+  {
+    icon: '../../../assets/Menu-items/After login/All other section menu/laeasing.png',
+    title: 'Leasing',
+    action: () => this.carLeasing()
+  },
+  {
+    icon: '../../../assets/Menu-items/After login/All other section menu/dealer.png',
+    title: 'Dealers',
+    action: () => this.carDealer()
+  },
+  {
+    icon: '/../assets/commercialsection/common/showroom.png',
+    title: 'Showrooms',
+    action: () => this.carShowroom()
+  },
+  {
+    icon: '../../../assets/Menu-items/After login/All other section menu/importer.png',
+    title: 'Importers',
+    action: () => this.carImporter()
+  },
+  {
+    icon: '../../../assets/Menu-items/After login/All other section menu/exporter.png',
+    title: 'Exporters',
+    action: () => this.carExporter()
+  },
+  {
+    icon: '../../../assets/Menu-items/After login/All other section menu/driving-school.png',
+    title: 'Driving School',
+    action: () => this.carSchool()
+  },
+  {
+    icon: '../../../assets/Menu-items/After login/All other section menu/workshops.png',
+    title: 'Workshops',
+    action: () => this.carWorkshop()
+  }
+];
 
 }
