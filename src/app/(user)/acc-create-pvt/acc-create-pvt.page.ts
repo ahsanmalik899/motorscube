@@ -12,36 +12,26 @@ import { IonicModule } from '@ionic/angular';
   standalone: false,
 })
 export class AccCreatePvtPage implements OnInit {
-onInputFocus(arg0: string) {
-throw new Error('Method not implemented.');
-}
-onInputBlur(arg0: string) {
-throw new Error('Method not implemented.');
-}
-
-  back() {
-    history.back();
-  }
-
   userForm: FormGroup;
+  countryCode: string[] = ['+1', '+44', '+91', '+61', '+86', '+81', '+49', '+33', '+39', '+34'];
+  isLoading: boolean = false;
   showPassword = false;
   passwordToggleIcon = 'eye';
-  countryCode: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService, 
+    private userService: UserService,
     private alertController: AlertController,
-    private NavController: NavController,
-    private loadingController: LoadingController, // Inject LoadingController
-    private router: Router // Inject Router
+    private navCtrl: NavController,
+    private loadingController: LoadingController,
+    private router: Router
   ) {
     this.userForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      country: ['+92'], // Default country code to +92
-      mobile: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      country: ['+91', Validators.required],
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       email: ['', [Validators.required, Validators.email]],
-      password: [''] // Add validation for password
+      password: ['']
     });
   }
 
@@ -49,7 +39,20 @@ throw new Error('Method not implemented.');
     this.getCountryCode();
   }
 
-  // Fetch country codes from the backend service
+  onInputFocus(field: string): void {
+    const control = this.userForm.get(field);
+    if (control) {
+      control.markAsTouched();
+    }
+  }
+
+  onInputBlur(field: string): void {
+    const control = this.userForm.get(field);
+    if (control) {
+      control.markAsTouched();
+    }
+  }
+
   getCountryCode(): void {
     this.userService.getCountryCode().subscribe({
       next: (data) => {
@@ -62,88 +65,71 @@ throw new Error('Method not implemented.');
     });
   }
 
-  // Toggles the visibility of the password
   togglePassword(): void {
     this.showPassword = !this.showPassword;
     this.passwordToggleIcon = this.showPassword ? 'eye-off' : 'eye';
   }
 
-  // Submit the form and handle the validation
   async saveUser(): Promise<void> {
-    // Show the loading spinner
-    const loading = await this.loadingController.create({
-      message: 'Creating Account...',
-      spinner: 'crescent', // You can use other spinner styles like 'dots', 'lines', etc.
-      backdropDismiss: false
-    });
-    await loading.present(); // Show the loader
-
-    // Check the validity of the form
     if (this.userForm.valid) {
-      console.log('User data:', this.userForm.value);
+      this.isLoading = true;
+      try {
+        console.log('User data:', this.userForm.value);
 
-      // Check the country code and decide which service method to call
-      if (this.userForm.get('country')?.value === '+92') {
-        // Country code is +92, so call the saveUserWithPhone method
-        this.userService.saveUserWithPhone(this.userForm.value).subscribe(
-          async response => {
-            await loading.dismiss(); // Dismiss the loader
-
-            if (response && response.error === 'Phone number is already registered') {
-              await this.presentErrorAlert('This phone number is already registered.');
-            } else if (response && response.error === 'Email is already registered') {
-              await this.presentErrorAlert('This email is already registered.');
-            } else {
-              // Reset the form after successful submission
-              this.userForm.reset();
-              await this.presentSuccessAlert('Your password has been sent to your phone via SMS.');
+        if (this.userForm.get('country')?.value === '+92') {
+          this.userService.saveUserWithPhone(this.userForm.value).subscribe(
+            async response => {
+              if (response && response.error === 'Phone number is already registered') {
+                await this.presentErrorAlert('This phone number is already registered.');
+              } else if (response && response.error === 'Email is already registered') {
+                await this.presentErrorAlert('This email is already registered.');
+              } else {
+                this.userForm.reset();
+                await this.presentSuccessAlert('Your password has been sent to your phone via SMS.');
+              }
+            },
+            async error => {
+              console.error('Error:', error);
+              await this.presentErrorAlert('An error occurred while registering the user.');
             }
-          },
-          async error => {
-            await loading.dismiss(); // Dismiss the loader in case of error
-            console.error('Error:', error);
-            await this.presentErrorAlert('An error occurred while registering the user.');
-          }
-        );
-      } else {
-        // Country code is not +92, so call the saveUserWithEmail method
-        this.userService.saveUserWithEmail(this.userForm.value).subscribe(
-          async response => {
-            await loading.dismiss(); // Dismiss the loader
-
-            if (response && response.error === 'Email is already registered') {
-              await this.presentErrorAlert('This email is already registered.');
-            } else {
-              // Reset the form after successful submission
-              this.userForm.reset();
-              await this.presentSuccessAlert('Your password has been sent to your email.');
+          );
+        } else {
+          this.userService.saveUserWithEmail(this.userForm.value).subscribe(
+            async response => {
+              if (response && response.error === 'Email is already registered') {
+                await this.presentErrorAlert('This email is already registered.');
+              } else {
+                this.userForm.reset();
+                await this.presentSuccessAlert('Your password has been sent to your email.');
+              }
+            },
+            async error => {
+              console.error('Error:', error);
+              await this.presentErrorAlert('An error occurred while registering the user.');
             }
-          },
-          async error => {
-            await loading.dismiss(); // Dismiss the loader in case of error
-            console.error('Error:', error);
-            await this.presentErrorAlert('An error occurred while registering the user.');
-          }
-        );
+          );
+        }
+      } catch (error) {
+        console.error('Error creating user:', error);
+      } finally {
+        this.isLoading = false;
       }
     } else {
-      await loading.dismiss(); // Dismiss the loader if form is invalid
-      await this.showFieldValidityAlert(); // Show validation alert if form is invalid
+      await this.showFieldValidityAlert();
     }
   }
 
-  // Show success alert after form submission
   async presentSuccessAlert(message: string): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Success',
-      message: message,  // Custom success message based on the country code
+      message: message,
       cssClass: 'success-alert',
       buttons: [
         {
           text: 'OK',
           handler: () => {
-            if (this.NavController) {
-              this.NavController.navigateForward('/login'); // Navigate to the login page after success
+            if (this.navCtrl) {
+              this.navCtrl.navigateForward('/login');
             }
           }
         }
@@ -153,7 +139,6 @@ throw new Error('Method not implemented.');
     await alert.present();
   }
 
-  // Show error alert with a custom message
   async presentErrorAlert(message: string): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Error',
@@ -165,7 +150,6 @@ throw new Error('Method not implemented.');
     await alert.present();
   }
 
-  // Show alert with the names of the invalid fields
   async showFieldValidityAlert(): Promise<void> {
     const fieldNames = ['name', 'country', 'mobile', 'email', 'password'];
     const invalidFields: string[] = [];
@@ -185,5 +169,9 @@ throw new Error('Method not implemented.');
       });
       await alert.present();
     }
+  }
+
+  back() {
+    this.navCtrl.back();
   }
 }

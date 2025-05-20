@@ -86,9 +86,8 @@ export class HomePage implements OnInit, OnDestroy {
           // Handle profile picture URL
           if (user.user_logo) {
             // If the URL is relative, add the base URL
-            this.userProfilePic = user.user_logo.startsWith('http') 
-              ? user.user_logo 
-              : this.baseUrl + user.user_logo;
+            this.userProfilePic =  user.image_url1
+            ;
           } else {
             this.userProfilePic = '';
           }

@@ -10,12 +10,13 @@
   </ion-toolbar>
 </ion-header> -->
 <ion-header>
-  <ion-toolbar class="bg-toolbar">
-    <ion-buttons slot="start" class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
-      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
-      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+  <ion-toolbar class="modern-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" class="back-button">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-label style="color: black;">Create Account (Private)</ion-label>
+    <ion-title>Create Account (Private)</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,9 +24,11 @@
   <div class="container">
     <!-- Logo Section -->
     <div class="logo-section">
-      <img src="assets/images/menue" alt="Motors Cube Logo" class="logo">
+      <div class="logo-wrapper">
+        <img src="../../../assets/menu-toolbar.png" alt="Logo" class="logo">
+      </div>
       <h1 class="brand-text">Motors Cube</h1>
-      <p>Create your account to get started</p>
+      <p class="tagline">Create your account to get started</p>
     </div>
 
     <!-- Form Container -->
@@ -41,8 +44,13 @@
             formControlName="name" 
             (focus)="onInputFocus('name')" 
             (blur)="onInputBlur('name')"
-            placeholder="Full Name"
+            placeholder=" "
           >
+          <label for="name" [class.active]="userForm.get('name')?.value">Full Name</label>
+          <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="error-message">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            Please enter your full name
+          </div>
         </div>
 
         <!-- Country Code Input -->
@@ -57,6 +65,7 @@
           >
             <option *ngFor="let code of countryCode" [value]="code">{{ code }}</option>
           </select>
+          <label for="country" [class.active]="userForm.get('country')?.value">Country Code</label>
         </div>
 
         <!-- Mobile Input -->
@@ -66,13 +75,17 @@
             type="tel" 
             id="mobile" 
             class="text-field" 
-            aria-placeholder="3xxxxxxxxx" 
             maxlength="10" 
             formControlName="mobile" 
             (focus)="onInputFocus('mobile')" 
             (blur)="onInputBlur('mobile')"
-            placeholder="Mobile Number"
+            placeholder=" "
           >
+          <label for="mobile" [class.active]="userForm.get('mobile')?.value">Mobile Number</label>
+          <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched" class="error-message">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            Please enter a valid mobile number
+          </div>
         </div>
 
         <!-- Email Input -->
@@ -82,19 +95,32 @@
             type="email" 
             id="email" 
             class="text-field" 
-            aria-placeholder="ABC@abc.com" 
             formControlName="email" 
             (focus)="onInputFocus('email')" 
             (blur)="onInputBlur('email')"
-            placeholder="Email Address"
+            placeholder=" "
           >
+          <label for="email" [class.active]="userForm.get('email')?.value">Email Address</label>
+          <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            Please enter a valid email address
+          </div>
         </div>
 
         <!-- Submit Button -->
-        <div class="form-button-container">
-          <button type="submit" class="submit-btn">Create Account</button>
-        </div>
+        <button type="submit" [disabled]="!userForm.valid" class="submit-btn">
+          <ion-icon name="person-add-outline"></ion-icon>
+          <span>Create Account</span>
+        </button>
       </form>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="loading-content">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Creating your account...</p>
     </div>
   </div>
 </ion-content>

@@ -21,8 +21,8 @@ export class WalletBundlesPage implements OnInit {
   isDiv1Visible = false;
   isDivVisible = false;
   isButtunVisible = true;
-  istrasactiondiv  = false;
-transactiondetail = false;
+  istrasactiondiv = false;
+  transactiondetail = false;
   bundleType='';
   savingPercentage!: number;
   bundlePrice!: number;
@@ -30,38 +30,68 @@ transactiondetail = false;
   transType='';
   maxID!: number;
 
-
   constructor(private route: Router, private alertController: AlertController, private userService: UserService,) {
-
     this.userID = sessionStorage.getItem('userId') ?? '';  // Fallback to empty string if null
     this.userType = sessionStorage.getItem('userType') ?? '';  // Fallback to empty string if null
     if(this.userID=='' || this.userType==''){
       this.userID=localStorage.getItem('userId')?? '';
-      this.userType= localStorage.removeItem('userType')??'';
-      }
-   }
+      this.userType= localStorage.getItem('userType')??'';
+    }
+  }
+
+  getStatusIcon(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'pending':
+        return 'time-outline';
+      case 'completed':
+        return 'checkmark-circle-outline';
+      case 'failed':
+        return 'close-circle-outline';
+      default:
+        return 'help-circle-outline';
+    }
+  }
 
   ngOnInit() {
     this.fetchWallet();
     this.fetchBundleOffer();
     this.fetchBundleMaxID();
     this.fetchBundle();
-
   }
+
   back(){
     window.history.back();
   }
+
   toggleDiv(): void {
     this.isDivVisible = !this.isDivVisible;
   }
+
   toggleExpandWindow(): void {
     this.isDiv1Visible = !this.isDiv1Visible;
   }
+
   showtransactiondetail(): void {
-    this.transactiondetail = !this.transactiondetail;
+    this.transactiondetail = true;
+    this.istrasactiondiv = false;
+    this.isButtunVisible = false;
   }
-  selectOffer(index: number, bundleType: string, bundlePrice: number, amountCredit: number, savingPercentage: number): void {
-    this.selectedOfferIndex = index;
+
+  getBundleIcon(bundleType: string): string {
+    switch (bundleType) {
+      case 'Supreme':
+        return 'diamond-outline';
+      case 'Hotspot':
+        return 'wifi-outline';
+      case 'General':
+        return 'gift-outline';
+      default:
+        return 'help-circle-outline';
+    }
+  }
+
+  selectOffer(id: number, bundleType: string, bundlePrice: number, amountCredit: number, savingPercentage: number): void {
+    this.selectedOfferIndex = id;
     this.bundleType = bundleType;
     this.bundlePrice = bundlePrice;
     this.amountCredit = amountCredit;
@@ -118,12 +148,19 @@ transactiondetail = false;
         if (Array.isArray(this.filterbundle) && this.filterbundle.length > 0) {
           this.isButtunVisible = false;
           this.istrasactiondiv = true;
+          this.transactiondetail = false;
+        } else {
+          this.isButtunVisible = true;
+          this.istrasactiondiv = false;
+          this.transactiondetail = false;
         }
         // Logging the filtered result
-        console.log('Filtered car data:', this.filterbundle);
+        console.log('Filtered bundle data:', this.filterbundle);
+        console.log('Transaction div visible:', this.istrasactiondiv);
+        console.log('Transaction detail visible:', this.transactiondetail);
       },
       error: (error) => {
-        console.error('Error fetching car data:', error);
+        console.error('Error fetching bundle data:', error);
       }
     });
   }

@@ -19,16 +19,20 @@ this.router.navigate(['/home'])
   machineryDropdownVisible = false;
   plantsDropdownVisible = false;
   dropdownVisible = false;
-  userID: string | null;
-  userType: string | null;
+  userID: string = '';
+  userType: string = '';
+  userName: string = '';
+  userImage: string = '';
 
   constructor(public router: Router) {
     this.userID = sessionStorage.getItem('userId')??'';
     this.userType = sessionStorage.getItem('userType')??'';
       
       if(this.userType==''||this.userID==''){
-        this.userType = localStorage.getItem('userType');
-        this.userID = localStorage.getItem('userId');
+        this.userType = localStorage.getItem('userType') || '';
+        this.userID = localStorage.getItem('userId') || '';
+        this.userName = localStorage.getItem('userName') || 'User';
+        this.userImage = localStorage.getItem('userImage') || '../../../assets/default-avatar.png';
       }
     
 
@@ -37,8 +41,10 @@ this.router.navigate(['/home'])
 
   ngOnInit() {
     if(this.userType==''||this.userID==''){
-      this.userType = localStorage.getItem('userType');
-      this.userID = localStorage.getItem('userId');
+      this.userType = localStorage.getItem('userType') || '';
+      this.userID = localStorage.getItem('userId') || '';
+      this.userName = localStorage.getItem('userName') || 'User';
+      this.userImage = localStorage.getItem('userImage') || '../../../assets/default-avatar.png';
     }
   }
 
@@ -310,8 +316,8 @@ this.router.navigate(['/home'])
     localStorage.removeItem('userType');
     
     // Reset the component variables
-    this.userID = null;
-    this.userType = null;
+    this.userID = '';
+    this.userType = '';
     
     // Navigate to login page
     this.router.navigate(['/login']);

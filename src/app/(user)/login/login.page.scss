@@ -1,24 +1,16 @@
 // Variables
-$primary-color: #1a237e; // Dark blue
-$secondary-color: #2196f3; // Bright blue
-$accent-color: #f44336; // Red
-$background-color: #f8f9fa;
-$text-primary: #000000; // Black
-$text-secondary: #424242; // Dark gray
-$error-color: #f44336; // Red
-$success-color: #4caf50;
-$border-color: #e0e0e0;
-$gradient-start: #1a237e; // Dark blue
-$gradient-end: #2196f3; // Bright blue
-$gradient-accent: #f44336; // Red
-$link-color: #f44336; // Red
-$button-color: #2196f3; // Bright blue
+$primary-color: #FF4B2B;
+$primary-light: rgba(255, 75, 43, 0.1);
+$primary-gradient: linear-gradient(135deg, #FF4B2B 0%, #FF416C 100%);
+$text-color: #333;
+$border-radius: 12px;
+$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 
 // Animations
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse {
@@ -27,34 +19,43 @@ $button-color: #2196f3; // Bright blue
   100% { transform: scale(1); }
 }
 
-@keyframes slideIn {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 // Main Styles
 ion-content {
-  --background: linear-gradient(135deg, $gradient-start, $gradient-end);
+  --background: linear-gradient(135deg, #fff 0%, #fff 100%);
   --padding-start: 0;
   --padding-end: 0;
 }
 
-// Header Styles
-ion-toolbar {
+// Modern Toolbar
+.modern-toolbar {
   --background: white;
+  --color: $text-color;
   --border-color: transparent;
-  --min-height: 48px;
-  --padding-top: 0;
-  --padding-bottom: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-out;
 
-  .welcome-text {
-    color: $text-primary;
+  ion-title {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.2rem;
   }
 }
 
+.back-button {
+  --color: $primary-color;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Container
 .container {
   min-height: 100%;
   display: flex;
@@ -72,78 +73,85 @@ ion-toolbar {
   background: transparent;
   margin-bottom: 12px;
   margin-top: 12px;
+  animation: fadeIn 0.5s ease-out;
+
+  .logo-wrapper {
+    background: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    padding: 16px;
+    box-shadow: $card-shadow;
+    animation: float 3s ease-in-out infinite;
+  }
 
   .logo {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 12px;
-    animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .brand-text {
-    background: linear-gradient(45deg, $accent-color, $secondary-color);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 24px;
+    color: $primary-color;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 4px;
-    text-shadow: none;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
+  .tagline {
+    color: $text-color;
+    font-size: 16px;
     margin: 0;
     font-weight: 500;
+    opacity: 0.8;
   }
 }
 
 // Form Container
 .form-container {
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 20px 20px 0 0;
+  background: white;
+  border-radius: $border-radius;
   padding: 24px 16px;
-  margin-top: -16px;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  animation: slideIn 0.5s ease-out;
+  margin: 0 16px;
+  box-shadow: $card-shadow;
+  animation: fadeIn 0.5s ease-out;
 }
 
 // Input Groups
 .input-group {
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   .input-icon {
     position: absolute;
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: $text-secondary;
-    font-size: 18px;
+    color: $text-color;
+    font-size: 20px;
     z-index: 1;
     transition: color 0.3s ease;
   }
 
   .text-field {
     width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 2px solid $border-color;
-    border-radius: 10px;
-    font-size: 15px;
+    padding: 16px 16px 16px 48px;
+    border: 2px solid #eee;
+    border-radius: $border-radius;
+    font-size: 16px;
     transition: all 0.3s ease;
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
     &:focus {
       outline: none;
-      border-color: $secondary-color;
-      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+      border-color: $primary-color;
+      box-shadow: 0 4px 12px rgba(255, 75, 43, 0.2);
 
       & + .input-icon {
-        color: $secondary-color;
+        color: $primary-color;
       }
     }
   }
@@ -153,23 +161,23 @@ ion-toolbar {
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: $text-secondary;
-    font-size: 18px;
+    color: $text-color;
+    font-size: 20px;
     cursor: pointer;
     z-index: 1;
     transition: color 0.3s ease;
 
     &:hover {
-      color: $secondary-color;
+      color: $primary-color;
     }
   }
 
   label {
     position: absolute;
-    left: 40px;
+    left: 48px;
     top: 50%;
     transform: translateY(-50%);
-    color: $text-secondary;
+    color: #666;
     transition: all 0.3s ease;
     pointer-events: none;
     background: transparent;
@@ -178,7 +186,7 @@ ion-toolbar {
     &.active {
       top: 0;
       font-size: 12px;
-      color: $secondary-color;
+      color: $primary-color;
       background: white;
     }
   }
@@ -186,12 +194,19 @@ ion-toolbar {
 
 // Error Messages
 .error-message {
-  color: $error-color;
+  color: #dc3545;
   font-size: 12px;
   margin-top: 4px;
   margin-left: 16px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   animation: pulse 0.5s ease-out;
+
+  ion-icon {
+    font-size: 16px;
+  }
 }
 
 // Forgot Password Link
@@ -200,26 +215,21 @@ ion-toolbar {
   margin-top: 8px;
 
   a {
-    color: $accent-color;
+    color: $primary-color;
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     transition: all 0.3s ease;
-    position: relative;
 
-    &:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background: $accent-color;
-      transition: width 0.3s ease;
+    ion-icon {
+      font-size: 16px;
     }
 
-    &:hover:after {
-      width: 100%;
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
@@ -227,186 +237,121 @@ ion-toolbar {
 // Submit Button
 .submit-btn {
   width: 100%;
-  background: $button-color;
+  background: $primary-gradient;
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 15px;
+  border-radius: $border-radius;
+  padding: 16px;
+  font-size: 16px;
   font-weight: 600;
-  margin-top: 16px;
+  margin-top: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(255, 75, 43, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
+  ion-icon {
+    font-size: 20px;
   }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
-    background: darken($button-color, 10%);
-
-    &:before {
-      left: 100%;
-    }
-  }
-
-  &:active {
-    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(255, 75, 43, 0.4);
   }
 
   &:disabled {
-    background: #bdc3c7;
+    opacity: 0.7;
     cursor: not-allowed;
-    box-shadow: none;
+    transform: none;
   }
 }
 
 // Register Link
 .register-link {
   text-align: center;
-  margin-top: 16px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
-  }
-
-  span {
-    color: $text-primary;
-    font-size: 13px;
-    font-weight: 500;
-  }
+  margin-top: 24px;
+  color: $text-color;
+  font-size: 14px;
 
   a {
-    color: $accent-color;
+    color: $primary-color;
     text-decoration: none;
     font-weight: 600;
     margin-left: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     transition: all 0.3s ease;
-    position: relative;
 
-    &:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background: $accent-color;
-      transition: width 0.3s ease;
+    ion-icon {
+      font-size: 16px;
     }
 
-    &:hover:after {
-      width: 100%;
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
 
 // Register Section
 .register-section {
-  margin-top: 20px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  animation: slideIn 0.5s ease-out;
-  transform-origin: top;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+  animation: fadeIn 0.5s ease-out;
 
-  p {
-    color: $text-primary;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 12px;
+  h3 {
     text-align: center;
-    position: relative;
-    padding-bottom: 8px;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, $gradient-start, $gradient-end);
-      border-radius: 2px;
-    }
+    color: $text-color;
+    font-size: 18px;
+    margin-bottom: 16px;
   }
 
   .register-buttons {
-    display: flex;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 
-    button {
-      flex: 1;
-      padding: 12px;
+    .register-btn {
+      padding: 16px;
       border: none;
-      border-radius: 10px;
-      font-size: 13px;
+      border-radius: $border-radius;
+      font-size: 14px;
       font-weight: 600;
-      color: white;
-      background: $button-color;
       cursor: pointer;
       transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-      position: relative;
-      overflow: hidden;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
+      gap: 8px;
+      box-shadow: $card-shadow;
 
       ion-icon {
-        font-size: 18px;
+        font-size: 24px;
       }
 
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: 0.5s;
-      }
+      &.private {
+        background: white;
+        color: $primary-color;
+        border: 2px solid $primary-color;
 
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
-        background: darken($button-color, 10%);
-
-        &:before {
-          left: 100%;
+        &:hover {
+          background: $primary-light;
+          transform: translateY(-2px);
         }
       }
 
-      &:active {
-        transform: translateY(0);
+      &.trader {
+        background: $primary-gradient;
+        color: white;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(255, 75, 43, 0.4);
+        }
       }
     }
   }
@@ -414,122 +359,47 @@ ion-toolbar {
 
 // User Info Display
 .user-info {
-  text-align: center;
-  margin-top: 24px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  animation: slideIn 0.5s ease-out;
+  margin: 24px 16px;
+  animation: fadeIn 0.5s ease-out;
 
-  h2 {
-    color: $text-primary;
-    font-size: 16px;
-    margin: 8px 0;
-    font-weight: 500;
-  }
-}
+  ion-card {
+    margin: 0;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    background: white;
 
-// Loading Overlay
-.full-screen-loader {
-  .loading-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: fadeIn 0.3s ease-out;
-
-    ion-spinner {
-      --color: white;
-    }
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-// Mobile Optimizations
-@media (max-width: 480px) {
-  .container {
-    padding: 0;
-  }
-
-  .logo-section {
-    padding: 16px 12px;
-    margin-top: 12px;
-
-    .logo {
-      width: 70px;
-      height: 70px;
-    }
-
-    .brand-text {
-      font-size: 22px;
-    }
-
-    p {
-      font-size: 13px;
-    }
-  }
-
-  .form-container {
-    padding: 20px 12px;
-    margin-top: -16px;
-  }
-
-  .input-group {
-    .text-field {
-      padding: 10px 10px 10px 36px;
-      font-size: 14px;
-    }
-
-    .input-icon {
-      font-size: 16px;
-      left: 12px;
-    }
-
-    .password-toggle {
-      font-size: 16px;
-      right: 12px;
-    }
-  }
-
-  .submit-btn {
-    padding: 12px;
-    font-size: 14px;
-  }
-
-  .register-section {
-    padding: 16px;
-    margin-top: 16px;
-
-    p {
-      font-size: 15px;
-    }
-
-    .register-buttons {
+    ion-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 8px;
+      padding: 16px;
 
-      button {
-        padding: 10px;
-        font-size: 12px;
+      ion-icon {
+        font-size: 32px;
+        color: $primary-color;
+      }
 
-        ion-icon {
-          font-size: 16px;
-        }
+      h2 {
+        color: $text-color;
+        font-size: 16px;
+        margin: 0;
+        font-weight: 500;
       }
     }
   }
 }
+
+// Responsive Design
+@media (max-width: 768px) {
+  .form-container {
+    margin: 0 12px;
+  }
+
+  .register-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+  
   
   

@@ -1,3 +1,738 @@
+// Variables
+$primary-color: #FF4B2B;
+$primary-light: rgba(255, 75, 43, 0.1);
+$primary-gradient: linear-gradient(135deg, #FF4B2B 0%, #FF416C 100%);
+$text-color: #333;
+$border-radius: 12px;
+$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+// Modern Toolbar
+.modern-toolbar {
+  --background: white;
+  --color: $text-color;
+  --border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.back-button {
+  --color: $primary-color;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Balance Card
+.balance-card {
+  background: white;
+  border-radius: $border-radius;
+  padding: 20px;
+  margin: 16px 0;
+  box-shadow: $card-shadow;
+  animation: fadeIn 0.5s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $hover-shadow;
+  }
+
+  .balance-header {
+    text-align: center;
+    margin-bottom: 20px;
+
+    .balance-icon {
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 12px;
+      animation: pulse 2s infinite;
+    }
+
+    h2 {
+      color: $text-color;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .balance-amount {
+      .currency {
+        color: $primary-color;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      .amount {
+        color: $primary-color;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-left: 8px;
+        background: $primary-gradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  .balance-actions {
+    .add-balance-btn {
+      --background: $primary-gradient;
+      --border-radius: 8px;
+      --box-shadow: none;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Bundle Section
+.bundle-section {
+  animation: fadeIn 0.5s ease-out;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h3 {
+      color: $text-color;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .info-button {
+      --color: $primary-color;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .bundle-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 20px;
+    box-shadow: $card-shadow;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    animation: fadeIn 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $hover-shadow;
+    }
+
+    &.selected {
+      border-color: $primary-color;
+      background: $primary-light;
+      transform: translateY(-2px);
+    }
+
+    &.supreme {
+      background: linear-gradient(135deg, #fff 0%, #fff 100%);
+      border: 2px solid #FFD700;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #FFD700, #FFA500);
+      }
+
+      .bundle-type ion-icon {
+        color: #FFD700;
+      }
+    }
+
+    &.hotspot {
+      background: linear-gradient(135deg, #fff 0%, #fff 100%);
+      border: 2px solid #4CAF50;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #4CAF50, #8BC34A);
+      }
+
+      .bundle-type ion-icon {
+        color: #4CAF50;
+      }
+    }
+
+    &.general {
+      background: linear-gradient(135deg, #fff 0%, #fff 100%);
+      border: 2px solid #9E9E9E;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #9E9E9E, #BDBDBD);
+      }
+
+      .bundle-type ion-icon {
+        color: #9E9E9E;
+      }
+    }
+
+    .bundle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .bundle-type {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        ion-icon {
+          font-size: 1.4rem;
+        }
+
+        h4 {
+          color: $text-color;
+          margin: 0;
+          font-size: 1.1rem;
+          font-weight: 600;
+        }
+      }
+
+      .saving-badge {
+        background: $primary-gradient;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        ion-icon {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .bundle-details {
+      .detail-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        .label {
+          color: #666;
+          font-size: 0.9rem;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          ion-icon {
+            color: $primary-color;
+          }
+        }
+
+        .value {
+          color: $text-color;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .bundle-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+
+      .feature-tag {
+        background: rgba(0, 0, 0, 0.05);
+        color: #666;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .disclaimer {
+    display: flex;
+    align-items: center;
+    background: $primary-light;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    animation: fadeIn 0.5s ease-out;
+
+    ion-icon {
+      color: $primary-color;
+      font-size: 1.4rem;
+      margin-right: 12px;
+    }
+
+    p {
+      color: $text-color;
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .buy-bundle-btn {
+    --background: $primary-gradient;
+    --border-radius: 8px;
+    --box-shadow: none;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Payment Section
+.payment-section {
+  animation: fadeIn 0.5s ease-out;
+
+  .payment-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: $card-shadow;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $hover-shadow;
+    }
+
+    .payment-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+
+      ion-icon {
+        color: $primary-color;
+        font-size: 1.4rem;
+      }
+
+      h3 {
+        color: $text-color;
+        margin: 0;
+        font-size: 1.2rem;
+      }
+    }
+
+    .payment-amount {
+      text-align: center;
+      margin-bottom: 24px;
+
+      .label {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .amount {
+        color: $primary-color;
+        font-size: 2rem;
+        font-weight: 700;
+        display: block;
+        margin-top: 8px;
+        background: $primary-gradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .bundle-id {
+      text-align: center;
+      background: $primary-light;
+      padding: 12px;
+      border-radius: 8px;
+
+      ion-label {
+        color: $text-color;
+        font-weight: 500;
+      }
+
+      .note {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .payment-methods {
+    .payment-method-item {
+      --background: white;
+      --border-radius: $border-radius;
+      margin-bottom: 16px;
+      box-shadow: $card-shadow;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $hover-shadow;
+      }
+
+      ion-radio {
+        --color: $primary-color;
+        --color-checked: $primary-color;
+      }
+
+      ion-label {
+        .payment-method-header {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+
+          ion-icon {
+            color: $primary-color;
+            font-size: 1.2rem;
+          }
+
+          h3 {
+            color: $text-color;
+            font-size: 1rem;
+            margin: 0;
+          }
+        }
+
+        p {
+          color: #666;
+          font-size: 0.9rem;
+          margin: 4px 0;
+        }
+
+        .account-number {
+          color: $primary-color;
+          font-weight: 500;
+          margin-top: 8px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          ion-icon {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .submit-btn {
+    --background: $primary-gradient;
+    --border-radius: 8px;
+    --box-shadow: none;
+    font-weight: 500;
+    margin-top: 24px;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Transaction Section
+.transaction-section {
+  animation: fadeIn 0.5s ease-out;
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+
+    h3 {
+      color: $text-color;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    ion-icon {
+      color: $primary-color;
+      font-size: 1.4rem;
+    }
+  }
+
+  .transaction-list {
+    .transaction-card {
+      background: white;
+      border-radius: $border-radius;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: $card-shadow;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $hover-shadow;
+      }
+
+      .transaction-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+
+        .transaction-type {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          ion-icon {
+            color: $primary-color;
+            font-size: 1.2rem;
+          }
+
+          h4 {
+            color: $text-color;
+            margin: 0;
+            font-size: 1.1rem;
+          }
+        }
+
+        .status-badge {
+          padding: 6px 12px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          ion-icon {
+            font-size: 1rem;
+          }
+
+          &.pending {
+            background: #FFF3CD;
+            color: #856404;
+          }
+
+          &.completed {
+            background: #D4EDDA;
+            color: #155724;
+          }
+
+          &.failed {
+            background: #F8D7DA;
+            color: #721C24;
+          }
+        }
+      }
+
+      .transaction-details {
+        .detail-item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 12px;
+
+          .label {
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            ion-icon {
+              color: $primary-color;
+            }
+          }
+
+          .value {
+            color: $text-color;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  .transaction-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+
+    .action-btn {
+      --background: $primary-gradient;
+      --border-radius: 8px;
+      --box-shadow: none;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    .delete-btn {
+      --background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+      --border-radius: 8px;
+      --box-shadow: none;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Transaction Form
+.transaction-form {
+  animation: fadeIn 0.5s ease-out;
+
+  .form-card {
+    background: white;
+    border-radius: $border-radius;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: $card-shadow;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $hover-shadow;
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+
+      ion-icon {
+        color: $primary-color;
+        font-size: 1.4rem;
+      }
+
+      h3 {
+        color: $text-color;
+        margin: 0;
+        font-size: 1.2rem;
+      }
+    }
+
+    .payment-info {
+      background: $primary-light;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+
+      p {
+        color: $text-color;
+        margin: 8px 0;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        ion-icon {
+          color: $primary-color;
+        }
+
+        strong {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .transaction-input {
+      --background: transparent;
+      --border-color: #ddd;
+      --border-radius: 8px;
+      margin-bottom: 24px;
+
+      ion-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        ion-icon {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .submit-btn {
+      --background: $primary-gradient;
+      --border-radius: 8px;
+      --box-shadow: none;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .bundle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .transaction-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 .btn-balance{
   margin-left: 5px;
   margin-right: 3px;

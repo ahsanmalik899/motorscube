@@ -139,7 +139,6 @@ import { UpdatePlantWorkshopPage } from './(industrial-plants)/update-plant-work
     PostWorkshopBusinesPage,
     PostDrivingSchoolPage,
     AccountProfPvtPage,
-    ResetPasswordPage,
     AccCreatePvtPage,
     AccCreateBusinesPage,
     AccountProfBusinesPage,

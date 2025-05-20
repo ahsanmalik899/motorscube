@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ResetPasswordPageRoutingModule } from './reset-password-routing.module';
-
+import { ResetPasswordPage } from './reset-password.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { ResetPasswordPageRoutingModule } from './reset-password-routing.module'
     ResetPasswordPageRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [File], 
+  declarations: [ResetPasswordPage]
 })
 export class ResetPasswordPageModule {}

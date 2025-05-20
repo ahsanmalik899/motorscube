@@ -1,9 +1,11 @@
 <ion-header>
-  <ion-toolbar class="bg-toolbar">
-    <ion-buttons slot="start" class="bg-red" style="height: 48px !important; width: 48px !important; margin: -4px !important;">
-      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+  <ion-toolbar class="modern-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" class="back-button">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title class="welcome-text">Reset Password</ion-title>
+    <ion-title>Reset Password</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,9 +13,11 @@
   <div class="container">
     <!-- Logo Section -->
     <div class="logo-section">
-      <img src="../../../assets/menu-toolbar.png" alt="Logo" class="logo">
+      <div class="logo-wrapper">
+        <img src="../../../assets/menu-toolbar.png" alt="Logo" class="logo">
+      </div>
       <h1 class="brand-text">Motors Cube</h1>
-      <p>Enter your mobile number to reset password</p>
+      <p class="tagline">Enter your mobile number to reset your password</p>
     </div>
 
     <!-- Form Container -->
@@ -34,13 +38,15 @@
           <input type="tel" id="mobile" class="text-field" maxlength="10" placeholder=" " formControlName="mobile" (focus)="onInputFocus('mobile')" (blur)="onInputBlur('mobile')">
           <label for="mobile" [class.active]="userForm.get('mobile')?.value">Mobile Number</label>
           <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched" class="error-message">
+            <ion-icon name="alert-circle-outline"></ion-icon>
             Please enter a valid mobile number
           </div>
         </div>
 
         <!-- Submit Button -->
         <button type="submit" [disabled]="!userForm.valid" class="submit-btn">
-          <span>Send Password</span>
+          <ion-icon name="paper-plane-outline"></ion-icon>
+          <span>Send Reset Link</span>
         </button>
 
         <!-- Back to Login Link -->
@@ -55,9 +61,10 @@
   </div>
 
   <!-- Loading Overlay -->
-  <div *ngIf="isLoading" class="full-screen-loader">
-    <div class="loading-backdrop">
-      <ion-spinner></ion-spinner>
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="loading-content">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Processing...</p>
     </div>
   </div>
 </ion-content>

@@ -1,239 +1,246 @@
 <ion-header>
-  <ion-toolbar class ="bg-toolbar" >
-    <ion-buttons slot="start" class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
-      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+  <ion-toolbar class="modern-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" class="back-button">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-label style="font-size: 16px; color: black;">Financial Detail</ion-label>
+    <ion-title>Wallet & Bundles</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <!-- card 3  -Commercial Vehicles-->
-  <div style="text-align: -webkit-center; margin-top: -30px;">
-    <ion-col>
-      <ion-card class="btn-balance">
-        <ion-card-header>
-          <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center;">Your Motorscube balance</p>
-
-          <div style="margin-top: 40px;">
-            <p style="font-size: 17px; color: #1a529c; text-align: center;" *ngFor="let wallet of userWallet"><b>PKR ({{ wallet.remaining_amount }})</b></p>
-          </div>
-
-          <div>
-            <div class="bottom-balance" *ngIf="isButtunVisible">
-              <div class="btn_bottom-balance">
-                <button id="signin-balance" type="submit" (click)="toggleDiv()">Add balance</button>
-              </div>
-            </div>
-          </div>
-
-          <ion-card-subtitle class="clr-white"></ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
-    </ion-col>
+<ion-content class="ion-padding">
+  <!-- Balance Card -->
+  <div class="balance-card">
+    <div class="balance-header">
+      <div class="balance-icon">
+        <ion-icon name="wallet-outline"></ion-icon>
+      </div>
+      <h2>Your Balance</h2>
+      <div class="balance-amount" *ngFor="let wallet of userWallet">
+        <span class="currency">PKR</span>
+        <span class="amount">{{ wallet.remaining_amount }}</span>
+      </div>
+    </div>
+    <div class="balance-actions" *ngIf="isButtunVisible">
+      <ion-button expand="block" class="add-balance-btn" (click)="toggleDiv()">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Add Balance
+      </ion-button>
+    </div>
   </div>
 
-  <div *ngIf="isDivVisible">
-    <p id="click-trigger" trigger="click-trigger" triggerAction="click" style="font-size: 14px; text-align: center; color: #1a529c;">Why should i buy bundles?</p>
+  <!-- Bundle Offers Section -->
+  <div *ngIf="isDivVisible" class="bundle-section">
+    <div class="section-header">
+      <h3>Available Bundles</h3>
+      <ion-button fill="clear" class="info-button" id="click-trigger">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
 
-    <!-- ion-popover -->
     <ion-popover trigger="click-trigger" triggerAction="click">
       <ng-template>
         <ion-content class="ion-padding">
-          <p style="font-size: 15px; text-align: center;"><b>Buy bundle and expand more</b></p>
-
-          <div style="text-align: -webkit-center;">
-            <ion-col>
-              <ion-card class="btn-dark">
-                <ion-card-header>
-                  <ion-card-subtitle class="clr-white"></ion-card-subtitle>
-                </ion-card-header>
-              </ion-card>
-            </ion-col>
-          </div>
-
-          <div style="text-align: center">
-            <p style="font-size: 12px; margin-top: -10px; text-align: center;">Have more ads to post? then buy bundle and get extra discount.</p>
-            <p style="font-size: 12px; text-align: center;">Consume bundle without any time limit. Use whenever you want. No expiry</p>
-            <p style="font-size: 12px; text-align: center;">Get more offers from us in promotions and exhibitions</p>
+          <div class="info-content">
+            <div class="info-header">
+              <ion-icon name="star-outline"></ion-icon>
+              <h4>Bundle Types</h4>
+            </div>
+            <ul>
+              <li><ion-icon name="diamond-outline"></ion-icon>Supreme: Premium features with maximum benefits</li>
+              <li><ion-icon name="wifi-outline"></ion-icon>Hotspot: Enhanced visibility and promotion</li>
+              <li><ion-icon name="gift-outline"></ion-icon>General: Free basic listing</li>
+            </ul>
           </div>
         </ion-content>
       </ng-template>
     </ion-popover>
 
-    <div *ngFor="let offer of userOffer; let i = index" (click)="selectOffer(i, offer.bundle_type, offer.bundle_price, offer.amount_credit, offer.saving_percentage)"
-      [ngStyle]="{'background-color': selectedOfferIndex === i ? '#87ceeb4a' : 'transparent'}"
-      style="border: dotted lightgray; margin: 15px; height:110px; border-radius: 15px; cursor: pointer;">
-
-      <p style="color: gray; margin-top: 5px; text-align: center;">{{offer.bundle_type}}</p>
-      <div style="text-align: center;">
-        <table style="width: 100%; margin-top: 15px;">
-          <tr style="color: gray; font-weight: normal; width: 100%;">
-            <td style="width: 35%;">You pay</td>
-            <td>Balance you get</td>
-            <td style="width: 35%;">Save</td>
-          </tr>
-          <tr style="width: 100%;">
-            <th>{{offer.bundle_price}}</th>
-            <th>{{offer.amount_credit}}</th>
-            <th>{{offer.saving_percentage}}%</th>
-          </tr>
-        </table>
-      </div>  
-    </div>
-
-    <p style="font-size: 14px; color: red; padding-left: 15px; text-align: left;">*Once bundle is purchased its amount is non transferable/cancelable.</p>
-    <p style="font-size: 14px; color: red; padding-left: 15px; text-align: left;">You can consume bundle amount anytime whenever you want.</p>
-
-    <div>
-      <div class="bottom-buy">
-        <div class="btn_bottom-buy" style="text-align: center;">
-          <button id="signin-buy"  (click)="toggleExpandWindow()">Buy bundle</button>
+    <!-- Bundle Cards -->
+    <div class="bundle-grid">
+      <!-- Supreme Bundle -->
+      <div *ngFor="let offer of userOffer" 
+           class="bundle-card" 
+           [class.selected]="selectedOfferIndex === offer.id"
+           [class.supreme]="offer.bundle_type === 'Supreme'"
+           [class.hotspot]="offer.bundle_type === 'Hotspot'"
+           [class.general]="offer.bundle_type === 'General'"
+           (click)="selectOffer(offer.id, offer.bundle_type, offer.bundle_price, offer.amount_credit, offer.saving_percentage)">
+        <div class="bundle-header">
+          <div class="bundle-type">
+            <ion-icon [name]="getBundleIcon(offer.bundle_type)"></ion-icon>
+            <h4>{{offer.bundle_type}}</h4>
+          </div>
+          <span class="saving-badge" *ngIf="offer.saving_percentage > 0">
+            <ion-icon name="pricetag-outline"></ion-icon>
+            Save {{offer.saving_percentage}}%
+          </span>
+        </div>
+        <div class="bundle-details">
+          <div class="detail-item">
+            <span class="label">
+              <ion-icon name="cash-outline"></ion-icon>
+              You Pay
+            </span>
+            <span class="value" *ngIf="offer.bundle_type !== 'General'">PKR {{offer.bundle_price}}</span>
+            <span class="value" *ngIf="offer.bundle_type === 'General'">Free</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">
+              <ion-icon name="wallet-outline"></ion-icon>
+              You Get
+            </span>
+            <span class="value">PKR {{offer.amount_credit}}</span>
+          </div>
+        </div>
+        <div class="bundle-features" *ngIf="offer.bundle_type === 'Supreme'">
+          <span class="feature-tag">Premium Support</span>
+          <span class="feature-tag">Priority Listing</span>
+          <span class="feature-tag">Featured Ads</span>
+        </div>
+        <div class="bundle-features" *ngIf="offer.bundle_type === 'Hotspot'">
+          <span class="feature-tag">Enhanced Visibility</span>
+          <span class="feature-tag">Promotion</span>
+        </div>
+        <div class="bundle-features" *ngIf="offer.bundle_type === 'General'">
+          <span class="feature-tag">Basic Listing</span>
+          <span class="feature-tag">Standard Support</span>
         </div>
       </div>
     </div>
+
+    <div class="disclaimer">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <p>Bundle amounts are non-transferable and non-refundable. Use your bundle anytime - no expiry!</p>
+    </div>
+
+    <ion-button expand="block" class="buy-bundle-btn" (click)="toggleExpandWindow()">
+      <ion-icon name="cart-outline" slot="start"></ion-icon>
+      Buy Bundle
+    </ion-button>
   </div>
 
-  <!-- Expanded Bundle Form -->
-  <div *ngIf="isDiv1Visible">
-    <div style="text-align: -webkit-center; margin-top: -30px;">
-      <ion-col>
-        <ion-card class="btn-bundle">
-          <ion-card-header>
-            <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center;">{{ bundleType }}</p>
-            <div style="margin-top: 40px;">
-              <p style="font-size: 17px; color: #1a529c; text-align: center;"><b>Paying PKR ({{bundlePrice}})</b></p>
+  <!-- Payment Section -->
+  <div *ngIf="isDiv1Visible" class="payment-section">
+    <div class="payment-card">
+      <div class="payment-header">
+        <ion-icon name="card-outline"></ion-icon>
+        <h3>{{ bundleType }}</h3>
+      </div>
+      <div class="payment-amount">
+        <span class="label">Total Amount</span>
+        <span class="amount">PKR {{bundlePrice}}</span>
+      </div>
+      <div class="bundle-id">
+        <ion-label>Bundle ID: {{maxID}}</ion-label>
+        <p class="note">Please send this ID after payment from your ads section</p>
+      </div>
+    </div>
+
+    <div class="payment-methods">
+      <ion-radio-group [(ngModel)]="selectedValue">
+        <ion-item class="payment-method-item">
+          <ion-radio value="EasyPaisa" (ionChange)="onRadioChange($event)"></ion-radio>
+          <ion-label>
+            <div class="payment-method-header">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+              <h3>EasyPaisa</h3>
             </div>
-            <ion-input type="text" placeholder="Bundle ID:  {{maxID}}" ></ion-input>
-            <p style="font-size: 14px; color: red; margin-top: 10px; padding-left: 15px; text-align: center;">Please send us this your ad ID after sending payment from your ads posted section</p>
-
-            <ion-card-subtitle class="clr-white"></ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
+            <p>Send payment via EasyPaisa mobile wallet app</p>
+            <p class="account-number">
+              <ion-icon name="call-outline"></ion-icon>
+              Account: 0300-1112222
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-radio-group>
     </div>
 
-    <ion-row style="margin-top: 40px">
-      <ion-col size="2" class="column">
-        <ion-radio-group [(ngModel)]="selectedValue">
-          <ion-radio slot="start" value="By cheque" (ionChange)="onRadioChange($event)"></ion-radio>
-        </ion-radio-group>
-      </ion-col>
-    
-      <ion-col size="8">
-        <div style="text-align: -webkit-right; margin-top: -40px; margin-left: -30px; margin-right: -65px;">
-          <ion-card class="btn-deposit">
-            <ion-card-header>
-              <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: black;">By cheque</p>
-              <p style="font-size: 13px; padding: 0px 0px 0px 0px; text-align: center; color: black;">Please make a cross cheque in favor of "Motorscube (Pvt.) Limited". Mention your Bundle ID on the back of the cheque and send to us</p>
-              <ion-card-subtitle class="clr-white"></ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row style="margin-top: 55px;">
-      <ion-col size="2" class="column">
-        <ion-radio-group [(ngModel)]="selectedValue">
-          <ion-radio slot="start" value="Online Deposite" (ionChange)="onRadioChange($event)"></ion-radio>
-        </ion-radio-group>
-      </ion-col>
-    
-      <ion-col size="8">
-        <div style="text-align: -webkit-right; margin-top: -40px; margin-left: -30px; margin-right: -65px;">
-          <ion-card class="btn-deposit">
-            <ion-card-header style="margin-top: -10px;">
-              <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: black;">Online deposit</p>
-              <p style="font-size: 12px; margin-top: -10px; text-align: center; color: black;">Account # 102830075 <br> Title: Motorscube (Pvt.) Limited <br> Bank: Mezan Bank <br> Branch Code: Branch Code: 0318 <br> IBAN # PK85MEZN0003180102830075</p>
-              <ion-card-subtitle class="clr-white"></ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row style="margin-top: 60px; margin-bottom: 100px;">
-      <ion-col size="2" class="column">
-        <ion-radio-group [(ngModel)]="selectedValue">
-          <ion-radio slot="start" value="EasyPaisa" (ionChange)="onRadioChange($event)"></ion-radio>
-        </ion-radio-group>
-      </ion-col>
-    
-      <ion-col size="8">
-        <div style="text-align: -webkit-right; margin-top: -40px; margin-left: -30px; margin-right: -65px;">
-          <ion-card class="btn-deposit">
-            <ion-card-header>
-              <p style="font-size: 16px; padding: 0px 5px 0px 5px; text-align: center; color: black;">EasyPaisa</p>
-              <p style="font-size: 13px; text-align: center; color: black;">Send payment via EasyPaisa mobile wallet app. Enter our mobile number: 0300-1112222</p>
-              <ion-card-subtitle class="clr-white"></ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
+    <ion-button expand="block" class="submit-btn" (click)="saveBundle()">
+      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+      Submit Payment
+    </ion-button>
   </div>
-  
-<div *ngIf="isDiv1Visible" class="fixed-bottom">
-  <div class="bottom-buy">
-    <div class="btn_bottom-buy" style="text-align: center;">
-  
-      <button id="signin-buy" (click)="saveBundle()">Submit</button>
+
+  <!-- Transaction History -->
+  <div *ngIf="istrasactiondiv" class="transaction-section">
+    <div class="section-header">
+      <h3>Transaction History</h3>
+      <ion-icon name="time-outline"></ion-icon>
+    </div>
+    <div class="transaction-list">
+      <div *ngFor="let offer of filterbundle" class="transaction-card">
+        <div class="transaction-header">
+          <div class="transaction-type">
+            <ion-icon name="receipt-outline"></ion-icon>
+            <h4>{{offer.bundle_type}}</h4>
+          </div>
+          <span class="status-badge" [class]="offer.payment_status.toLowerCase()">
+            <ion-icon [name]="getStatusIcon(offer.payment_status)"></ion-icon>
+            {{offer.payment_status}}
+          </span>
+        </div>
+        <div class="transaction-details">
+          <div class="detail-item">
+            <span class="label">
+              <ion-icon name="cash-outline"></ion-icon>
+              Amount Paid
+            </span>
+            <span class="value">PKR {{offer.bundle_amount}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">
+              <ion-icon name="wallet-outline"></ion-icon>
+              Balance Received
+            </span>
+            <span class="value">PKR {{offer.amount_received}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="transaction-actions" *ngIf="!transactiondetail">
+      <ion-button expand="block" class="action-btn" (click)="showtransactiondetail()">
+        <ion-icon name="send-outline" slot="start"></ion-icon>
+        Send Transaction ID
+      </ion-button>
+      <ion-button expand="block" class="delete-btn" (click)="confirmationDelete()">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Delete Transaction
+      </ion-button>
     </div>
   </div>
-</div>
 
-<div *ngIf="istrasactiondiv">
-<div style="text-align: center" >
-  <p style="font-size: 12px; margin-top: -10px; text-align: center;">Manage your transaction detail</p>
-</div>
-
-<div 
-  *ngFor="let offer of filterbundle; let i = index" 
-  style="border: dotted lightgray; margin: 15px; height:110px; border-radius: 15px; cursor: pointer;">
-  
-  <p style="color: gray; margin-top: 5px; text-align: center;">{{offer.bundle_type}}</p>
-  <div style="text-align: center;">
-    <table style="width: 100%; margin-top: 15px;">
-      <tr style="color: gray; font-weight: normal; width: 100%;">
-        <td style="width: 35%;">You pay</td>
-        <td>Balance you get</td>
-        <td style="width: 35%;">Payment Status</td>
-      </tr>
-      <tr style="width: 100%;">
-        <th>{{offer.bundle_amount}}</th>
-        <th>{{offer.amount_received}}</th>
-        <th>{{offer.payment_status}}</th>
-      </tr>
-    </table>
-  </div>  
-</div>
-<div class="bottom-balance">
-  <div class="btn_bottom-balance" style="display: flex; margin: 10px;">
-    <button id="signin-balance" type="submit" (click)="showtransactiondetail()" style="margin: 5px; background-color: #1a529c;">Send Transaction ID</button>
-    <button id="signin-balance" type="submit" (click)="confirmationDelete()" style="margin: 5px;">Delete </button>
+  <!-- Transaction ID Form -->
+  <div *ngIf="transactiondetail" class="transaction-form">
+    <div *ngFor="let offer of filterbundle" class="form-card">
+      <div class="form-header">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <h3>Transaction Details</h3>
+      </div>
+      <div class="payment-info">
+        <p>
+          <ion-icon name="cash-outline"></ion-icon>
+          Amount: <strong>PKR {{offer.bundle_amount}}</strong>
+        </p>
+        <p>
+          <ion-icon name="card-outline"></ion-icon>
+          Method: <strong>{{offer.payment_method}}</strong>
+        </p>
+      </div>
+      <ion-item class="transaction-input">
+        <ion-label position="floating">
+          <ion-icon name="key-outline"></ion-icon>
+          Transaction Reference
+        </ion-label>
+        <ion-input type="text" #inputRef></ion-input>
+      </ion-item>
+      <ion-button expand="block" class="submit-btn" 
+                 (click)="updateTransaction(inputRef.value ? inputRef.value.toString() : '', offer.bundle_id)">
+        <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+        Submit Reference
+      </ion-button>
+    </div>
   </div>
-</div>
-</div>
-<div  *ngIf="transactiondetail">
-<div *ngFor="let offer of filterbundle; let i = index">
-<hr style="border: 2px solid aquamarine;">
-<div style="text-align: center;">
-  <h3 style="color: skyblue;">Ad Trasaction ID  </h3>
-  <p>You have paid <b>PKR {{offer.bundle_amount}}</b> through <b>{{offer.payment_method}} </b></p>
-</div>
-<!-- Input field -->
-<ion-item>
-  <ion-label position="floating">Provide transaction referecne </ion-label>
-  <ion-input type="text" #inputRef  ></ion-input>
-</ion-item>
-
-<!-- Submit button -->
-<ion-button (click)="updateTransaction(inputRef.value ? inputRef.value.toString() : '', offer.bundle_id)">Submit</ion-button>
-
-
-</div>
-</div>
-
 </ion-content>
