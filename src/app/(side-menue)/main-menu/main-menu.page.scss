@@ -1,117 +1,211 @@
+// Modern color palette
+$primary-color: #FF4B2B;
+$secondary-color: #FF6B6B;
+$accent-color: #FF4B2B;
+$background-color: #fff5f3;
+$card-background: #ffffff;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$shadow-color: rgba(255, 75, 43, 0.08);
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Main container
 ion-content {
-    --background: #fff;
+  --background: $background-color;
+}
+
+.sidebar-container {
+  padding: 20px;
+  min-height: 100vh;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+// Header section
+.header-content {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 30px rgba(255, 75, 43, 0.2);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+    z-index: 1;
+  }
+}
+
+.close-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.header-logo {
+  height: 48px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Welcome section
+.welcome-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: 8px;
+  animation: scaleIn 0.6s ease-out;
+}
+
+.welcome-subtitle {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: 16px;
+}
+
+.login-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 75, 43, 0.2);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 75, 43, 0.3);
   }
   
-  .content-wrapper {
-    padding: 20px;
-    text-align: center;
-    animation: fadeIn 1s ease-in-out;
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Menu items
+.menu-items {
+  margin-bottom: 24px;
+}
+
+.menu-item {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(255, 75, 43, 0.2);
   }
   
-  .menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffeb3b; /* Bright yellow */
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .menu-logo img {
-    height: 70px;
-  }
-  
-  .close-icon {
-    font-size: 24px;
-    color: #d32f2f; /* Red */
-    cursor: pointer;
-  }
-  
-  .welcome-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: slideIn 1s ease-in-out;
-  }
-  
-  .welcome-text {
-    font-size: 20px;
-    color: #333;
-    margin-top: 10px;
-  }
-  
-  .login-button {
-    background-color: #f01818; /* Red */
+  ion-label {
     color: white;
-    border-radius: 10px;
-    padding: 15px 25px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    font-weight: 500;
   }
   
-  .login-button:hover {
-    background-color: #c71515; /* Darker red */
+  .menu-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+  }
+}
+
+// Bottom menu
+.bottom-menu {
+  margin-top: 32px;
+  
+  ion-item {
+    --background: transparent;
+    
+    ion-icon {
+      color: $primary-color;
+      font-size: 20px;
+    }
+    
+    ion-label {
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sidebar-container {
+    padding: 16px;
   }
   
-  .description-text {
-    font-size: 13px;
-    color: #666;
-    margin-top: 10px;
+  .header-content {
+    padding: 20px;
   }
   
-  .menu-items {
-    margin-top: 20px;
+  .welcome-title {
+    font-size: 20px;
   }
   
   .menu-item {
-    background-color: #f0f8ff; /* Light blue */
-    border-radius: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    animation: bounceIn 1s ease-in-out;
+    margin-bottom: 8px;
   }
-  
-  .item-title {
-    font-size: 13px;
-    color: #000;
-  }
-  
-  .item-image {
-    width: 60px;
-    margin-top: -20px;
-  }
-  
-  .contact-section, .terms-section {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .contact-icon, .terms-icon {
-    width: 40px;
-    margin-right: 10px;
-  }
-  
-  .contact-text, .terms-text {
-    font-size: 16px;
-    color: #8f8f8f;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideIn {
-    from { transform: translateY(-20px); }
-    to { transform: translateY(0); }
-  }
-  
-  @keyframes bounceIn {
-    from { transform: scale(0.95); }
-    to { transform: scale(1); }
-  }
+}
   

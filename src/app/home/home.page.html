@@ -4,139 +4,319 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content>
-  <div class="header-container">
-    <ion-card class="header-card">
-      <div class="header-content">
-        <img src="../../assets/menu-toolbar.png" class="header-logo">
-        <img src="../../../assets/side-menu.png" class="menu-icon" (click)="navigateToMenu()">
-      </div>
-    </ion-card>
+<ion-content [fullscreen]="true" style="--padding-top: 0; --background: #f8f9fa;">
+  <!-- Header -->
+  <div class="header-container" style="padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); background: white;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <img src="../../assets/menu-toolbar.png" class="header-logo" style="height: 28px;">
+    </div>
+    <img src="../../../assets/side-menu.png" class="menu-icon" (click)="navigateToMenu()" style="width: 24px; height: 24px; cursor: pointer; filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(104%) contrast(101%);">
   </div>
 
-  <!-- Hero Section -->
-  <div class="hero-section">
-    <h1 class="hero-title">Complete motors solutions under one roof</h1>
-    <p class="hero-subtitle">Buy, Sell or Hire on clicks</p>
+  <!-- Greeting Section -->
+  <div class="greeting-section" style="padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: white; border-bottom: 1px solid #eee; margin-top: 52px;">
+    <div style="width: 50px; height: 50px; background: #ddd; border-radius: 50%; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+      <img *ngIf="userProfilePic" [src]="userProfilePic" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='../../assets/default-profile.png';">
+      <ion-icon *ngIf="!userProfilePic" name="person-circle-outline" style="font-size: 40px; color: #555;"></ion-icon>
+    </div>
+    <div class="welcome-text-container" style="flex: 1; min-width: 0; overflow: visible;">
+      <h2 class="typing-text">Portal of Complete Motors Solution</h2>
+      <p class="welcome-message">Welcome, {{userName}}</p>
+    </div>
   </div>
 
-  <!-- Main Content Grid -->
-  <div class="content-grid">
-    <!-- Car Card -->
-    <ion-card class="feature-card car-card">
-      <div class="card-content">
-        <div class="card-text">
-          <h3>Search your dream car from our 1000s of cars</h3>
-          <ion-button class="action-button" routerLink="/car-home">
-            Explore Cars
-          </ion-button>
+  <!-- Search Bar -->
+  <div class="search-bar-container" style="padding: 16px; background: white; position: relative;">
+    <div style="display: flex; align-items: center; background: #f0f0f0; border-radius: 8px; padding: 8px 12px;">
+      <ion-icon name="search-outline" style="font-size: 20px; color: #555; margin-right: 8px;"></ion-icon>
+      <input type="text" 
+             [(ngModel)]="searchQuery"
+             (input)="onSearchInput($event)"
+             placeholder="Search vehicle name" 
+             style="flex-grow: 1; border: none; outline: none; background: transparent; font-size: 16px;">
+      <ion-icon name="options-outline" style="font-size: 20px; color: #555; margin-left: 8px;"></ion-icon>
+    </div>
+
+    <!-- Search Results Dropdown -->
+    <div *ngIf="showResults" class="search-results" style="position: absolute; top: 100%; left: 16px; right: 16px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 8px; max-height: 400px; overflow-y: auto; z-index: 1000;">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" style="padding: 16px; text-align: center; color: #666;">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p style="margin: 8px 0 0 0;">Searching...</p>
+      </div>
+
+      <!-- No Results -->
+      <div *ngIf="!isLoading && searchResults.length === 0" style="padding: 16px; text-align: center; color: #666;">
+        No results found
+      </div>
+
+      <!-- Results List -->
+      <div *ngIf="!isLoading && searchResults.length > 0">
+        <div *ngFor="let result of searchResults" 
+             (click)="onSearchResultClick(result)"
+             style="padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; display: flex; align-items: center; gap: 12px;"
+             class="search-result-item">
+          <img [src]="result.image" 
+               [alt]="result.title"
+               style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+          <div style="flex: 1;">
+            <h4 style="margin: 0 0 4px 0; font-size: 16px; color: #333;">{{result.title}}</h4>
+            <p style="margin: 0; font-size: 14px; color: #666;">{{result.category}}</p>
+            <p style="margin: 4px 0 0 0; font-size: 16px; font-weight: 600; color: #FF4B2B;">{{result.price}}</p>
+          </div>
         </div>
-        <div class="card-image">
-          <img src="../../assets/extra/blue-car.png" alt="Car">
+      </div>
+    </div>
+  </div>
+
+  <!-- Explore Categories -->
+  <div class="explore-section" style="padding: 16px 0; background: white; border-bottom: 1px solid #eee;">
+    <h3 style="margin: 0 0 12px 0; padding: 0 16px; font-size: 18px; font-weight: 600; color: #333;">Explore</h3>
+    <div class="categories-list" style="display: flex; overflow-x: auto; padding: 0 16px 12px 16px; gap: 16px; -webkit-overflow-scrolling: touch;">
+      <div class="category-item" (click)="navigateToCarHome()" style="flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.2s ease; width: 80px;">
+        <div style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+          <img src="../../assets/extra/blue-car.png" alt="Car" style="width: 40px; height: 40px; object-fit: contain;">
+        </div>
+        <p style="margin-top: 8px; font-size: 13px; color: #555; font-weight: 500; line-height: 1.2; height: 32px; display: flex; align-items: center; justify-content: center;">Cars</p>
+      </div>
+      <div class="category-item" (click)="navigateToBikeHome()" style="flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.2s ease; width: 80px;">
+        <div style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+          <img src="../assets/Bikesection/bikecardpic.png" alt="Bike" style="width: 40px; height: 40px; object-fit: contain;">
+        </div>
+        <p style="margin-top: 8px; font-size: 13px; color: #555; font-weight: 500; line-height: 1.2; height: 32px; display: flex; align-items: center; justify-content: center;">Bikes</p>
+      </div>
+      <div class="category-item" (click)="navigateToCommercialVehiclesHome()" style="flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.2s ease; width: 80px;">
+        <div style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+          <img src="../../../assets/extra/truck.png" alt="Commercial Vehicles" style="width: 40px; height: 40px; object-fit: contain;">
+        </div>
+        <p style="margin-top: 8px; font-size: 13px; color: #555; font-weight: 500; line-height: 1.2; height: 32px; display: flex; align-items: center; justify-content: center;">Commercial Vehicles</p>
+      </div>
+      <div class="category-item" (click)="navigateToMachineryHome()" style="flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.2s ease; width: 80px;">
+        <div style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+          <img src="../../../assets/extra/loader.png" alt="Machinery" style="width: 40px; height: 40px; object-fit: contain;">
+        </div>
+        <p style="margin-top: 8px; font-size: 13px; color: #555; font-weight: 500; line-height: 1.2; height: 32px; display: flex; align-items: center; justify-content: center;">Machinery</p>
+      </div>
+      <div class="category-item" (click)="navigateToIndustrialPlantHome()" style="flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.2s ease; width: 80px;">
+        <div style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+          <img src="../../../assets/extra/engine.png" alt="Industrial Plant" style="width: 40px; height: 40px; object-fit: contain;">
+        </div>
+        <p style="margin-top: 8px; font-size: 13px; color: #555; font-weight: 500; line-height: 1.2; height: 32px; display: flex; align-items: center; justify-content: center;">Industrial Plant</p>
+      </div>
+      <div class="category-item" (click)="navigateToAccessoriesHome()" style="flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.2s ease; width: 80px;">
+        <div style="width: 60px; height: 60px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+          <img src="../assets/Landing page/partandaccesories.png" alt="Accessories" style="width: 40px; height: 40px; object-fit: contain;">
+        </div>
+        <p style="margin-top: 8px; font-size: 13px; color: #555; font-weight: 500; line-height: 1.2; height: 32px; display: flex; align-items: center; justify-content: center;">Accessories</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Listing Section -->
+  <div class="listing-section" style="padding: 16px; background: #f8f9fa; padding-bottom: 70px;">
+    <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #333;">Featured Categories</h3>
+    
+    <!-- Cars Card -->
+    <ion-card style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="display: flex; padding: 16px; gap: 16px;">
+        <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <img src="../../assets/extra/blue-car.png" alt="Car" style="width: 60px; height: 60px; object-fit: contain;">
+        </div>
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #333;">Cars</h4>
+          <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.4;">Browse through our extensive collection of cars, from luxury sedans to sporty hatchbacks.</p>
+          <ion-button fill="clear" size="small" (click)="navigateToCarHome()" style="margin-top: 8px; --padding-start: 0;">View All Cars</ion-button>
         </div>
       </div>
     </ion-card>
 
-    <!-- Bike Card -->
-    <ion-card class="feature-card bike-card">
-      <div class="card-content">
-        <div class="card-text">
-          <h3>Love bikes? then love it with us buy sell on clicks</h3>
-          <ion-button class="action-button" routerLink="/bike-home">
-            Explore Bikes
-          </ion-button>
+    <!-- Bikes Card -->
+    <ion-card style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="display: flex; padding: 16px; gap: 16px;">
+        <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <img src="../assets/Bikesection/bikecardpic.png" alt="Bike" style="width: 60px; height: 60px; object-fit: contain;">
         </div>
-        <div class="card-image">
-          <img src="../assets/Bikesection/bikecardpic.png" alt="Bike">
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #333;">Bikes</h4>
+          <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.4;">Discover our range of motorcycles, scooters, and electric bikes for every rider.</p>
+          <ion-button fill="clear" size="small" (click)="navigateToBikeHome()" style="margin-top: 8px; --padding-start: 0;">View All Bikes</ion-button>
         </div>
       </div>
     </ion-card>
 
-    <!-- Truck Card -->
-    <ion-card class="feature-card truck-card">
-      <div class="card-content">
-        <div class="card-text">
-          <h3>Move your business ahead</h3>
-          <p>Buy Sell or Hire commercial vehicles</p>
-          <ion-button class="action-button" routerLink="/commercial-vehicles-home">
-            Explore Trucks
-          </ion-button>
+    <!-- Commercial Vehicles Card -->
+    <ion-card style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="display: flex; padding: 16px; gap: 16px;">
+        <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <img src="../../../assets/extra/truck.png" alt="Commercial Vehicles" style="width: 60px; height: 60px; object-fit: contain;">
         </div>
-        <div class="card-image">
-          <img src="../../../assets/extra/truck.png" alt="Truck">
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #333;">Commercial Vehicles</h4>
+          <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.4;">Explore our selection of trucks, vans, and commercial vehicles for your business needs.</p>
+          <ion-button fill="clear" size="small" (click)="navigateToCommercialVehiclesHome()" style="margin-top: 8px; --padding-start: 0;">View All Vehicles</ion-button>
         </div>
       </div>
     </ion-card>
 
     <!-- Machinery Card -->
-    <ion-card class="feature-card machinery-card">
-      <div class="card-content">
-        <div class="card-text">
-          <h3>Premiere machinery buying & selling platform</h3>
-          <ion-button class="action-button" routerLink="/machinery-home">
-            Explore Machinery
-          </ion-button>
+    <ion-card style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="display: flex; padding: 16px; gap: 16px;">
+        <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <img src="../../../assets/extra/loader.png" alt="Machinery" style="width: 60px; height: 60px; object-fit: contain;">
         </div>
-        <div class="card-image">
-          <img src="../../../assets/extra/loader.png" alt="Machinery">
-        </div>
-      </div>
-    </ion-card>
-
-    <!-- Industrial Plant Card -->
-    <ion-card class="feature-card plant-card">
-      <div class="card-content">
-        <div class="card-text">
-          <h3>Industries grow with motorscube.com</h3>
-          <ion-button class="action-button" routerLink="/industrial-plant-home">
-            Explore Plants
-          </ion-button>
-        </div>
-        <div class="card-image">
-          <img src="../../../assets/extra/engine.png" alt="Industrial Plant">
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #333;">Machinery</h4>
+          <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.4;">Browse our collection of construction and industrial machinery equipment.</p>
+          <ion-button fill="clear" size="small" (click)="navigateToMachineryHome()" style="margin-top: 8px; --padding-start: 0;">View All Machinery</ion-button>
         </div>
       </div>
     </ion-card>
 
-    <!-- Accessories Card -->
-    <ion-card class="feature-card accessories-card">
-      <div class="card-content">
-        <div class="card-text">
-          <h3>Buy & sell accessories on Pakistan's first complete motors platform</h3>
-          <ion-button class="action-button" routerLink="/accessories-home">
-            Explore Accessories
-          </ion-button>
+    <!-- Industrial Plants Card -->
+    <ion-card style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="display: flex; padding: 16px; gap: 16px;">
+        <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <img src="../../../assets/extra/engine.png" alt="Industrial Plant" style="width: 60px; height: 60px; object-fit: contain;">
         </div>
-        <div class="card-image">
-          <img src="../assets/Landing page/partandaccesories.png" alt="Accessories">
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #333;">Industrial Plants</h4>
+          <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.4;">Find industrial plants and manufacturing equipment for your business operations.</p>
+          <ion-button fill="clear" size="small" (click)="navigateToIndustrialPlantHome()" style="margin-top: 8px; --padding-start: 0;">View All Plants</ion-button>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- Parts & Accessories Card -->
+    <ion-card style="margin: 0 0 16px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="display: flex; padding: 16px; gap: 16px;">
+        <div style="width: 80px; height: 80px; background: #f0f0f0; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+          <img src="../assets/Landing page/partandaccesories.png" alt="Accessories" style="width: 60px; height: 60px; object-fit: contain;">
+        </div>
+        <div style="flex: 1;">
+          <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #333;">Parts & Accessories</h4>
+          <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.4;">Shop for genuine parts and accessories for all your vehicles and machinery.</p>
+          <ion-button fill="clear" size="small" (click)="navigateToAccessoriesHome()" style="margin-top: 8px; --padding-start: 0;">View All Parts</ion-button>
         </div>
       </div>
     </ion-card>
   </div>
 
-  <!-- Parts & Accessories Section -->
-  <div class="parts-section">
-    <h2>Buy & sell accessories on Pakistan's first complete motors platform</h2>
-    <ion-card class="parts-card">
-      <div class="parts-content">
-        <h3>Parts & Accessories</h3>
-        <p>One-stop shop for all your motor needs</p>
-      </div>
-    </ion-card>
-  </div>
-
-  <!-- Footer Navigation -->
-  <div class="footer-nav">
-    <div class="nav-icons">
-      <div class="nav-icon" (click)="selectIcon('home')" [class.active]="selectedIcon === 'home'">
-        <img src="../../../assets/Landing page/footer-icon/home.png" alt="Home">
-      </div>
-      <div class="nav-icon" (click)="selectIcon('message')" [class.active]="selectedIcon === 'message'">
-        <img src="../../../assets/Landing page/footer-icon/message.png" alt="Message">
-      </div>
-      <div class="nav-icon" (click)="selectIcon('profile')" [class.active]="selectedIcon === 'profile'">
-        <img src="../../../assets/Landing page/footer-icon/profile.png" alt="Profile">
-      </div>
-    </div>
-  </div>
 </ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-toolbar style="--background: white; box-shadow: 0 -2px 8px rgba(0,0,0,0.1); padding: 0;">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" style="--background: transparent; border-top: none; padding: 8px 0; height: 50px;">
+        <ion-tab-button tab="home" layout="icon-only">
+          <ion-icon name="home-outline" style="font-size: 24px;"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="message" layout="icon-only">
+          <ion-icon name="chatbubbles-outline" style="font-size: 24px;"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile" layout="icon-only">
+          <ion-icon name="person-outline" style="font-size: 24px;"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
+
+<style>
+  /* Add styles for horizontal scrolling */
+  .categories-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .categories-list {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Styles for active category - add logic in component */
+  .category-item .active-bg {
+     background: #e3f2fd; /* Light blue background */
+  }
+
+  .category-item .active-icon {
+    color: #2196F3; /* Blue icon color */
+  }
+
+  /* Hover effects for categories */
+  .category-item:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .welcome-text-container {
+    overflow: visible;
+    width: 100%;
+  }
+
+  .typing-text {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FF4B2B;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #FF4B2B;
+    width: 0;
+    animation: typing 4s steps(50) forwards,
+               blink-caret .75s step-end infinite;
+  }
+
+  .welcome-message {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #2196F3;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards 4s;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #FF4B2B }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Add these styles to your existing styles */
+  ion-content {
+    --padding-bottom: 70px;
+  }
+
+  /* Add these styles to your existing styles */
+  ion-tab-button {
+    --color: #666;
+    --color-selected: #FF4B2B;
+    --padding-top: 4px;
+    --padding-bottom: 4px;
+  }
+
+  ion-tab-button ion-icon {
+    transition: transform 0.2s ease;
+  }
+
+  ion-tab-button:active ion-icon {
+    transform: scale(0.9);
+  }
+
+  ion-tab-button[aria-selected="true"] ion-icon {
+    transform: scale(1.1);
+  }
+</style>

@@ -1,12 +1,18 @@
 <ion-header>
+  <ion-toolbar class="bg-toolbar">
+    <ion-buttons slot="start" class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label>Bikes</ion-label>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <!-- Professional Header -->
   <div style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
     <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; max-width: 600px; margin: 0 auto;">
       <div style="display: flex; align-items: center; gap: 16px;">
-        <img src="../../assets/extra/back arrow.png" (click)="back()" style="width: 24px; height: 24px; cursor: pointer;" alt="Back">
+        <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px; filter: brightness(0) invert(1);">
         <img src="../../assets/menu-toolbar.png" style="height: 32px;" alt="Menu">
       </div>
       <img src="../../../assets/side-menu.png" (click)="navigateToMainMenu()" style="width: 24px; height: 24px; cursor: pointer;" alt="Menu">
@@ -18,7 +24,7 @@
     <div style="position: absolute; bottom: 24px; left: 0; right: 0; padding: 0 16px;">
       <h1 style="color: white; font-size: 28px; font-weight: 700; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Find Your Dream Bike</h1>
       <p style="color: white; font-size: 16px; margin-bottom: 16px; opacity: 0.9;">Discover the perfect ride for your journey</p>
-      <button (click)="bikeSaleListing()" style="background: #2196F3; color: white; border: none; padding: 14px 24px; border-radius: 12px; font-size: 16px; font-weight: 600; width: 100%; box-shadow: 0 4px 12px rgba(33,150,243,0.3);">Explore Bikes</button>
+      <button (click)="bikeSaleListing()" style="background: #FF4B2B; color: white; border: none; padding: 14px 24px; border-radius: 12px; font-size: 16px; font-weight: 600; width: 100%; box-shadow: 0 4px 12px rgba(255,75,43,0.3);">Explore Bikes</button>
     </div>
   </div>
 
@@ -33,7 +39,7 @@
               <p style="font-size: 14px; color: #666; margin: 4px 0 0 0;">Discover our premium selection</p>
             </div>
             <button (click)="bikeSaleListing()" 
-                    style="background: #2196F3; border: none; color: white; font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(33,150,243,0.2);">
+                    style="background: #FF4B2B; border: none; color: white; font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(255,75,43,0.2);">
               View all
             </button>
           </div>
@@ -53,7 +59,7 @@
                       <img *ngIf="!car.image_url1" src="../../assets/Bikesection/default-bike.jpg"
                            style="width: 100%; height: 100%; object-fit: cover;" 
                            alt="Default bike image"/>
-                      <div style="position: absolute; top: 16px; right: 16px; background: rgba(33,150,243,0.95); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: white; backdrop-filter: blur(4px);">
+                      <div style="position: absolute; top: 16px; right: 16px; background: rgba(255,75,43,0.95); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; color: white; backdrop-filter: blur(4px);">
                         Featured
                       </div>
                     </div>
@@ -68,10 +74,10 @@
                         </p>
                       </div>
                       <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <p style="font-size: 20px; color: #2196F3; font-weight: 700; margin: 0;">
+                        <p style="font-size: 20px; color: #FF4B2B; font-weight: 700; margin: 0;">
                           PKR {{ car.bike_ad_price }}
                         </p>
-                        <button style="background: #2196F3; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(33,150,243,0.2);">
+                        <button style="background: #FF4B2B; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,75,43,0.2);">
                           View Details
                         </button>
                       </div>
@@ -84,10 +90,10 @@
 
           <ng-template #noData>
             <div style="text-align: center; padding: 48px 24px; background: #f8f9fa; border-radius: 16px; margin: 0 16px; height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <ion-icon name="bicycle-outline" style="font-size: 48px; color: #2196F3; margin-bottom: 16px;"></ion-icon>
+              <ion-icon name="bicycle-outline" style="font-size: 48px; color: #FF4B2B; margin-bottom: 16px;"></ion-icon>
               <p style="color: #1a1a1a; font-size: 18px; margin: 0 0 8px 0; font-weight: 600;">No Supreme Ads Available</p>
               <p style="color: #666; font-size: 14px; margin: 0 0 16px 0; max-width: 280px;">Be the first to list your bike as a Supreme ad and get maximum visibility</p>
-              <button (click)="carSalePosting()" style="background: #2196F3; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(33,150,243,0.2);">
+              <button (click)="carSalePosting()" style="background: #FF4B2B; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,75,43,0.2);">
                 List Your Bike
               </button>
             </div>
@@ -102,7 +108,7 @@
     <div style="max-width: 600px; margin: 0 auto; background: #1a1a1a; border-radius: 16px; padding: 24px; color: white;">
       <h2 style="font-size: 20px; margin-bottom: 8px; font-weight: 600;">Sell Your Bike</h2>
       <p style="font-size: 14px; margin-bottom: 16px; opacity: 0.9;">List your bike for free and reach thousands of buyers</p>
-      <button (click)="carSalePosting()" style="background: #2196F3; color: white; border: none; padding: 14px 24px; border-radius: 12px; font-size: 16px; font-weight: 600; width: 100%;">List Your Bike</button>
+      <button (click)="carSalePosting()" style="background: #FF4B2B; color: white; border: none; padding: 14px 24px; border-radius: 12px; font-size: 16px; font-weight: 600; width: 100%;">List Your Bike</button>
     </div>
   </div>
 

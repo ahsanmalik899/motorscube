@@ -1035,3 +1035,50 @@ ion-content {
   }
 }
 
+.search-results {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.search-result-item {
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+
+  &:last-child {
+    border-bottom: none !important;
+  }
+}
+
+// Add styles for the search input focus state
+.search-bar-container input:focus {
+  outline: none;
+  &::placeholder {
+    color: #999;
+  }
+}
+
+// Add styles for the loading spinner
+ion-spinner {
+  width: 24px;
+  height: 24px;
+  --color: #FF4B2B;
+}
+

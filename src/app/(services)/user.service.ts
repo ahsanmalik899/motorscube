@@ -187,9 +187,9 @@ getVersions(versionData: FormData): Observable<string[]> {
     // Make a POST request to the API endpoint to fetch city names
     return this.http.get<string[]>(this.apiUrl + 'get_car_showroom.php');
   }
-  getUserBsnData(): Observable<string[]> {
+  getUserBsnData(): Observable<any[]> {
     // Make a POST request to the API endpoint to fetch city names
-  return this.http.get<string[]>(this.apiUrl + 'get_user_bsn.php');
+    return this.http.get<any[]>(this.apiUrl + 'get_user_bsn.php');
   }
 
   carSalePost(userData: any): Observable<any> {
