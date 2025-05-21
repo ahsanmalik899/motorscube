@@ -11,18 +11,6 @@ import { HttpErrorResponse } from '@angular/common/http';
   standalone: false
 })
 export class AccCreateBusinesPage implements OnInit {
-back() {
-throw new Error('Method not implemented.');
-}
-onInputFocus(arg0: string) {
-throw new Error('Method not implemented.');
-}
-onInputBlur(arg0: string) {
-throw new Error('Method not implemented.');
-}
-hideImage() {
-throw new Error('Method not implemented.');
-}
   userForm: FormGroup;
   showPassword = false;
   passwordToggleIcon = 'eye';
@@ -32,15 +20,14 @@ throw new Error('Method not implemented.');
   selectedFileName = '';
   selectedFile: Blob | null = null;
   countryCode: any;
-  loading: any; // Variable to hold the loading indicator instance
+  loading: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private alertController: AlertController,
-  
     private navController: NavController,
-    private loadingController: LoadingController // Injecting LoadingController for loading indicator
+    private loadingController: LoadingController
   ) {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -57,13 +44,37 @@ throw new Error('Method not implemented.');
     this.getCountryCode();
   }
 
-  // Toggles the visibility of the password
+  back() {
+    this.navController.back();
+  }
+
+  onInputFocus(fieldName: string) {
+    const control = this.userForm.get(fieldName);
+    if (control) {
+      control.markAsTouched();
+    }
+  }
+
+  onInputBlur(fieldName: string) {
+    const control = this.userForm.get(fieldName);
+    if (control) {
+      control.markAsTouched();
+    }
+  }
+
+  hideImage() {
+    this.uploadedImage = null;
+    this.showUploaded = false;
+    this.showUploadField = true;
+    this.selectedFile = null;
+    this.selectedFileName = '';
+  }
+
   togglePassword(): void {
     this.showPassword = !this.showPassword;
     this.passwordToggleIcon = this.showPassword ? 'eye-off' : 'eye';
   }
 
-  // Fetch country codes from the backend service
   getCountryCode() {
     this.userService.getCountryCode().subscribe({
       next: (data) => {
@@ -75,7 +86,6 @@ throw new Error('Method not implemented.');
     });
   }
 
-  // Handle file selection and preview
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -103,78 +113,64 @@ throw new Error('Method not implemented.');
     }
   }
 
-  // Show loader
   async showLoader(message: string) {
     this.loading = await this.loadingController.create({
       message: message,
       spinner: 'crescent',
-      duration: 0, // Infinite loader
+      duration: 0,
     });
     await this.loading.present();
   }
 
-  // Hide loader
   async hideLoader() {
     if (this.loading) {
       await this.loading.dismiss();
     }
   }
 
-// Submit the form
-async onFormSubmit(): Promise<void> {
-  if (!this.userForm.valid || !this.selectedFile) {
-    await this.showFieldValidityAlert();
-    return;
-  }
+  async onFormSubmit() {
+    if (this.userForm.valid && this.selectedFile) {
+      try {
+        await this.showLoader('Creating account...');
+        
+        const formData = new FormData();
+        this.appendFormData(formData, 'name');
+        this.appendFormData(formData, 'country');
+        this.appendFormData(formData, 'mobile');
+        this.appendFormData(formData, 'email');
+        this.appendFormData(formData, 'password');
+        this.appendFormData(formData, 'address');
+        this.appendFormData(formData, 'web');
+        
+        if (this.selectedFile) {
+          formData.append('profile_picture', this.selectedFile);
+        }
 
-  await this.showLoader('Submitting your data...'); // Show loading spinner
-
-  const formData = new FormData();
-  this.appendFormData(formData, 'name');
-  this.appendFormData(formData, 'country');
-  this.appendFormData(formData, 'mobile');
-  this.appendFormData(formData, 'email');
-  this.appendFormData(formData, 'password');
-  this.appendFormData(formData, 'address');
-  this.appendFormData(formData, 'web');
-
-  // Append selected image file if available
-  if (this.selectedFile) {
-    formData.append('image', this.selectedFile, this.selectedFileName);
-  }
-
-  // Conditional logic based on country code
-  const countryCode = this.userForm.get('country')?.value;
-  let submitObservable;
-
-  if (countryCode === '+92') {
-    // If country code is +92, call saveUserWithPhone
-    submitObservable = this.userService.saveUserWithPhone(formData);
-  } else {
-    // If country code is not +92, call saveUserWithEmail
-    submitObservable = this.userService.saveUserWithEmail(formData);
-  }
-
-  submitObservable.subscribe(
-    async response => {
-      await this.hideLoader(); // Hide the loader after submission
-      if (response.error) {
-        await this.presentErrorAlert(response.error);
-      } else {
-        await this.presentSuccessAlert();
-        this.userForm.reset();
+        this.userService.createBusinessAccount(formData).subscribe({
+          next: async (response: { success: boolean; message: string }) => {
+            await this.hideLoader();
+            const alert = await this.alertController.create({
+              header: 'Success',
+              message: 'Business account created successfully!',
+              buttons: ['OK']
+            });
+            await alert.present();
+            this.navController.navigateRoot('/login');
+          },
+          error: async (error: HttpErrorResponse) => {
+            await this.hideLoader();
+            await this.handleError(error);
+          }
+        });
+      } catch (error) {
+        await this.hideLoader();
+        await this.presentErrorAlert('An error occurred while creating the account.');
       }
-    },
-    async error => {
-      await this.hideLoader(); // Hide the loader on error
-      console.error('Error:', error);
-      this.handleError(error);
+    } else {
+      await this.showFieldValidityAlert();
     }
-  );
-}
+  }
 
-
-  // Helper function to append form control values to FormData
   private appendFormData(formData: FormData, controlName: string): void {
     const control = this.userForm.get(controlName);
     if (control) {
@@ -182,7 +178,6 @@ async onFormSubmit(): Promise<void> {
     }
   }
 
-  // Show error alert
   async presentErrorAlert(message: string): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Error',
@@ -192,7 +187,6 @@ async onFormSubmit(): Promise<void> {
     await alert.present();
   }
 
-  // Handle error response
   private async handleError(error: HttpErrorResponse): Promise<void> {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
@@ -208,31 +202,6 @@ async onFormSubmit(): Promise<void> {
     await alert.present();
   }
 
-  // Success alert after form submission
-  async presentSuccessAlert(): Promise<void> {
-    const countryCode = this.userForm.get('country')?.value;
-    let message = countryCode === '+92' ?
-      'Your password has been sent to your phone via SMS.' :
-      'Your password has been sent to your email.';
-
-    const alert = await this.alertController.create({
-      header: 'Success',
-      message: message,
-      cssClass: 'success-alert',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            this.navController.navigateForward('/login');
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
-  // Show an alert with invalid fields
   async showFieldValidityAlert(): Promise<void> {
     const fieldNames = ['name', 'country', 'mobile', 'email', 'password', 'address', 'web'];
     const invalidFields: string[] = [];

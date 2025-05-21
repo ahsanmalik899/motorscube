@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar class="modern-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" class="back-button">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Business Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="container">
+    <!-- Business Header Section -->
+    <div class="profile-header">
+      <h2 class="user-name">{{ userData?.business_name || 'Business Name' }}</h2>
+      <p class="user-email">{{ userData?.email || 'business@email.com' }}</p>
+    </div>
+
+    <!-- Business Stats -->
+    <div class="profile-stats">
+      <div class="stat-item">
+        <ion-icon name="car-outline"></ion-icon>
+        <span class="stat-value">{{ userData?.total_cars || 0 }}</span>
+        <span class="stat-label">Cars</span>
+      </div>
+      <div class="stat-item">
+        <ion-icon name="star-outline"></ion-icon>
+        <span class="stat-value">{{ userData?.rating || 0 }}</span>
+        <span class="stat-label">Rating</span>
+      </div>
+      <div class="stat-item">
+        <ion-icon name="time-outline"></ion-icon>
+        <span class="stat-value">{{ userData?.member_since || '2024' }}</span>
+        <span class="stat-label">Member Since</span>
+      </div>
+    </div>
+
+    <!-- Business Information -->
+    <div class="profile-info">
+      <div class="info-section">
+        <h3 class="section-title">Business Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <ion-icon name="business-outline"></ion-icon>
+            <div class="info-content">
+              <label>Business Name</label>
+              <p>{{ userData?.business_name || 'Not Set' }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="mail-outline"></ion-icon>
+            <div class="info-content">
+              <label>Email Address</label>
+              <p>{{ userData?.email || 'Not Set' }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="call-outline"></ion-icon>
+            <div class="info-content">
+              <label>Phone Number</label>
+              <p>{{ userData?.mobile || 'Not Set' }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="location-outline"></ion-icon>
+            <div class="info-content">
+              <label>Business Address</label>
+              <p>{{ userData?.address || 'Not Set' }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="document-text-outline"></ion-icon>
+            <div class="info-content">
+              <label>Business License</label>
+              <p>{{ userData?.business_license || 'Not Set' }}</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <ion-icon name="globe-outline"></ion-icon>
+            <div class="info-content">
+              <label>Website</label>
+              <p>{{ userData?.website || 'Not Set' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Actions -->
+      <div class="account-actions">
+        <ion-button expand="block" class="edit-button" (click)="editProfile()">
+          <ion-icon name="create-outline" slot="start"></ion-icon>
+          Edit Business Profile
+        </ion-button>
+        <ion-button expand="block" class="change-password-button" (click)="changePassword()">
+          <ion-icon name="key-outline" slot="start"></ion-icon>
+          Change Password
+        </ion-button>
+        <ion-button expand="block" class="delete-account-button" (click)="deleteAccount()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Delete Business Account
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content> 

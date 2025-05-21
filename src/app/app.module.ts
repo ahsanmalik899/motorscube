@@ -25,7 +25,6 @@ import { PostDealerBusinesPage } from './(car)/post-dealer-busines/post-dealer-b
 import { AccountProfPvtPage } from './(user)/account-prof-pvt/account-prof-pvt.page';
 import { ResetPasswordPage } from './(user)/reset-password/reset-password.page';
 import { AccCreatePvtPage } from './(user)/acc-create-pvt/acc-create-pvt.page';
-import { AccCreateBusinesPage } from './(user)/acc-create-busines/acc-create-busines.page';
 import { AccountProfBusinesPage } from './(user)/account-prof-busines/account-prof-busines.page';
 import { CarAdSaleUpdatePage } from './(car)/car-ad-sale-update/car-ad-sale-update.page';
 import { RadioButtonModule } from 'primeng/radiobutton'; 
@@ -140,7 +139,6 @@ import { UpdatePlantWorkshopPage } from './(industrial-plants)/update-plant-work
     PostDrivingSchoolPage,
     AccountProfPvtPage,
     AccCreatePvtPage,
-    AccCreateBusinesPage,
     AccountProfBusinesPage,
     ForgetPaswrdPage,
     HireFiltersPage,

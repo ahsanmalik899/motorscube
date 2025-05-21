@@ -1,25 +1,313 @@
-.wrapper {
-    display: flex;
+// Variables
+$primary-color: #FF4B2B;
+$primary-light: #FF6B4B;
+$primary-gradient: linear-gradient(135deg, $primary-color, $primary-light);
+$text-color: #333;
+$border-color: #ddd;
+$error-color: #ff3b30;
+$success-color: #4cd964;
+$background-color: #f8f9fa;
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+// Main styles
+ion-content {
+  --background: $background-color;
+}
+
+.modern-toolbar {
+  --background: white;
+  --border-color: transparent;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  ion-title {
+    color: $text-color;
+    font-weight: 600;
   }
-
-
-  .country-div {
-    flex: 0 0 30%; /* 30% width, do not grow or shrink */
-    margin-right: 20px; /* Optional: Adjust spacing between divs */
+  
+  .back-button {
+    --color: $primary-color;
   }
+}
 
-  .mobile-div {
-    flex: 0 0 65%; /* 70% width, do not grow or shrink */
-  }
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
 
-  .image-container {
+// Profile Picture Section
+.profile-picture-section {
+  text-align: center;
+  margin-bottom: 32px;
+  
+  .profile-picture-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
     position: relative;
-    text-align: center;
+    
+    .upload-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: white;
+      border: 2px dashed $border-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        border-color: $primary-color;
+        background: rgba($primary-color, 0.05);
+      }
+      
+      .file-input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .upload-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        
+        .camera-icon {
+          font-size: 32px;
+          color: $primary-color;
+        }
+        
+        span {
+          color: $text-color;
+          font-size: 14px;
+        }
+      }
+    }
+    
+    .profile-preview {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      
+      .preview-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .remove-image {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: white;
+        border: none;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        ion-icon {
+          color: $error-color;
+          font-size: 20px;
+        }
+      }
+    }
   }
-  .hide-button {
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+  
+  .welcome-text {
+    color: $text-color;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .tagline {
+    color: #666;
+    font-size: 16px;
+  }
+}
+
+.form-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+  
+  .input-icon {
     position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1; /* Ensure the button is above the image */
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 20px;
   }
+  
+  .input-wrapper {
+    position: relative;
+    
+    label {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      background: white;
+      padding: 0 4px;
+      
+      &.active {
+        top: 0;
+        transform: translateY(-50%);
+        font-size: 12px;
+        color: $primary-color;
+      }
+    }
+    
+    .text-field {
+      width: 100%;
+      padding: 12px 12px 12px 40px;
+      border: 1px solid $border-color;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: white;
+      
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+        outline: none;
+      }
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 16px;
+  
+  .country-div {
+    flex: 0 0 30%;
+  }
+  
+  .mobile-div {
+    flex: 0 0 65%;
+  }
+}
+
+.button-container {
+  margin-top: 32px;
+  
+  .submit-button {
+    width: 100%;
+    padding: 16px;
+    background: $primary-gradient;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+    
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+// Error states
+.text-field.ng-invalid.ng-touched {
+  border-color: $error-color;
+  
+  & + label {
+    color: $error-color;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .form-container {
+    padding: 16px;
+  }
+  
+  .wrapper {
+    flex-direction: column;
+    gap: 24px;
+    
+    .country-div,
+    .mobile-div {
+      flex: 1;
+    }
+  }
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+.hide-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1; /* Ensure the button is above the image */
+}
   

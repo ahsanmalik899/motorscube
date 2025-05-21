@@ -339,4 +339,8 @@ getsingleUserSale(formData: FormData): Observable<any[]> {
 submitBikePayment(formData: FormData): Observable<any> {
   return this.http.post(`${this.apiUrl}/bike/submit-payment`, formData);
 }
+
+createBusinessAccount(formData: FormData): Observable<any> {
+  return this.http.post<any>(this.apiUrl + 'save_user_bsn_with_phone.php', formData);
+}
 }

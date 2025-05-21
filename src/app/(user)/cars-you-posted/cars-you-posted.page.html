@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar class="modern-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" class="back-button">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Cars You Posted</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="container">
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <ion-icon name="car-outline"></ion-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ totalCars || 0 }}</span>
+          <span class="stat-label">Total Cars</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <ion-icon name="eye-outline"></ion-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ totalViews || 0 }}</span>
+          <span class="stat-label">Total Views</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <ion-icon name="chatbubble-outline"></ion-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ totalInquiries || 0 }}</span>
+          <span class="stat-label">Inquiries</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <ion-searchbar
+        placeholder="Search your cars..."
+        [(ngModel)]="searchQuery"
+        (ionChange)="filterCars()"
+        class="custom-searchbar"
+      ></ion-searchbar>
+      <ion-segment [(ngModel)]="statusFilter" (ionChange)="filterCars()" class="custom-segment">
+        <ion-segment-button value="all">
+          <ion-label>All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="active">
+          <ion-label>Active</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="sold">
+          <ion-label>Sold</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <!-- Cars Grid -->
+    <div class="cars-grid">
+      <div class="car-card" *ngFor="let car of filteredCars">
+        <div class="car-image" [style.background-image]="'url(' + (car.images?.[0] || 'assets/default-car.jpg') + ')'">
+          <div class="car-status" [ngClass]="car.status">
+            {{ car.status | titlecase }}
+          </div>
+          <div class="car-actions">
+            <ion-button fill="clear" (click)="editCar(car)">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" (click)="deleteCar(car)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+        <div class="car-details">
+          <h3 class="car-title">{{ car.title }}</h3>
+          <div class="car-specs">
+            <span class="spec-item">
+              <ion-icon name="speedometer-outline"></ion-icon>
+              {{ car.mileage }} km
+            </span>
+            <span class="spec-item">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ car.year }}
+            </span>
+            <span class="spec-item">
+              <ion-icon name="location-outline"></ion-icon>
+              {{ car.location }}
+            </span>
+          </div>
+          <div class="car-price">
+            <span class="price">Rs. {{ car.price | number }}</span>
+            <span class="views">
+              <ion-icon name="eye-outline"></ion-icon>
+              {{ car.views || 0 }}
+            </span>
+          </div>
+          <div class="car-meta">
+            <span class="date">Posted: {{ car.posted_date | date }}</span>
+            <span class="inquiries" *ngIf="car.inquiries > 0">
+              {{ car.inquiries }} inquiries
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="filteredCars.length === 0">
+      <ion-icon name="car-outline"></ion-icon>
+      <h3>No Cars Found</h3>
+      <p>You haven't posted any cars yet or no cars match your filters.</p>
+      <ion-button (click)="addNewCar()" class="add-car-button">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        Post a New Car
+      </ion-button>
+    </div>
+  </div>
+</ion-content> 

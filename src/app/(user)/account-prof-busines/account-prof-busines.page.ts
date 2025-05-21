@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../(services)/user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
     selector: 'app-account-prof-busines',
@@ -29,18 +29,20 @@ history.back()
   filterUserData: any;
   imageUrl = '';
   imageUrl1 = '';
+  isLoading = false;
 
   constructor(
     private formBuilder: FormBuilder, 
     private userService: UserService,
     private alertController: AlertController,
-    public router: Router
+    public router: Router,
+    private loadingController: LoadingController
   ) {
     this.userID = sessionStorage.getItem('userId')??'';
     this.userType = sessionStorage.getItem('userType')??'';
     if(this.userID=='' || this.userType==''){
       this.userID=localStorage.getItem('userId')?? '';
-      this.userType= localStorage.removeItem('userType')??'';
+      this.userType= localStorage.getItem('userType')??'';
       }
 
     // Initialize the form with FormBuilder
@@ -157,32 +159,55 @@ history.back()
   }
 
   // Handle form submission
-  onFormSubmit(): void {
-    const formData = new FormData();
-    console.log(this.selectedFile);
+  async onFormSubmit(): Promise<void> {
+    if (this.userForm.valid) {
+      try {
+        this.isLoading = true;
+        const loading = await this.loadingController.create({
+          message: 'Updating profile...',
+          spinner: 'circular',
+          translucent: true,
+          backdropDismiss: false,
+          cssClass: 'custom-loading',
+          duration: 0
+        });
 
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile, this.selectedFileName);
-    }
+        await loading.present();
 
-    formData.append('name', this.userForm.get('name')?.value || '');
-    formData.append('email', this.userForm.get('email')?.value || '');
-    formData.append('address', this.userForm.get('address')?.value || '');
-    formData.append('web', this.userForm.get('web')?.value || '');
-    formData.append('userID', this.userID || '');
-    formData.append('imageURL', this.imageUrl1 || '');
+        const formData = new FormData();
+        console.log(this.selectedFile);
 
-    this.userService.updateUserBsn(formData).subscribe(
-      async response => {
-        console.log('Data saved successfully:', response);
-        this.userForm.reset();
-        await this.presentSuccessAlert();
-      },
-      (error) => {
-        console.error('Error saving data:', error);
-        this.presentErrorAlert();
+        if (this.selectedFile) {
+          formData.append('image', this.selectedFile, this.selectedFileName);
+        }
+
+        formData.append('name', this.userForm.get('name')?.value || '');
+        formData.append('email', this.userForm.get('email')?.value || '');
+        formData.append('address', this.userForm.get('address')?.value || '');
+        formData.append('web', this.userForm.get('web')?.value || '');
+        formData.append('userID', this.userID || '');
+        formData.append('imageURL', this.imageUrl1 || '');
+
+        await this.userService.updateUserBsn(formData).subscribe(
+          async response => {
+            await loading.dismiss();
+            this.isLoading = false;
+            console.log('Data saved successfully:', response);
+            this.userForm.reset();
+            await this.presentSuccessAlert();
+          },
+          async error => {
+            await loading.dismiss();
+            this.isLoading = false;
+            console.error('Error saving data:', error);
+            await this.presentErrorAlert();
+          }
+        );
+      } catch (error) {
+        this.isLoading = false;
+        console.error('Error showing loading:', error);
       }
-    );
+    }
   }
 
   // Show error alert

@@ -16,7 +16,6 @@ import { AccCreateBusinesPage } from './acc-create-busines.page'; // Import the 
     AccCreateBusinesPageRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [File]  
-  
+  declarations: [AccCreateBusinesPage]
 })
 export class AccCreateBusinesPageModule {}
