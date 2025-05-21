@@ -63,8 +63,20 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Subscribe to user ID changes
     this.authSubscription = this.authService.userID$.subscribe(userID => {
+      console.log('Auth service userID changed:', userID);
       this.userID = userID || localStorage.getItem('userId');
+      
       if (this.userID) {
+        // Get cached data first
+        const cachedName = localStorage.getItem('userName');
+        const cachedPic = localStorage.getItem('userProfilePic');
+        
+        if (cachedName && cachedPic) {
+          this.userName = cachedName;
+          this.userProfilePic = cachedPic;
+        }
+        
+        // Then fetch fresh data
         this.fetchUserData();
       } else {
         this.userName = 'Guest';
@@ -74,28 +86,43 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   fetchUserData() {
+    if (!this.userID) return;
+
+    console.log('Fetching user data for ID:', this.userID);
+    
     this.userService.getUserBsnData().subscribe({
       next: (data: any[]) => {
         console.log('Raw user data:', data);
-        const userData = data.filter(item => item.users_id === this.userID);
-        console.log('Filtered user data:', userData);
-        if (userData.length > 0) {
-          const user = userData[0];
-          console.log('User profile data:', user);
-          this.userName = user.user_name || 'User';
-          // Handle profile picture URL
-          if (user.user_logo) {
-            // If the URL is relative, add the base URL
-            this.userProfilePic =  user.image_url1
-            ;
-          } else {
-            this.userProfilePic = '';
-          }
-          console.log('Profile picture URL:', this.userProfilePic);
+        const userData = data.find(item => item.users_id === this.userID);
+        console.log('Found user data:', userData);
+        
+        if (userData) {
+          // Update user data
+          this.userName = userData.user_name || 'User';
+          this.userProfilePic = userData.image_url1 || '';
+          
+          // Store in localStorage for persistence
+          localStorage.setItem('userName', this.userName);
+          localStorage.setItem('userProfilePic', this.userProfilePic);
+          
+          console.log('Updated user data:', {
+            userName: this.userName,
+            userProfilePic: this.userProfilePic
+          });
+        } else {
+          console.error('User not found in data');
         }
       },
       error: (error) => {
         console.error('Error fetching user data:', error);
+        // On error, try to use cached data
+        const cachedName = localStorage.getItem('userName');
+        const cachedPic = localStorage.getItem('userProfilePic');
+        
+        if (cachedName && cachedPic) {
+          this.userName = cachedName;
+          this.userProfilePic = cachedPic;
+        }
       }
     });
   }
