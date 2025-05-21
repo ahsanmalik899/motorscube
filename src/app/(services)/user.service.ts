@@ -189,7 +189,7 @@ getVersions(versionData: FormData): Observable<string[]> {
   }
   getUserBsnData(): Observable<any[]> {
     console.log('Fetching user data from API');
-    return this.http.get<any[]>(this.apiUrl + 'get_user_bsn_data.php').pipe(
+    return this.http.get<any[]>(this.apiUrl + 'get_user_bsn.php').pipe(
       catchError(error => {
         console.error('Error fetching user data:', error);
         return throwError(() => error);
