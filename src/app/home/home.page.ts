@@ -54,7 +54,7 @@ featuredCategories = [
     image: '../assets/Bikesection/bikecardpic.png'
   },
   {
-    name: 'commercial',
+    name: 'commercial Vehicle',
     description: 'Commercial vehicles for business.',
     route: '/commercial',
     image: '../../../assets/extra/truck.png'
