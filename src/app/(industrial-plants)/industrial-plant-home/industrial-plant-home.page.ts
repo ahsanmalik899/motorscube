@@ -65,7 +65,7 @@ export class IndustrialPlantHomePage implements OnInit {
     },
     {
       icon: '../../../assets/Menu-items/After login/All other section menu/driving-school.png',
-      title: 'Driving School',
+      title: 'Plants School',
       action: () => this.carSchool()
     },
     {
