@@ -28,6 +28,7 @@ interface SearchResult {
 export class HomePage implements OnInit, OnDestroy {
   userID: string | null = null;
   userName: string = 'Guest';
+  
   userProfilePic: string = '';
   selectedIcon: string = 'home';
   private authSubscription: Subscription | undefined;
@@ -39,6 +40,45 @@ export class HomePage implements OnInit, OnDestroy {
   showResults: boolean = false;
   isLoading: boolean = false;
   private searchSubject = new Subject<string>();
+featuredCategories = [
+  {
+    name: 'cars',
+    description: 'Explore a wide range of cars.',
+    route: '/cars',
+    image: '../../assets/extra/blue-car.png'   // same as small image in Explore Categories
+  },
+  {
+    name: 'bikes',
+    description: 'Find your perfect bike.',
+    route: '/bikes',
+    image: '../assets/Bikesection/bikecardpic.png'
+  },
+  {
+    name: 'commercial',
+    description: 'Commercial vehicles for business.',
+    route: '/commercial',
+    image: '../../../assets/extra/truck.png'
+  },
+  {
+    name: 'machinery',
+    description: 'Heavy machinery and loaders.',
+    route: '/machinery',
+    image: '../../../assets/extra/loader.png'
+  },
+  {
+    name: 'industrial plant',
+    description: 'Industrial plant equipment.',
+    route: '/industrial-plant',
+    image: '../../../assets/extra/engine.png'
+  },
+  {
+    name: 'accessories',
+    description: 'Vehicle accessories and parts.',
+    route: '/accessories',
+    image: '../assets/Landing page/partandaccesories.png'
+  }
+];
+
 
   constructor(
     private router: Router, 
@@ -60,6 +100,9 @@ export class HomePage implements OnInit, OnDestroy {
     });
   }
 
+  navigateToCategory(route: string) {
+    this.router.navigateByUrl(route);
+  }
   ngOnInit(): void {
     // Subscribe to user ID changes
     this.authSubscription = this.authService.userID$.subscribe(userID => {
