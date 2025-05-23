@@ -1092,7 +1092,11 @@ const routes: Routes = [
   {
     path: 'post-plant-school',
     loadChildren: () => import('./(industrial-plants)/post-plant-school/post-plant-school.module').then( m => m.PostPlantSchoolPageModule)
+  },  {
+    path: 'parts-and',
+    loadChildren: () => import('./parts-and/parts-and.module').then( m => m.PartsAndPageModule)
   },
+
 ];
 
 @NgModule({

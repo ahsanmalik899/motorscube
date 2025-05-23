@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start" class="back-button">
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" class="back-icon">
+    </ion-buttons>
+    <ion-title class="page-title">PARTS & ACCESSORIES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-wrapper">
+  <!-- Category Tabs -->
+  <div class="category-tabs-container">
+    <ion-segment value="all" scrollable class="category-segment">
+      <ion-segment-button value="car" class="segment-button">
+        <ion-label>Car</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bike" class="segment-button">
+        <ion-label>Bike</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="commercial" class="segment-button">
+        <ion-label>Commercial</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="machinery" class="segment-button">
+        <ion-label>Machinery</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Product Cards Grid -->
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let category of categories" (click)="navigateToCategory(category.value)">
+      <div class="image-container">
+        <img [src]="category.image" [alt]="category.title" class="product-image">
+      </div>
+      <div class="card-content">
+        <h3 class="product-title">{{ category.title }}</h3>
+        <div class="price-badge">From {{ category.price }}</div>
+        <ion-button expand="block" class="shop-now-button">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          Shop Now
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

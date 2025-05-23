@@ -76,7 +76,7 @@ featuredCategories = [
   {
     name: 'accessories',
     description: 'Vehicle accessories and parts.',
-    route: '/accessories-home',
+    route: '/parts-and',
     image: '../assets/Landing page/partandaccesories.png'
   }
 ];
