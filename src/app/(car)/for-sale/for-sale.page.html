@@ -123,7 +123,8 @@
 <!-- card 1 supream -->
 <ion-col *ngFor="let car of filteredCarData">
   <ng-container *ngIf="car.car_ad_normal_feature === 'Supreme'">
-    <ion-card class="btn-supreme" (click)="navigateToCarDetail(car.car_ad_sale_id)">
+    <ion-card class="btn-supreme" style="margin-top: -25px;
+    " (click)="navigateToCarDetail(car.car_ad_sale_id)">
       <ion-card-header>
 
         <!-- Images row -->
@@ -209,7 +210,7 @@
   <!--car hotspot-->
 <ion-col *ngFor="let car of filteredCarData">
   <ng-container *ngIf="car.car_ad_normal_feature === 'Hotspot'">
-    <ion-card class="btn-supreme" (click)="navigateToCarDetail(car.car_ad_sale_id)">
+    <ion-card class="btn-supreme" style="margin-top: -25px;" (click)="navigateToCarDetail(car.car_ad_sale_id)">
       <ion-card-header>
 
         <!-- Images row -->

@@ -39,42 +39,44 @@ export class HomePage implements OnInit, OnDestroy {
   searchResults: SearchResult[] = [];
   showResults: boolean = false;
   isLoading: boolean = false;
+    activeTab = 'home'; // Set the default active tab
+  unreadMessages = 3; // Example unread message count
   private searchSubject = new Subject<string>();
 featuredCategories = [
   {
     name: 'cars',
     description: 'Explore a wide range of cars.',
-    route: '/cars',
+    route: '/car-home',
     image: '../../assets/extra/blue-car.png'   // same as small image in Explore Categories
   },
   {
     name: 'bikes',
     description: 'Find your perfect bike.',
-    route: '/bikes',
+    route: '/bike-home',
     image: '../assets/Bikesection/bikecardpic.png'
   },
   {
     name: 'commercial Vehicle',
     description: 'Commercial vehicles for business.',
-    route: '/commercial',
+    route: '/commercial-vehicles-home',
     image: '../../../assets/extra/truck.png'
   },
   {
     name: 'machinery',
     description: 'Heavy machinery and loaders.',
-    route: '/machinery',
+    route: '/machinery-home',
     image: '../../../assets/extra/loader.png'
   },
   {
     name: 'industrial plant',
     description: 'Industrial plant equipment.',
-    route: '/industrial-plant',
+    route: '/industrial-plant-home',
     image: '../../../assets/extra/engine.png'
   },
   {
     name: 'accessories',
     description: 'Vehicle accessories and parts.',
-    route: '/accessories',
+    route: '/accessories-home',
     image: '../assets/Landing page/partandaccesories.png'
   }
 ];
@@ -100,6 +102,20 @@ featuredCategories = [
     });
   }
 
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']); // Update with your home route
+  }
+
+  navigateToChat() {
+    this.activeTab = 'chat';
+    this.router.navigate(['/chat']); // Update with your chat route
+  }
+
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']); // Update with your profile route
+  }
   navigateToCategory(route: string) {
     this.router.navigateByUrl(route);
   }

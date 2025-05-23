@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../(services)/user.service';
 import { PopoverController } from '@ionic/angular';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 
 interface Car {
 car_ad_sale_id: string;
@@ -34,6 +35,24 @@ car_transmission: any;
     selector: 'app-for-sale',
     templateUrl: './for-sale.page.html',
     styleUrls: ['./for-sale.page.scss'],
+      animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('staggerFadeIn', [
+      transition('* => *', [
+        query(':enter', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger('100ms', [
+            animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ],
     standalone: false
 })
 export class ForSalePage implements OnInit {

@@ -24,32 +24,32 @@
     <div style="display: flex; overflow-x: auto; gap: 20px; padding-bottom: 12px; scroll-behavior: smooth;">
 
       <div (click)="navigateToCarHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../assets/extra/blue-car.png" alt="Cars" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;">
+        <img src="../../assets/extra/blue-car.png" alt="Cars" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
         <p style="font-weight: 600; color: #cc3e25;">Cars</p>
       </div>
 
       <div (click)="navigateToBikeHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../assets/Bikesection/bikecardpic.png" alt="Bikes" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;">
+        <img src="../assets/Bikesection/bikecardpic.png" alt="Bikes" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
         <p style="font-weight: 600; color: #cc3e25;">Bikes</p>
       </div>
 
       <div (click)="navigateToCommercialVehiclesHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../../assets/extra/truck.png" alt="Commercial" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;">
+        <img src="../../../assets/extra/truck.png" alt="Commercial" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
         <p style="font-weight: 600; color: #cc3e25;">Commercial Vehicle</p>
       </div>
 
       <div (click)="navigateToMachineryHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../../assets/extra/loader.png" alt="Machinery" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;">
+        <img src="../../../assets/extra/loader.png" alt="Machinery" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
         <p style="font-weight: 600; color: #cc3e25;">Machinery</p>
       </div>
 
       <div (click)="navigateToIndustrialPlantHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../../assets/extra/engine.png" alt="Industrial Plant" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;">
+        <img src="../../../assets/extra/engine.png" alt="Industrial Plant" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
         <p style="font-weight: 600; color: #cc3e25;">Industrial Plant</p>
       </div>
 
       <div (click)="navigateToAccessoriesHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../assets/Landing page/partandaccesories.png" alt="Accessories" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;">
+        <img src="../assets/Landing page/partandaccesories.png" alt="Accessories" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
         <p style="font-weight: 600; color: #cc3e25;">Accessories</p>
       </div>
 
@@ -76,3 +76,33 @@
   </section>
 
 </ion-content>
+<ion-footer class="custom-footer">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="footer-buttons">
+      <!-- Home Button -->
+      <ion-button fill="clear" (click)="navigateToHome()" class="footer-button">
+        <div class="button-content" [class.active]="activeTab === 'home'">
+          <ion-icon [name]="activeTab === 'home' ? 'home' : 'home-outline'" class="footer-icon"></ion-icon>
+          <span class="footer-label">Home</span>
+        </div>
+      </ion-button>
+      
+      <!-- Chat Button -->
+      <ion-button fill="clear" (click)="navigateToChat()" class="footer-button">
+        <div class="button-content" [class.active]="activeTab === 'chat'">
+          <ion-icon [name]="activeTab === 'chat' ? 'chatbubbles' : 'chatbubbles-outline'" class="footer-icon"></ion-icon>
+          <span class="footer-label">Chat</span>
+          <ion-badge *ngIf="unreadMessages > 0" color="danger" class="message-badge">{{unreadMessages}}</ion-badge>
+        </div>
+      </ion-button>
+      
+      <!-- Profile Button -->
+      <ion-button fill="clear" (click)="navigateToProfile()" class="footer-button">
+        <div class="button-content" [class.active]="activeTab === 'profile'">
+          <ion-icon [name]="activeTab === 'profile' ? 'person' : 'person-outline'" class="footer-icon"></ion-icon>
+          <span class="footer-label">Profile</span>
+        </div>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
