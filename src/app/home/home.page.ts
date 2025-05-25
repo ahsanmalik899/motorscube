@@ -42,45 +42,16 @@ export class HomePage implements OnInit, OnDestroy {
     activeTab = 'home'; // Set the default active tab
   unreadMessages = 3; // Example unread message count
   private searchSubject = new Subject<string>();
-featuredCategories = [
-  {
-    name: 'cars',
-    description: 'Explore a wide range of cars.',
-    route: '/car-home',
-    image: '../../assets/extra/blue-car.png'   // same as small image in Explore Categories
-  },
-  {
-    name: 'bikes',
-    description: 'Find your perfect bike.',
-    route: '/bike-home',
-    image: '../assets/Bikesection/bikecardpic.png'
-  },
-  {
-    name: 'commercial Vehicle',
-    description: 'Commercial vehicles for business.',
-    route: '/commercial-vehicles-home',
-    image: '../../../assets/extra/truck.png'
-  },
-  {
-    name: 'machinery',
-    description: 'Heavy machinery and loaders.',
-    route: '/machinery-home',
-    image: '../../../assets/extra/loader.png'
-  },
-  {
-    name: 'industrial plant',
-    description: 'Industrial plant equipment.',
-    route: '/industrial-plant-home',
-    image: '../../../assets/extra/engine.png'
-  },
-  {
-    name: 'accessories',
-    description: 'Vehicle accessories and parts.',
-    route: '/parts-and',
-    image: '../assets/Landing page/partandaccesories.png'
-  }
-];
 
+
+categories = [
+  { label: 'Cars', img: '../../assets/extra/blue-car.png', action: () => this.navigateToCarHome() },
+  { label: 'Bikes', img: '../assets/Bikesection/bikecardpic.png', action: () => this.navigateToBikeHome() },
+  { label: 'Commercial Vehicle', img: '../../../assets/extra/truck.png', action: () => this.navigateToCommercialVehiclesHome() },
+  { label: 'Machinery', img: '../../../assets/extra/loader.png', action: () => this.navigateToMachineryHome() },
+  { label: 'Industrial Plant', img: '../../../assets/extra/engine.png', action: () => this.navigateToIndustrialPlantHome() },
+  { label: 'Accessories', img: '../assets/Landing page/partandaccesories.png', action: () => this.navigateToAccessoriesHome() }
+];
 
   constructor(
     private router: Router, 

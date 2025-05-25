@@ -252,7 +252,7 @@ export class MachineryHireListingPage implements OnInit {
     }
   
     navigateToCarDetail(carId: string): void {
-      this.router.navigate(['/hire-single-view'], {
+      this.router.navigate(['/machinery-hire-single-view'], {
         queryParams: {
           saleid: carId,
         }

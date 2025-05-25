@@ -9,7 +9,7 @@
       <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
       <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
     </ion-buttons>
-    <ion-label style="color: black;">{{ filteredbikeData.length }}  Bikes for Sale</ion-label>
+    <ion-label style="color: black;">{{ filteredCarData.length }}  Bikes for Sale</ion-label>
   </ion-toolbar>
 </ion-header>
 
@@ -121,9 +121,9 @@
 
 
 <!-- card 1 supream -->
-<ion-col *ngFor="let bike of filteredbikeData">
+<ion-col *ngFor="let bike of filteredCarData">
   <ng-container *ngIf="bike.bike_ad_normal_feature === 'Supreme'">
-    <ion-card class="btn-supreme" style="margin-top: -25px;" (click)="navigateTobikeDetail(bike.bike_ad_sale_id)">
+    <ion-card class="btn-supreme" style="margin-top: -25px;" (click)="navigateToCarDetail(bike.bike_ad_sale_id)">
       <ion-card-header>
 
         <!-- Images row -->
@@ -209,9 +209,9 @@
   <!--car hotspot-->
 
 
-<ion-col *ngFor="let bike of filteredbikeData">
+<ion-col *ngFor="let bike of filteredCarData">
   <ng-container *ngIf="bike.bike_ad_normal_feature === 'Hotspot'">
-    <ion-card class="btn-supreme" style="margin-top: -25px;" (click)="navigateTobikeDetail(bike.bike_ad_sale_id)">
+    <ion-card class="btn-supreme" style="margin-top: -25px;" (click)="navigateToCarDetail(bike.bike_ad_sale_id)">
       <ion-card-header>
 
         <!-- Images row -->
@@ -297,11 +297,11 @@
 
 <!--normal card -->
 
-<ion-col *ngFor="let bike of filteredbikeData" style="max-width: 400px; margin: auto;">
+<ion-col *ngFor="let bike of filteredCarData" style="max-width: 400px; margin: auto;">
   <ng-container *ngIf="bike.bike_ad_normal_feature === 'General'">
     <ion-card
       class="btn-card"
-      (click)="navigateTobikeDetail(bike.bike_ad_sale_id)"
+      (click)="navigateToCarDetail(bike.bike_ad_sale_id)"
       style="border-radius: 10px; overflow: hidden; padding: 8px; display: flex; gap: 12px; align-items: flex-start;"
     >
       <!-- Left: Image fixed width, full height -->

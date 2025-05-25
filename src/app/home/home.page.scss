@@ -1,215 +1,138 @@
-/* Main Content Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Main Content Background */
 ion-content {
   --background: #fefefe;
 }
 
-/* Header Styles */
-.header-container {
-  padding: 14px 20px;
+/* ===== HEADER ===== */
+.modern-header {
+  padding: 16px 20px;
+  background: linear-gradient(to right, #FF6A00, #FF4B2B);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #FF4B2B;
-  box-shadow: 0 3px 6px rgba(255, 75, 43, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 75, 43, 0.3);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .header-logo {
-  height: 32px;
+  height: 34px;
   filter: brightness(0) invert(1);
 }
 
 .menu-icon {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
   filter: brightness(0) invert(1);
 }
 
-/* Welcome Section */
-.welcome-section {
-  padding: 24px 20px;
-  background: #FF4B2B;
-  color: white;
+/* ===== HERO SECTION ===== */
+.hero-section {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #ff6a00, #ff2b62);
+  color: #fff;
+  border-radius: 0 0 36px 36px;
+  animation: fadeSlideIn 1s ease forwards;
+  opacity: 0;
+}
+
+.hero-section h2 {
+  font-size: 34px;
+  font-weight: 900;
+  margin: 0 0 10px;
+}
+
+.hero-section p {
+  font-size: 18px;
+  font-weight: 500;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* ===== CATEGORIES ===== */
+.modern-categories {
+  padding: 32px 20px;
+}
+
+.modern-categories h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modern-category-card {
   display: flex;
   align-items: center;
   gap: 16px;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-}
-
-.profile-pic-container {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #cc3e25;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.profile-pic {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile-icon {
-  font-size: 48px;
-  color: #ffc4b8;
-}
-
-.welcome-text h2 {
-  margin: 0;
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 1.2px;
-}
-
-.welcome-text p {
-  margin: 4px 0 0 0;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-/* Explore Categories */
-.categories-section {
-  padding: 20px 16px;
-}
-
-.categories-section h3 {
-  font-weight: 700;
-  font-size: 20px;
-  color: #222;
-  margin-bottom: 16px;
-}
-
-.categories-container {
-  display: flex;
-  overflow-x: auto;
-  gap: 20px;
-  padding-bottom: 12px;
-  scroll-behavior: smooth;
-}
-
-.category-card {
-  min-width: 160px;
-  flex: 0 0 auto;
-  text-align: center;
+  padding: 18px;
+  border-radius: 16px;
+  background: #fff7f6;
+  box-shadow: 0 6px 14px rgba(255, 75, 43, 0.08);
   cursor: pointer;
-  transition: transform 0.3s ease;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15);
-  padding: 12px;
-  background: #ffe9e4;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-.category-card img {
-  width: 120px;
-  height: 60px;
+.modern-category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(255, 75, 43, 0.15);
+}
+
+.modern-category-card img {
+  width: 90px;
+  height: 50px;
   object-fit: contain;
-  margin-bottom: 8px;
 }
 
-.category-card p {
+.modern-category-card span {
+  font-size: 18px;
   font-weight: 600;
   color: #cc3e25;
 }
 
-/* Featured Categories */
-.featured-section {
-  padding: 0 16px 32px 16px;
-  background: #fefefe;
-}
-
-.featured-section h3 {
-  font-weight: 700;
-  font-size: 20px;
-  color: #222;
-  margin-bottom: 20px;
-}
-
-.featured-card {
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(255, 75, 43, 0.15);
-  margin-bottom: 16px;
-}
-
-.featured-card-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 16px;
-}
-
-.featured-image-container {
-  width: 90px;
-  height: 90px;
-  border-radius: 14px;
-  background: #ffe9e4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.featured-image {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-}
-
-.featured-text h4 {
-  margin: 0 0 8px 0;
-  font-size: 18px;
-  font-weight: 700;
-  color: #cc3e25;
-  text-transform: capitalize;
-}
-
-.featured-text p {
-  margin: 0;
-  color: #555;
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-/* Footer Styles */
-.custom-footer {
-  background: white;
+/* ===== FOOTER ===== */
+.modern-footer {
+  background: #fff;
   border-top: 1px solid #eee;
 }
 
-.footer-buttons {
+.footer-nav {
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  width: 100%;
 }
 
-.footer-button {
-  --background: transparent;
-  --box-shadow: none;
-  --color: #888;
+.footer-btn {
+  --color: #FF4B2B;
+  text-align: center;
+  font-size: 13px;
   position: relative;
 }
 
-.button-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px 0;
-}
-
-.button-content.active {
-  color: #FF4B2B;
-}
-
-.footer-icon {
+.footer-btn ion-icon {
   font-size: 24px;
-  margin-bottom: 4px;
 }
 
-.footer-label {
-  font-size: 12px;
+.footer-btn.active ion-icon {
+  color: #FF4B2B;
+  transform: scale(1.15);
 }
 
 .message-badge {
@@ -217,8 +140,55 @@ ion-content {
   top: 2px;
   right: 10px;
   font-size: 10px;
+  background: red;
+  color: white;
   min-width: 18px;
   height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 18px;
-  border-radius: 9px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.slide-down {
+  animation: fadeInDown 0.6s ease forwards;
 }

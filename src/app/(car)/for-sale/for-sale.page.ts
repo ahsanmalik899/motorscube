@@ -269,6 +269,7 @@ isModelVersionMatch(car: Car): boolean {
 
   back() {
     this.router.navigate(['car-home']);
+    localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedcon');
     localStorage.removeItem('selectedcity');
     localStorage.removeItem('selectedmake');

@@ -1,107 +1,48 @@
 <ion-content [fullscreen]="true" style="--padding-top: 0; --background: #fefefe;">
-
-  <!-- Top Header with logo and menu -->
-  <div style="padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; background: #FF4B2B; box-shadow: 0 3px 6px rgba(255, 75, 43, 0.3);">
-    <img src="../../assets/menu-toolbar.png" alt="Logo" style="height: 32px; filter: brightness(0) invert(1);">
-    <img src="../../../assets/side-menu.png" alt="Menu" (click)="navigateToMenu()" style="width: 26px; height: 26px; cursor: pointer; filter: brightness(0) invert(1);">
+  <!-- 🔶 Header -->
+  <div class="modern-header">
+    <img src="../../assets/menu-toolbar.png" alt="Logo" class="header-logo" />
+    <img src="../../../assets/side-menu.png" alt="Menu" (click)="navigateToMenu()" class="menu-icon" />
   </div>
 
-  <!-- Welcome Section -->
-  <section style="padding: 24px 20px; background: #FF4B2B; color: white; display: flex; align-items: center; gap: 16px; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;">
-    <div style="width: 56px; height: 56px; border-radius: 50%; background: #cc3e25; display: flex; justify-content: center; align-items: center; overflow: hidden;">
-      <img *ngIf="userProfilePic" [src]="userProfilePic" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='../../assets/default-profile.png';">
-      <ion-icon *ngIf="!userProfilePic" name="person-circle-outline" style="font-size: 48px; color: #ffc4b8;"></ion-icon>
-    </div>
-    <div>
-      <h2 style="margin: 0; font-weight: 700; font-size: 22px; letter-spacing: 1.2px;">Welcome to Complete Motors Portal</h2>
-      <p style="margin: 4px 0 0 0; font-weight: 500; font-size: 16px;">Hello, {{userName}}</p>
-    </div>
+  <!-- 🎉 Hero Section -->
+  <section class="hero-section modern-hero">
+    <h2>Welcome to Complete Motors</h2>
+    <p>All your motor needs in one sleek portal. Discover, compare, and connect easily!</p>
   </section>
 
-  <!-- Explore Categories -->
-  <section style="padding: 20px 16px;">
-    <h3 style="font-weight: 700; font-size: 20px; color: #222; margin-bottom: 16px;">Explore Categories</h3>
-    <div style="display: flex; overflow-x: auto; gap: 20px; padding-bottom: 12px; scroll-behavior: smooth;">
-
-      <div (click)="navigateToCarHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../assets/extra/blue-car.png" alt="Cars" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
-        <p style="font-weight: 600; color: #cc3e25;">Cars</p>
+  <!-- 🚗 Categories Section -->
+  <section class="modern-categories">
+    <h3>Explore Categories</h3>
+    <div class="category-list">
+      <div *ngFor="let cat of categories; let i = index"
+           class="modern-category-card"
+           [ngClass]="{ 'slide-up': i % 2 === 0, 'slide-down': i % 2 !== 0 }"
+           [style.animationDelay]="i * 0.15 + 's'"
+           (click)="cat.action()">
+        <img [src]="cat.img" [alt]="cat.label" />
+        <span>{{ cat.label }}</span>
       </div>
-
-      <div (click)="navigateToBikeHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../assets/Bikesection/bikecardpic.png" alt="Bikes" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
-        <p style="font-weight: 600; color: #cc3e25;">Bikes</p>
-      </div>
-
-      <div (click)="navigateToCommercialVehiclesHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../../assets/extra/truck.png" alt="Commercial" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
-        <p style="font-weight: 600; color: #cc3e25;">Commercial Vehicle</p>
-      </div>
-
-      <div (click)="navigateToMachineryHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../../assets/extra/loader.png" alt="Machinery" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
-        <p style="font-weight: 600; color: #cc3e25;">Machinery</p>
-      </div>
-
-      <div (click)="navigateToIndustrialPlantHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../../../assets/extra/engine.png" alt="Industrial Plant" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
-        <p style="font-weight: 600; color: #cc3e25;">Industrial Plant</p>
-      </div>
-
-      <div (click)="navigateToAccessoriesHome()" style="min-width: 160px; flex: 0 0 auto; text-align: center; cursor: pointer; transition: transform 0.3s ease; border-radius: 14px; box-shadow: 0 2px 10px rgba(255, 75, 43, 0.15); padding: 12px; background: #ffe9e4;">
-        <img src="../assets/Landing page/partandaccesories.png" alt="Accessories" style="width: 120px; height: 60px; object-fit: contain; margin-bottom: 8px;">
-        <p style="font-weight: 600; color: #cc3e25;">Accessories</p>
-      </div>
-
     </div>
   </section>
-
-  <!-- Featured Categories Listing -->
-  <section style="padding: 0 16px 32px 16px; background: #fefefe;">
-    <h3 style="font-weight: 700; font-size: 20px; color: #222; margin-bottom: 20px;">Featured Categories</h3>
-
-    <!-- Card Template -->
-    <ion-card *ngFor="let cat of featuredCategories" style="border-radius: 14px; box-shadow: 0 4px 12px rgba(255, 75, 43, 0.15); margin-bottom: 16px;">
-      <div style="display: flex; align-items: center; gap: 20px; padding: 16px;">
-        <div style="width: 90px; height: 90px; border-radius: 14px; background: #ffe9e4; display: flex; justify-content: center; align-items: center;">
-          <img [src]="cat.image" [alt]="cat.name" style="width: 70px; height: 70px; object-fit: contain;">
-        </div>
-        <div style="flex: 1;">
-          <h4 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700; color: #cc3e25; text-transform: capitalize;">{{cat.name}}</h4>
-          <p style="margin: 0; color: #555; font-size: 15px; line-height: 1.4;">{{cat.description}}</p>
-          <ion-button fill="clear" size="small" (click)="navigateToCategory(cat.route)" style="margin-top: 8px; font-size: 13px; color: #FF4B2B;">View All</ion-button>
-        </div>
-      </div>
-    </ion-card>
-  </section>
-
 </ion-content>
-<ion-footer class="custom-footer">
+
+<!-- 🌈 Footer -->
+<ion-footer class="modern-footer">
   <ion-toolbar>
-    <ion-buttons slot="start" class="footer-buttons">
-      <!-- Home Button -->
-      <ion-button fill="clear" (click)="navigateToHome()" class="footer-button">
-        <div class="button-content" [class.active]="activeTab === 'home'">
-          <ion-icon [name]="activeTab === 'home' ? 'home' : 'home-outline'" class="footer-icon"></ion-icon>
-          <span class="footer-label">Home</span>
-        </div>
+    <ion-buttons slot="start" class="footer-nav">
+      <ion-button fill="clear" (click)="navigateToHome()" class="footer-btn">
+        <ion-icon [name]="activeTab === 'home' ? 'home' : 'home-outline'"></ion-icon>
+        <ion-label>Home</ion-label>
       </ion-button>
-      
-      <!-- Chat Button -->
-      <ion-button fill="clear" (click)="navigateToChat()" class="footer-button">
-        <div class="button-content" [class.active]="activeTab === 'chat'">
-          <ion-icon [name]="activeTab === 'chat' ? 'chatbubbles' : 'chatbubbles-outline'" class="footer-icon"></ion-icon>
-          <span class="footer-label">Chat</span>
-          <ion-badge *ngIf="unreadMessages > 0" color="danger" class="message-badge">{{unreadMessages}}</ion-badge>
-        </div>
+      <ion-button fill="clear" (click)="navigateToChat()" class="footer-btn">
+        <ion-icon [name]="activeTab === 'chat' ? 'chatbubbles' : 'chatbubbles-outline'"></ion-icon>
+        <ion-label>Chat</ion-label>
+        <ion-badge *ngIf="unreadMessages > 0" class="message-badge">{{ unreadMessages }}</ion-badge>
       </ion-button>
-      
-      <!-- Profile Button -->
-      <ion-button fill="clear" (click)="navigateToProfile()" class="footer-button">
-        <div class="button-content" [class.active]="activeTab === 'profile'">
-          <ion-icon [name]="activeTab === 'profile' ? 'person' : 'person-outline'" class="footer-icon"></ion-icon>
-          <span class="footer-label">Profile</span>
-        </div>
+      <ion-button fill="clear" (click)="navigateToProfile()" class="footer-btn">
+        <ion-icon [name]="activeTab === 'profile' ? 'person' : 'person-outline'"></ion-icon>
+        <ion-label>Profile</ion-label>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

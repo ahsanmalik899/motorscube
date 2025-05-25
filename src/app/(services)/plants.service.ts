@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PlantsService {
 
-  private apiUrl = 'https://motorscube.com/plants/plant/';
+  private apiUrl = 'http://localhost/plant/';
    constructor(private http: HttpClient) { }
     getPlantSale(): Observable<any[]> {
          return this.http.get<any[]>(this.apiUrl + 'get_plant_sale.php');

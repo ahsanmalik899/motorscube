@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class MachineryService {
 
 
-  private apiUrl = 'https://motorscube.com/machinery.motorscube.com/machinery/';
+  private apiUrl = 'http://localhost/machinery/';
 
   constructor(private http: HttpClient) { }
     getMachinerySale(): Observable<any[]> {

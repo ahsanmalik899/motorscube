@@ -112,294 +112,257 @@
   </ion-card>
   </ion-col>
   </div>
-<!--  -->
 
-<!--  -->
 
       
-
-
 <!-- card 1 supream -->
 <ion-col *ngFor="let car of filteredCarData">
-  
-  <ng-container *ngIf="car.vehicle_feature_type === 'Supreme' " >
-    
-  <ion-card class="btn-supreme" (click)="navigateToCarDetail(car.commercial_vehicle_ad_sale_id)">
-    <ion-card-header>
+  <ng-container *ngIf="car.vehicle_feature_type === 'Supreme'">
+    <ion-card class="btn-supreme" style="margin-top: -25px;
+    " (click)="navigateToCarDetail(car.commercial_vehicle_ad_sale_id)">
+      <ion-card-header>
 
-      <ion-col  style="width: 100%; display:inline-block;">
-       
-          <!-- <div> -->
-          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
-    <div style="width: 100%; text-align: center;">
-    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
+        <!-- Images row -->
+        <div style="display: flex; gap: 6px; margin: -14px; padding: 0;">
+          
+          <!-- Main Image (left) -->
+<!-- Main Image (left) -->
+<div style="flex: 2; margin: -2px; padding: 0; display: flex; flex-direction: column; position: relative;">
+  <div style="position: relative;">
+    <img [src]="car.image_url1"
+         style="width: 100%; height: 140px; object-fit: cover; border-radius: 10px; display: block; flex-shrink: 0;" />
+    <!-- Supreme Label -->
+    <div style="position: absolute; top: 0px; left: 0px; background-color:rgba(13, 202, 240, 0.71); color: white; 
+                font-size: 12px; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Supreme
+    </div>
+  </div>
 
-    
-        <ion-card class="supreme">
-          <ion-card-header>
-            <div style="width: 100px; margin-bottom: 20px border-radius:13px;">
+  <p class="main-heading truncate-single-line"
+     style="margin: 4px 0 2px 5px; max-width: 100%; font-size: 14px;">
+   {{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}
+  </p>
+</div>
 
-                <p style="margin-left: -65px; margin-top:-10px; color: white;">Supreme</p>
-            </div>
-      <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
+
+
+          <!-- Stacked Right Images -->
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0;">
+            <img [src]="car.image_url2"
+                 style="width: 100%; height: 65px; object-fit: cover; border-radius: 10px; display: block;" />
+            <img [src]="car.image_url3"
+                 style="width: 100%; height: 65px; object-fit: cover; border-radius: 10px; display: block;" />
+            <p style="text-align: center; font-size: 14px; margin: 4px 0 0;">
+              PKR <b style="font-size: 16px;">{{ car.vehicle_price }}</b>
+            </p>
+          </div>
+        </div>
+
+        <!-- Car details (below all images) -->
+    <!-- Car details (below all images) -->
+<div style="margin-top: 6px; margin-bottom: 0px;">
+  <p class="listing-text" style="color: gray; margin: 4px 0 6px;">
+    Available in {{ car.vehicle_price }}
+  </p>
+
+  <div class="car-details-row">
+    <!-- First row (3 items) -->
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/calendar.png" style="height: 16px; width: 16px;" />
+      <span> {{ car.vehicle_year }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/engine.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_engine_size }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/gas-station.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_fuel_type }}</span>
+    </div>
+
+    <!-- Second row (3 items) -->
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/manual-transmission.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_transmission }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/speedometer.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_mileage }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/edit (1).png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_reg_city }}</span>
+    </div>
+  </div>
+</div>
+
       </ion-card-header>
-      </ion-card>
-     
-  </div>
-  <div style="width: 100%; margin-top: 222px; text-align: center; display: flex; justify-content: center; gap: 5px;">
-    <!-- Image 2 -->
-    <img [src]="car.image_url2" 
-         style="flex: 1;  height: 110px; width: 48%; border: 1px solid lightgray; border-radius: 0 0 0 10px; padding: 0px; object-fit: cover;"/>
-    
-    <!-- Image 3 -->
-    <img [src]="car.image_url3" 
-         style="flex: 1;  width: 48%; height: 110px; border: 1px solid lightgray; border-radius: 0 0 10px 0; padding: 0px; object-fit: cover;"/>
-  </div>
-  
-  </div>
-<!-- </div> -->
-
-<!--  -->
-
-
-
-    <div style="width: 100%; align-items: center;">
-      <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
-      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
-        </p>
-        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
-        </p>
-      </div>
-      
-     
-      
-   
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
-  </p>
-</div>
-
-<!-- Second div for Mileage and Location -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
-  </p>
-</div>
-
-    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
-      <ion-col>
-        <ion-card class="card-supreme" >
-          <ion-card-header>
-            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.vehicle_price }}</b></p>
-            </div>
-<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-</ion-card-header>
-</ion-card>
-</ion-col>
-</div>
-
-<div style="width: 20%; margin-top: -65px; margin-left: 90%;">
-  <img src="../../../assets/Car-section/Listing/save.png" style="height: 30px; width: 30px; margin-left: 10px;" fill="clear;"/></div>
-  </div>  
-  </ion-col>
-
-  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-</ion-card-header>
-</ion-card>
+    </ion-card>
   </ng-container>
-  </ion-col>
+</ion-col>
+
+
   <!--car hotspot-->
 
 
 
-  <ion-col *ngFor="let car of filteredCarData">
-  
-    <ng-container *ngIf="car.vehicle_feature_type === 'Hotspot'" >
-      
-    <ion-card class="btn-card" (click)="navigateToCarDetail(car.commercial_vehicle_ad_sale_id)">
+ <ion-col *ngFor="let car of filteredCarData">
+  <ng-container *ngIf="car.vehicle_feature_type === 'Hotspot'">
+    <ion-card class="btn-supreme" style="margin-top: -25px;
+    " (click)="navigateToCarDetail(car.commercial_vehicle_ad_sale_id)">
       <ion-card-header>
-  
-        <ion-col  style="width: 100%; display:inline-block;">
-         
-            <!-- <div> -->
-            <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
-      <div style="width: 100%; text-align: center;">
-      <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
-  
-      
-          <ion-card class="hotspot">
-            <ion-card-header>
-              <div style="width: 100px; margin-bottom: 20px border-radius:13px;">
-  
-                  <p style="margin-left: -65px; margin-top:-10px; color: white;">Hotspot</p>
-              </div>
-        <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-        </ion-card-header>
-        </ion-card>
-       
+
+        <!-- Images row -->
+        <div style="display: flex; gap: 6px; margin: -14px; padding: 0;">
+          
+          <!-- Main Image (left) -->
+<!-- Main Image (left) -->
+<div style="flex: 2; margin: -2px; padding: 0; display: flex; flex-direction: column; position: relative;">
+  <div style="position: relative;">
+    <img [src]="car.image_url1"
+         style="width: 100%; height: 140px; object-fit: cover; border-radius: 10px; display: block; flex-shrink: 0;" />
+    <!-- Supreme Label -->
+    <div style="position: absolute; top: 0px; left: 0px; background-color:rgba(255, 193, 7, 0.57); color: white; 
+                font-size: 12px; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Hotspot
     </div>
-      
-    </div>
-  <!-- </div> -->
-  
-  <!--  -->
-  
-  
-  
-      <div style="width: 100%; align-items: center; margin-top:250px;">
-        <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-        <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
-        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-          <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-            <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
-          </p>
-          <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-            <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
-          </p>
+  </div>
+
+  <p class="main-heading truncate-single-line"
+     style="margin: 4px 0 2px 5px; max-width: 100%; font-size: 14px;">
+   {{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}
+  </p>
+</div>
+
+
+
+          <!-- Stacked Right Images -->
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0;">
+            <img [src]="car.image_url2"
+                 style="width: 100%; height: 65px; object-fit: cover; border-radius: 10px; display: block;" />
+            <img [src]="car.image_url3"
+                 style="width: 100%; height: 65px; object-fit: cover; border-radius: 10px; display: block;" />
+            <p style="text-align: center; font-size: 14px; margin: 4px 0 0;">
+              PKR <b style="font-size: 16px;">{{ car.vehicle_price }}</b>
+            </p>
+          </div>
         </div>
-        
-       
-        
-     
-     <!-- First div for Fuel Type and Transmission -->
-  <div style="display: flex; justify-content: space-between; margin-top: -20px;">
-    <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
-    </p>
-    <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
-    </p>
+
+        <!-- Car details (below all images) -->
+    <!-- Car details (below all images) -->
+<div style="margin-top: 6px; margin-bottom: 0px;">
+  <p class="listing-text" style="color: gray; margin: 4px 0 6px;">
+    Available in {{ car.vehicle_price }}
+  </p>
+
+  <div class="car-details-row">
+    <!-- First row (3 items) -->
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/calendar.png" style="height: 16px; width: 16px;" />
+      <span> {{ car.vehicle_year }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/engine.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_engine_size }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/gas-station.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_fuel_type }}</span>
+    </div>
+
+    <!-- Second row (3 items) -->
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/manual-transmission.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_transmission }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/speedometer.png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_mileage }}</span>
+    </div>
+    <div style="flex: 1 1 33%; display: flex; align-items: center; gap: 4px; color: gray;">
+      <img src="../../assets/icon/edit (1).png" style="height: 16px; width: 16px;" />
+      <span>{{ car.vehicle_reg_city }}</span>
+    </div>
   </div>
-  
-  <!-- Second div for Mileage and Location -->
-  <div style="display: flex; justify-content: space-between; margin-top: -20px;">
-    <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
-    </p>
-    <p class="sub-heading" style="color: gray; flex: 1; ">
-      <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
-    </p>
-  </div>
-  
-      <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
-        <ion-col>
-          <ion-card class="card-hotspot" >
-            <ion-card-header>
-              <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                  <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.vehicle_price }}</b></p>
-              </div>
-  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-  </ion-card-header>
-  </ion-card>
-  </ion-col>
-  </div>
-  
-  <div style="width: 20%; margin-top: -65px; margin-left: 90%;">
-    <img src="../../../assets/Car-section/Listing/save.png" style="height: 30px; width: 30px; margin-left: 10px;" fill="clear;"/></div>
-    </div>  
-    </ion-col>
-  
-    <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-  </ion-card-header>
-  </ion-card>
-    </ng-container>
-    </ion-col>
+</div>
+
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
+</ion-col>
 
 
 
 <!--normal card -->
 
-
-<ion-col *ngFor="let car of filteredCarData">
-  
-  <ng-container *ngIf="car.vehicle_feature_type === 'General'" >
-    
-  <ion-card class="btn-card" (click)="navigateToCarDetail(car.commercial_vehicle_ad_sale_id)">
-    <ion-card-header>
-
-      <ion-col  style="width: 100%; display:inline-block;">
-       
-          <!-- <div> -->
-          <div style="    margin-top: -10px;margin-left: -15px;margin-right: -15px;">
-    <div style="width: 100%; text-align: center;">
-    <img [src]="car.image_url1" style=" width: 100%; height: 250px; border: 1px solid lightgray; border-radius: 10px 10px 0 0; padding: 0px;margin-top: 0px;object-fit:cover;margin-left: 0px;margin-right: 0px;" fill="clear;"/>
-
-     
-  </div>
-    
-  </div>
-
-    <div style="width: 100%; align-items: center; margin-top:0px;">
-      <p class="main-heading truncate" >{{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}</p><br>
-      <p class="listing-text" style=" color: gray; margin-top: -25px;">Available for viewing in {{ car.vehicle_city}}</p> <br>
-      <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-        <p class="sub-heading" style="color: gray; margin-top: -20px; display: inline; flex: 1; ">
-          <img src="../../assets/icon/calendar.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_year }}
-        </p>
-        <p class="sub-heading" style="color: gray; margin-top: -20px; margin-right: 10px; flex: 1;">
-          <img src="../../assets/icon/engine.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_engine_size }}
-        </p>
+<ion-col *ngFor="let car of filteredCarData" style="max-width: 400px; margin: auto;">
+  <ng-container *ngIf="car.vehicle_feature_type=== 'General'">
+    <ion-card
+      class="btn-card"
+      (click)="navigateToCarDetail(car.commercial_vehicle_ad_sale_id)"
+      style="border-radius: 10px; overflow: hidden; padding: 8px; display: flex; gap: 12px; align-items: flex-start;"
+    >
+      <!-- Left: Image fixed width, full height -->
+      <div style="flex-shrink: 0; width: 160px; height: 140px; overflow: hidden; border-radius: 10px;">
+        <img
+          [src]="car.image_url1"
+          alt="Car image"
+          style="width: 100%; height: 100%; object-fit: cover; display: block;"
+        />
       </div>
-      
-     
-      
-   
-   <!-- First div for Fuel Type and Transmission -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/gas-station.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_fuel_type }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/manual-transmission.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_transmission }}
-  </p>
-</div>
 
-<!-- Second div for Mileage and Location -->
-<div style="display: flex; justify-content: space-between; margin-top: -20px;">
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/speedometer.png" style="height: 18px; width: 18px;" fill="clear;"/>  {{ car.vehicle_mileage }}
-  </p>
-  <p class="sub-heading" style="color: gray; flex: 1; ">
-    <img src="../../assets/icon/edit (1).png" style="height: 18px; width: 18px; margin-bottom:-3px" fill="clear;"/>  {{ car.vehicle_reg_city }}
-  </p>
-</div>
+      <!-- Right: Info & details -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
 
-    <div style="text-align: -webkit-center; position: sticky; top: 0px; z-index: 1; margin-top: 60px;">
-      <ion-col>
-        <ion-card class="card-hotspot" style="background:rgb(181, 181, 181);">
-          <ion-card-header>
-            <div style="width: 100px; border-radius: 20px; margin-right:auto;margin-left: auto;">
-                <p class="listing-text" style="margin-top: 0px;font-size: 14px;width:500px;justify-content: center;">PKR <b style="font-weight: 600; font-size: 18px; text-align: center; ">{{ car.vehicle_price }}</b></p>
-            </div>
-<ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-</ion-card-header>
-</ion-card>
-</ion-col>
-</div>
+        <!-- Top info: Title & Location -->
+        <div>
+          <p class="main-heading truncate" style="margin: 0 0 4px 0; font-weight: 600; font-size: 14px;">
+            {{ car.vehicle_make }} {{ car.vehicle_model }} {{ car.vehicle_version }}
+          </p>
+          <p class="listing-text" style="color: gray; margin-top: 0; font-size: 10px;">
+            Available for viewing in {{ car.vehicle_location }}
+          </p>
+        </div>
 
-<div style="width: 20%; margin-top: -65px; margin-left: 90%;">
-  <img src="../../../assets/Car-section/Listing/save.png" style="height: 30px; width: 30px; margin-left: 10px;" fill="clear;"/></div>
-  </div>  
-  </ion-col>
+        <!-- Middle: Details grid -->
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; color: gray; font-size: 12px;">
+          <div style="display: flex; align-items: center; gap: 4px; flex: 1 1 45%;">
+            <img src="../../assets/icon/calendar.png" style="height: 14px; width: 14px;" />
+            <span>{{ car.vehicle_year }}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; flex: 1 1 45%;">
+            <img src="../../assets/icon/engine.png" style="height: 14px; width: 14px;" />
+            <span>{{ car.vehicle_engine_size }}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; flex: 1 1 45%;">
+            <img src="../../assets/icon/gas-station.png" style="height: 14px; width: 14px;" />
+            <span>{{ car.vehicle_fuel_type }}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; flex: 1 1 45%;">
+            <img src="../../assets/icon/manual-transmission.png" style="height: 14px; width: 14px;" />
+            <span>{{ car.vehicle_transmission }}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; flex: 1 1 45%;">
+            <img src="../../assets/icon/speedometer.png" style="height: 14px; width: 14px;" />
+            <span>{{ car.vehicle_mileage }}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; flex: 1 1 45%;">
+            <img src="../../assets/icon/edit (1).png" style="height: 14px; width: 14px;" />
+            <span>{{ car.vehicle_reg_city }}</span>
+          </div>
+        </div>
 
-  <ion-card-subtitle class="clr-white" ></ion-card-subtitle>
-</ion-card-header>
-</ion-card>
+        <!-- Bottom: Price aligned right -->
+        <div style="margin-top: 12px; text-align: right;">
+          <p class="listing-text" style="margin: 0; font-size: 16px; font-weight: 700; color: black;">
+            PKR {{ car.vehicle_price }}
+          </p>
+        </div>
+      </div>
+    </ion-card>
   </ng-container>
-  </ion-col>
+</ion-col>
+
 
 
 

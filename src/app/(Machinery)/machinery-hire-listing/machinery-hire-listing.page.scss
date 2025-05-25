@@ -1,3 +1,90 @@
+.car-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 4px;
+  color: gray;
+.btn-base {
+  border: 2px solid;
+  box-shadow: 0 0 10px;
+  border-radius: 10px;
+  background: white;
+}
+
+.btn-white {
+  @extend .btn-base;
+  height: 70px;
+  width: 100%;
+  margin: -15px 0 0 0;
+}
+
+.btn-filter {
+  @extend .btn-base;
+  height: 40px;
+  width: 130px;
+  background: rgba(245, 245, 245, 0.98);
+  margin: -15px 20px 0 0;
+}
+
+.btn-price {
+  @extend .btn-base;
+  height: 30px;
+  width: 120px;
+  margin: -50px 30px 0 0;
+}
+
+.btn-dark {
+  width: 115%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.12);
+  margin: -25px 0 0 -16px;
+}
+
+.btn-supreme {
+  @extend .btn-base;
+  width: 70px;
+  background: rgba(13, 202, 240, 0.71);
+  margin-top: 250px;
+
+}
+
+.hotspot {
+  @extend .btn-base;
+  width: 70px;
+  background: rgba(255, 193, 7, 0.57);
+  margin-top: -251px;
+}
+
+.card-hotspot {
+  @extend .btn-base;
+  width: auto;
+  max-width: 200px;
+  height: 45px;
+  background: rgba(255, 193, 7, 0.2);
+  margin: -40px auto 0;
+  border-radius: 15px;
+}
+
+.truncate-single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  max-width: 100%;
+}
+
+  div {
+    flex: 1 1 33%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  img {
+    height: 16px;
+    width: 16px;
+  }
+}
 
 
 .btn-white{
@@ -12,7 +99,7 @@
   }
   .clr-white{
     color: gray !important;
-    margin-top: -45px;
+    margin-top: 100px;
   }
   .btn-filter{
     margin-right: 20px;
@@ -26,7 +113,7 @@
     border: 2px !important;
     box-shadow: 0 0 10px;
   }
-  
+
   .btn-dark{
     margin-left: -16px;
     margin-top: -25px;
@@ -38,7 +125,7 @@
     background: rgba(0 0 0 / 12%) !important;
     border: 2px !important;
   }
-  
+
   
   .btn-price{
     margin-right: 30px;
@@ -52,23 +139,9 @@
     border: 2px !important;
     box-shadow: 0 0 10px;
   }
+
   
   
-  .card-supreme{
-    margin-top: -60px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 50px !important;
-    // width: 400px !important;
-    width: auto;
-    max-width: 200px;
-    // border-radius: 10px !important;
-    // background: #f5f5f538 !important;
-    background: #0dcaf024 !important;
-    border: 2px !important;
-    box-shadow: 0 0 10px;
-    border-radius: 15px;
-  }
   .supreme{
     // margin-right: 30px;
     margin-top: -250px;
@@ -81,6 +154,18 @@
     border: 2px !important;
     box-shadow: 0 0 10px;
   }
+.truncate-single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+
+
   .hotspot{
     // margin-right: 30px;
     margin-top: -251px;
@@ -108,7 +193,7 @@
     border-radius: 15px;
     box-shadow: 0 0 10px;
   }
-  
+
   .btn-gray{
     margin-left: 0;
     margin-top: -40px;
@@ -125,7 +210,6 @@
   .btn-card{
     margin-left: 10px;
     margin-top: -15px;
-    height: 550px;
     // width: 400px !important;
     width: 95% !important;
     border-radius: 10px !important;
@@ -134,19 +218,5 @@
     // border: 2px !important;
     box-shadow: 0 0 10px;
   }
-  
-  .btn-supreme{
-    margin-left: 10px;
-    margin-top: -20px;
-    height: 655px;
-    max-height: 700px;
-    // width: 400px !important;
-    width: 95% !important;
-    border-radius: 10px !important;
-    // background: #f5f5f538 !important;
-    background: white !important;
-    // border: 2px !important;
-    box-shadow: 0 0 10px;
-  }
-  
+
   
