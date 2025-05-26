@@ -69,6 +69,9 @@ this.router.navigate(['/home'])
   navigateToForSale(){
     this.router.navigate(['/for-sale']);
   }
+  goToMyStore(){
+      this.router.navigate(['/my-store']);
+  }
   navigateToForBikeSale(){
     this.router.navigate(['/bike-sale-listing']);
   }

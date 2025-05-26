@@ -1,0 +1,94 @@
+<ion-header [translucent]="true">
+   <ion-toolbar class ="bg-toolbar" >
+    <ion-buttons slot="start"class="bg-red" style="height: 56px !important; width: 56px !important; margin: -4px !important;">
+      <!-- <ion-back-button defaultHref="/" style="color: #0dcaf066;"></ion-back-button> -->
+      <img src="../../../assets/extra/back arrow.png" (click)="back()" style="width: 20px; margin-left: 20px;">
+    </ion-buttons>
+    <ion-label style="color: black; font-size: 17px;">My Store</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="store-container" style="padding: 20px;">
+    
+    <!-- Store Exists -->
+    <div *ngIf="store" class="store-card" style="background: white; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      
+      <!-- Cover Image -->
+      <div style="height: 150px; background-color: #f4f4f4; border-radius: 15px 15px 0 0; overflow: hidden;">
+        <img [src]="store.cover_image_url" alt="Cover" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+
+      <!-- Store Details -->
+      <div style="padding: 20px;">
+        <!-- Logo and Name -->
+        <div style="display: flex; align-items: center;">
+          <img [src]="store.logo_url" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;">
+          <div>
+            <h2 style="margin: 0; font-size: 20px;">{{ store.store_name }}</h2>
+            <p style="margin: 0; font-size: 14px; color: #666;">{{ store.select_option }} Store</p>
+          </div>
+        </div>
+
+        <!-- Info Rows -->
+        <ion-list lines="none" style="margin-top: 15px;">
+          <ion-item>
+            <ion-icon name="business-outline" slot="start"></ion-icon>
+            <ion-label>{{ store.city }}, {{ store.address }}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="call-outline" slot="start"></ion-icon>
+            <ion-label>{{ store.mobile }}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label>{{ store.email }}</ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="store.web">
+            <ion-icon name="globe-outline" slot="start"></ion-icon>
+            <ion-label>
+              <a [href]="store.web" target="_blank">{{ store.web }}</a>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="card-outline" slot="start"></ion-icon>
+            <ion-label>Bank: {{ store.bank_name }} - {{ store.account }}</ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="store.jazzcash">
+            <ion-icon name="cash-outline" slot="start"></ion-icon>
+            <ion-label>JazzCash: {{ store.jazzcash }}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+            <ion-label>Status: <span [ngClass]="{'text-success': store.store_status === 'Active', 'text-danger': store.store_status !== 'Active'}">{{ store.store_status }}</span></ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <ion-button expand="block" color="primary" (click)="goToEditStore()">
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+            Edit Store
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Store Yet -->
+    <div *ngIf="!store" class="no-store" style="text-align: center; padding: 40px; background: #f8f8f8; border-radius: 15px;">
+      <img src="../../assets/parts-and-accesories/common/create-store.png" alt="Create Store" style="width: 150px; margin-bottom: 20px;">
+      <h3 style="font-size: 18px; color: #333;">No store found</h3>
+      <p style="color: #666; margin: 10px 0;">Create your store to sell accessories for bikes, cars, machinery, and more.</p>
+      <ion-button expand="block" color="success" (click)="goToCreateStore()">
+        <ion-icon name="storefront-outline" slot="start"></ion-icon>
+        Create Your Store
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

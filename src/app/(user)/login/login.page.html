@@ -24,32 +24,28 @@
     <div class="form-container">
       <form [formGroup]="userForm" (ngSubmit)="loginUser()">
         <!-- Mobile Field -->
-        <div class="input-group">
+        <div class="input-group" [class.focused]="userForm.get('mobile')?.value || isFocused.mobile">
           <ion-icon name="phone-portrait-outline" class="input-icon"></ion-icon>
           <input type="tel" id="mobile" class="text-field" required placeholder=" " formControlName="mobile" (focus)="onInputFocus('mobile')" (blur)="onInputBlur('mobile')">
-          <label for="mobile" [class.active]="userForm.get('mobile')?.touched">Mobile Number</label>
+          <label for="mobile">Mobile Number</label>
           <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched" class="error-message">
             <ion-icon name="alert-circle-outline"></ion-icon>
             Please enter a valid mobile number
           </div>
         </div>
-      
+
         <!-- Password Field -->
-        <div class="input-group">
+        <div class="input-group" [class.focused]="userForm.get('password')?.value || isFocused.password">
           <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
           <input type="{{ showPassword ? 'text' : 'password' }}" class="text-field" required placeholder=" " id="password" formControlName="password" (focus)="onInputFocus('password')" (blur)="onInputBlur('password')">
-          <label for="password" [class.active]="userForm.get('password')?.touched">Password</label>
-          <ion-icon
-            [name]="passwordToggleIcon"
-            (click)="togglePassword()"
-            class="password-toggle"
-          ></ion-icon>
+          <label for="password">Password</label>
+          <ion-icon [name]="passwordToggleIcon" (click)="togglePassword()" class="password-toggle"></ion-icon>
           <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="error-message">
             <ion-icon name="alert-circle-outline"></ion-icon>
             Password must be at least 6 characters
           </div>
         </div>
-      
+
         <!-- Forgot Password Link -->
         <div class="forgot-password">
           <a href="/forget-paswrd">
@@ -57,13 +53,13 @@
             Forgot Password?
           </a>
         </div>
-      
+
         <!-- Submit Button -->
         <button type="submit" [disabled]="userForm.invalid" class="submit-btn">
           <ion-icon name="log-in-outline"></ion-icon>
           <span>Login</span>
         </button>
-      
+
         <!-- Register Link -->
         <div class="register-link">
           <span>Don't have an account?</span>
@@ -89,16 +85,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- User Info Display -->
-  <div *ngIf="userId && userType" class="user-info">
-    <ion-card>
-      <ion-card-content>
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <h2>User ID: {{ userId }}</h2>
-        <h2>User Type: {{ userType }}</h2>
-      </ion-card-content>
-    </ion-card>
   </div>
 </ion-content>

@@ -1092,10 +1092,20 @@ const routes: Routes = [
   {
     path: 'post-plant-school',
     loadChildren: () => import('./(industrial-plants)/post-plant-school/post-plant-school.module').then( m => m.PostPlantSchoolPageModule)
-  },  {
-    path: 'parts-and',
-    loadChildren: () => import('./parts-and/parts-and.module').then( m => m.PartsAndPageModule)
   },
+  {
+    path: 'parts-and',
+    loadChildren: () => import('./(parts-and-accesories)/parts-and/parts-and.module').then( m => m.PartsAndPageModule)
+  },
+  {
+    path: 'my-store',
+    loadChildren: () => import('./(parts-and-accesories)/my-store/my-store.module').then( m => m.MyStorePageModule)
+  },
+  {
+    path: 'create-store',
+    loadChildren: () => import('./(parts-and-accesories)/create-store/create-store.module').then( m => m.CreateStorePageModule)
+  },
+
 
 ];
 

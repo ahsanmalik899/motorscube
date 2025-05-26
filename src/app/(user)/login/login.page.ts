@@ -53,6 +53,18 @@ export class LoginPage implements OnInit {
   toggleRegisterSection(): void {
     this.showRegisterSection = !this.showRegisterSection;
   }
+isFocused = {
+  mobile: false,
+  password: false
+}
+
+onInputFocus(fieldName: 'mobile' | 'password'): void {
+  this.isFocused[fieldName] = true;
+}
+
+onInputBlur(fieldName: 'mobile' | 'password'): void {
+  this.isFocused[fieldName] = false;
+}
 
   goToTrader(): void {
     this.router.navigate(['/acc-create-busines']);
@@ -125,14 +137,7 @@ export class LoginPage implements OnInit {
     this.passwordToggleIcon = this.showPassword ? 'eye-off' : 'eye';
   }
 
-  // Optional: Log focus events for debugging
-  onInputFocus(fieldName: string): void {
-    // Additional logic here if needed
-  }
-
-  onInputBlur(fieldName: string): void {
-    // Additional logic here if needed
-  }
+ 
 
   async showErrorAlert(): Promise<void> {
     const alert = await this.alertController.create({

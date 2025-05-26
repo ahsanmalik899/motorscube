@@ -124,73 +124,78 @@ ion-content {
   position: relative;
   margin-bottom: 20px;
 
-  .input-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: $text-color;
-    font-size: 20px;
-    z-index: 1;
-    transition: color 0.3s ease;
-  }
-
   .text-field {
     width: 100%;
-    padding: 16px 16px 16px 48px;
-    border: 2px solid #eee;
-    border-radius: $border-radius;
+    padding: 14px 12px 14px 40px;
     font-size: 16px;
-    transition: all 0.3s ease;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
     background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-      box-shadow: 0 4px 12px rgba(255, 75, 43, 0.2);
-
-      & + .input-icon {
-        color: $primary-color;
-      }
+    &:focus + label {
+      top: -10px;
+      left: 35px;
+      font-size: 12px;
+      color: #3b82f6;
+      background: white;
+      padding: 0 4px;
     }
   }
 
-  .password-toggle {
+  .input-icon {
     position: absolute;
-    right: 12px;
     top: 50%;
+    left: 12px;
     transform: translateY(-50%);
-    color: $text-color;
     font-size: 20px;
-    cursor: pointer;
-    z-index: 1;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: $primary-color;
-    }
+    color: #666;
   }
 
   label {
     position: absolute;
-    left: 48px;
+    left: 40px;
     top: 50%;
     transform: translateY(-50%);
-    color: #666;
-    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #aaa;
     pointer-events: none;
-    background: transparent;
-    padding: 0 4px;
+    transition: 0.2s ease all;
+    background: white;
+  }
 
-    &.active {
-      top: 0;
-      font-size: 12px;
-      color: $primary-color;
-      background: white;
+  &.focused label {
+    top: -10px;
+    left: 35px;
+    font-size: 12px;
+    color: #FF4B2B;
+    background: white;
+    padding: 0 4px;
+  }
+
+  .password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+
+    ion-icon {
+      margin-right: 5px;
     }
   }
 }
+
 
 // Error Messages
 .error-message {

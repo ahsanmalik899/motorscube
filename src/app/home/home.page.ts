@@ -26,6 +26,13 @@ interface SearchResult {
     standalone: false
 })
 export class HomePage implements OnInit, OnDestroy {
+    categories: Array<{
+      label: string;
+      img: string;
+      type: string;
+      description: string;
+      action: () => void;
+    }> | undefined;
   userID: string | null = null;
   userName: string = 'Guest';
   
@@ -44,14 +51,54 @@ export class HomePage implements OnInit, OnDestroy {
   private searchSubject = new Subject<string>();
 
 
-categories = [
-  { label: 'Cars', img: '../../assets/extra/blue-car.png', action: () => this.navigateToCarHome() },
-  { label: 'Bikes', img: '../assets/Bikesection/bikecardpic.png', action: () => this.navigateToBikeHome() },
-  { label: 'Commercial Vehicle', img: '../../../assets/extra/truck.png', action: () => this.navigateToCommercialVehiclesHome() },
-  { label: 'Machinery', img: '../../../assets/extra/loader.png', action: () => this.navigateToMachineryHome() },
-  { label: 'Industrial Plant', img: '../../../assets/extra/engine.png', action: () => this.navigateToIndustrialPlantHome() },
-  { label: 'Accessories', img: '../assets/Landing page/partandaccesories.png', action: () => this.navigateToAccessoriesHome() }
+initializeCategories() {
+this.categories = [
+  {
+    label: 'Cars',
+    img: 'assets/extra/blue-car.png',
+    type: 'car-bg',
+    description: 'Discover a wide range of new & used cars  buy, sell, or hire with ease!',
+    action: () => this.navigateToCarHome()
+  },
+  {
+    label: 'Bikes',
+    img: 'assets/Bikesection/bikecardpic.png',
+    type: 'bike-bg',
+    description: 'Explore bikes & scooters for every ride  new, used, or rental options.',
+    action: () => this.navigateToBikeHome()
+  },
+  {
+    label: 'Commercial Vehicle',
+    img: 'assets/extra/truck.png',
+    type: 'commercial-bg',
+    description: 'Find trucks and commercial vehicles for sale or hire  all in one place.',
+    action: () => this.navigateToCommercialVehiclesHome()
+  },
+  {
+    label: 'Machinery',
+    img: 'assets/extra/loader.png',
+    type: 'machinery-bg',
+    description: 'Heavy machinery for sale or hire  trusted deals for every project.',
+    action: () => this.navigateToMachineryHome()
+  },
+  {
+    label: 'Industrial Plant',
+    img: 'assets/extra/engine.png',
+    type: 'plant-bg',
+    description: 'Buy, sell, or rent industrial plants and equipment with confidence.',
+    action: () => this.navigateToIndustrialPlantHome()
+  },
+  {
+    label: 'Accessories',
+    img: 'assets/Landing page/partandaccesories.png',
+    type: 'parts-bg',
+    description: 'Find the best tools, parts & accessories  new, used, and hire available.',
+    action: () => this.navigateToAccessoriesHome()
+  }
 ];
+
+}
+
 
   constructor(
     private router: Router, 
@@ -92,6 +139,7 @@ categories = [
   }
   ngOnInit(): void {
     // Subscribe to user ID changes
+      this.initializeCategories(); 
     this.authSubscription = this.authService.userID$.subscribe(userID => {
       console.log('Auth service userID changed:', userID);
       this.userID = userID || localStorage.getItem('userId');
@@ -207,7 +255,7 @@ categories = [
   }
 
   navigateToAccessoriesHome(): void {
-    this.router.navigate(['/accessories-home']);
+    this.router.navigate(['/parts-and']);
   }
 
   getGreeting(): string {

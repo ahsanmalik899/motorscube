@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="bg-toolbar">
+    <ion-buttons slot="start" class="back-btn">
+      <ion-icon name="chevron-back-outline" (click)="back()" class="back-icon"></ion-icon>
+    </ion-buttons>
+    <ion-title class="toolbar-title">Create Store</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-card class="store-card">
+    <ion-card-header>
+      <ion-card-title>Store Information</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+        <ion-list lines="full">
+
+          <ion-item>
+            <ion-label position="floating">Store Name</ion-label>
+            <ion-input formControlName="store_name" placeholder="Enter store name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">City</ion-label>
+            <ion-input formControlName="city" placeholder="Enter city"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-input formControlName="address" placeholder="Enter address"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email" placeholder="Enter email"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Mobile</ion-label>
+            <ion-input formControlName="mobile" placeholder="Enter mobile number"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Website</ion-label>
+            <ion-input formControlName="web" placeholder="Enter website URL"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Store Type</ion-label>
+            <ion-select formControlName="select_option" placeholder="Select a type">
+              <ion-select-option value="Bike">Bike</ion-select-option>
+              <ion-select-option value="Car">Car</ion-select-option>
+              <ion-select-option value="Commercial Vehicle">Commercial Vehicle</ion-select-option>
+              <ion-select-option value="Machinery">Machinery</ion-select-option>
+              <ion-select-option value="Industrial Plant">Industrial Plant</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Bank Name</ion-label>
+            <ion-input formControlName="bank_name" placeholder="Enter bank name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Bank Account</ion-label>
+            <ion-input formControlName="account" placeholder="Enter bank account number"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">JazzCash Number</ion-label>
+            <ion-input formControlName="jazzcash" placeholder="Enter JazzCash number"></ion-input>
+          </ion-item>
+
+          <ion-item lines="none" class="file-upload" detail="false" button>
+            <ion-label>Store Logo</ion-label>
+            <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
+            <input type="file" (change)="onFileChange($event, 'logo')" />
+          </ion-item>
+
+          <ion-item lines="none" class="file-upload" detail="false" button>
+            <ion-label>Cover Image</ion-label>
+            <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
+            <input type="file" (change)="onFileChange($event, 'cover_image')" />
+          </ion-item>
+
+        </ion-list>
+
+        <ion-button type="submit" expand="block" class="submit-btn" [disabled]="storeForm.invalid || loading">
+          {{ loading ? 'Creating...' : 'Create Store' }}
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

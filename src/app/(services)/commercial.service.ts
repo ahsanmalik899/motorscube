@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class CommercialService {
 
-  private apiUrl = 'http://localhost/commercial/';
+  private apiUrl = 'https://motorscube.com/commercial.motorscube.com/commercial/';
   constructor(private http: HttpClient, private storage: Storage) { }
   getCommercialSale(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl + 'get_commercial_sale.php');
