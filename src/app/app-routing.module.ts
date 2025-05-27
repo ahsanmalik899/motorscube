@@ -1105,6 +1105,11 @@ const routes: Routes = [
     path: 'create-store',
     loadChildren: () => import('./(parts-and-accesories)/create-store/create-store.module').then( m => m.CreateStorePageModule)
   },
+  {
+    path: 'edit-store',
+    loadChildren: () => import('./(parts-and-accesories)/edit-store/edit-store.module').then( m => m.EditStorePageModule)
+  },
+
 
 
 ];

@@ -75,6 +75,8 @@ export class MachineryHomePage implements OnInit {
       action: () => this.carWorkshop()
     }
   ];
+  activeTab: string | undefined;
+   unreadMessages = 3;
   constructor( private router: Router,private machinearyservice:MachineryService, private authService:AuthService) { 
     
   }
@@ -117,6 +119,20 @@ async preloadCommercialData(): Promise<void> {
     });
 }
 
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']); // Update with your home route
+  }
+
+  navigateToChat() {
+    this.activeTab = 'chat';
+    this.router.navigate(['/chat']); // Update with your chat route
+  }
+
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']); // Update with your profile route
+  }
 
 navigateToMainMenu(): void {
   if (this.selectID) {

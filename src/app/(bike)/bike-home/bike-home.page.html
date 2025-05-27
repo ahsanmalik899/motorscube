@@ -135,17 +135,23 @@
   </div>
 
   <!-- Footer -->
-  <div style="position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; box-shadow: 0 -2px 8px rgba(0,0,0,0.05); padding: 8px 0;">
-    <div style="display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto;">
-      <div (click)="selectIcon('home')" style="padding: 8px; cursor: pointer; transition: all 0.3s ease;" [style.transform]="selectedIcon === 'home' ? 'scale(1.1)' : 'scale(1)'">
-        <img src="../../../assets/Landing page/footer-icon/home.png" style="width: 24px; height: 24px;" alt="Home">
-      </div>
-      <div (click)="selectIcon('message')" style="padding: 8px; cursor: pointer; transition: all 0.3s ease;" [style.transform]="selectedIcon === 'message' ? 'scale(1.1)' : 'scale(1)'">
-        <img src="../../../assets/Landing page/footer-icon/message.png" style="width: 24px; height: 24px;" alt="Message">
-      </div>
-      <div (click)="selectIcon('profile')" style="padding: 8px; cursor: pointer; transition: all 0.3s ease;" [style.transform]="selectedIcon === 'profile' ? 'scale(1.1)' : 'scale(1)'">
-        <img src="../../../assets/Landing page/footer-icon/profile.png" style="width: 24px; height: 24px;" alt="Profile">
-      </div>
-    </div>
-  </div>
+<ion-footer class="modern-footer">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="footer-nav">
+      <ion-button style="margin-top: 20px;" fill="clear" (click)="navigateToHome()" class="footer-btn" [class.active]="activeTab === 'home'">
+        <ion-icon [name]="activeTab === 'home' ? 'home' : 'home-outline'"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-button>
+      <ion-button fill="clear" style="margin-top: 20px;" (click)="navigateToChat()" class="footer-btn" [class.active]="activeTab === 'chat'">
+        <ion-icon [name]="activeTab === 'chat' ? 'chatbubbles' : 'chatbubbles-outline'"></ion-icon>
+        <ion-label>Chat</ion-label>
+        <ion-badge *ngIf="unreadMessages > 0" class="message-badge">{{ unreadMessages }}</ion-badge>
+      </ion-button>
+      <ion-button fill="clear" style="margin-top: 20px;" (click)="navigateToProfile()" class="footer-btn" [class.active]="activeTab === 'profile'">
+        <ion-icon [name]="activeTab === 'profile' ? 'person' : 'person-outline'"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
 </ion-content>

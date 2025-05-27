@@ -33,6 +33,8 @@ export class CommerciaVehiclesHomePage implements OnInit {
   CommercialHireData: Commercial[] = [];
   isLoading: boolean | undefined;
   selectID: string | null | undefined;
+  activeTab: string | undefined;
+   unreadMessages = 3;
   constructor( private router: Router,private commercialService:CommercialService, private authService:AuthService) { 
     
   }
@@ -48,6 +50,20 @@ back() {
   this.router.navigate(['/home']);
 }
 
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']); // Update with your home route
+  }
+
+  navigateToChat() {
+    this.activeTab = 'chat';
+    this.router.navigate(['/chat']); // Update with your chat route
+  }
+
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']); // Update with your profile route
+  }
 
 async preloadCommercialData(): Promise<void> {
   this.isLoading = true; // Optional: Show loader in UI

@@ -25,7 +25,7 @@ export class BikeHomePage implements OnInit {
   bikeSaleData: bike[] = [];
   selectID: string | null = null;
   selectedIcon: any;
-
+ unreadMessages = 3;
   services = [
     { icon: '../../assets/Menu-items/After login/Bike menu/insurnace.png', title: 'Insurance', action: () => this.carInsurance() },
     { icon: '../../../assets/Menu-items/After login/Car menu/leasing.png', title: 'Leasing', action: () => this.carLeasing() },
@@ -35,6 +35,7 @@ export class BikeHomePage implements OnInit {
     { icon: '../../../assets/Menu-items/After login/Car menu/exporter.png', title: 'Exporters', action: () => this.carExporter() },
     { icon: '../../assets/Menu-items/After login/Bike menu/workshops.png', title: 'Workshops', action: () => this.carWorkshop() }
   ];
+  activeTab: string | undefined;
 
   constructor(
     private router: Router,
@@ -62,6 +63,20 @@ export class BikeHomePage implements OnInit {
     }
   }
 
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']); // Update with your home route
+  }
+
+  navigateToChat() {
+    this.activeTab = 'chat';
+    this.router.navigate(['/chat']); // Update with your chat route
+  }
+
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']); // Update with your profile route
+  }
   async preloadCarData() {
     this.bikeService.getBikeSale()
       .subscribe({

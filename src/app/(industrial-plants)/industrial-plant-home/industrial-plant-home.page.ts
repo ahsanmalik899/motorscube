@@ -74,6 +74,8 @@ export class IndustrialPlantHomePage implements OnInit {
       action: () => this.carWorkshop()
     }
   ];
+  activeTab: string | undefined;
+   unreadMessages = 3;
   constructor( private router: Router,private plantsservice:PlantsService, private authService:AuthService) { 
     
   }
@@ -89,6 +91,20 @@ back() {
   this.router.navigate(['/home']);
 }
 
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']); // Update with your home route
+  }
+
+  navigateToChat() {
+    this.activeTab = 'chat';
+    this.router.navigate(['/chat']); // Update with your chat route
+  }
+
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']); // Update with your profile route
+  }
 
 async preloadCommercialData(): Promise<void> {
   this.isLoading = true;

@@ -55,10 +55,6 @@ export class SaleSingleViewPage implements OnInit {
   showText() {
     this.isReadMore = !this.isReadMore;
  }
-selectImage(image: string, index: number): void {
-  this.selectedImage = image;
-  this.currentIndex = index;
-}
 
   back(){
     window.history.back();

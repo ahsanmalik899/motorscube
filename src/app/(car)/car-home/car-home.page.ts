@@ -26,6 +26,7 @@ interface Car {
   standalone: false
 })
 export class CarHomePage implements OnInit {
+  activeTab: string | undefined;
   back() {
     this.router.navigate(['/home']);
   }
@@ -49,7 +50,7 @@ export class CarHomePage implements OnInit {
   displayedAds = 0;
   selectID: string | null = null;
   selectedIcon: string = 'home';
-
+ unreadMessages = 3;
   services = [
     { icon: '../../assets/Menu-items/After login/Car menu/insurance.png', title: 'Insurance', action: () => this.carInsurance() },
     { icon: '../../../assets/Menu-items/After login/Car menu/leasing.png', title: 'Leasing', action: () => this.carLeasing() },
@@ -103,6 +104,20 @@ export class CarHomePage implements OnInit {
     }
   }
   
+  navigateToHome() {
+    this.activeTab = 'home';
+    this.router.navigate(['/home']); // Update with your home route
+  }
+
+  navigateToChat() {
+    this.activeTab = 'chat';
+    this.router.navigate(['/chat']); // Update with your chat route
+  }
+
+  navigateToProfile() {
+    this.activeTab = 'profile';
+    this.router.navigate(['/profile']); // Update with your profile route
+  }
   navigateToMainMenu(): void {
     if (this.selectID) {
       this.router.navigate(['/main-menu-after-login']);
