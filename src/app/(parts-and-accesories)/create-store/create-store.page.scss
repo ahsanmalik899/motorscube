@@ -63,13 +63,16 @@ label {
 .upload-label {
   display: inline-flex;
   align-items: center;
-  cursor: pointer; /* important */
+  cursor: pointer;
   user-select: none;
-  padding: 8px 12px;
+  padding: 6px 10px; /* reduced padding */
   background-color: #3880ff;
   color: white;
   border-radius: 5px;
+  font-size: 14px; /* optional: reduce font size slightly */
+  max-width: fit-content; /* ensures label doesn't stretch unnecessarily */
 }
+
 
 .image-preview img {
   max-width: 150px;

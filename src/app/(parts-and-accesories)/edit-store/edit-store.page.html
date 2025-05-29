@@ -130,25 +130,37 @@
 
 
       <!-- Select Option -->
-      <div class="input-group" [class.focused]="editForm.get('select_option')?.value || isFocused['select_option']">
-        <ion-icon name="list-outline" class="input-icon"></ion-icon>
-        <select
-          class="text-field"
-          formControlName="select_option"
-          id="select_option"
-          (focus)="onInputFocus('select_option')"
-          (blur)="onInputBlur('select_option')"
-        >
-          <option value="" disabled hidden></option>
-            <option value="Bike">Bike</option>
-          <option value="Car">Car</option>
-            <option value="Commercial Vehicle">Commercial Vehicle</option>
-              <option value="Machinery">Machinery</option>
-                <option value="Industial Plant">Industial Plant</option>
-              
-        </select>
-        <label for="select_option">Select Type *</label>
-      </div>
+<div class="input-group" [class.focused]="editForm.get('select_option')?.value || isFocused['select_option']">
+  <ion-icon name="list-outline" class="input-icon"></ion-icon>
+
+  <ion-select
+    formControlName="select_option"
+    id="select_option"
+    interface="popover"
+    placeholder="Select Type *"
+    (ionFocus)="onInputFocus('select_option')"
+    (ionBlur)="onInputBlur('select_option')"
+    class="text-field"
+    (ionChange)="onPaymentChange($event.detail.value)"
+  >
+    <ion-select-option value="Easy Paisa">EasyPaisa</ion-select-option>
+    <ion-select-option value="Jazz Cash">JazzCash</ion-select-option>
+  </ion-select>
+
+  <label for="select_option">Select Type *</label>
+</div>
+
+<!-- Display selected icon -->
+<div *ngIf="selectedPayment" style="margin-top: 8px; display: flex; align-items: center;">
+  <img
+    [src]="getPaymentIcon(selectedPayment)"
+    alt="Payment Icon"
+    style="width: 24px; height: 24px; margin-right: 8px;"
+  />
+  <span>{{ selectedPayment }}</span>
+</div>
+
+
       <ion-text color="danger" *ngIf="isControlInvalid('select_option')">
         <p class="error-message">Please select a store type.</p>
       </ion-text>

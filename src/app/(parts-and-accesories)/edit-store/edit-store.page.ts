@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false,
 })
 export class EditStorePage implements OnInit {
+  selectedPayment: string = '';
   editForm: FormGroup;
   store: any;
   preview = {
@@ -60,6 +61,19 @@ StoreId:any| undefined;
   back() {
     this.navCtrl.back();
   }
+onPaymentChange(value: string) {
+  this.selectedPayment = value;
+}
+getPaymentIcon(type: string): string {
+  switch (type) {
+    case 'Easy Paisa':
+      return 'assets/icon/easy-pasa.png'; // Make sure the image exists at this path
+    case 'Jazz Cash':
+      return 'assets/icon/jazz-cash-icon.jpg'; // Update the path if different
+    default:
+      return '';
+  }
+}
 
   populateForm(data: any) {
     this.editForm.patchValue({
@@ -75,15 +89,16 @@ StoreId:any| undefined;
       jazzcash: data.jazzcash,
      
     });
+this.selectedPayment = this.matchStoreType(data.select_option);
 
     this.preview.logo = data.logo_url || '';
     this.preview.cover_image = data.cover_image_url || '';
   }
 
-  matchStoreType(option: string): string {
-    const valid = ['Bike', 'Car','Commercial Vehicel','Machinery','Industrial Plant'];
-    return valid.includes(option) ? option : 'Car';
-  }
+matchStoreType(option: string): string {
+  const valid = ['Easy Paisa', 'Jazz Cash'];
+  return valid.includes(option) ? option : 'Easy Paisa';
+}
 
   onFileChange(event: any, field: string) {
     const file = event.target.files[0];

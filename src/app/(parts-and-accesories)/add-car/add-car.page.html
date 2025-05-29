@@ -1,0 +1,108 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add Car Accessory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <form [formGroup]="carForm" (ngSubmit)="submitForm()">
+
+    <ion-item>
+      <ion-label position="floating">Accessory Name <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="car_item_name" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Condition <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="car_condition" placeholder="Select Condition" required>
+        <ion-select-option value="New">New</ion-select-option>
+        <ion-select-option value="Used">Used</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Location <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="car_location" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Category <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="car_category" placeholder="Select Category" required>
+        <ion-select-option value="Engine Parts">Engine Parts</ion-select-option>
+        <ion-select-option value="Body Parts">Body Parts</ion-select-option>
+        <ion-select-option value="Electrical">Electrical</ion-select-option>
+        <ion-select-option value="Accessories">Accessories</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Sub Category</ion-label>
+      <ion-input formControlName="car_sub_category" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Price <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="car_accessories_price" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Make</ion-label>
+      <ion-input formControlName="car_make" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Model</ion-label>
+      <ion-input formControlName="car_model" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Version</ion-label>
+      <ion-input formControlName="car_version" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description <ion-text color="danger">*</ion-text></ion-label>
+      <ion-textarea formControlName="car_description" rows="4" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Private or Trade <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select formControlName="car_ad_privateortrade" placeholder="Select Type" required>
+        <ion-select-option value="Private">Private</ion-select-option>
+        <ion-select-option value="Trade">Trade</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Post Date <ion-text color="danger">*</ion-text></ion-label>
+      <ion-datetime display-format="YYYY-MM-DD" picker-format="YYYY-MM-DD" formControlName="item_ad_postdate" required></ion-datetime>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label>Upload Images (max 8)</ion-label>
+      <input type="file" (change)="onFileChange($event)" multiple accept="image/*" />
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Features</ion-label>
+      <ion-textarea formControlName="car_ad_normal_feature" rows="3"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">User ID <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input formControlName="user_id" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Store ID</ion-label>
+      <ion-input formControlName="store_id" type="number"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="carForm.invalid" class="ion-margin-top">
+      Submit Accessory
+    </ion-button>
+
+  </form>
+
+</ion-content>

@@ -42,6 +42,9 @@ export class MyStorePage implements OnInit {
   });
 }
 
+goToMyProducts() {
+  this.router.navigate(['/my-products'], { queryParams: { storeId: this.store.id } });
+}
 
   goToCreateStore() {
     this.router.navigate(['/create-store']);

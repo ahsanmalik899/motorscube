@@ -22,13 +22,25 @@
       <!-- Store Details -->
       <div style="padding: 20px;">
         <!-- Logo and Name -->
-        <div style="display: flex; align-items: center;">
-          <img [src]="store.logo_url" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;">
-          <div>
-            <h2 style="margin: 0; font-size: 20px;">{{ store.store_name }}</h2>
-            <p style="margin: 0; font-size: 14px; color: #666;">{{ store.select_option }} Store</p>
-          </div>
-        </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+  <!-- Logo and Store Info -->
+  <div style="display: flex; align-items: center;">
+    <img [src]="store.logo_url" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 15px;">
+    <div>
+      <h2 style="margin: 0; font-size: 20px;">{{ store.store_name }}</h2>
+      <p style="margin: 0; font-size: 14px; color: #666;">{{ store.select_option }} Store</p>
+    </div>
+  </div>
+
+  <!-- View My Products Button -->
+  <div style="margin-left: auto;">
+    <ion-button color="secondary" size="small" (click)="goToMyProducts()">
+      <ion-icon name="pricetags-outline" slot="start"></ion-icon>
+      View My Products
+    </ion-button>
+  </div>
+</div>
+
 
         <!-- Info Rows -->
         <ion-list lines="none" style="margin-top: 15px;">

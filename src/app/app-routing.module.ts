@@ -1109,6 +1109,36 @@ const routes: Routes = [
     path: 'edit-store',
     loadChildren: () => import('./(parts-and-accesories)/edit-store/edit-store.module').then( m => m.EditStorePageModule)
   },
+  {
+    path: 'my-products',
+    loadChildren: () => import('./(parts-and-accesories)/my-products/my-products.module').then( m => m.MyProductsPageModule)
+  },
+  {
+    path: 'add-product',
+    loadChildren: () => import('./(parts-and-accesories)/add-product/add-product.module').then( m => m.AddProductPageModule)
+  },
+  {
+    path: 'add-car',
+    loadChildren: () => import('./(parts-and-accesories)/add-car/add-car.module').then( m => m.AddCarPageModule)
+  },
+  {
+    path: 'add-bike',
+    loadChildren: () => import('./(parts-and-accesories)/add-bike/add-bike.module').then( m => m.AddBikePageModule)
+  },
+  {
+    path: 'add-commercial-vehicle',
+    loadChildren: () => import('./(parts-and-accesories)/add-commercial-vehicle/add-commercial-vehicle.module').then( m => m.AddCommercialVehiclePageModule)
+  },
+  {
+    path: 'add-machinery',
+    loadChildren: () => import('./(parts-and-accesories)/add-machinery/add-machinery.module').then( m => m.AddMachineryPageModule)
+  },
+  {
+    path: 'add-plant',
+    loadChildren: () => import('./(parts-and-accesories)/add-plant/add-plant.module').then( m => m.AddPlantPageModule)
+  },
+
+
 
 
 

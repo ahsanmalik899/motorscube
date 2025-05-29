@@ -35,6 +35,10 @@ export class CreateStorePage implements OnInit {
       cover_image: [null],
     });
   }
+iconMap: Record<string, string> = {
+  'Easy Paisa': 'assets/icon/easy-pasa.png',
+  'Jazz Cash': 'assets/icon/jazz-cash-icon.jpg'
+};
 
   ngOnInit() {}
 
