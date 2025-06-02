@@ -1,23 +1,24 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar style="--background: #FF4B2B; --color: white;">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/" text="" icon="arrow-back" style="--color: white;"></ion-back-button>
     </ion-buttons>
     <ion-title>Add Car Accessory</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <div class="form-container">
     <form [formGroup]="carForm" (ngSubmit)="submitForm()" novalidate>
-
       <!-- Product Info Section -->
       <ion-card class="form-section">
         <ion-card-header class="section-header">
-          <ion-card-title>Accessory Details</ion-card-title>
+          <ion-card-title>
+            <ion-icon name="cube-outline"></ion-icon>
+            Accessory Details
+          </ion-card-title>
         </ion-card-header>
         <ion-card-content>
-
           <!-- Accessory Name -->
           <div class="input-group" [class.focused]="carForm.get('car_item_name')?.value || isFocused['car_item_name']">
             <ion-icon name="pricetag-outline" class="input-icon"></ion-icon>
@@ -102,23 +103,29 @@
       <!-- Category & Vehicle Section -->
       <ion-card class="form-section">
         <ion-card-header class="section-header">
-          <ion-card-title>Category & Vehicle</ion-card-title>
+          <ion-card-title>
+            <ion-icon name="car-outline"></ion-icon>
+            Category & Vehicle
+          </ion-card-title>
         </ion-card-header>
         <ion-card-content>
-
           <!-- Category -->
           <div class="input-group" [class.focused]="carForm.get('car_category')?.value || isFocused['car_category']">
             <ion-icon name="list-outline" class="input-icon"></ion-icon>
-<ion-select
-  [formControl]="carCategoryControl"
-  placeholder="Select Category"
-  (ionChange)="updateSubCategories()"
->
-  <ion-select-option *ngFor="let category of categories" [value]="category.category_id">
-    {{ category.category_name }}
-  </ion-select-option>
-</ion-select>
-
+            <ion-select
+              id="car_category"
+              class="text-field"
+              formControlName="car_category"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('car_category')"
+              (ionBlur)="onInputBlur('car_category')"
+              (ionChange)="updateSubCategories()"
+            >
+              <ion-select-option *ngFor="let category of categories" [value]="category.category_id">
+                {{ category.category_name }}
+              </ion-select-option>
+            </ion-select>
             <label for="car_category">Category *</label>
           </div>
           <ion-text color="danger" *ngIf="isControlInvalid('car_category')">
@@ -126,98 +133,122 @@
           </ion-text>
 
           <!-- Sub Category -->
-       <!-- Sub Category -->
-<div class="input-group" [class.focused]="carForm.get('car_sub_category')?.value || isFocused['car_sub_category']">
-  <ion-icon name="options-outline" class="input-icon"></ion-icon>
-  <ion-select
-    id="car_sub_category"
-    class="text-field"
-    formControlName="car_sub_category"
-    interface="popover"
-    placeholder=" "
-    (ionFocus)="onInputFocus('car_sub_category')"
-    (ionBlur)="onInputBlur('car_sub_category')"
-    [disabled]="!carForm.get('car_category')?.value"
-  >
-    <ion-select-option *ngFor="let subcategory of subCategories" [value]="subcategory.subcategory_id">
-      {{ subcategory.subcategory_name }}
-    </ion-select-option>
-  </ion-select>
-  <label for="car_sub_category">Sub Category</label>
-</div>
+          <div class="input-group" [class.focused]="carForm.get('car_sub_category')?.value || isFocused['car_sub_category']">
+            <ion-icon name="options-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="car_sub_category"
+              class="text-field"
+              formControlName="car_sub_category"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('car_sub_category')"
+              (ionBlur)="onInputBlur('car_sub_category')"
+              [disabled]="!carForm.get('car_category')?.value"
+            >
+              <ion-select-option *ngFor="let subcategory of subCategories" [value]="subcategory.subcategory_id">
+                {{ subcategory.subcategory_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="car_sub_category">Sub Category</label>
+          </div>
 
           <!-- Make -->
           <div class="input-group" [class.focused]="carForm.get('car_make')?.value || isFocused['car_make']">
             <ion-icon name="car-sport-outline" class="input-icon"></ion-icon>
-<ion-select
-  [formControl]="carSubCategoryControl"
-  placeholder="Select Sub Category"
-  interface="popover"
->
-  <ion-select-option *ngFor="let subcategory of subCategories" [value]="subcategory.subcategory_id">
-    {{ subcategory.subcategory_name }}
-  </ion-select-option>
-</ion-select>
-
-
-            <label for="car_make">Make</label>
+            <ion-select
+              formControlName="car_make"
+              interface="action-sheet"
+              placeholder=" "
+              (ionFocus)="onInputFocus('car_make')"
+              (ionBlur)="onInputBlur('car_make')"
+              (ionChange)="onMakeChange($event.detail.value)"
+              class="select-field"
+            >
+              <ion-select-option value="">Clear Selection</ion-select-option>
+              <ion-select-option *ngFor="let make of filteredMakes" [value]="make.make_id">
+                {{ make.make_name }}
+              </ion-select-option>
+            </ion-select>
+            <label>Make *</label>
           </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_make')">
+            <p class="error-message">Please select make</p>
+          </ion-text>
 
           <!-- Model -->
           <div class="input-group" [class.focused]="carForm.get('car_model')?.value || isFocused['car_model']">
             <ion-icon name="car-outline" class="input-icon"></ion-icon>
             <ion-select
-              id="car_model"
-              class="text-field"
               formControlName="car_model"
-              interface="popover"
+              interface="action-sheet"
               placeholder=" "
+              [disabled]="!carForm.get('car_make')?.value"
+              (ionChange)="onModelChange($event.detail.value)"
               (ionFocus)="onInputFocus('car_model')"
               (ionBlur)="onInputBlur('car_model')"
+              class="select-field"
             >
-              <ion-select-option *ngFor="let model of carModels" [value]="model">{{ model }}</ion-select-option>
+              <ion-select-option value="">Clear Selection</ion-select-option>
+              <ion-select-option *ngFor="let model of filteredModels" [value]="model.model_id">
+                {{ model.model_name }}
+              </ion-select-option>
             </ion-select>
-            <label for="car_model">Model</label>
+            <label>Model *</label>
           </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_model')">
+            <p class="error-message">Please select model</p>
+          </ion-text>
 
           <!-- Version -->
           <div class="input-group" [class.focused]="carForm.get('car_version')?.value || isFocused['car_version']">
             <ion-icon name="git-branch-outline" class="input-icon"></ion-icon>
             <ion-select
-              id="car_version"
-              class="text-field"
               formControlName="car_version"
-              interface="popover"
+              interface="action-sheet"
               placeholder=" "
+              [disabled]="!carForm.get('car_model')?.value"
               (ionFocus)="onInputFocus('car_version')"
               (ionBlur)="onInputBlur('car_version')"
+              class="select-field"
             >
-              <ion-select-option *ngFor="let version of carVersions" [value]="version">{{ version }}</ion-select-option>
+              <ion-select-option value="">Clear Selection</ion-select-option>
+              <ion-select-option *ngFor="let version of filteredVersions" [value]="version.version_id">
+                {{ version.version_name }}
+              </ion-select-option>
             </ion-select>
-            <label for="car_version">Version</label>
+            <label>Version *</label>
           </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_version')">
+            <p class="error-message">Please select version</p>
+          </ion-text>
         </ion-card-content>
       </ion-card>
 
       <!-- Location Section -->
       <ion-card class="form-section">
         <ion-card-header class="section-header">
-          <ion-card-title>Location</ion-card-title>
+          <ion-card-title>
+            <ion-icon name="location-outline"></ion-icon>
+            Location
+          </ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <div class="input-group" [class.focused]="carForm.get('car_location')?.value || isFocused['car_location']">
             <ion-icon name="location-outline" class="input-icon"></ion-icon>
             <ion-select
               id="car_location"
-              class="text-field"
+              class="text-field select-field"
               formControlName="car_location"
-              interface="popover"
+              interface="action-sheet"
               placeholder=" "
               (ionFocus)="onInputFocus('car_location')"
               (ionBlur)="onInputBlur('car_location')"
               required
             >
-              <ion-select-option *ngFor="let loc of locations" [value]="loc">{{ loc }}</ion-select-option>
+              <ion-select-option value="">Clear Selection</ion-select-option>
+              <ion-select-option *ngFor="let city of filteredCities" [value]="city.city_name">
+                {{ city.city_name }}
+              </ion-select-option>
             </ion-select>
             <label for="car_location">Location *</label>
           </div>
@@ -228,40 +259,23 @@
       </ion-card>
 
       <!-- Features Section -->
-      <ion-card class="form-section">
-        <ion-card-header class="section-header">
-          <ion-card-title>Features</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <div class="input-group" [class.focused]="carForm.get('car_ad_normal_feature')?.value || isFocused['car_ad_normal_feature']">
-            <ion-icon name="star-outline" class="input-icon"></ion-icon>
-            <textarea
-              id="car_ad_normal_feature"
-              class="text-field"
-              placeholder=" "
-              formControlName="car_ad_normal_feature"
-              (focus)="onInputFocus('car_ad_normal_feature')"
-              (blur)="onInputBlur('car_ad_normal_feature')"
-              rows="3"
-            ></textarea>
-            <label for="car_ad_normal_feature">Highlights / Features</label>
-          </div>
-        </ion-card-content>
-      </ion-card>
+   
 
-      <!-- Image Upload Section -->
+      <!-- Images Section -->
       <ion-card class="form-section">
         <ion-card-header class="section-header">
-          <ion-card-title>Upload Images</ion-card-title>
+          <ion-card-title>
+            <ion-icon name="images-outline"></ion-icon>
+            Images
+          </ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <div class="upload-container">
             <div class="upload-grid">
-              <div *ngFor="let img of imagePreviews" class="preview-item">
-                <img [src]="img" alt="Preview" />
-                <ion-icon name="close-circle" class="remove-icon" (click)="removeImage(img)"></ion-icon>
+              <div class="preview-item" *ngFor="let preview of imagePreviews; let i = index">
+                <img [src]="preview" alt="Preview">
+                <ion-icon name="close-circle" class="remove-icon" (click)="removeImage(preview)"></ion-icon>
               </div>
-              
               <div class="upload-btn-wrapper" *ngIf="imagePreviews.length < 8">
                 <input 
                   type="file" 
@@ -273,28 +287,22 @@
                 />
                 <label for="fileUpload" class="upload-label">
                   <ion-icon name="cloud-upload-outline"></ion-icon>
-                  <span>Add Photos</span>
+                  <span>Upload Images</span>
                 </label>
               </div>
             </div>
-            <ion-note color="medium" class="upload-note">Max 8 images allowed ({{imagePreviews.length}}/8)</ion-note>
+            <span class="upload-note">Maximum 8 images allowed ({{imagePreviews.length}}/8)</span>
           </div>
         </ion-card-content>
       </ion-card>
 
       <!-- Submit Button -->
       <div class="submit-btn-container">
-        <ion-button 
-          type="submit" 
-          expand="block" 
-          [disabled]="carForm.invalid || imagePreviews.length === 0"
-          class="submit-btn"
-        >
-          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
-          Submit Accessory
+        <ion-button type="submit" class="submit-btn" [disabled]="!carForm.valid">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Submit
         </ion-button>
       </div>
-
     </form>
   </div>
 </ion-content>
