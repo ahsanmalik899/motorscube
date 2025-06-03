@@ -164,10 +164,10 @@
               (ionChange)="onMakeChange($event.detail.value)"
               class="select-field"
             >
-              <ion-select-option value="">Clear Selection</ion-select-option>
               <ion-select-option *ngFor="let make of filteredMakes" [value]="make.make_id">
                 {{ make.make_name }}
               </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
             </ion-select>
             <label>Make *</label>
           </div>
@@ -188,10 +188,10 @@
               (ionBlur)="onInputBlur('car_model')"
               class="select-field"
             >
-              <ion-select-option value="">Clear Selection</ion-select-option>
               <ion-select-option *ngFor="let model of filteredModels" [value]="model.model_id">
                 {{ model.model_name }}
               </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
             </ion-select>
             <label>Model *</label>
           </div>
@@ -211,10 +211,10 @@
               (ionBlur)="onInputBlur('car_version')"
               class="select-field"
             >
-              <ion-select-option value="">Clear Selection</ion-select-option>
               <ion-select-option *ngFor="let version of filteredVersions" [value]="version.version_id">
                 {{ version.version_name }}
               </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
             </ion-select>
             <label>Version *</label>
           </div>
@@ -245,10 +245,10 @@
               (ionBlur)="onInputBlur('car_location')"
               required
             >
-              <ion-select-option value="">Clear Selection</ion-select-option>
               <ion-select-option *ngFor="let city of filteredCities" [value]="city.city_name">
                 {{ city.city_name }}
               </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
             </ion-select>
             <label for="car_location">Location *</label>
           </div>

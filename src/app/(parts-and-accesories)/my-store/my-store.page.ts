@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PartsAndAccesoriesService } from 'src/app/(services)/parts-and-accesories.service';
 
 @Component({
@@ -12,10 +12,12 @@ import { PartsAndAccesoriesService } from 'src/app/(services)/parts-and-accesori
 export class MyStorePage implements OnInit {
   store: any = null;
 
-  constructor(public router: Router, private http: HttpClient, private partsAndAceesories:PartsAndAccesoriesService) {}
+  constructor(public router: Router, private http: HttpClient, private partsAndAceesories:PartsAndAccesoriesService,    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.getStoreData();
+    const storeId = this.route.snapshot.queryParamMap.get('storeId');
+    console.log('storeId from queryParams:', storeId);
   }
 
   back() {

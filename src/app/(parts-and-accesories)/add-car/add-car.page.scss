@@ -400,3 +400,71 @@ ion-action-sheet .action-sheet-button.ion-focused {
   background: #f8f9fa;
   color: #FF4B2B;
 }
+
+/* Dropdown option styles */
+::ng-deep {
+  .reset-option {
+    color: #666 !important;
+    font-style: italic;
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+  }
+
+  .cancel-option {
+    color: #ff4b2b !important;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+  }
+
+  ion-select::part(icon) {
+    color: #666;
+  }
+
+  ion-select::part(placeholder) {
+    color: #666;
+  }
+
+  /* Style for action sheet buttons */
+  .action-sheet-button {
+    &.reset-option {
+      color: #666 !important;
+      font-style: italic;
+    }
+
+    &.cancel-option {
+      color: #ff4b2b !important;
+      font-weight: bold;
+    }
+  }
+
+  /* Action Sheet Styles */
+  .action-sheet-group-cancel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #ddd;
+
+    .action-sheet-button {
+      flex: 1;
+      margin: 0;
+      border-radius: 0;
+      color: #ff4b2b !important;
+      font-weight: bold;
+
+      &.reset-option {
+        color: #666 !important;
+        font-style: italic;
+        border-left: 1px solid #ddd;
+      }
+    }
+  }
+
+  ion-action-sheet {
+    --button-color: #2A2A2A;
+    --button-background-hover: #f8f9fa;
+    --button-color-hover: #FF4B2B;
+  }
+}

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PartsAndAccesoriesService, CarAccessoryResponse } from 'src/app/(services)/parts-and-accesories.service';
 import { UserService } from 'src/app/(services)/user.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 export interface Category {
   category_id: string;
@@ -81,8 +82,10 @@ export class AddCarPage implements OnInit {
     this.userId = localStorage.getItem('userId') || '';
     this.userType = localStorage.getItem('userType') || 'private';
     
+    // Get store ID from query parameters
     this.route.queryParams.subscribe(params => {
       this.storeId = params['store_id'] || '';
+      console.log('Store ID from query params:', this.storeId);
     });
 
     this.initializeForm();
@@ -121,6 +124,9 @@ export class AddCarPage implements OnInit {
       post_status: ['Pending'],
       ad_for: ['Car Accessory']
     });
+
+    // Log form initialization
+    console.log('Form initialized with store_id:', this.storeId);
   }
 
   setupSearch() {
@@ -425,26 +431,28 @@ export class AddCarPage implements OnInit {
         return;
       }
 
-      console.log('Selected Files before submission:', this.selectedFiles.map(file => ({
-        name: file.name,
-        type: file.type,
-        size: file.size
-      })));
+      // Log store ID before submission
+      console.log('Store ID before submission:', this.storeId);
 
       const formData = new FormData();
       
+      // Get category and subcategory names from their IDs
+      const selectedCategory = this.categories.find(cat => cat.category_id === this.carForm.get('car_category')?.value);
+      const selectedSubCategory = this.subCategories.find(sub => sub.subcategory_id === this.carForm.get('car_sub_category')?.value);
+
       // Add all form fields with null checks
       const formControls = {
         'car_item_name': this.carForm.get('car_item_name')?.value,
         'car_condition': this.carForm.get('car_condition')?.value,
         'car_location': this.carForm.get('car_location')?.value,
-        'car_category': this.carForm.get('car_category')?.value,
-        'car_sub_category': this.carForm.get('car_sub_category')?.value,
+        'car_category': selectedCategory?.category_name || '',
+        'car_sub_category': selectedSubCategory?.subcategory_name || '',
         'car_accessories_price': this.carForm.get('car_accessories_price')?.value,
         'car_make': this.carForm.get('car_make')?.value,
         'car_model': this.carForm.get('car_model')?.value,
         'car_version': this.carForm.get('car_version')?.value,
-        'car_description': this.carForm.get('car_description')?.value
+        'car_description': this.carForm.get('car_description')?.value,
+        'store_id': this.storeId // Add store_id to form controls
       };
 
       // Add form fields to FormData
@@ -456,9 +464,11 @@ export class AddCarPage implements OnInit {
       });
       
       // Add user data
-      formData.append('userId', this.userId);
-      formData.append('store_id', this.storeId);
-      formData.append('userType', this.userType);
+      formData.append('user_id', this.userId);
+      formData.append('user_type', this.userType);
+
+      // Log store ID in FormData
+      console.log('Store ID in FormData:', formData.get('store_id'));
 
       // Add images with detailed logging
       console.log('Processing images for upload:');
@@ -483,14 +493,13 @@ export class AddCarPage implements OnInit {
       });
 
       console.log('Sending request to server...');
-      const response = await this.http.post<ServerResponse>('http://localhost/parts-and-accesories/add_car_accessory.php', formData).toPromise();
+      const response = await firstValueFrom(this.partAndAcessories.addCarAccessory(formData));
       
       if (response) {
         console.log('Server Response:', {
           success: response.success,
           message: response.message,
-          accessory_id: response.accessory_id,
-          uploaded_files: response.uploaded_files
+          accessory_id: response.accessory_id
         });
         
         if (response.success) {

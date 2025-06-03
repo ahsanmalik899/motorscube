@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface Category {
   category_id: string;
@@ -13,11 +14,18 @@ export interface CarAccessoryResponse {
   accessory_id?: number;
 }
 
+export interface BikeAccessoryResponse {
+  success: boolean;
+  message: string;
+  accessory_id?: number;
+  uploaded_files?: string[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class PartsAndAccesoriesService {
-  private apiUrl = 'http://localhost/parts-and-accesories/';
+  private apiUrl = environment.apiUrl;
   
   constructor(private http: HttpClient) { }
 
@@ -52,7 +60,16 @@ export class PartsAndAccesoriesService {
       map((response: { categories: Category[] }) => response.categories)
     );
   }
-
+  getbikeSubCategories(categoryId: number) {
+    return this.http.get<{ subcategories: { subcategory_id: number; subcategory_name: string }[] }>(
+      `${this.apiUrl}/get-bike-parts-sub-catagory.php?category_id=${categoryId}`
+    );
+  }
+  getbikeCategories(): Observable<Category[]> {
+    return this.http.get<{ categories: Category[] }>(this.apiUrl + 'get-bike-parts-catagory.php').pipe(
+      map((response: { categories: Category[] }) => response.categories)
+    );
+  }
   addCarAccessory(formData: FormData): Observable<CarAccessoryResponse> {
     const headers = new HttpHeaders({
       'Accept': 'application/json'
@@ -66,5 +83,24 @@ export class PartsAndAccesoriesService {
         withCredentials: false
       }
     );
+  }
+
+  addBikeAccessory(formData: FormData): Observable<BikeAccessoryResponse> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/json'
+    });
+
+    return this.http.post<BikeAccessoryResponse>(
+      this.apiUrl + 'add_bike_accessory.php', 
+      formData,
+      { 
+        headers,
+        withCredentials: false
+      }
+    );
+  }
+
+  addCommercialVehicle(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/parts-and-accesories/add_commercial_vehicle.php`, formData);
   }
 }
