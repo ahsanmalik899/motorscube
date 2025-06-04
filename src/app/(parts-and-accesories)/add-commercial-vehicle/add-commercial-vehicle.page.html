@@ -1,13 +1,333 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>add-commercial-vehicle</ion-title>
+<ion-header>
+  <ion-toolbar style="--background: #FF4B2B; --color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" icon="arrow-back" style="--color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Car Accessory</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-commercial-vehicle</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <form [formGroup]="carForm" (ngSubmit)="submitForm()" novalidate>
+      <!-- Product Info Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="cube-outline"></ion-icon>
+            Accessory Details
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Accessory Name -->
+          <div class="input-group" [class.focused]="carForm.get('car_item_name')?.value || isFocused['car_item_name']">
+            <ion-icon name="pricetag-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              id="car_item_name"
+              class="text-field"
+              placeholder=" "
+              formControlName="car_item_name"
+              (focus)="onInputFocus('car_item_name')"
+              (blur)="onInputBlur('car_item_name')"
+              required
+            />
+            <label for="car_item_name">Accessory Name *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_item_name')">
+            <p class="error-message">Accessory name is required</p>
+          </ion-text>
+
+          <!-- Condition -->
+          <div class="input-group" [class.focused]="carForm.get('car_condition')?.value || isFocused['car_condition']">
+            <ion-icon name="construct-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="car_condition"
+              class="text-field"
+              formControlName="car_condition"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('car_condition')"
+              (ionBlur)="onInputBlur('car_condition')"
+              required
+            >
+              <ion-select-option value="New">New</ion-select-option>
+              <ion-select-option value="Used">Used</ion-select-option>
+            </ion-select>
+            <label for="car_condition">Condition *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_condition')">
+            <p class="error-message">Please select condition</p>
+          </ion-text>
+
+          <!-- Price -->
+          <div class="input-group" [class.focused]="carForm.get('car_accessories_price')?.value || isFocused['car_accessories_price']">
+            <ion-icon name="cash-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="car_accessories_price"
+              class="text-field"
+              placeholder=" "
+              formControlName="car_accessories_price"
+              (focus)="onInputFocus('car_accessories_price')"
+              (blur)="onInputBlur('car_accessories_price')"
+              required
+            />
+            <label for="car_accessories_price">Price (PKR) *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_accessories_price')">
+            <p class="error-message">Valid price is required</p>
+          </ion-text>
+
+          <!-- Description -->
+          <div class="input-group" [class.focused]="carForm.get('car_description')?.value || isFocused['car_description']">
+            <ion-icon name="document-text-outline" class="input-icon"></ion-icon>
+            <textarea
+              id="car_description"
+              class="text-field"
+              placeholder=" "
+              formControlName="car_description"
+              (focus)="onInputFocus('car_description')"
+              (blur)="onInputBlur('car_description')"
+              rows="3"
+              required
+            ></textarea>
+            <label for="car_description">Description *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_description')">
+            <p class="error-message">Description is required</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Category & Vehicle Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="car-outline"></ion-icon>
+            Category & Vehicle
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Category -->
+          <div class="input-group" [class.focused]="carForm.get('category')?.value || isFocused['category']">
+            <ion-icon name="list-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="category"
+              class="text-field"
+              formControlName="category"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('category')"
+              (ionBlur)="onInputBlur('category')"
+              (ionChange)="updateSubCategories()"
+              aria-label="Select category"
+            >
+              <ion-select-option *ngFor="let category of categories" [value]="category.category_id">
+                {{ category.category_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="category">Category *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('category')">
+            <p class="error-message">Please select category</p>
+          </ion-text>
+
+          <!-- Sub Category -->
+          <div class="input-group" [class.focused]="carForm.get('sub_category')?.value || isFocused['sub_category']">
+            <ion-icon name="options-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="sub_category"
+              class="text-field"
+              formControlName="sub_category"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('sub_category')"
+              (ionBlur)="onInputBlur('sub_category')"
+              [disabled]="!carForm.get('category')?.value"
+              aria-label="Select subcategory"
+              [compareWith]="compareWithSubCategory"
+            >
+              <ion-select-option *ngFor="let subcategory of subCategories" [value]="subcategory.sub_category_id">
+                {{ subcategory.sub_category_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="sub_category">Sub Category</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('sub_category')">
+            <p class="error-message">Please select subcategory</p>
+          </ion-text>
+
+          <!-- Make -->
+          <div class="input-group" [class.focused]="carForm.get('car_make')?.value || isFocused['car_make']">
+            <ion-icon name="car-sport-outline" class="input-icon"></ion-icon>
+            <ion-select
+              formControlName="car_make"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('car_make')"
+              (ionBlur)="onInputBlur('car_make')"
+              (ionChange)="onMakeChange($event.detail.value)"
+              class="select-field"
+              aria-label="Select make"
+            >
+              <ion-select-option *ngFor="let make of filteredMakes" [value]="make.make_id">
+                {{ make.make_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label>Make *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_make')">
+            <p class="error-message">Please select make</p>
+          </ion-text>
+
+          <!-- Model -->
+          <div class="input-group" [class.focused]="carForm.get('car_model')?.value || isFocused['car_model']">
+            <ion-icon name="car-outline" class="input-icon"></ion-icon>
+            <ion-select
+              formControlName="car_model"
+              interface="popover"
+              placeholder=" "
+              [disabled]="!carForm.get('car_make')?.value"
+              (ionChange)="onModelChange($event.detail.value)"
+              (ionFocus)="onInputFocus('car_model')"
+              (ionBlur)="onInputBlur('car_model')"
+              class="select-field"
+              aria-label="Select model"
+            >
+              <ion-select-option *ngFor="let model of filteredModels" [value]="model.model_id">
+                {{ model.model_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label>Model *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_model')">
+            <p class="error-message">Please select model</p>
+          </ion-text>
+
+          <!-- Version -->
+          <div class="input-group" [class.focused]="carForm.get('car_version')?.value || isFocused['car_version']">
+            <ion-icon name="git-branch-outline" class="input-icon"></ion-icon>
+            <ion-select
+              formControlName="car_version"
+              interface="popover"
+              placeholder=" "
+              [disabled]="!carForm.get('car_model')?.value"
+              (ionFocus)="onInputFocus('car_version')"
+              (ionBlur)="onInputBlur('car_version')"
+              class="select-field"
+              aria-label="Select version"
+            >
+              <ion-select-option *ngFor="let version of filteredVersions" [value]="version.version_id">
+                {{ version.version_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label>Version *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_version')">
+            <p class="error-message">Please select version</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Location Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="location-outline"></ion-icon>
+            Location
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="input-group" [class.focused]="carForm.get('car_location')?.value || isFocused['car_location']">
+            <ion-icon name="location-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="car_location"
+              class="text-field select-field"
+              formControlName="car_location"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('car_location')"
+              (ionBlur)="onInputBlur('car_location')"
+              required
+              aria-label="Select location"
+            >
+              <ion-select-option *ngFor="let city of filteredCities" [value]="city.city_name">
+                {{ city.city_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label for="car_location">Location *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('car_location')">
+            <p class="error-message">Please select location</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Features Section -->
+   
+
+      <!-- Images Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="images-outline"></ion-icon>
+            Images
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="upload-container">
+            <div class="upload-grid">
+              <div class="preview-item" *ngFor="let preview of imagePreviews; let i = index">
+                <img [src]="preview" alt="Preview">
+                <ion-icon name="close-circle" class="remove-icon" (click)="removeImage(preview)"></ion-icon>
+              </div>
+              <div class="upload-btn-wrapper" *ngIf="imagePreviews.length < 8">
+                <input 
+                  type="file" 
+                  id="fileUpload" 
+                  (change)="onFileChange($event)" 
+                  accept="image/*" 
+                  multiple 
+                  [disabled]="imagePreviews.length >= 8"
+                />
+                <label for="fileUpload" class="upload-label">
+                  <ion-icon name="cloud-upload-outline"></ion-icon>
+                  <span>Upload Images</span>
+                </label>
+              </div>
+            </div>
+            <span class="upload-note">Maximum 8 images allowed ({{imagePreviews.length}}/8)</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Submit Button -->
+      <div class="submit-btn-container">
+        <ion-button type="submit" class="submit-btn" [disabled]="!carForm.valid">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Submit
+        </ion-button>
+        <div *ngIf="!carForm.valid" class="form-status">
+          <p>Please fill in all required fields marked with *</p>
+          <ul>
+            <li *ngIf="carForm.get('car_item_name')?.invalid">Accessory name is required</li>
+            <li *ngIf="carForm.get('car_condition')?.invalid">Condition is required</li>
+            <li *ngIf="carForm.get('car_accessories_price')?.invalid">Valid price is required</li>
+            <li *ngIf="carForm.get('car_description')?.invalid">Description is required</li>
+            <li *ngIf="carForm.get('category')?.invalid">Category is required</li>
+            <li *ngIf="carForm.get('car_make')?.invalid">Make is required</li>
+            <li *ngIf="carForm.get('car_model')?.invalid">Model is required</li>
+            <li *ngIf="carForm.get('car_version')?.invalid">Version is required</li>
+            <li *ngIf="carForm.get('car_location')?.invalid">Location is required</li>
+            <li *ngIf="carForm.get('vehicle_feature_type')?.invalid">Feature type is required</li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
 </ion-content>

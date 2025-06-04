@@ -101,6 +101,28 @@ export class PartsAndAccesoriesService {
   }
 
   addCommercialVehicle(formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/parts-and-accesories/add_commercial_vehicle.php`, formData);
+    return this.http.post(`${this.apiUrl}add_commercial_vehicle.php`, formData);
+  }
+  addPlant(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}plant-access-ad-sale.php`, formData);
+  }
+  getcommercialSubCategories(categoryId: number) {
+    return this.http.get<{ subcategories: { sub_category_id: number; sub_category_name: string }[] }>(
+      `${this.apiUrl}/get-commercial-parts-sub-catagory.php?category_id=${categoryId}`
+    );
+  }
+  getcommercialCategories(): Observable<Category[]> {
+    return this.http.get<{ categories: Category[] }>(this.apiUrl + 'get-commercial-parts-catagory.php').pipe(
+      map((response: { categories: Category[] }) => response.categories)
+    );
+  }
+
+  addMachinery(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}add_machinery.php`, formData);
+  }
+  getmachineryCategories(): Observable<Category[]> {
+    return this.http.get<{ categories: Category[] }>(this.apiUrl + 'get-machinery-parts-catagory.php').pipe(
+      map((response: { categories: Category[] }) => response.categories)
+    );
   }
 }

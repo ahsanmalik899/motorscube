@@ -1,13 +1,320 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>add-plant</ion-title>
+<ion-header>
+  <ion-toolbar style="--background: #FF4B2B; --color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" icon="arrow-back" style="--color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Plant</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-plant</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <form [formGroup]="machineryForm" (ngSubmit)="submitForm()" novalidate>
+      <!-- Product Info Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="cube-outline"></ion-icon>
+            Plant Details
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Plant Name -->
+          <div class="input-group" [class.focused]="machineryForm.get('item_name')?.value || isFocused['item_name']">
+            <ion-icon name="pricetag-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              id="item_name"
+              class="text-field"
+              placeholder=" "
+              formControlName="item_name"
+              (focus)="onInputFocus('item_name')"
+              (blur)="onInputBlur('item_name')"
+              required
+            />
+            <label for="item_name">Plant Name *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('item_name')">
+            <p class="error-message">Plant name is required</p>
+          </ion-text>
+
+          <!-- Condition -->
+          <div class="input-group" [class.focused]="machineryForm.get('item_condition')?.value || isFocused['item_condition']">
+            <ion-icon name="construct-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="item_condition"
+              class="text-field"
+              formControlName="item_condition"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('item_condition')"
+              (ionBlur)="onInputBlur('item_condition')"
+              required
+            >
+              <ion-select-option value="New">New</ion-select-option>
+              <ion-select-option value="Used">Used</ion-select-option>
+            </ion-select>
+            <label for="item_condition">Condition *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('item_condition')">
+            <p class="error-message">Please select condition</p>
+          </ion-text>
+
+          <!-- Item For -->
+          <div class="input-group" [class.focused]="machineryForm.get('item_for')?.value || isFocused['item_for']">
+            <ion-icon name="business-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="item_for"
+              class="text-field"
+              formControlName="item_for"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('item_for')"
+              (ionBlur)="onInputBlur('item_for')"
+              required
+            >
+              <ion-select-option value="Construction">Construction</ion-select-option>
+              <ion-select-option value="Agricultural">Agricultural</ion-select-option>
+              <ion-select-option value="Industrial">Industrial</ion-select-option>
+              <ion-select-option value="Other">Other</ion-select-option>
+            </ion-select>
+            <label for="item_for">Item For *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('item_for')">
+            <p class="error-message">Please select item for</p>
+          </ion-text>
+
+          <!-- Other Sector (shown only when Item For is "Other") -->
+          <div class="input-group" *ngIf="machineryForm.get('item_for')?.value === 'Other'"
+               [class.focused]="machineryForm.get('item_other_sector')?.value || isFocused['item_other_sector']">
+            <ion-icon name="create-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              id="item_other_sector"
+              class="text-field"
+              placeholder=" "
+              formControlName="item_other_sector"
+              (focus)="onInputFocus('item_other_sector')"
+              (blur)="onInputBlur('item_other_sector')"
+            />
+            <label for="item_other_sector">Specify Other Sector</label>
+          </div>
+
+          <!-- Category -->
+          <div class="input-group" [class.focused]="machineryForm.get('category')?.value || isFocused['category']">
+            <ion-icon name="list-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="category"
+              class="text-field"
+              formControlName="category"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('category')"
+              (ionBlur)="onInputBlur('category')"
+              required
+            >
+              <ion-select-option *ngFor="let category of categories" [value]="category.category_id">
+                {{ category.category_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="category">Category *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('category')">
+            <p class="error-message">Please select category</p>
+          </ion-text>
+
+          <!-- Hours Used -->
+          <div class="input-group" [class.focused]="machineryForm.get('hour_used')?.value || isFocused['hour_used']">
+            <ion-icon name="time-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="hour_used"
+              class="text-field"
+              placeholder=" "
+              formControlName="hour_used"
+              (focus)="onInputFocus('hour_used')"
+              (blur)="onInputBlur('hour_used')"
+              required
+            />
+            <label for="hour_used">Hours Used *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('hour_used')">
+            <p class="error-message">Hours used is required</p>
+          </ion-text>
+
+          <!-- Weight -->
+          <div class="input-group" [class.focused]="machineryForm.get('gross_weight')?.value || isFocused['gross_weight']">
+            <ion-icon name="scale-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="gross_weight"
+              class="text-field"
+              placeholder=" "
+              formControlName="gross_weight"
+              (focus)="onInputFocus('gross_weight')"
+              (blur)="onInputBlur('gross_weight')"
+              required
+            />
+            <label for="gross_weight">Weight (kg) *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('gross_weight')">
+            <p class="error-message">Weight is required</p>
+          </ion-text>
+
+          <!-- Price -->
+          <div class="input-group" [class.focused]="machineryForm.get('price')?.value || isFocused['price']">
+            <ion-icon name="cash-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="price"
+              class="text-field"
+              placeholder=" "
+              formControlName="price"
+              (focus)="onInputFocus('price')"
+              (blur)="onInputBlur('price')"
+              required
+            />
+            <label for="price">Price (PKR) *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('price')">
+            <p class="error-message">Valid price is required</p>
+          </ion-text>
+
+          <!-- Description -->
+          <div class="input-group" [class.focused]="machineryForm.get('description')?.value || isFocused['description']">
+            <ion-icon name="document-text-outline" class="input-icon"></ion-icon>
+            <textarea
+              id="description"
+              class="text-field"
+              placeholder=" "
+              formControlName="description"
+              (focus)="onInputFocus('description')"
+              (blur)="onInputBlur('description')"
+              rows="3"
+              required
+            ></textarea>
+            <label for="description">Description *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('description')">
+            <p class="error-message">Description is required</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Location Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="location-outline"></ion-icon>
+            Location
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Country -->
+          <div class="input-group" [class.focused]="machineryForm.get('country')?.value || isFocused['country']">
+            <ion-icon name="globe-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="country"
+              class="text-field select-field"
+              formControlName="country"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('country')"
+              (ionBlur)="onInputBlur('country')"
+              required
+            >
+              <ion-select-option *ngFor="let country of filteredCountries" [value]="country.country_name">
+                {{ country.country_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="country">Country *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('country')">
+            <p class="error-message">Please select country</p>
+          </ion-text>
+
+          <!-- City -->
+          <div class="input-group" [class.focused]="machineryForm.get('city')?.value || isFocused['city']">
+            <ion-icon name="location-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="city"
+              class="text-field select-field"
+              formControlName="city"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('city')"
+              (ionBlur)="onInputBlur('city')"
+              required
+            >
+              <ion-select-option *ngFor="let city of filteredCities" [value]="city.city_name">
+                {{ city.city_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="city">City *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('city')">
+            <p class="error-message">Please select city</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Images Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="images-outline"></ion-icon>
+            Images
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="upload-container">
+            <div class="upload-grid">
+              <div class="preview-item" *ngFor="let preview of imagePreviews; let i = index">
+                <img [src]="preview" alt="Preview">
+                <ion-icon name="close-circle" class="remove-icon" (click)="removeImage(preview)"></ion-icon>
+              </div>
+              <div class="upload-btn-wrapper" *ngIf="imagePreviews.length < 8">
+                <input 
+                  type="file" 
+                  id="fileUpload" 
+                  (change)="onFileChange($event)" 
+                  accept="image/*" 
+                  multiple 
+                  [disabled]="imagePreviews.length >= 8"
+                />
+                <label for="fileUpload" class="upload-label">
+                  <ion-icon name="cloud-upload-outline"></ion-icon>
+                  <span>Upload Images</span>
+                </label>
+              </div>
+            </div>
+            <span class="upload-note">Maximum 8 images allowed ({{imagePreviews.length}}/8)</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Submit Button -->
+      <div class="submit-btn-container">
+        <ion-button type="submit" class="submit-btn" [disabled]="!machineryForm.valid">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Submit
+        </ion-button>
+        <div *ngIf="!machineryForm.valid" class="form-status">
+          <p>Please fill in all required fields marked with *</p>
+          <ul>
+            <li *ngIf="machineryForm.get('item_name')?.invalid">Plant name is required</li>
+            <li *ngIf="machineryForm.get('item_condition')?.invalid">Condition is required</li>
+            <li *ngIf="machineryForm.get('item_for')?.invalid">Item for is required</li>
+            <li *ngIf="machineryForm.get('category')?.invalid">Category is required</li>
+            <li *ngIf="machineryForm.get('hour_used')?.invalid">Hours used is required</li>
+            <li *ngIf="machineryForm.get('gross_weight')?.invalid">Weight is required</li>
+            <li *ngIf="machineryForm.get('price')?.invalid">Valid price is required</li>
+            <li *ngIf="machineryForm.get('description')?.invalid">Description is required</li>
+            <li *ngIf="machineryForm.get('country')?.invalid">Country is required</li>
+            <li *ngIf="machineryForm.get('city')?.invalid">City is required</li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
 </ion-content>

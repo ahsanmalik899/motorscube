@@ -26,7 +26,7 @@ export class MyStorePage implements OnInit {
 
  getStoreData() {
   const userId = localStorage.getItem('userId');
-
+console.log(userId)
   if (!userId) return;
 
   this.partsAndAceesories.getStore(userId).subscribe({
@@ -46,6 +46,7 @@ export class MyStorePage implements OnInit {
 
 goToMyProducts() {
   this.router.navigate(['/my-products'], { queryParams: { storeId: this.store.id } });
+  console.log(this.store.id)
 }
 
   goToCreateStore() {

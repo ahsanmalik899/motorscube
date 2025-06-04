@@ -1,13 +1,434 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>add-machinery</ion-title>
+<ion-header>
+  <ion-toolbar style="--background: #FF4B2B; --color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" icon="arrow-back" style="--color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Machinery</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-machinery</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <form [formGroup]="machineryForm" (ngSubmit)="submitForm()" novalidate>
+      <!-- Product Info Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="cube-outline"></ion-icon>
+            Machinery Details
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Machinery Name -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_name')?.value || isFocused['access_name']">
+            <ion-icon name="pricetag-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              id="access_name"
+              class="text-field"
+              placeholder=" "
+              formControlName="access_name"
+              (focus)="onInputFocus('access_name')"
+              (blur)="onInputBlur('access_name')"
+              required
+            />
+            <label for="access_name">Machinery Name *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_name')">
+            <p class="error-message">Machinery name is required</p>
+          </ion-text>
+
+          <!-- Type -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_type')?.value || isFocused['access_type']">
+            <ion-icon name="construct-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="access_type"
+              class="text-field"
+              formControlName="access_type"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_type')"
+              (ionBlur)="onInputBlur('access_type')"
+              required
+            >
+              <ion-select-option value="Construction">Construction</ion-select-option>
+              <ion-select-option value="Agricultural">Agricultural</ion-select-option>
+              <ion-select-option value="Industrial">Industrial</ion-select-option>
+              <ion-select-option value="Other">Other</ion-select-option>
+            </ion-select>
+            <label for="access_type">Type *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_type')">
+            <p class="error-message">Please select type</p>
+          </ion-text>
+
+          <!-- Other Type (shown only when Type is "Other") -->
+          <div class="input-group" *ngIf="machineryForm.get('access_type')?.value === 'Other'"
+               [class.focused]="machineryForm.get('access_other_type')?.value || isFocused['access_other_type']">
+            <ion-icon name="create-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              id="access_other_type"
+              class="text-field"
+              placeholder=" "
+              formControlName="access_other_type"
+              (focus)="onInputFocus('access_other_type')"
+              (blur)="onInputBlur('access_other_type')"
+            />
+            <label for="access_other_type">Specify Other Type</label>
+          </div>
+
+          <!-- Condition -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_condition')?.value || isFocused['access_condition']">
+            <ion-icon name="construct-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="access_condition"
+              class="text-field"
+              formControlName="access_condition"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_condition')"
+              (ionBlur)="onInputBlur('access_condition')"
+              required
+            >
+              <ion-select-option value="New">New</ion-select-option>
+              <ion-select-option value="Used">Used</ion-select-option>
+            </ion-select>
+            <label for="access_condition">Condition *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_condition')">
+            <p class="error-message">Please select condition</p>
+          </ion-text>
+
+          <!-- Hours Used -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_hourused')?.value || isFocused['access_hourused']">
+            <ion-icon name="time-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="access_hourused"
+              class="text-field"
+              placeholder=" "
+              formControlName="access_hourused"
+              (focus)="onInputFocus('access_hourused')"
+              (blur)="onInputBlur('access_hourused')"
+              required
+            />
+            <label for="access_hourused">Hours Used *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_hourused')">
+            <p class="error-message">Hours used is required</p>
+          </ion-text>
+
+          <!-- Weight -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_weight')?.value || isFocused['access_weight']">
+            <ion-icon name="scale-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="access_weight"
+              class="text-field"
+              placeholder=" "
+              formControlName="access_weight"
+              (focus)="onInputFocus('access_weight')"
+              (blur)="onInputBlur('access_weight')"
+              required
+            />
+            <label for="access_weight">Weight (kg) *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_weight')">
+            <p class="error-message">Weight is required</p>
+          </ion-text>
+
+          <!-- Price -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_price')?.value || isFocused['access_price']">
+            <ion-icon name="cash-outline" class="input-icon"></ion-icon>
+            <input
+              type="number"
+              id="access_price"
+              class="text-field"
+              placeholder=" "
+              formControlName="access_price"
+              (focus)="onInputFocus('access_price')"
+              (blur)="onInputBlur('access_price')"
+              required
+            />
+            <label for="access_price">Price (PKR) *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_price')">
+            <p class="error-message">Valid price is required</p>
+          </ion-text>
+
+          <!-- Description -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_description')?.value || isFocused['access_description']">
+            <ion-icon name="document-text-outline" class="input-icon"></ion-icon>
+            <textarea
+              id="access_description"
+              class="text-field"
+              placeholder=" "
+              formControlName="access_description"
+              (focus)="onInputFocus('access_description')"
+              (blur)="onInputBlur('access_description')"
+              rows="3"
+              required
+            ></textarea>
+            <label for="access_description">Description *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_description')">
+            <p class="error-message">Description is required</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Category & Vehicle Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="car-outline"></ion-icon>
+            Category & Vehicle
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Category -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_category')?.value || isFocused['access_category']">
+            <ion-icon name="list-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="access_category"
+              class="text-field"
+              formControlName="access_category"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_category')"
+              (ionBlur)="onInputBlur('access_category')"
+              (ionChange)="updateSubCategories()"
+              aria-label="Select category"
+            >
+              <ion-select-option *ngFor="let category of categories" [value]="category.category_id">
+                {{ category.category_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="access_category">Category *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_category')">
+            <p class="error-message">Please select category</p>
+          </ion-text>
+
+          <!-- Sub Category -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_subtype')?.value || isFocused['access_subtype']">
+            <ion-icon name="options-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="access_subtype"
+              class="text-field"
+              formControlName="access_subtype"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_subtype')"
+              (ionBlur)="onInputBlur('access_subtype')"
+              [disabled]="!machineryForm.get('access_category')?.value"
+              aria-label="Select subcategory"
+            >
+              <ion-select-option *ngFor="let subcategory of subCategories" [value]="subcategory.sub_category_id">
+                {{ subcategory.sub_category_name }}
+              </ion-select-option>
+            </ion-select>
+            <label for="access_subtype">Sub Category</label>
+          </div>
+
+          <!-- Make -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_make')?.value || isFocused['access_make']">
+            <ion-icon name="car-sport-outline" class="input-icon"></ion-icon>
+            <ion-select
+              formControlName="access_make"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_make')"
+              (ionBlur)="onInputBlur('access_make')"
+              (ionChange)="onMakeChange($event.detail.value)"
+              class="select-field"
+              aria-label="Select make"
+            >
+              <ion-select-option *ngFor="let make of filteredMakes" [value]="make.make_id">
+                {{ make.make_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label>Make *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_make')">
+            <p class="error-message">Please select make</p>
+          </ion-text>
+
+          <!-- Model -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_model')?.value || isFocused['access_model']">
+            <ion-icon name="car-outline" class="input-icon"></ion-icon>
+            <ion-select
+              formControlName="access_model"
+              interface="popover"
+              placeholder=" "
+              [disabled]="!machineryForm.get('access_make')?.value"
+              (ionChange)="onModelChange($event.detail.value)"
+              (ionFocus)="onInputFocus('access_model')"
+              (ionBlur)="onInputBlur('access_model')"
+              class="select-field"
+              aria-label="Select model"
+            >
+              <ion-select-option *ngFor="let model of filteredModels" [value]="model.model_id">
+                {{ model.model_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label>Model *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_model')">
+            <p class="error-message">Please select model</p>
+          </ion-text>
+
+          <!-- Version -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_version')?.value || isFocused['access_version']">
+            <ion-icon name="git-branch-outline" class="input-icon"></ion-icon>
+            <ion-select
+              formControlName="access_version"
+              interface="popover"
+              placeholder=" "
+              [disabled]="!machineryForm.get('access_model')?.value"
+              (ionFocus)="onInputFocus('access_version')"
+              (ionBlur)="onInputBlur('access_version')"
+              class="select-field"
+              aria-label="Select version"
+            >
+              <ion-select-option *ngFor="let version of filteredVersions" [value]="version.version_id">
+                {{ version.version_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label>Version *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_version')">
+            <p class="error-message">Please select version</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Location Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="location-outline"></ion-icon>
+            Location
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Country -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_country')?.value || isFocused['access_country']">
+            <ion-icon name="globe-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="access_country"
+              class="text-field select-field"
+              formControlName="access_country"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_country')"
+              (ionBlur)="onInputBlur('access_country')"
+              required
+              aria-label="Select country"
+            >
+              <ion-select-option *ngFor="let country of filteredCountries" [value]="country.country_name">
+                {{ country.country_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label for="access_country">Country *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_country')">
+            <p class="error-message">Please select country</p>
+          </ion-text>
+
+          <!-- City -->
+          <div class="input-group" [class.focused]="machineryForm.get('access_city')?.value || isFocused['access_city']">
+            <ion-icon name="location-outline" class="input-icon"></ion-icon>
+            <ion-select
+              id="access_city"
+              class="text-field select-field"
+              formControlName="access_city"
+              interface="popover"
+              placeholder=" "
+              (ionFocus)="onInputFocus('access_city')"
+              (ionBlur)="onInputBlur('access_city')"
+              required
+              aria-label="Select location"
+            >
+              <ion-select-option *ngFor="let city of filteredCities" [value]="city.city_name">
+                {{ city.city_name }}
+              </ion-select-option>
+              <ion-select-option value="" class="reset-option" role="button">Reset Selection</ion-select-option>
+            </ion-select>
+            <label for="access_city">City *</label>
+          </div>
+          <ion-text color="danger" *ngIf="isControlInvalid('access_city')">
+            <p class="error-message">Please select city</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Images Section -->
+      <ion-card class="form-section">
+        <ion-card-header class="section-header">
+          <ion-card-title>
+            <ion-icon name="images-outline"></ion-icon>
+            Images
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="upload-container">
+            <div class="upload-grid">
+              <div class="preview-item" *ngFor="let preview of imagePreviews; let i = index">
+                <img [src]="preview" alt="Preview">
+                <ion-icon name="close-circle" class="remove-icon" (click)="removeImage(preview)"></ion-icon>
+              </div>
+              <div class="upload-btn-wrapper" *ngIf="imagePreviews.length < 8">
+                <input 
+                  type="file" 
+                  id="fileUpload" 
+                  (change)="onFileChange($event)" 
+                  accept="image/*" 
+                  multiple 
+                  [disabled]="imagePreviews.length >= 8"
+                />
+                <label for="fileUpload" class="upload-label">
+                  <ion-icon name="cloud-upload-outline"></ion-icon>
+                  <span>Upload Images</span>
+                </label>
+              </div>
+            </div>
+            <span class="upload-note">Maximum 8 images allowed ({{imagePreviews.length}}/8)</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Submit Button -->
+      <div class="submit-btn-container">
+        <ion-button type="submit" class="submit-btn" [disabled]="!machineryForm.valid">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Submit
+        </ion-button>
+        <div *ngIf="!machineryForm.valid" class="form-status">
+          <p>Please fill in all required fields marked with *</p>
+          <ul>
+            <li *ngIf="machineryForm.get('access_name')?.invalid">Machinery name is required</li>
+            <li *ngIf="machineryForm.get('access_type')?.invalid">Type is required</li>
+            <li *ngIf="machineryForm.get('access_condition')?.invalid">Condition is required</li>
+            <li *ngIf="machineryForm.get('access_hourused')?.invalid">Hours used is required</li>
+            <li *ngIf="machineryForm.get('access_weight')?.invalid">Weight is required</li>
+            <li *ngIf="machineryForm.get('access_price')?.invalid">Valid price is required</li>
+            <li *ngIf="machineryForm.get('access_description')?.invalid">Description is required</li>
+            <li *ngIf="machineryForm.get('access_category')?.invalid">Category is required</li>
+            <li *ngIf="machineryForm.get('access_make')?.invalid">Make is required</li>
+            <li *ngIf="machineryForm.get('access_model')?.invalid">Model is required</li>
+            <li *ngIf="machineryForm.get('access_version')?.invalid">Version is required</li>
+            <li *ngIf="machineryForm.get('access_country')?.invalid">Country is required</li>
+            <li *ngIf="machineryForm.get('access_city')?.invalid">City is required</li>
+            <li *ngIf="machineryForm.get('access_featuretype')?.invalid">Feature type is required</li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
 </ion-content>
