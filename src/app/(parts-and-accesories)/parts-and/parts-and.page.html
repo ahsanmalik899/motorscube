@@ -1,45 +1,157 @@
-<ion-header>
-  <ion-toolbar class="header-toolbar">
-    <ion-buttons slot="start" class="back-button">
-      <img src="../../../assets/extra/back arrow.png" (click)="back()" class="back-icon">
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #FF4B2B; --color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="" icon="arrow-back" style="--color: white;"></ion-back-button>
     </ion-buttons>
-    <ion-title class="page-title">PARTS & ACCESSORIES</ion-title>
+    <ion-title>Parts & Accessories</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="content-wrapper">
-  <!-- Category Tabs -->
-  <div class="category-tabs-container">
-    <ion-segment value="all" scrollable class="category-segment">
-      <ion-segment-button value="car" class="segment-button">
-        <ion-label>Car</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="bike" class="segment-button">
-        <ion-label>Bike</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="commercial" class="segment-button">
-        <ion-label>Commercial</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="machinery" class="segment-button">
-        <ion-label>Machinery</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
+<ion-content [fullscreen]="true">
+  <div class="products-container">
+    <!-- Search and Filter Section -->
+    <div class="search-filter-section">
+      <!-- Search Bar -->
+      <div class="search-container">
+        <ion-searchbar
+          [(ngModel)]="searchTerm"
+          (ionInput)="onSearch($event)"
+          (ionClear)="onSearchClear()"
+          placeholder="Search products..."
+          animated
+          class="custom-searchbar">
+        </ion-searchbar>
 
-  <!-- Product Cards Grid -->
-  <div class="products-grid">
-    <div class="product-card" *ngFor="let category of categories" (click)="navigateToCategory(category.value)">
-      <div class="image-container">
-        <img [src]="category.image" [alt]="category.title" class="product-image">
+        <!-- Search Suggestions -->
+        <div class="search-suggestions" *ngIf="showSuggestions">
+          <ion-list>
+            <ion-item *ngFor="let suggestion of searchSuggestions" (click)="selectSuggestion(suggestion)">
+              <ion-icon name="search-outline" slot="start"></ion-icon>
+              <ion-label>{{ suggestion }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
       </div>
-      <div class="card-content">
-        <h3 class="product-title">{{ category.title }}</h3>
-        <div class="price-badge">From {{ category.price }}</div>
-        <ion-button expand="block" class="shop-now-button">
-          <ion-icon name="cart-outline" slot="start"></ion-icon>
-          Shop Now
-        </ion-button>
+
+      <div class="filter-controls">
+        <ion-chip *ngFor="let category of categories" 
+                 [color]="selectedCategory === category ? 'primary' : 'medium'"
+                 (click)="selectedCategory = selectedCategory === category ? null : category; filterProducts()">
+          {{ category }}
+        </ion-chip>
       </div>
+
+      <!-- Product Type Segment -->
+      <div class="segments-container">
+        <ion-segment [(ngModel)]="sortBy" (ionChange)="filterProducts()" class="compact-segment">
+          <ion-segment-button value="all">
+            <ion-icon name="apps-outline"></ion-icon>
+            <ion-label>All</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="car">
+            <ion-icon name="car-outline"></ion-icon>
+            <ion-label>Car</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="bike">
+            <ion-icon name="bicycle-outline"></ion-icon>
+            <ion-label>Bike</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="commercial">
+            <ion-icon name="bus-outline"></ion-icon>
+            <ion-label>Commercial</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="machinery">
+            <ion-icon name="construct-outline"></ion-icon>
+            <ion-label>Machinery</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="plant">
+            <ion-icon name="leaf-outline"></ion-icon>
+            <ion-label>Plant</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <!-- Price Sort Segment -->
+      <div class="price-sort-container">
+        <ion-segment [(ngModel)]="priceSort" (ionChange)="filterProducts()" class="price-sort-segment">
+          <ion-segment-button value="newest">
+            <ion-icon name="time-outline"></ion-icon>
+            <ion-label>Newest</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="price-low">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <ion-label>Low to High</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="price-high">
+            <ion-icon name="trending-down-outline"></ion-icon>
+            <ion-label>High to Low</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <ion-grid class="product-grid">
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4" *ngFor="let product of filteredProducts">
+          <ion-card class="product-card" (click)="viewProductDetails(product)">
+            <div class="product-image">
+              <img [src]="getImagePath(product)" [alt]="getProductName(product)">
+              <div class="ad-type-badge" [ngClass]="getAdTypeClass(product)">
+                {{ getAdType(product) }}
+              </div>
+            </div>
+            
+            <ion-card-header>
+              <ion-card-title>{{ getProductName(product) }}</ion-card-title>
+              <ion-card-subtitle>
+                <div class="product-details">
+                  <div class="category-chip">
+                    <ion-icon name="pricetag-outline"></ion-icon>
+                    {{ getProductCategory(product) }}
+                  </div>
+                  <div class="condition-chip">
+                    <ion-icon name="construct-outline"></ion-icon>
+                    {{ getProductCondition(product) }}
+                  </div>
+                </div>
+              </ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              <p class="description">{{ product.description }}</p>
+              <div class="price-row">
+                <span class="price">PKR {{ product.price | number:'1.0-0' }}</span>
+                <span class="date">{{ product.created_date | date:'mediumDate' }}</span>
+              </div>
+            </ion-card-content>
+
+            <ion-row class="card-actions">
+              <ion-col>
+                <ion-button expand="block" fill="clear" color="primary" (click)="contactSeller(product); $event.stopPropagation()">
+                  <ion-icon name="mail-outline" slot="start"></ion-icon>
+                  Contact Seller
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="block" fill="clear" color="success" (click)="addToCart(product); $event.stopPropagation()">
+                  <ion-icon name="cart-outline" slot="start"></ion-icon>
+                  Add to Cart
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- No Products Fallback -->
+    <div *ngIf="filteredProducts.length === 0" class="no-products">
+      <ion-icon name="cube-outline"></ion-icon>
+      <p>No products found</p>
+      <ion-button color="primary" (click)="clearFilters()">
+        Clear Filters
+      </ion-button>
     </div>
   </div>
 </ion-content>

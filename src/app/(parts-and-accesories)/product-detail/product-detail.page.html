@@ -1,0 +1,128 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #FF4B2B; --color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/parts-and" text="" icon="arrow-back" style="--color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Product Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading product details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <p>{{ error }}</p>
+    <ion-button (click)="back()">Go Back</ion-button>
+  </div>
+
+  <!-- Product Details -->
+  <div *ngIf="!loading && !error && product" class="product-details-container">
+    <!-- Main Product Image -->
+    <div class="product-image-container">
+      <img [src]="getImagePath(product)" [alt]="getProductName(product)" class="main-image">
+      <div class="ad-type-badge" [ngClass]="getAdTypeClass(product)">
+        {{ getAdType(product) }}
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <h1 class="product-name">{{ getProductName(product) }}</h1>
+      
+      <div class="price-date-row">
+        <span class="price">PKR {{ product.price | number:'1.0-0' }}</span>
+        <span class="date">Posted: {{ product.created_date | date:'mediumDate' }}</span>
+      </div>
+
+      <div class="category-condition-row">
+        <ion-chip>
+          <ion-icon name="pricetag-outline"></ion-icon>
+          <ion-label>{{ getProductCategory(product) }}</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="construct-outline"></ion-icon>
+          <ion-label>{{ getProductCondition(product) }}</ion-label>
+        </ion-chip>
+      </div>
+
+      <!-- Product Details -->
+      <div class="details-section">
+        <h2>Product Details</h2>
+        <div class="details-grid">
+          <div class="detail-item" *ngIf="product.make">
+            <ion-icon name="car-outline"></ion-icon>
+            <div class="detail-content">
+              <span class="label">Make</span>
+              <span class="value">{{ product.make }}</span>
+            </div>
+          </div>
+          <div class="detail-item" *ngIf="product.model">
+            <ion-icon name="car-sport-outline"></ion-icon>
+            <div class="detail-content">
+              <span class="label">Model</span>
+              <span class="value">{{ product.model }}</span>
+            </div>
+          </div>
+          <div class="detail-item" *ngIf="product.version">
+            <ion-icon name="git-branch-outline"></ion-icon>
+            <div class="detail-content">
+              <span class="label">Version</span>
+              <span class="value">{{ product.version }}</span>
+            </div>
+          </div>
+          <div class="detail-item" *ngIf="product.location">
+            <ion-icon name="location-outline"></ion-icon>
+            <div class="detail-content">
+              <span class="label">Location</span>
+              <span class="value">{{ product.location }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="description-section" *ngIf="product.description">
+        <h2>Description</h2>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <ion-button expand="block" color="primary" (click)="contactSeller()">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          Contact Seller
+        </ion-button>
+        <ion-button expand="block" color="success" (click)="addToCart()">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          Add to Cart
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="related-products" *ngIf="relatedProducts.length > 0">
+      <h2>Related Products</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="3" *ngFor="let relatedProduct of relatedProducts">
+            <ion-card class="related-product-card" (click)="viewRelatedProduct(relatedProduct)">
+              <img [src]="getImagePath(relatedProduct)" [alt]="getProductName(relatedProduct)">
+              <ion-card-header>
+                <ion-card-title>{{ getProductName(relatedProduct) }}</ion-card-title>
+                <ion-card-subtitle>
+                  PKR {{ relatedProduct.price | number:'1.0-0' }}
+                </ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

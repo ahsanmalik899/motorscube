@@ -1137,6 +1137,11 @@ const routes: Routes = [
     path: 'add-plant',
     loadChildren: () => import('./(parts-and-accesories)/add-plant/add-plant.module').then( m => m.AddPlantPageModule)
   },
+  {
+    path: 'product-detail',
+    loadChildren: () => import('./(parts-and-accesories)/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
+  },
+
 
 
 

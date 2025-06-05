@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { PartsAndAccesoriesService } from 'src/app/(services)/parts-and-accesories.service';
 
 interface BaseProduct {
   post_status: string;
@@ -27,6 +28,7 @@ interface CarProduct extends BaseProduct {
   car_model: string;
   car_version: string;
   car_ad_privateortrade: string;
+  car_ad_normal_feature: string;
 }
 
 interface BikeProduct extends BaseProduct {
@@ -41,6 +43,7 @@ interface BikeProduct extends BaseProduct {
   bike_ad_model: string;
   bike_version: string;
   bike_ad_privateortrade: string;
+  bike_ad_normal_feature: string;
 }
 
 interface CommercialVehicleProduct extends BaseProduct {
@@ -56,6 +59,7 @@ interface CommercialVehicleProduct extends BaseProduct {
   model: string;
   version: string;
   vehicle_private_trader: string;
+  vehicle_feature_type: string;
 }
 
 interface MachineryProduct extends BaseProduct {
@@ -75,6 +79,7 @@ interface MachineryProduct extends BaseProduct {
   access_model: string;
   access_version: string;
   access_privateortrade: string;
+  access_featuretype: string;
 }
 
 interface PlantProduct extends BaseProduct {
@@ -91,6 +96,7 @@ interface PlantProduct extends BaseProduct {
   city: string;
   country: string;
   seller_type: string;
+  ad_type: string;
 }
 
 type Product = CarProduct | BikeProduct | CommercialVehicleProduct | MachineryProduct | PlantProduct;
@@ -118,7 +124,8 @@ export class MyProductsPage implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private partsandaccesorys:PartsAndAccesoriesService,
   ) { }
 
   showProductOptions = false;
@@ -168,22 +175,20 @@ export class MyProductsPage implements OnInit {
   }
 
   async loadProducts() {
-    
     const loading = await this.loadingCtrl.create({
       message: 'Loading products...'
     });
     await loading.present();
-
+  
     try {
-      const formData = new FormData();
-      formData.append('store_id', this.storeId);
-
-      const response = await this.http.post<any>(`${environment.apiUrl}get-store-products.php`, formData).toPromise();
-   
-      if (response.success) {
-        
+      const response = await this.partsandaccesorys.getmyproducts(this.storeId).toPromise();
+  
+      if (response && response.success) {
+        console.log('Raw API Response:', response);
+  
         this.products = response.products.map((product: any) => {
-          // Add type based on ad_for field
+          console.log('Product ad_type:', product.ad_type);
+  
           if (product.ad_for === 'Car Accessories') {
             return { ...product, type: 'car' } as CarProduct;
           } else if (product.ad_for === 'Bike Accessory') {
@@ -195,14 +200,18 @@ export class MyProductsPage implements OnInit {
           } else if (product.ad_for === 'Plant Accessory') {
             return { ...product, type: 'plant' } as PlantProduct;
           }
+  
           return product;
         });
+  
         this.filteredProducts = [...this.products];
         this.extractCategories();
         this.filterProducts();
+  
       } else {
-        this.presentToast(response.message || 'Failed to load products', 'danger');
+        this.presentToast(response?.message || 'Failed to load products', 'danger');
       }
+  
     } catch (error) {
       console.error('Error loading products:', error);
       this.presentToast('An error occurred while loading products', 'danger');
@@ -210,7 +219,7 @@ export class MyProductsPage implements OnInit {
       await loading.dismiss();
     }
   }
-
+  
   extractCategories() {
     const uniqueCategories = new Set<string>();
     
@@ -437,23 +446,68 @@ export class MyProductsPage implements OnInit {
 
   getImagePath(product: Product): string {
     const baseProduct = product as BaseProduct;
+    console.log('Original image path:', baseProduct.image_1);
+    
     if (!baseProduct.image_1) {
+      console.log('No image path found, using placeholder');
       return 'assets/images/placeholder.png';
     }
 
-    switch (product.type) {
-      case 'car':
-        return `car-accessories/${baseProduct.image_1}`;
-      case 'bike':
-        return `bike-accessories/${baseProduct.image_1}`;
-      case 'commercial':
-        return `commercial-accessories/${baseProduct.image_1}`;
-      case 'machinery':
-        return `machinery/${baseProduct.image_1}`;
-      case 'plant':
-        return `plant-accessories/${baseProduct.image_1}`;
+    // Extract filename from any path format
+    let filename: string;
+    if (baseProduct.image_1.includes('http://localhost/')) {
+      filename = baseProduct.image_1.split('/').pop() || '';
+    } else if (baseProduct.image_1.includes('\\')) {
+      // Handle Windows paths
+      filename = baseProduct.image_1.split('\\').pop() || '';
+    } else {
+      filename = baseProduct.image_1;
+    }
+
+    // Clean up the filename
+    filename = filename.replace(/^.*[\\\/]/, ''); // Remove any remaining path
+    console.log('Extracted filename:', filename);
+
+    if (!filename) {
+      console.log('No filename found in path, using placeholder');
+      return 'assets/images/placeholder.png';
+    }
+
+    const finalPath = `http://localhost/${filename}`;
+    console.log('Final constructed path:', finalPath);
+    return finalPath;
+  }
+
+  getAdType(product: Product): string {
+    const adType = (() => {
+      switch (product.type) {
+        case 'car':
+          return (product as CarProduct).car_ad_normal_feature || 'General';
+        case 'bike':
+          return (product as BikeProduct).bike_ad_normal_feature || 'General';
+        case 'commercial':
+          return (product as CommercialVehicleProduct).vehicle_feature_type || 'General';
+        case 'machinery':
+          return (product as MachineryProduct).access_featuretype || 'General';
+        case 'plant':
+          return (product as PlantProduct).ad_type || 'General';
+        default:
+          return 'General';
+      }
+    })();
+    console.log(`Ad Type for ${product.type}:`, adType);
+    return adType;
+  }
+
+  getAdTypeClass(product: Product): string {
+    const adType = this.getAdType(product);
+    switch (adType.toLowerCase()) {
+      case 'supreme':
+        return 'supreme';
+      case 'hotspot':
+        return 'hotspot';
       default:
-        return baseProduct.image_1;
+        return 'general';
     }
   }
 }

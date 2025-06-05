@@ -125,4 +125,26 @@ export class PartsAndAccesoriesService {
       map((response: { categories: Category[] }) => response.categories)
     );
   }
+  getmyproducts(storeId: string) {
+    const formData = new FormData();
+    formData.append('store_id', storeId);
+  
+    return this.http.post<{
+      success: boolean;
+      products: any[];
+      message: string;
+    }>(`${this.apiUrl}get-store-products.php`, formData);
+  }
+  getallproducts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}get-all-products.php`);
+  }
+
+  getProductDetails(id: string, type: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}get-product-details.php`, {
+      params: {
+        id: id,
+        type: type
+      }
+    });
+  }
 }

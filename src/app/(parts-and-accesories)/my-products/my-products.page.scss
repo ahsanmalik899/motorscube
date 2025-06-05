@@ -359,6 +359,32 @@
   }
 }
 
+.ad-type-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  z-index: 2;
+
+  &.supreme {
+    background-color: #FFD700;
+    color: #000;
+  }
+
+  &.hotspot {
+    background-color: #FF4B2B;
+  }
+
+  &.general {
+    background-color: #4CAF50;
+  }
+}
+
 // Responsive adjustments
 @media (max-width: 768px) {
   .products-container {

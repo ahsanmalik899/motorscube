@@ -90,12 +90,15 @@
         <ion-col size="12" size-md="6" size-lg="4" *ngFor="let product of filteredProducts">
           <ion-card class="product-card">
             <div class="image-container">
-              <img [src]="environment.apiUrl + 'uploads/' + getImagePath(product)" [alt]="getProductName(product)" />
+              <img [src]="getImagePath(product)" [alt]="getProductName(product)" />
               <div class="status-badge" [ngClass]="product.post_status.toLowerCase()">
                 {{ product.post_status }}
               </div>
               <div class="product-type-badge" [ngClass]="product.type">
                 {{ product.ad_for }}
+              </div>
+              <div class="ad-type-badge" [ngClass]="getAdTypeClass(product)">
+                {{ getAdType(product) }}
               </div>
             </div>
             
