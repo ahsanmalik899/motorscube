@@ -270,6 +270,12 @@ export class AddPlantPage implements OnInit {
       const formData = new FormData();
       const formValues = this.machineryForm.value;
 
+      // Find the selected category name
+      const selectedCategory = this.categories.find(cat => cat.category_id === formValues.category);
+      if (selectedCategory) {
+        formValues.category = selectedCategory.category_name;
+      }
+
       // Append form values
       Object.keys(formValues).forEach(key => {
         formData.append(key, formValues[key]);

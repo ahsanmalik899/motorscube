@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, AlertController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { PartsAndAccesoriesService } from 'src/app/(services)/parts-and-accesories.service';
 
@@ -126,6 +126,8 @@ export class MyProductsPage implements OnInit {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private partsandaccesorys:PartsAndAccesoriesService,
+    private alertController: AlertController,
+    private cdr: ChangeDetectorRef
   ) { }
 
   showProductOptions = false;
@@ -367,6 +369,29 @@ export class MyProductsPage implements OnInit {
   }
 
   async deleteProduct(product: Product) {
+    const alert = await this.alertController.create({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to delete this product?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            this.executeDelete(product);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  private async executeDelete(product: Product) {
     const loading = await this.loadingCtrl.create({
       message: 'Deleting product...'
     });
@@ -407,8 +432,8 @@ export class MyProductsPage implements OnInit {
       const response = await this.http.post<any>(`${environment.apiUrl}${endpoint}`, formData).toPromise();
       
       if (response.success) {
-        this.presentToast('Product deleted successfully', 'success');
-        this.products = this.products.filter(p => {
+        // Create new arrays instead of modifying existing ones
+        this.products = [...this.products.filter(p => {
           switch (p.type) {
             case 'car': return p.car_ad_accessories_id !== productId;
             case 'bike': return p.bike_ad_accessories_id !== productId;
@@ -417,8 +442,14 @@ export class MyProductsPage implements OnInit {
             case 'plant': return p.plant_access_ad_sale_id !== productId;
             default: return true;
           }
-        });
-        this.filterProducts();
+        })];
+
+        this.filteredProducts = [...this.products];
+        
+        // Force change detection
+        this.cdr.detectChanges();
+        
+        this.presentToast('Product deleted successfully', 'success');
       } else {
         this.presentToast(response.message || 'Failed to delete product', 'danger');
       }

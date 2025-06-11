@@ -210,14 +210,49 @@
 
     .image-container {
       position: relative;
+      width: 100%;
       height: 200px;
       overflow: hidden;
-      border-radius: 12px 12px 0 0;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+
+      .hotspot-tags {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        z-index: 2;
+
+        .general-hotspot, .supreme-hotspot {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-size: 11px;
+          font-weight: bold;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+          ion-icon {
+            font-size: 12px;
+          }
+        }
+
+        .general-hotspot {
+          background: linear-gradient(135deg, #FF4B2B, #FF416C);
+          color: white;
+        }
+
+        .supreme-hotspot {
+          background: linear-gradient(135deg, #FFD700, #FFA500);
+          color: white;
+        }
       }
 
       .status-badge {
@@ -361,7 +396,7 @@
 
 .ad-type-badge {
   position: absolute;
-  top: 10px;
+bottom: 0px;
   right: 10px;
   padding: 4px 8px;
   border-radius: 4px;

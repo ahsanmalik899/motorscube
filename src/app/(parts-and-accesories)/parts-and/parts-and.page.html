@@ -100,6 +100,10 @@
               <div class="ad-type-badge" [ngClass]="getAdTypeClass(product)">
                 {{ getAdType(product) }}
               </div>
+              <div class="supreme-hotspot" *ngIf="product.isSupreme">
+                <ion-icon name="star"></ion-icon>
+                <span>Supreme</span>
+              </div>
             </div>
             
             <ion-card-header>
