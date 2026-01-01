@@ -138,13 +138,14 @@ ion-content {
   position: relative;
   height: 60px;
   padding: 0 16px;
+  padding-top: 60px;
   background: linear-gradient(135deg, #ff6a00, #ff2b62);
 }
 
 .menu-icon {
   position: absolute;
   left: 16px;
-  height: 24px;
+  height: 35px;
   cursor: pointer;
 }
 
@@ -215,12 +216,18 @@ ion-content {
 
 /* Footer */
 .modern-footer {
-  background: #fff;
-  border-top: 1px solid #eee;
+  --background: #ededed; 
+  --color: #333; 
+  border-top: 1px solid #aeaeae;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
   box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
   position: fixed;
+   
   bottom: 0;
   left: 0;
+  height: 60px;
   position: sticky;
   right: 0;
   z-index: 999; /* ensure it's above other content */

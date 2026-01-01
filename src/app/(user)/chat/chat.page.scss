@@ -1,0 +1,97 @@
+/* chat.page.scss */
+
+.chat-page-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-placeholder {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin-top: 50%;
+}
+
+
+
+/* Footer */
+.modern-footer {
+  --background: #ededed; 
+  --color: #333; 
+  border-top: 1px solid #aeaeae;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+   
+  bottom: 10;
+  left: 0;
+  margin-bottom: 40px;
+  height: 60px;
+  position: fixed;
+  right: 0;
+  z-index: 999; /* ensure it's above other content */
+}
+
+
+.footer-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-btn {
+  --color: #FF4B2B;
+  text-align: center;
+  font-size: 13px;
+  position: relative;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.footer-btn.active {
+  color: #FF4B2B;
+}
+
+.footer-btn ion-icon {
+  font-size: 24px;
+}
+
+.message-badge {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  font-size: 10px;
+  background: #FF4B2B;
+  color: white;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 18px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

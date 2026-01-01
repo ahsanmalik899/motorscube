@@ -124,6 +124,7 @@ import { UpdatePlantLeasingPage } from './(industrial-plants)/update-plant-leasi
 import { UpdatePlantSchoolPage } from './(industrial-plants)/update-plant-school/update-plant-school.page';
 import { UpdatePlantShowroomPage } from './(industrial-plants)/update-plant-showroom/update-plant-showroom.page';
 import { UpdatePlantWorkshopPage } from './(industrial-plants)/update-plant-workshop/update-plant-workshop.page';
+import { ChatPage } from './(user)/chat/chat.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -233,6 +234,7 @@ import { UpdatePlantWorkshopPage } from './(industrial-plants)/update-plant-work
     UpdatePlantSchoolPage,
     UpdatePlantShowroomPage,
     UpdatePlantWorkshopPage,
+    ChatPage,
   ],
  
   bootstrap: [AppComponent],

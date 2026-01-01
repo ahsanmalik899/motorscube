@@ -132,7 +132,7 @@ this.categories = [
 
   navigateToProfile() {
     this.activeTab = 'profile';
-    this.router.navigate(['/profile']); // Update with your profile route
+    this.router.navigate(['/account-prof-busines']); // Update with your profile route
   }
   navigateToCategory(route: string) {
     this.router.navigateByUrl(route);

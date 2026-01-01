@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/(services)/user.service';
 
 
 @Component({
@@ -24,7 +25,10 @@ this.router.navigate(['/home'])
   userName: string = '';
   userImage: string = '';
 
-  constructor(public router: Router) {
+  constructor(public router: Router,
+      private userService: UserService,
+  ) {
+    
     this.userID = sessionStorage.getItem('userId')??'';
     this.userType = sessionStorage.getItem('userType')??'';
       
@@ -40,6 +44,7 @@ this.router.navigate(['/home'])
   }
 
   ngOnInit() {
+    this.fetchUserName()
     if(this.userType==''||this.userID==''){
       this.userType = localStorage.getItem('userType') || '';
       this.userID = localStorage.getItem('userId') || '';
@@ -48,6 +53,23 @@ this.router.navigate(['/home'])
     }
   }
 
+fetchUserName() {
+  this.userService.getUserBsnData().subscribe({
+    next: (data: any[]) => {
+      const user = data.find(
+        item => item.users_id === this.userID
+      );
+
+      if (user) {
+        this.userName = user.user_name;
+        console.log('User Name:', this.userName);
+      }
+    },
+    error: (err) => {
+      console.error('Error fetching user name:', err);
+    }
+  });
+}
 
   navigateToCar(){
     this.router.navigate(['/my-car-ads']);

@@ -1141,6 +1141,11 @@ const routes: Routes = [
     path: 'product-detail',
     loadChildren: () => import('./(parts-and-accesories)/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./(user)/chat/chat.module').then( m => m.ChatPageModule)
+  },
+
 
 
 
